@@ -166,9 +166,9 @@ if sel != "---":
                         st.balloons()
                     else:
                         st.error(f"Erreur réelle : {e}")
-
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
