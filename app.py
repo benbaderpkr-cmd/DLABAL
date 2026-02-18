@@ -4,25 +4,29 @@ import pandas as pd
 
 st.title("🧪 TEST DE CONNEXION DLABAL")
 
-# Ton ID de Sheet
 SHEET_ID = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
-
-# Connexion
+# On change juste ici pour forcer une connexion "fraîche"
 conn = st.connection("gsheets", type=GSheetsConnection)
-
-st.write("Si tu vois ce message, le script est bien lancé sur GitHub.")
 
 if st.button("🚀 CLIQUE ICI POUR TESTER L'ÉCRITURE"):
     try:
-        # On crée une seule donnée très simple
-        df_test = pd.DataFrame([{"TEST": "Connexion OK à 100%"}])
+        df_test = pd.DataFrame([{"TEST": "Connexion OK"}])
         
-        # On essaie d'écrire dans un onglet appelé 'TEST_DLABAL'
-        conn.update(spreadsheet=SHEET_ID, worksheet="TEST_DLABAL", data=df_test)
+        # CHANGEMENT ICI : On utilise une méthode plus "brute"
+        # On essaie d'écrire sans préciser d'onglet pour voir s'il crée 'Sheet1'
+        conn.update(spreadsheet=SHEET_ID, data=df_test)
         
-        st.success("✅ BRAVO ! L'ordre d'écriture a été envoyé.")
+        st.success("✅ Code 200 reçu !")
         st.balloons()
-        st.info("Maintenant, regarde ton fichier Google Sheets. Un onglet 'TEST_DLABAL' doit être apparu.")
         
     except Exception as e:
-        st.error(f"❌ L'ERREUR EST ICI : {e}")
+        st.error(f"❌ ERREUR : {e}")
+
+# AJOUT DE CE BLOC POUR VOIR SI LA LECTURE MARCHE
+st.subheader("Lecture du fichier actuel :")
+try:
+    df_lecture = conn.read(spreadsheet=SHEET_ID)
+    st.write("Voici ce que l'appli voit dans ton fichier :")
+    st.dataframe(df_lecture)
+except Exception as e:
+    st.error(f"Impossible de lire : {e}")
