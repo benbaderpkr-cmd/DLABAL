@@ -115,7 +115,7 @@ if sel != "---":
             # --- C. LOGIQUE D'ENREGISTREMENT ---
             if submit:
                 try:
-                    # Préparation de la nouvelle ligne
+                    # On crée la ligne proprement
                     nouvelle_donnee = {
                         "LEGUME": sel,
                         "PLANTATION": v_plan,
@@ -126,21 +126,17 @@ if sel != "---":
                         "INFO_SUPP": v_info
                     }
                     
-                    # On met à jour le DataFrame localement
-                    if not df.empty and sel in df['LEGUME'].values:
-                        # On écrase les colonnes pour le légume sélectionné
-                        for col, val in nouvelle_donnee.items():
-                            df.loc[df['LEGUME'] == sel, col] = val
-                    else:
-                        # On ajoute une nouvelle ligne si le légume n'existait pas
-                        df = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
+                    # On force la création d'un nouveau tableau avec uniquement cette ligne pour le TEST
+                    df_to_send = pd.DataFrame([nouvelle_donnee])
                     
-                    # Envoi de la totalité du tableau mis à jour vers Google Sheets
-                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
+                    # Affichage temporaire pour déboguer (tu pourras le supprimer après)
+                    st.write("Données envoyées :", df_to_send)
                     
-                    # Nettoyage du cache pour voir les modifs au prochain chargement
+                    # ENVOI FORCE
+                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_to_send)
+                    
                     st.cache_data.clear() 
-                    st.success("✨ Données sauvegardées avec succès !")
+                    st.success("✨ Données envoyées ! Vérifie l'onglet THO maintenant.")
                     st.balloons()
                     
                 except Exception as e:
@@ -152,3 +148,4 @@ if sel != "---":
                         st.error(f"Erreur lors de la sauvegarde : {e}")
 else:
     st.info("Sélectionnez un légume dans la barre latérale pour commencer.")
+
