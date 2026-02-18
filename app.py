@@ -82,27 +82,26 @@ with st.sidebar:
 
 # --- LOGIQUE D'AFFICHAGE DU CONTENU ---
 
-# MODE 1 : TABLEAU GLOBAL JP1 (Données Constructeur + Abaques techniques)
+# MODE 1 : TABLEAU GLOBAL JP1 (Données Constructeur + Abaques exactes)
 if st.session_state.get("view_mode") == "JP1_GLOBAL":
     st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
     
-    # Annotation de prévention
     st.warning("""
     **⚠️ AVERTISSEMENT :** Ces réglages proviennent du croisement des guides techniques Terrateck et Terradonis. 
-    Ils ne constituent pas une référence absolue. La précision dépend du contexte (préparation du sol, humidité) 
-    et du calibre exact de vos semences. Ajustez selon vos propres objectifs de distance.
+    Ils ne constituent pas une référence absolue. La précision dépend du contexte (préparation du sol) 
+    et du calibre des semences. Effectuez toujours un test à vide.
     """)
     
     if st.button("⬅️ Retour au dossier"):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
 
-    # Section 1 : Préconisations par culture
+    # SECTION 1 : PRÉCONISATIONS PAR CULTURE
     liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
     if liste:
         st.subheader("📋 Préconisations par culture")
         df = pd.DataFrame(liste)
-        recherche = st.text_input("🔍 Filtrer la liste globale...", "")
+        recherche = st.text_input("🔍 Filtrer un légume...", "")
         if recherche:
             df = df[df['légume'].str.contains(recherche, case=False)]
         
@@ -112,30 +111,48 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
     
     st.divider()
 
-    # Section 2 : Abaques Techniques de référence
-    st.subheader("🛠️ Références Mécaniques (Abaques Terradonis)")
+    # SECTION 2 : DIMENSIONS DES TROUS (Formaté d'après ta liste)
+    st.subheader("📏 Tableau des dimensions des trous des rouleaux (en mm)")
     
-    col_trous, col_dist = st.columns(2)
+    # On crée deux colonnes pour reproduire l'affichage du PDF
+    data_trous_1 = {
+        "Réf": ["A", "AA", "C", "F", "FJ", "G", "J", "L", "LJ", "M", "MJ", "MM", "N"],
+        "Ø trou": ["13.50", "12.00", "11.00", "5.00", "5.00", "9.00", "SPECIAL", "7.00", "7.00", "5.00", "6.00", "6.00", "SPECIAL"],
+        "Prof.": ["6.00", "6.00", "5.50", "2.50", "3.00", "4.50", "1.5 (1/2)", "2.50", "3.70", "2.00", "3.50", "2.50", "16x6 mm"]
+    }
+    data_trous_2 = {
+        "Réf": ["R", "S-4", "U-4", "X", "XY", "XYY", "Y", "YJ", "YK", "YX", "YXX", "YYJ", "YYX"],
+        "Ø trou": ["9.00", "SPECIAL", "SPECIAL", "4.00", "2.50", "2.00", "3.50", "3.00", "3.50", "2.50", "2.50", "3.00", "2.00"],
+        "Prof.": ["3.50", "19x8 mm", "19x10 mm", "2.00", "1.20", "1.20", "1.50", "2.00", "2.30", "1.50", "1.80", "1.70", "1.80"]
+    }
     
-    with col_trous:
-        st.markdown("**📏 Dimensions des trous des rouleaux**")
-        data_trous = {
-            "Code Rouleau": ["YYJ", "YYX", "XY", "X", "Y", "F", "LJ", "N", "MJ", "M", "L", "AA"],
-            "Diamètre (mm)": ["2.0", "2.5", "3.0", "3.5", "4.0", "5.0", "7.5", "8.0", "8.5", "9.0", "10.0", "12.0"]
-        }
-        st.table(pd.DataFrame(data_trous))
-        
-    with col_dist:
-        st.markdown("**⚙️ Tableau des distances mécaniques**")
-        data_dist = {
-            "Pignons (AV/AR)": ["14 / 11", "13 / 11", "11 / 11", "11 / 13", "11 / 14", "10 / 14", "9 / 14"],
-            "6 trous (mm)": ["95", "105", "110", "130", "140", "155", "170"],
-            "12 trous (mm)": ["45", "50", "55", "65", "70", "75", "85"],
-            "24 trous (mm)": ["23", "25", "28", "33", "35", "38", "43"]
-        }
-        st.table(pd.DataFrame(data_dist))
+    c1, c2 = st.columns(2)
+    with c1: st.table(pd.DataFrame(data_trous_1))
+    with c2: st.table(pd.DataFrame(data_trous_2))
+    st.info("Z : sans trou (Ø extérieur 59.85 mm)")
 
-    st.caption("Source : Manuel utilisateur JP1 - Terradonis (www.terradonis.com)")
+    st.divider()
+
+    # SECTION 3 : TABLEAU DES DISTANCES COMPLET
+    st.subheader("⚙️ Tableau des distances de semis (en mm)")
+    
+    dist_data = {
+        "Trous / Pignons": ["2 trous", "3 trous", "4 trous", "6 trous", "8 trous", "10 trous", "12 trous", "16 trous", "20 trous", "24 trous", "30 trous", "36 trous"],
+        "14/9": ["320", "210", "160", "105", "80", "64", "53", "40", "32", "27", "21", "18"],
+        "14/10": ["360", "230", "180", "115", "90", "72", "58", "45", "36", "29", "24", "20"],
+        "13/10": ["380", "250", "190", "125", "95", "76", "63", "48", "38", "32", "25", "21"],
+        "13/11": ["420", "280", "210", "140", "105", "84", "70", "53", "42", "35", "28", "23"],
+        "11/10": ["460", "300", "230", "150", "115", "92", "75", "58", "46", "38", "31", "26"],
+        "11/11": ["500", "330", "250", "165", "125", "100", "83", "63", "50", "42", "33", "28"],
+        "10/11": ["540", "360", "270", "180", "135", "108", "90", "68", "54", "45", "36", "30"],
+        "11/13": ["580", "390", "290", "195", "145", "116", "98", "73", "58", "49", "39", "32"],
+        "10/13": ["640", "430", "320", "215", "160", "128", "108", "80", "64", "54", "43", "36"],
+        "10/14": ["700", "460", "350", "230", "175", "140", "115", "88", "70", "58", "47", "39"],
+        "9/14": ["760", "510", "380", "255", "190", "152", "128", "95", "76", "64", "51", "42"]
+    }
+    
+    st.dataframe(pd.DataFrame(dist_data), use_container_width=True, hide_index=True)
+    st.caption("Source : Manuel Terradonis JP1 - Page 4 (www.terradonis.com)")
 
 # MODE 2 : DOSSIER MARAÎCHAGE (Affichage par onglets)
 else:
@@ -227,3 +244,4 @@ else:
                     st.cache_data.clear()
                     st.success("Enregistré !")
                     st.balloons()
+
