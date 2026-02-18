@@ -115,7 +115,7 @@ if sel != "---":
             # --- C. LOGIQUE D'ENREGISTREMENT ---
             if submit:
                 try:
-                    # On crée la ligne proprement
+                    # 1. On prépare la ligne avec les noms exacts des colonnes
                     nouvelle_donnee = {
                         "LEGUME": sel,
                         "PLANTATION": v_plan,
@@ -126,26 +126,36 @@ if sel != "---":
                         "INFO_SUPP": v_info
                     }
                     
-                    # On force la création d'un nouveau tableau avec uniquement cette ligne pour le TEST
-                    df_to_send = pd.DataFrame([nouvelle_donnee])
+                    # 2. On crée un nouveau tableau (DataFrame) à envoyer
+                    # Si 'df' (le tableau lu au début) existe, on met à jour
+                    if not df.empty and "LEGUME" in df.columns:
+                        # On enlève l'ancienne ligne du légume s'il existe
+                        df = df[df['LEGUME'] != sel]
+                        # On ajoute la nouvelle
+                        df_final = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
+                    else:
+                        df_final = pd.DataFrame([nouvelle_donnee])
                     
-                    # Affichage temporaire pour déboguer (tu pourras le supprimer après)
-                    st.write("Données envoyées :", df_to_send)
-                    
-                    # ENVOI FORCE
-                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_to_send)
+                    # 3. L'ENVOI CRUCIAL
+                    # On précise bien l'ID et l'onglet, et on ajoute index=False
+                    conn.update(
+                        spreadsheet=SHEET_ID, 
+                        worksheet="THO", 
+                        data=df_final, 
+                        index=False
+                    )
                     
                     st.cache_data.clear() 
-                    st.success("✨ Données envoyées ! Vérifie l'onglet THO maintenant.")
+                    st.success("✨ Données envoyées ! Rafraîchissez votre page Google Sheets.")
                     st.balloons()
                     
                 except Exception as e:
-                    # On intercepte le faux positif "Response 200"
                     if "200" in str(e):
-                        st.success("✨ Données transmises avec succès !")
+                        st.success("✨ Enregistré (Retour 200) !")
                         st.balloons()
                     else:
-                        st.error(f"Erreur lors de la sauvegarde : {e}")
+                        st.error(f"Erreur réelle : {e}")
 else:
     st.info("Sélectionnez un légume dans la barre latérale pour commencer.")
+
 
