@@ -42,7 +42,7 @@ if sel != "---":
         "📝 SOURCE THO"
     ])
 
-    # --- ONGLET 1, 2, 3 (Lecture JSON) ---
+    # --- SOURCE GAB ---
     with tab1:
         g = DATA.get(sel, {}).get("GAB_FRAB", {})
         if g:
@@ -51,6 +51,7 @@ if sel != "---":
                     st.markdown(v)
         else: st.warning("Données GAB absentes.")
 
+    # --- SOURCE JMF ---
     with tab2:
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
@@ -59,6 +60,7 @@ if sel != "---":
                     st.markdown(contenu)
         else: st.warning("Données JMF absentes.")
 
+    # --- SOURCE JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
         if j:
@@ -67,27 +69,23 @@ if sel != "---":
                     st.markdown(c)
         else: st.warning("Données JDV absentes.")
 
-    # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
+    # --- SOURCE THO (GOOGLE SHEETS) ---
     with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
         try:
-            # On lit le sheet actuel
             df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
-            
-            # Recherche des notes existantes
             if not df.empty and 'LEGUME' in df.columns:
                 existing_data = df[df['LEGUME'] == sel]
                 notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
             else:
                 notes = {}
-            st.success("✅ Connexion Google Sheets OK")
-
         except Exception as e:
             st.error(f"Erreur de lecture : {e}")
             notes = {}
             df = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
 
+        # ON GARDE TON FORMULAIRE EN 2 COLONNES
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
             with c1:
@@ -103,7 +101,6 @@ if sel != "---":
 
             if submit:
                 try:
-                    # 1. Préparation de la nouvelle ligne
                     nouvelle_donnee = {
                         "LEGUME": sel,
                         "PLANTATION": v_plan,
@@ -114,24 +111,20 @@ if sel != "---":
                         "INFO_SUPP": v_info
                     }
                     
-                    # 2. On reconstruit le tableau proprement
-                    # Si le légume existe, on l'enlève pour le remettre à jour
+                    # Mise à jour intelligente
                     if not df.empty and 'LEGUME' in df.columns:
                         df = df[df['LEGUME'] != sel]
                     
                     df_final = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
                     
-                    # 3. On force l'ordre des colonnes pour correspondre au Sheet
+                    # On force l'ordre pour éviter le refus de Google
                     cols = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
                     df_final = df_final[cols]
                     
-                    # 4. ENVOI ET CLEAR CACHE
                     conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_final)
                     st.cache_data.clear() 
                     
-                    # 5. Diagnostic visuel (pour toi)
-                    st.write("Dernière ligne envoyée :", nouvelle_donnee)
-                    st.success("✨ Données envoyées ! Vérifie ton fichier Google Sheets.")
+                    st.success("✨ Enregistré ! Allez voir le fichier DLABAL_DATA.")
                     st.balloons()
                     
                 except Exception as e:
@@ -139,6 +132,6 @@ if sel != "---":
                         st.success("✨ Enregistré avec succès !")
                         st.balloons()
                     else:
-                        st.error(f"Erreur lors de la sauvegarde : {e}")
+                        st.error(f"Erreur réelle : {e}")
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
