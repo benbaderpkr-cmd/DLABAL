@@ -4,17 +4,15 @@ import os
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 
-# 1. CONFIGURATION (Style original)
+# 1. CONFIGURATION
 st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
 
 # 2. SYSTÈME DE MOT DE PASSE
 def check_password():
     if "password_correct" not in st.session_state:
         st.session_state["password_correct"] = False
-
     if st.session_state["password_correct"]:
         return True
-
     st.title("🔐 Accès Restreint")
     pwd = st.text_input("Entrez le mot de passe pour accéder à DLABAL :", type="password")
     if st.button("Valider"):
@@ -43,11 +41,11 @@ def load_json(filename):
 
 DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
-SOURCES_JMF = load_json("sources_jmf.json") # Nouveau chargement JMF
-tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()))))
+SOURCES_JMF = load_json("sources_jmf.json")
+# Union de toutes les clés pour la liste de sélection
+tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + list(SOURCES_JMF.get("reglages_itk", {}).keys()))))
 
 # --- SIDEBAR ---
-# Rendu propre pour la sidebar
 st.sidebar.markdown("""
     <div style="line-height: 1.3;">
         <span style="font-size: 24px; font-weight: bold;">DLABAL</span><br>
@@ -65,7 +63,7 @@ if sel != "---":
     
     tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
 
-    # --- TAB 1 : GAB (Style blocs verts) ---
+    # --- TAB 1 : GAB ---
     with tab1:
         g = DATA.get(sel, {}).get("GAB_FRAB", {})
         if g:
@@ -77,62 +75,48 @@ if sel != "---":
             for k, v in g.get("TECHNIQUE", {}).items():
                 with st.expander(f"📌 {k}", expanded=True):
                     st.markdown(v)
-        else: st.warning("Données absentes.")
+        else: st.warning("Données GAB absentes.")
 
-# --- TAB 2 : JMF ---
+    # --- TAB 2 : JMF ---
     with tab2:
-        # On utilise SOURCES_JMF (en majuscules)
+        # Affichage des réglages JP1 (SOURCES_JMF)
         reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
         
         if reglages:
             st.markdown("### ⚙️ Configuration Semoir JP1")
-            
             col_pdf, col_terra = st.columns(2)
             
             with col_pdf:
                 st.info("**📍 Réglages JMF (Fiches PDF)**")
                 r_j = reglages.get("jmf", {})
-                if r_j:
-                    st.markdown(f"""
-                    - **Rouleau :** `{r_j.get('rouleau', 'N/A')}`
-                    - **Pignons (AV/AR) :** `{r_j.get('pignon_av', '?')} / {r_j.get('pignon_ar', '?')}`
-                    - **Brosse :** `{r_j.get('brosse', 'Standard')}`
-                    - **Nombre de rangs :** `{r_j.get('rangs', '?')}`
-                    """)
-                else:
-                    st.write("Données JMF non disponibles.")
+                st.markdown(f"""
+                - **Rouleau :** `{r_j.get('rouleau', 'N/A')}`
+                - **Pignons (AV/AR) :** `{r_j.get('pignon_av', '?')} / {r_j.get('pignon_ar', '?')}`
+                - **Brosse :** `{r_j.get('brosse', 'Standard')}`
+                - **Nombre de rangs :** `{r_j.get('rangs', '?')}`
+                """)
             
             with col_terra:
                 st.warning("**🚜 Réglages Site Terrateck / Jang**")
                 r_t = reglages.get("terrateck", {})
-                if r_t:
-                    st.markdown(f"""
-                    - **Rouleau :** `{r_t.get('rouleau', 'N/A')}`
-                    - **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`
-                    - **Brosse :** `{r_t.get('brosse', 'Standard')}`
-                    - **Note :** *{r_t.get('obs', '-')}*
-                    """)
-                else:
-                    st.write("Données Terrateck non disponibles.")
+                st.markdown(f"""
+                - **Rouleau :** `{r_t.get('rouleau', 'N/A')}`
+                - **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`
+                - **Brosse :** `{r_t.get('brosse', 'Standard')}`
+                - **Note :** *{r_t.get('obs', '-')}*
+                """)
             st.divider()
-        # --- FIN INSERTION ---
 
+        # Affichage du contenu textuel JMF (DATA)
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
                 with st.expander(f"📌 {t}", expanded=True):
                     st.markdown(c)
-        else:
-            st.warning("Aucune fiche technique JMF détaillée pour ce légume.")
-        # --- FIN INSERTION ---
+        elif not reglages:
+            st.warning("Aucune donnée JMF disponible.")
 
-        f = DATA.get(sel, {}).get("JMF_FORTIER", {})
-        if f:
-            for t, c in f.items():
-                with st.expander(f"📌 {t}", expanded=True):
-                    st.markdown(c)
-
-    # --- TAB 3 : JDV (Avec sauts de ligne) ---
+    # --- TAB 3 : JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
         if j:
@@ -149,7 +133,6 @@ if sel != "---":
         cols_gs = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
         df_gs = pd.DataFrame(columns=cols_gs)
         notes = {}
-
         try:
             df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
             if df_gs is not None and not df_gs.empty:
@@ -167,7 +150,6 @@ if sel != "---":
                 v_r = st.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")), key=f"r_{sel}")
                 v_v = st.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")), key=f"v_{sel}")
                 v_i = st.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")), key=f"i_{sel}")
-            
             if st.form_submit_button("💾 ENREGISTRER"):
                 new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
                 if not df_gs.empty: df_gs = df_gs[df_gs['LEGUME'] != sel]
@@ -176,8 +158,3 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
-
-
-
-
-
