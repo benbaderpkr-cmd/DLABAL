@@ -42,6 +42,7 @@ def load_json(filename):
 DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
 SOURCES_JMF = load_json("sources_jmf.json")
+
 # Union de toutes les clés pour la liste de sélection
 tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + list(SOURCES_JMF.get("reglages_itk", {}).keys()))))
 
@@ -79,14 +80,8 @@ if sel != "---":
 
     # --- TAB 2 : JMF ---
     with tab2:
-        # Affichage des réglages JP1 (SOURCES_JMF)
-        # Ligne de test forcé
+        # Récupération des réglages JP1
         reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
-        st.write(f"DEBUG: Recherche de '{sel}' dans le JSON...") # Cette ligne va s'afficher sur ton app
-            if reglages:
-    st.write("DEBUG: Réglages trouvés !")
-else:
-    st.write("DEBUG: Rien trouvé dans SOURCES_JMF")
         
         if reglages:
             st.markdown("### ⚙️ Configuration Semoir JP1")
@@ -113,7 +108,7 @@ else:
                 """)
             st.divider()
 
-        # Affichage du contenu textuel JMF (DATA)
+        # Affichage du contenu textuel JMF
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
@@ -164,5 +159,3 @@ else:
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
-
-
