@@ -62,11 +62,11 @@ with st.sidebar:
         <br>
     """, unsafe_allow_html=True)
     
-    # SÉLECTEUR AVEC LE NOUVEAU LIBELLÉ
+    # SÉLECTEUR AVEC LE NOUVEAU LIBELLÉ (Moteur de recherche suggéré)
     sel = st.selectbox(
         "Choisir ou taper le nom d'un légume :", 
         ["---"] + tous_les_legumes,
-        help="Tapez les premières lettres pour filtrer rapidement."
+        help="Tapez les premières lettres pour filtrer rapidement les cultures."
     )
     
     st.divider()
@@ -82,17 +82,25 @@ with st.sidebar:
 
 # --- LOGIQUE D'AFFICHAGE DU CONTENU ---
 
-# MODE 1 : TABLEAU GLOBAL JP1 (Données Constructeur)
+# MODE 1 : TABLEAU GLOBAL JP1 (Données Constructeur + Abaques techniques)
 if st.session_state.get("view_mode") == "JP1_GLOBAL":
     st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
-    st.info("Données extraites des abaques officielles Jang / Terrateck.")
+    
+    # Annotation de prévention
+    st.warning("""
+    **⚠️ AVERTISSEMENT :** Ces réglages proviennent du croisement des guides techniques Terrateck et Terradonis. 
+    Ils ne constituent pas une référence absolue. La précision dépend du contexte (préparation du sol, humidité) 
+    et du calibre exact de vos semences. Ajustez selon vos propres objectifs de distance.
+    """)
     
     if st.button("⬅️ Retour au dossier"):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
 
+    # Section 1 : Préconisations par culture
     liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
     if liste:
+        st.subheader("📋 Préconisations par culture")
         df = pd.DataFrame(liste)
         recherche = st.text_input("🔍 Filtrer la liste globale...", "")
         if recherche:
@@ -101,8 +109,33 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
         st.dataframe(df.rename(columns={
             "légume": "Légume", "pignon_av": "Pignon AV", "pignon_ar": "Pignon AR", "distance_cm": "Distance (cm)"
         }), use_container_width=True, hide_index=True)
-    else:
-        st.error("Fichier reglages_jp1.json non trouvé ou mal formaté.")
+    
+    st.divider()
+
+    # Section 2 : Abaques Techniques de référence
+    st.subheader("🛠️ Références Mécaniques (Abaques Terradonis)")
+    
+    col_trous, col_dist = st.columns(2)
+    
+    with col_trous:
+        st.markdown("**📏 Dimensions des trous des rouleaux**")
+        data_trous = {
+            "Code Rouleau": ["YYJ", "YYX", "XY", "X", "Y", "F", "LJ", "N", "MJ", "M", "L", "AA"],
+            "Diamètre (mm)": ["2.0", "2.5", "3.0", "3.5", "4.0", "5.0", "7.5", "8.0", "8.5", "9.0", "10.0", "12.0"]
+        }
+        st.table(pd.DataFrame(data_trous))
+        
+    with col_dist:
+        st.markdown("**⚙️ Tableau des distances mécaniques**")
+        data_dist = {
+            "Pignons (AV/AR)": ["14 / 11", "13 / 11", "11 / 11", "11 / 13", "11 / 14", "10 / 14", "9 / 14"],
+            "6 trous (mm)": ["95", "105", "110", "130", "140", "155", "170"],
+            "12 trous (mm)": ["45", "50", "55", "65", "70", "75", "85"],
+            "24 trous (mm)": ["23", "25", "28", "33", "35", "38", "43"]
+        }
+        st.table(pd.DataFrame(data_dist))
+
+    st.caption("Source : Manuel utilisateur JP1 - Terradonis (www.terradonis.com)")
 
 # MODE 2 : DOSSIER MARAÎCHAGE (Affichage par onglets)
 else:
@@ -129,7 +162,6 @@ else:
 
         # --- TAB 2 : JMF ---
         with tab2:
-            # Réglages techniques JP1 spécifiques (Source JSON JMF)
             base = SOURCES_JMF.get("reglages_itk", SOURCES_JMF)
             reglages_propres = {str(k).strip(): v for k, v in base.items()}
             reglages = reglages_propres.get(sel.strip())
@@ -147,7 +179,6 @@ else:
                     st.markdown(f"- **Rouleau :** `{r_t.get('rouleau', 'N/A')}`\n- **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`\n- **Note :** *{r_t.get('obs', '-')}*")
                 st.divider()
 
-            # Fiches textuelles JMF
             f = DATA.get(sel, {}).get("JMF_FORTIER", {})
             if f:
                 for t, c in f.items():
@@ -196,4 +227,3 @@ else:
                     st.cache_data.clear()
                     st.success("Enregistré !")
                     st.balloons()
-
