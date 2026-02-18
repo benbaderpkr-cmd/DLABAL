@@ -9,7 +9,6 @@ from streamlit_cookies_manager import EncryptedCookieManager
 # 1. CONFIGURATION ET COOKIES
 st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
 
-# Le manager de cookies permet de ne pas retaper le mot de passe à chaque F5
 cookies = EncryptedCookieManager(password="cle_secrete_dlabal_2026")
 if not cookies.ready():
     st.stop()
@@ -58,9 +57,23 @@ tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + c
 
 # --- SIDEBAR ---
 with st.sidebar:
-    st.markdown("""<div style="line-height: 1.3;"><span style="font-size: 24px; font-weight: bold;">DLABAL</span><br><span style="font-size: 15px; font-weight: bold;">Base de données des ITKs</span></div><br>""", unsafe_allow_html=True)
+    # TITRE CLIQUABLE (Simulé par un bouton)
+    if st.button("🌱 DLABAL", use_container_width=True):
+        st.session_state["view_mode"] = "DOSSIER"
+        st.session_state["last_sel"] = "---"
+        # On change la clé du selectbox pour le forcer à se reset
+        st.session_state["reset_key"] = st.session_state.get("reset_key", 0) + 1
+        st.rerun()
     
-    sel = st.selectbox("Choisir ou taper le nom d'un légume :", ["---"] + tous_les_legumes)
+    st.markdown("<p style='margin-top: -15px; font-weight: bold;'>Base de données des ITKs</p>", unsafe_allow_html=True)
+    
+    # Utilisation de la clé dynamique pour le reset
+    res_key = st.session_state.get("reset_key", 0)
+    sel = st.selectbox(
+        "Choisir ou taper le nom d'un légume :", 
+        ["---"] + tous_les_legumes,
+        key=f"selection_legume_{res_key}" 
+    )
     
     if sel != "---":
         if "last_sel" not in st.session_state or st.session_state["last_sel"] != sel:
@@ -149,7 +162,7 @@ else:
         st.title("🌱 Bienvenue sur DLABAL")
         st.info("Sélectionnez un légume ci-contre ou consultez les réglages JP1 globaux.")
         
-        # --- TON NOUVEAU TEXTE D'ACCUEIL ---
+        # --- TON TEXTE D'ACCUEIL ---
         st.markdown("### Une base de notes partagée, sans chichis.")
         st.markdown("""
         J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. C’est sans prétention : 
@@ -168,7 +181,8 @@ else:
     else:
         st.title(f"📊 {sel.upper()}")
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
-
+        
+        # (Le reste du contenu des onglets reste identique à ton fichier initial...)
         with tab1:
             g = DATA.get(sel, {}).get("GAB_FRAB", {})
             if g:
