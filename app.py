@@ -105,7 +105,7 @@ if sel != "---":
             submit = st.form_submit_button("💾 ENREGISTRER DANS GOOGLE SHEETS")
 
             if submit:
-            try:
+                try:
                 # Préparation des nouvelles données
                 nouvelle_donnee = {
                     "LEGUME": sel,
@@ -141,4 +141,5 @@ if sel != "---":
                         st.error(f"Erreur lors de l'enregistrement : {e}")
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
