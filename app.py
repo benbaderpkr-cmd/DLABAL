@@ -81,9 +81,12 @@ if sel != "---":
 
     # --- TAB 2 : JMF ---
     with tab2:
-        # APPEL DES RÉGLAGES JP1
-        # On vérifie si le légume 'sel' existe dans la clé 'reglages_itk' de SOURCES_JMF
-        reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
+        # On s'assure de chercher dans la sous-clé 'reglages_itk'
+        base_reglages = SOURCES_JMF.get("reglages_itk", {})
+        
+        # Sécurité : on enlève les espaces en trop s'il y en a dans le nom sélectionné
+        nom_nettoye = sel.strip()
+        reglages = base_reglages.get(nom_nettoye)
         
         if reglages:
             st.markdown("### ⚙️ Configuration Semoir JP1")
@@ -110,16 +113,19 @@ if sel != "---":
                 """)
             st.divider()
         else:
-            # Si le fichier est vide ou le nom ne correspond pas, on affiche un avertissement discret
-            st.caption(f"ℹ️ Aucun réglage JP1 spécifique trouvé pour '{sel}' dans sources_jmf.json")
+            # Si Carotte n'est pas trouvé, on affiche ce qu'il y a RÉELLEMENT dans le fichier pour comprendre
+            cles_dispo = list(base_reglages.keys())
+            st.error(f"❌ '{nom_nettoye}' introuvable dans reglages_itk.")
+            with st.expander("Vérifier les noms disponibles dans le fichier JSON"):
+                st.write(cles_dispo)
 
-        # Affichage du contenu textuel classique (Fiches JMF)
+        # Suite : Fiches JMF classiques
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
-                with st.expander(f"📌 {t}", expanded=True):
+                with st.expander(f"📌 {t}", expanded=False):
                     st.markdown(c)
-
+                    
     # --- TAB 3 : JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
@@ -162,3 +168,4 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
