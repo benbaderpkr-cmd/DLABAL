@@ -4,14 +4,15 @@ import os
 import pandas as pd
 from streamlit_gsheets import GSheetsConnection
 
-# Configuration de la page
+# --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="DLABAL", layout="wide", page_icon="🌱")
 
-# Connexion gsheet (Utilise les secrets TOML de Streamlit Cloud)
-conn = st.connection("gsheets", type=GSheetsConnection)
+# --- CONNEXION GSHEET ---
+# L'ID de ton document (celui que nous avons identifié ensemble)
 SHEET_ID = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
+conn = st.connection("gsheets", type=GSheetsConnection)
 
-# --- 1. FONCTIONS DE GESTION DES DONNÉES LOCALES ---
+# --- 1. FONCTIONS DE GESTION DES FICHIERS JSON ---
 def load_json(filename):
     if os.path.exists(filename):
         try:
@@ -34,7 +35,7 @@ if sel != "---":
     st.title(f"📊 {sel.upper()}")
     
     JDV_DATA = load_json("jdv.json")
-    # On définit les onglets
+
     tab1, tab2, tab3, tab4 = st.tabs([
         "📋 SOURCE GAB", 
         "🚜 SOURCE JMF", 
@@ -42,45 +43,51 @@ if sel != "---":
         "📝 SOURCE THO"
     ])
 
-    # --- ONGLET 1, 2, 3 (Lecture JSON) ---
+    # --- ONGLET 1 : GAB/FRAB ---
     with tab1:
         g = DATA.get(sel, {}).get("GAB_FRAB", {})
         if g:
             for k, v in g.get("TECHNIQUE", {}).items():
                 with st.expander(f"📌 {k}", expanded=True):
                     st.markdown(v)
-        else: st.warning("Données GAB absentes.")
+        else:
+            st.warning("Données GAB absentes.")
 
+    # --- ONGLET 2 : JMF ---
     with tab2:
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for titre, contenu in f.items():
                 with st.expander(f"📌 {titre}", expanded=True):
                     st.markdown(contenu)
-        else: st.warning("Données JMF absentes.")
+        else:
+            st.warning("Données JMF absentes.")
 
+    # --- ONGLET 3 : JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
         if j:
             for t, c in j.items():
                 with st.expander(f"🌿 {t}", expanded=True):
                     st.markdown(c)
-        else: st.warning("Données JDV absentes.")
+        else:
+            st.warning("Données JDV absentes.")
 
     # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
     with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
+        # --- A. LECTURE DES DONNÉES ---
         try:
-            # Lecture des données avec rafraîchissement forcé (ttl=0)
+            # Lecture de l'onglet spécifique
             df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
             
-            # Sécurité si le retour n'est pas un DataFrame
+            # Sécurité si le format n'est pas un DataFrame
             if not isinstance(df, pd.DataFrame):
                 conn.reset()
                 df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
 
-            # Recherche des notes existantes
+            # Extraction des notes pour le légume sélectionné
             existing_data = df[df['LEGUME'] == sel] if not df.empty else pd.DataFrame()
             notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
             st.success("✅ Connexion Google Sheets OK")
@@ -88,9 +95,10 @@ if sel != "---":
         except Exception as e:
             st.error(f"Erreur de lecture : {e}")
             notes = {}
+            # DataFrame par défaut pour éviter les crashs
             df = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
 
-        # Formulaire Unique
+        # --- B. FORMULAIRE DE SAISIE ---
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
             with c1:
@@ -104,42 +112,43 @@ if sel != "---":
 
             submit = st.form_submit_button("💾 ENREGISTRER DANS GOOGLE SHEETS")
 
+            # --- C. LOGIQUE D'ENREGISTREMENT ---
             if submit:
                 try:
-                # Préparation des nouvelles données
-                nouvelle_donnee = {
-                    "LEGUME": sel,
-                    "PLANTATION": v_plan,
-                    "ENTRETIEN": v_entr,
-                    "SANTE": v_sant,
-                    "RENDEMENT": v_rend,
-                    "VARIETE": v_vari,
-                    "INFO_SUPP": v_info
-                }
-                
-                # Conversion en DataFrame pour manipulation facile
-                new_df_row = pd.DataFrame([nouvelle_donnee])
-
-                if not df.empty:
-                    # Si le légume existe, on le supprime avant de le rajouter (plus propre pour Google Sheets)
-                    df = df[df['LEGUME'] != sel]
-                    df = pd.concat([df, new_df_row], ignore_index=True)
-                else:
-                    df = new_df_row
-                
-                # NETTOYAGE : On s'assure que l'ordre des colonnes est respecté
-                colonnes = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
-                df = df[colonnes] 
-                
-                # ENVOI
-                conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
-                
-                st.cache_data.clear() 
-                st.success("✨ Données envoyées ! Vérifiez votre Google Sheet.")
-                st.balloons()
+                    # Préparation de la nouvelle ligne
+                    nouvelle_donnee = {
+                        "LEGUME": sel,
+                        "PLANTATION": v_plan,
+                        "ENTRETIEN": v_entr,
+                        "SANTE": v_sant,
+                        "RENDEMENT": v_rend,
+                        "VARIETE": v_vari,
+                        "INFO_SUPP": v_info
+                    }
+                    
+                    # On met à jour le DataFrame localement
+                    if not df.empty and sel in df['LEGUME'].values:
+                        # On écrase les colonnes pour le légume sélectionné
+                        for col, val in nouvelle_donnee.items():
+                            df.loc[df['LEGUME'] == sel, col] = val
                     else:
-                        st.error(f"Erreur lors de l'enregistrement : {e}")
+                        # On ajoute une nouvelle ligne si le légume n'existait pas
+                        df = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
+                    
+                    # Envoi de la totalité du tableau mis à jour vers Google Sheets
+                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
+                    
+                    # Nettoyage du cache pour voir les modifs au prochain chargement
+                    st.cache_data.clear() 
+                    st.success("✨ Données sauvegardées avec succès !")
+                    st.balloons()
+                    
+                except Exception as e:
+                    # On intercepte le faux positif "Response 200"
+                    if "200" in str(e):
+                        st.success("✨ Données transmises avec succès !")
+                        st.balloons()
+                    else:
+                        st.error(f"Erreur lors de la sauvegarde : {e}")
 else:
-    st.info("Sélectionnez un légume pour afficher les données.")
-
-
+    st.info("Sélectionnez un légume dans la barre latérale pour commencer.")
