@@ -72,7 +72,7 @@ with st.sidebar:
     st.divider()
 
     # BOUTON FIXE REGLAGE JP1
-    if st.button("📊 VOIR RÉGLAGES JP1 GLOBAUX", use_container_width=True):
+    if st.button("📊 RÉGLAGES JP1", use_container_width=True):
         st.session_state["view_mode"] = "JP1_GLOBAL"
     
     # Reset du mode si un légume est sélectionné
@@ -196,3 +196,4 @@ else:
                     st.cache_data.clear()
                     st.success("Enregistré !")
                     st.balloons()
+
