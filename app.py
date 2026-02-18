@@ -80,7 +80,13 @@ if sel != "---":
     # --- TAB 2 : JMF ---
     with tab2:
         # Affichage des réglages JP1 (SOURCES_JMF)
+        # Ligne de test forcé
         reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
+        st.write(f"DEBUG: Recherche de '{sel}' dans le JSON...") # Cette ligne va s'afficher sur ton app
+        if reglages:
+    st.write("DEBUG: Réglages trouvés !")
+else:
+    st.write("DEBUG: Rien trouvé dans SOURCES_JMF")
         
         if reglages:
             st.markdown("### ⚙️ Configuration Semoir JP1")
@@ -158,3 +164,4 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
