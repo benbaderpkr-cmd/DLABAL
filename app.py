@@ -80,16 +80,39 @@ if sel != "---":
         else: st.warning("Données absentes.")
 
     # --- TAB 2 : JMF ---
+# --- TAB 2 : JMF ---
     with tab2:
-        # --- INSERTION NOUVELLE INTÉGRATION JP1 ---
-        reglages_jmf = SOURCES_JMF.get("reglages_itk", {}).get(sel)
-        if reglages_jmf:
-            st.subheader(f"⚙️ Réglages Semoir JP1")
-            c1, c2, c3, c4 = st.columns(4)
-            with c1: st.metric("Rouleau", reglages_jmf["rouleau"])
-            with c2: st.metric("Pignons (AV/AR)", f"{reglages_jmf['pignon_av']} / {reglages_jmf['pignon_ar']}")
-            with c3: st.metric("Brosse", reglages_jmf["brosse"])
-            with c4: st.metric("Nb de Rangs", reglages_jmf["rangs"])
+        # --- DOUBLE SOURCE JP1 : JMF VS TERRATECK ---
+        reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
+        if reglages:
+            st.markdown("### ⚙️ Configuration Semoir JP1")
+            
+            # Utilisation de colonnes pour le comparatif
+            col_pdf, col_terra = st.columns(2)
+            
+            with col_pdf:
+                st.info("**📍 Réglages JMF (Fiches PDF)**")
+                r_j = reglages.get("jmf", {})
+                if r_j:
+                    st.markdown(f"""
+                    - **Rouleau :** `{r_j.get('rouleau', 'N/A')}`
+                    - **Pignons (AV/AR) :** `{r_j.get('pignon_av', '?')} / {r_j.get('pignon_ar', '?')}`
+                    - **Nombre de rangs :** `{r_j.get('rangs', '?')}`
+                    """)
+                else:
+                    st.write("Données JMF non disponibles.")
+            
+            with col_terra:
+                st.warning("**🚜 Réglages Site Terrateck / Jang**")
+                r_t = reglages.get("terrateck", {})
+                if r_t:
+                    st.markdown(f"""
+                    - **Rouleau :** `{r_t.get('rouleau', 'N/A')}`
+                    - **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`
+                    - **Note :** *{r_t.get('obs', '-')}*
+                    """)
+                else:
+                    st.write("Données Terrateck non disponibles.")
             st.divider()
         # --- FIN INSERTION ---
 
@@ -143,3 +166,4 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
