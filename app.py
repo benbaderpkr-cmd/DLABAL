@@ -168,7 +168,8 @@ else:
         st.title("🌱 Bienvenue sur DLABAL")
         st.markdown("### Une base de notes partagée. ITK Maraîchage, conseils")
         st.markdown("""
-        J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. Souvent la tête trop plein d'informations, et ayant besoin de me rassurer sur mes lectures, j'ai developpé cet outil. Il reprends les ITK du GAB/FRAB, et certains très connus que je ne peux pas citer. 
+        J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. Je suis fraîchement installé, alors, souvent la tête trop pleine d'informations, et ayant besoin de me rassurer sur mes choix au terrain, j'ai developpé cet outil. 
+        Il reprends les ITK du GAB/FRAB, et certains autres très connus que je ne peux pas citer mais vous comprendrez en visitant les 3 onglets présents une fois le légume sélectionné. 
         C’est sans prétention : je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres. L’outil est gratuit et je le bricole sur mon temps libre, donc c’est encore un peu rustique.
         
         **Si tu as de l'expérience à partager, n'hésite pas à mettre la main à la pâte :**
@@ -234,4 +235,5 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
+
 
