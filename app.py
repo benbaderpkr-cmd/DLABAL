@@ -28,7 +28,7 @@ def check_password():
 if not check_password():
     st.stop()
 
-# 3. CONNEXION GSHEETS (La trouvaille)
+# 3. CONNEXION GSHEETS
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -43,11 +43,10 @@ def load_json(filename):
 
 DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
+SOURCES_JMF = load_json("sources_jmf.json") # Nouveau chargement JMF
 tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()))))
 
 # --- SIDEBAR ---
-import streamlit as st
-
 # Rendu propre pour la sidebar
 st.sidebar.markdown("""
     <div style="line-height: 1.3;">
@@ -58,7 +57,6 @@ st.sidebar.markdown("""
     <br>
 """, unsafe_allow_html=True)
 
-# Votre selectbox
 sel = st.sidebar.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
 
 # --- CONTENU PRINCIPAL ---
@@ -83,6 +81,18 @@ if sel != "---":
 
     # --- TAB 2 : JMF ---
     with tab2:
+        # --- INSERTION NOUVELLE INTÉGRATION JP1 ---
+        reglages_jmf = SOURCES_JMF.get("reglages_itk", {}).get(sel)
+        if reglages_jmf:
+            st.subheader(f"⚙️ Réglages Semoir JP1")
+            c1, c2, c3, c4 = st.columns(4)
+            with c1: st.metric("Rouleau", reglages_jmf["rouleau"])
+            with c2: st.metric("Pignons (AV/AR)", f"{reglages_jmf['pignon_av']} / {reglages_jmf['pignon_ar']}")
+            with c3: st.metric("Brosse", reglages_jmf["brosse"])
+            with c4: st.metric("Nb de Rangs", reglages_jmf["rangs"])
+            st.divider()
+        # --- FIN INSERTION ---
+
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
@@ -133,7 +143,3 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
-
-
-
-
