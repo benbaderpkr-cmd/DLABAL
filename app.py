@@ -59,13 +59,28 @@ tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + c
 
 # --- SIDEBAR ---
 with st.sidebar:
+    # STYLE CSS POUR LE BOUTON ACCUEIL (Plus grand et Gras)
+    st.markdown("""
+        <style>
+        div.stButton > button:first-child {
+            height: 3em;
+            font-size: 20px !important;
+            font-weight: bold !important;
+            border: 2px solid #4CAF50 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
     if st.button("🌱 DLABAL", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.session_state["last_sel"] = "---"
         st.session_state["reset_key"] = st.session_state.get("reset_key", 0) + 1
         st.rerun()
     
-    st.markdown("<p style='margin-top: -15px; font-weight: bold;'>Base de données pour maraîchers</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: gray; font-size: 0.8em; margin-top: -10px;'>Retour à l'accueil</p>", unsafe_allow_html=True)
+    
+    st.divider()
+    st.markdown("<p style='font-weight: bold;'>Base de données des ITKs</p>", unsafe_allow_html=True)
     
     res_key = st.session_state.get("reset_key", 0)
     sel = st.selectbox(
@@ -142,7 +157,7 @@ else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
         st.markdown("### Une base de notes partagée, sans chichis.")
-        st.markdown("""J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain... (Texte complet)""")
+        st.markdown("""J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. C’est sans prétention : je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres.""")
     else:
         st.title(f"📊 {sel.upper()}")
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
@@ -208,4 +223,3 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
-
