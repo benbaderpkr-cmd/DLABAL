@@ -2,35 +2,27 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
-st.title("🧪 DIAGNOSTIC DE CONNEXION")
+st.title("🧪 TEST D'ACCÈS DIRECT")
 
-SHEET_ID = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
+# ON UTILISE L'URL COMPLETE CETTE FOIS
+URL_COMPLETE = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 
-# Tentative de connexion
 try:
     conn = st.connection("gsheets", type=GSheetsConnection)
     
-    # 1. TEST DE LECTURE BRUTE
-    st.subheader("1. Test de lecture")
-    # On essaie de lire sans aucun paramètre pour voir si la connexion de base répond
-    data = conn.read(spreadsheet=SHEET_ID, ttl=0)
-    st.write("Données reçues :")
+    st.subheader("1. Tentative de lecture via URL")
+    # On passe l'URL complète au lieu de l'ID
+    data = conn.read(spreadsheet=URL_COMPLETE, ttl=0)
+    st.success("✅ LECTURE RÉUSSIE !")
     st.dataframe(data)
-    
+
+    st.subheader("2. Tentative d'écriture")
+    if st.button("🚀 TESTER L'ÉCRITURE SUR CETTE URL"):
+        test_df = pd.DataFrame([{"TEST": "Ca marche enfin"}])
+        conn.update(spreadsheet=URL_COMPLETE, data=test_df)
+        st.balloons()
+        st.success("Vérifie ton fichier !")
+
 except Exception as e:
-    st.error(f"Erreur lors du test : {e}")
-    st.write("Type de l'erreur :", type(e))
-
-# 2. TEST D'ÉCRITURE FORCÉE
-st.subheader("2. Test d'écriture")
-if st.button("🚀 FORCER L'ÉCRITURE"):
-    try:
-        test_df = pd.DataFrame([{"TEST": "Ligne de test"}])
-        # On utilise une syntaxe différente pour voir si ça débloque la situation
-        conn.update(spreadsheet=SHEET_ID, data=test_df)
-        st.success("✅ Commande envoyée !")
-    except Exception as e:
-        st.error(f"Erreur d'écriture : {e}")
-
-st.divider()
-st.info("Note : Si l'erreur est encore <Response [200]>, cela signifie que la bibliothèque reçoit un succès mais ne sait pas l'afficher.")
+    st.error(f"ERREUR : {e}")
+    st.info("Si l'erreur est encore 'SpreadsheetNotFound', c'est que l'email du Service Account n'a pas accès à ce lien précis.")
