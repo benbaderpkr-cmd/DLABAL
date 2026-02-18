@@ -2,31 +2,35 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
-st.title("🧪 TEST DE CONNEXION DLABAL")
+st.title("🧪 DIAGNOSTIC DE CONNEXION")
 
 SHEET_ID = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
-# On change juste ici pour forcer une connexion "fraîche"
-conn = st.connection("gsheets", type=GSheetsConnection)
 
-if st.button("🚀 CLIQUE ICI POUR TESTER L'ÉCRITURE"):
-    try:
-        df_test = pd.DataFrame([{"TEST": "Connexion OK"}])
-        
-        # CHANGEMENT ICI : On utilise une méthode plus "brute"
-        # On essaie d'écrire sans préciser d'onglet pour voir s'il crée 'Sheet1'
-        conn.update(spreadsheet=SHEET_ID, data=df_test)
-        
-        st.success("✅ Code 200 reçu !")
-        st.balloons()
-        
-    except Exception as e:
-        st.error(f"❌ ERREUR : {e}")
-
-# AJOUT DE CE BLOC POUR VOIR SI LA LECTURE MARCHE
-st.subheader("Lecture du fichier actuel :")
+# Tentative de connexion
 try:
-    df_lecture = conn.read(spreadsheet=SHEET_ID)
-    st.write("Voici ce que l'appli voit dans ton fichier :")
-    st.dataframe(df_lecture)
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    
+    # 1. TEST DE LECTURE BRUTE
+    st.subheader("1. Test de lecture")
+    # On essaie de lire sans aucun paramètre pour voir si la connexion de base répond
+    data = conn.read(spreadsheet=SHEET_ID, ttl=0)
+    st.write("Données reçues :")
+    st.dataframe(data)
+    
 except Exception as e:
-    st.error(f"Impossible de lire : {e}")
+    st.error(f"Erreur lors du test : {e}")
+    st.write("Type de l'erreur :", type(e))
+
+# 2. TEST D'ÉCRITURE FORCÉE
+st.subheader("2. Test d'écriture")
+if st.button("🚀 FORCER L'ÉCRITURE"):
+    try:
+        test_df = pd.DataFrame([{"TEST": "Ligne de test"}])
+        # On utilise une syntaxe différente pour voir si ça débloque la situation
+        conn.update(spreadsheet=SHEET_ID, data=test_df)
+        st.success("✅ Commande envoyée !")
+    except Exception as e:
+        st.error(f"Erreur d'écriture : {e}")
+
+st.divider()
+st.info("Note : Si l'erreur est encore <Response [200]>, cela signifie que la bibliothèque reçoit un succès mais ne sait pas l'afficher.")
