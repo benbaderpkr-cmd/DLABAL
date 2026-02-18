@@ -80,32 +80,27 @@ if sel != "---":
 
     # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
     with tab4:
-        # 1. On garde le debug pour être sûr
-        st.write("DEBUG SECRETS :", st.secrets) 
+        st.subheader(f"📝 Notes de culture : {sel}")
         
-        st.subheader(f"📝 Test de connexion : {sel}")
-        
+        # --- BLOC DE TEST (À PLACER ICI) ---
         try:
-            # 2. TEST DE LECTURE SIMPLIFIÉ
-            # On essaye de lire le sheet sans filtre pour voir s'il répond
-            test_df = conn.read(worksheet="THO", ttl=0)
-            df = conn.read(spreadsheet=sheet_id, worksheet="THO", ttl=0)
-            st.success("✅ Connexion établie avec le fichier !")
-            st.write("Voici ce que je vois dans le fichier :")
-            st.dataframe(test_df.head()) # Affiche les premières lignes du Google Sheet
+            url = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
+            # On lit la première feuille sans préciser le nom pour éviter l'erreur 400
+            df = conn.read(spreadsheet=url, ttl=0)
             
-            # On définit 'notes' pour ne pas faire planter le formulaire plus bas
-            if not test_df.empty and "LEGUME" in test_df.columns:
-                existing_data = test_df[test_df['LEGUME'] == sel]
+            st.success("✅ Connexion établie !")
+            
+            # On cherche les notes pour le légume sélectionné
+            if not df.empty and "LEGUME" in df.columns:
+                existing_data = df[df['LEGUME'] == sel]
                 notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
             else:
                 notes = {}
-
+                
         except Exception as e:
-            # 3. AFFICHAGE DE L'ERREUR PRÉCISE
-            st.error("❌ La connexion a échoué.")
-            st.exception(e) 
+            st.error(f"Problème de connexion : {e}")
             notes = {}
+        # --- FIN DU BLOC DE TEST ---
 
         # 2. Formulaire avec clés dynamiques
         with st.form(key=f"form_gsheet_{sel}"):
@@ -148,6 +143,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
