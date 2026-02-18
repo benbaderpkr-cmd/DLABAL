@@ -83,30 +83,27 @@ if sel != "---":
         st.subheader(f"📝 Notes de culture : {sel}")
         
         # --- BLOC DE TEST (À PLACER ICI) ---
-        with tab4:
+       with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
         try:
-            # On utilise uniquement l'ID du document
+            # MÉTHODE ULTIME : On utilise juste l'ID brut
+            # S'assure qu'il n'y a pas d'espace dans les guillemets
             sheet_id = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
             
-            # On tente la lecture SANS l'argument worksheet pour l'instant
-            # La connexion va automatiquement prendre la première feuille
+            # On force la lecture sans préciser l'onglet pour voir si ça passe
             df = conn.read(spreadsheet=sheet_id, ttl=0)
             
             st.success("✅ Connexion réussie !")
             
-            # On prépare les données pour le formulaire
             if not df.empty and "LEGUME" in df.columns:
                 existing_data = df[df['LEGUME'] == sel]
                 notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
             else:
                 notes = {}
-                
         except Exception as e:
             st.error(f"Erreur de connexion : {e}")
             notes = {}
-
         # 2. Formulaire avec clés dynamiques
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
@@ -148,6 +145,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
