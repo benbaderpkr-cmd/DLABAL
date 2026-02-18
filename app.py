@@ -46,12 +46,6 @@ JDV_DATA = load_json("jdv.json")
 tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()))))
 
 # --- SIDEBAR ---
-import streamlit as st
-
-# Liste de légumes pour l'exemple
-tous_les_legumes = ["Carotte", "Poireau", "Tomate"]
-
-# Style personnalisé pour le titre
 st.sidebar.markdown("""
     <div style="line-height: 1.2;">
         <span style="font-size: 24px; font-weight: bold;">J</span><br>
@@ -60,7 +54,7 @@ st.sidebar.markdown("""
         <span style="font-size: 14px; color: gray;">De LA Braille Aux Loups</span>
     </div>
     <br>
-""", unsafe_allow_contents=True)
+""", unsafe_allow_html=True)
 
 # Votre selectbox
 sel = st.sidebar.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
@@ -137,4 +131,5 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
