@@ -1,10 +1,12 @@
 import streamlit as st
 import json
 import os
+import pandas as pd
 
-st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
+# Configuration de la page
+st.set_page_config(page_title="DLABAL", layout="wide", page_icon="🌱")
 
-# --- FONCTIONS DE GESTION DES FICHIERS ---
+# --- 1. FONCTIONS DE GESTION DES DONNÉES ---
 def load_json(filename):
     if os.path.exists(filename):
         try:
@@ -18,114 +20,95 @@ def save_json(filename, data):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-# Chargement des bases de données
+# --- 2. CHARGEMENT INITIAL ---
+# On charge les clés pour la barre latérale
 DATA = load_json("data.json")
-RENDEMENTS = load_json("rendements.json")
-JDV_DATA = load_json("jdv.json")
-THO_DATA = load_json("tho.json")
+tous_les_legumes = sorted(list(DATA.keys()))
 
-# Fusionner toutes les clés pour le menu latéral
-tous_les_legumes = set(list(DATA.keys()) + list(RENDEMENTS.keys()) + list(JDV_DATA.keys()) + list(THO_DATA.keys()))
-liste_triee = sorted(list(tous_les_legumes))
-
-# --- SIDEBAR ---
+# --- 3. BARRE LATÉRALE ---
 st.sidebar.title("🌱 DLABAL")
-st.sidebar.info("FR ITK DB")
-sel = st.sidebar.selectbox("Choisir un légume :", ["---"] + liste_triee)
+sel = st.sidebar.selectbox("Choisir un légume :", ["---"] + tous_les_legumes, key="main_selector")
 
-# --- CONTENU PRINCIPAL ---
+# --- 4. CONTENU PRINCIPAL ---
 if sel != "---":
     st.title(f"📊 {sel.upper()}")
     
-    # Création des 4 onglets
+    # Recharger les données spécifiques au légume sélectionné
+    JDV_DATA = load_json("jdv.json")
+    THO_DATA = load_json("tho.json")
+
     tab1, tab2, tab3, tab4 = st.tabs([
-        "📋 SOURCE GAB / FRAB", 
+        "📋 SOURCE GAB", 
         "🚜 SOURCE JMF", 
         "🌿 SOURCE JDV", 
         "📝 SOURCE THO"
     ])
 
-    # --- ONGLET 1 : GAB ---
+    # --- ONGLET 1 : GAB/FRAB ---
     with tab1:
-        c = DATA.get(sel, {})
-        g = c.get("GAB_FRAB", {})
-        if not g:
-            st.warning("Aucune donnée GAB/FRAB.")
-        else:
-            if "BLOCS_IDENTITE" in g:
-                blocs = g["BLOCS_IDENTITE"]
-                cols = st.columns(len(blocs))
-                for i, b in enumerate(blocs):
-                    cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
-            
+        g = DATA.get(sel, {}).get("GAB_FRAB", {})
+        if g:
             for k, v in g.get("TECHNIQUE", {}).items():
                 with st.expander(f"📌 {k}", expanded=True):
                     st.markdown(v)
+        else:
+            st.warning("Données GAB absentes.")
 
     # --- ONGLET 2 : JMF ---
     with tab2:
-        c = DATA.get(sel, {})
-        f = c.get("JMF_FORTIER", {})
-        if not f:
-            st.warning("Aucune donnée JMF.")
-        else:
+        f = DATA.get(sel, {}).get("JMF_FORTIER", {})
+        if f:
             for titre, contenu in f.items():
                 with st.expander(f"📌 {titre}", expanded=True):
                     st.markdown(contenu)
+        else:
+            st.warning("Données JMF absentes.")
 
     # --- ONGLET 3 : JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
-        if not j:
-            st.warning("Aucune donnée JDV.")
+        if j:
+            for t, c in j.items():
+                with st.expander(f"🌿 {t}", expanded=True):
+                    st.markdown(c)
         else:
-            if "RENDEMENT JDV" in j:
-                st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
-            for titre, contenu in j.items():
-                if titre != "RENDEMENT JDV":
-                    with st.expander(f"🌿 {titre}", expanded=True):
-                        st.markdown(contenu)
+            st.warning("Données JDV absentes.")
 
-    # --- ONGLET 4 : SOURCE THO (SAISIE TERRAIN) ---
+    # --- ONGLET 4 : SAISIE TERRAIN (THO) ---
     with tab4:
-        st.subheader(f"📝 Saisie Terrain - {sel}")
+        st.subheader(f"📝 Notes de culture : {sel}")
         
-        # On recharge les données pour être sûr
-        tho_full = load_json("tho.json")
-        notes_legume = tho_full.get(sel, {
+        # Récupération des notes existantes
+        notes = THO_DATA.get(sel, {
             "PLANTATION": "", "ENTRETIEN": "", "SANTE": "",
-            "RENDEMENT": "", "VARIETE": "", "INFORMATION_SUPPLEMENTAIRE": ""
+            "RENDEMENT": "", "VARIETE": "", "INFO_SUPP": ""
         })
 
-        # --- LE SECRET EST ICI : key=f"form_{sel}" ---
-        with st.form(key=f"form_tho_{sel}"):
-            col_left, col_right = st.columns(2)
-            
-            with col_left:
-                # CHAQUE champ doit avoir une clé unique liée au légume {sel}
-                v_plan = st.text_area("🌱 PLANTATION", value=notes_legume.get("PLANTATION", ""), key=f"tp_{sel}")
-                v_entr = st.text_area("🛠️ ENTRETIEN", value=notes_legume.get("ENTRETIEN", ""), key=f"te_{sel}")
-                v_sant = st.text_area("🏥 SANTE", value=notes_legume.get("SANTE", ""), key=f"ts_{sel}")
-            
-            with col_right:
-                v_rend = st.text_area("📊 RENDEMENT", value=notes_legume.get("RENDEMENT", ""), key=f"tr_{sel}")
-                v_vari = st.text_area("🧬 VARIETE", value=notes_legume.get("VARIETE", ""), key=f"tv_{sel}")
-                v_info = st.text_area("➕ INFO SUPP", value=notes_legume.get("INFORMATION_SUPPLEMENTAIRE", ""), key=f"ti_{sel}")
+        # Formulaire avec clé dynamique pour éviter le "freeze"
+        with st.form(key=f"form_{sel}"):
+            c1, c2 = st.columns(2)
+            with c1:
+                v_plan = st.text_area("🌱 PLANTATION", value=notes.get("PLANTATION", ""), key=f"p_{sel}")
+                v_entr = st.text_area("🛠️ ENTRETIEN", value=notes.get("ENTRETIEN", ""), key=f"e_{sel}")
+                v_sant = st.text_area("🏥 SANTE", value=notes.get("SANTE", ""), key=f"s_{sel}")
+            with c2:
+                v_rend = st.text_area("📊 RENDEMENT", value=notes.get("RENDEMENT", ""), key=f"r_{sel}")
+                v_vari = st.text_area("🧬 VARIETE", value=notes.get("VARIETE", ""), key=f"v_{sel}")
+                v_info = st.text_area("➕ INFO SUPP", value=notes.get("INFO_SUPP", ""), key=f"i_{sel}")
 
-            # Bouton de sauvegarde
-            submit = st.form_submit_button("💾 ENREGISTRER DANS THO.JSON")
-            
-            if submit:
-                tho_full[sel] = {
+            if st.form_submit_button("💾 ENREGISTRER"):
+                # Mise à jour du dictionnaire global
+                THO_DATA[sel] = {
                     "PLANTATION": v_plan,
                     "ENTRETIEN": v_entr,
                     "SANTE": v_sant,
                     "RENDEMENT": v_rend,
                     "VARIETE": v_vari,
-                    "INFORMATION_SUPPLEMENTAIRE": v_info
+                    "INFO_SUPP": v_info
                 }
-                save_json("tho.json", tho_full)
-                st.success(f"Données sauvegardées pour {sel} !")
-                st.rerun() # Relance l'appli pour rafraîchir les données partout
+                save_json("tho.json", THO_DATA)
+                st.success("C'est enregistré dans tho.json !")
+                st.rerun()
+
 else:
-    st.info("Veuillez sélectionner un légume dans la barre latérale pour commencer.")	
+    st.info("Sélectionnez un légume pour afficher les données.")
