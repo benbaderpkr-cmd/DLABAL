@@ -88,32 +88,44 @@ if sel != "---":
 
     # --- ONGLET 4 : SOURCE THO (SAISIE TERRAIN) ---
     with tab4:
-        st.subheader("📝 Carnet de bord Terrain")
+        st.subheader(f"📝 Saisie Terrain - {sel}")
         
-        # Récupération des notes ou création du dictionnaire vide
-        notes_legume = THO_DATA.get(sel, {
+        # On recharge les données pour être sûr
+        tho_full = load_json("tho.json")
+        notes_legume = tho_full.get(sel, {
             "PLANTATION": "", "ENTRETIEN": "", "SANTE": "",
             "RENDEMENT": "", "VARIETE": "", "INFORMATION_SUPPLEMENTAIRE": ""
         })
 
+        # --- LE SECRET EST ICI : key=f"form_{sel}" ---
         with st.form(key=f"form_tho_{sel}"):
             col_left, col_right = st.columns(2)
+            
             with col_left:
-                v_plan = st.text_area("🌱 PLANTATION", value=notes_legume.get("PLANTATION", ""), height=150)
-                v_entr = st.text_area("🛠️ ENTRETIEN", value=notes_legume.get("ENTRETIEN", ""), height=150)
-                v_sant = st.text_area("🏥 SANTE", value=notes_legume.get("SANTE", ""), height=150)
+                # CHAQUE champ doit avoir une clé unique liée au légume {sel}
+                v_plan = st.text_area("🌱 PLANTATION", value=notes_legume.get("PLANTATION", ""), key=f"tp_{sel}")
+                v_entr = st.text_area("🛠️ ENTRETIEN", value=notes_legume.get("ENTRETIEN", ""), key=f"te_{sel}")
+                v_sant = st.text_area("🏥 SANTE", value=notes_legume.get("SANTE", ""), key=f"ts_{sel}")
+            
             with col_right:
-                v_rend = st.text_area("📊 RENDEMENT", value=notes_legume.get("RENDEMENT", ""), height=150)
-                v_vari = st.text_area("🧬 VARIETE", value=notes_legume.get("VARIETE", ""), height=150)
-                v_info = st.text_area("➕ INFO SUPP", value=notes_legume.get("INFORMATION_SUPPLEMENTAIRE", ""), height=150)
+                v_rend = st.text_area("📊 RENDEMENT", value=notes_legume.get("RENDEMENT", ""), key=f"tr_{sel}")
+                v_vari = st.text_area("🧬 VARIETE", value=notes_legume.get("VARIETE", ""), key=f"tv_{sel}")
+                v_info = st.text_area("➕ INFO SUPP", value=notes_legume.get("INFORMATION_SUPPLEMENTAIRE", ""), key=f"ti_{sel}")
 
-            if st.form_submit_button("💾 ENREGISTRER DANS THO.JSON"):
-                THO_DATA[sel] = {
-                    "PLANTATION": v_plan, "ENTRETIEN": v_entr, "SANTE": v_sant,
-                    "RENDEMENT": v_rend, "VARIETE": v_vari, "INFORMATION_SUPPLEMENTAIRE": v_info
+            # Bouton de sauvegarde
+            submit = st.form_submit_button("💾 ENREGISTRER DANS THO.JSON")
+            
+            if submit:
+                tho_full[sel] = {
+                    "PLANTATION": v_plan,
+                    "ENTRETIEN": v_entr,
+                    "SANTE": v_sant,
+                    "RENDEMENT": v_rend,
+                    "VARIETE": v_vari,
+                    "INFORMATION_SUPPLEMENTAIRE": v_info
                 }
-                save_json("tho.json", THO_DATA)
-                st.success("Notes sauvegardées avec succès !")
-                st.rerun()
+                save_json("tho.json", tho_full)
+                st.success(f"Données sauvegardées pour {sel} !")
+                st.rerun() # Relance l'appli pour rafraîchir les données partout
 else:
     st.info("Veuillez sélectionner un légume dans la barre latérale pour commencer.")	
