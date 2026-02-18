@@ -79,7 +79,7 @@ if sel != "---":
             st.warning("Données JDV absentes.")
 
     # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
-with tab4:
+    with tab4:
         # 1. On garde le debug pour être sûr
         st.write("DEBUG SECRETS :", st.secrets) 
         
@@ -148,5 +148,6 @@ with tab4:
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
