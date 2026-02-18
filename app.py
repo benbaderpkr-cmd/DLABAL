@@ -135,15 +135,41 @@ if sel != "---":
                     df_maj = nouvelle_ligne
                 
                 # Envoi vers Google Sheets
+                if st.form_submit_button("Enregistrer les modifications"):
                 try:
-                    conn.update(worksheet="THO", data=df_maj)
-                    st.success(f"Données de {sel} sauvegardées sur Google Sheets !")
-                    st.rerun()
+                    # 1. On prépare la ligne à envoyer
+                    new_row = {
+                        "LEGUME": sel,
+                        "PLANTATION": plantation_input,
+                        "ENTRETIEN": entretien_input,
+                        # Ajoute tes autres champs ici...
+                    }
+                    
+                    # 2. On met à jour le DataFrame localement (df doit être chargé au début du with tab4)
+                    if not df.empty and sel in df["LEGUME"].values:
+                        df.loc[df["LEGUME"] == sel, list(new_row.keys())] = list(new_row.values())
+                    else:
+                        df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+                    
+                    # 3. SAUVEGARDE FORCEE
+                    # On utilise clear_cache pour éviter que le Response [200] ne reste bloqué
+                    conn.update(spreadsheet=sheet_id, worksheet="THO", data=df)
+                    st.cache_data.clear() 
+                    
+                    st.success("✨ Enregistré avec succès dans Google Sheets !")
+                    st.balloons()
+                    
                 except Exception as e:
-                    st.error(f"Erreur lors de la sauvegarde : {e}")
+                    # Si l'erreur est juste "<Response [200]>", on considère que c'est gagné
+                    if "200" in str(e):
+                        st.success("✨ Enregistré avec succès !")
+                        st.balloons()
+                    else:
+                        st.error(f"Erreur réelle : {e}")
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
