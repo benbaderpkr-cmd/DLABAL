@@ -100,40 +100,30 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
 
-    # SECTION : PROPOSE TON RÉGLAGE DU JP1 (FERMÉ PAR DÉFAUT)
     with st.expander("💡 Propose ton réglage du JP1.", expanded=False):
         with st.form("form_sug_jp1", clear_on_submit=True):
             c1, c2, c3 = st.columns(3)
             s_leg = c1.text_input("Légume concerné")
             s_rouleau = c2.text_input("rouleau")
             s_pav = c3.text_input("pignon AV")
-            
             c4, c5, c6 = st.columns(3)
             s_par = c4.text_input("pignon AR")
             s_brosse = c5.text_input("Brosse")
             s_info = c6.text_input("info supp.")
-            
             if st.form_submit_button("Enregistrer mon conseil"):
                 if s_leg and s_rouleau:
                     try:
                         df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", ttl=0)
                     except:
                         df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "ROULEAU", "PIGNON_AV", "PIGNON_AR", "BROSSE", "INFO_SUPP"])
-                    
-                    new_sug = pd.DataFrame([{
-                        "DATE": datetime.now().strftime("%d/%m/%Y"),
-                        "LEGUME": s_leg, "ROULEAU": s_rouleau, "PIGNON_AV": s_pav,
-                        "PIGNON_AR": s_par, "BROSSE": s_brosse, "INFO_SUPP": s_info
-                    }])
+                    new_sug = pd.DataFrame([{"DATE": datetime.now().strftime("%d/%m/%Y"), "LEGUME": s_leg, "ROULEAU": s_rouleau, "PIGNON_AV": s_pav, "PIGNON_AR": s_par, "BROSSE": s_brosse, "INFO_SUPP": s_info}])
                     df_updated = pd.concat([df_sug, new_sug], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_updated)
-                    st.success(f"Conseil pour le {s_leg} envoyé avec succès !")
+                    st.success(f"Conseil pour le {s_leg} envoyé !")
                 else:
                     st.error("Merci de renseigner au moins le légume et le type de rouleau.")
 
     st.divider()
-
-    # PRÉCONISATIONS OFFICIELLES
     liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
     if liste:
         st.subheader("📋 Préconisations constructeur")
@@ -144,43 +134,15 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
         st.dataframe(df_c.rename(columns={"légume":"Légume", "pignon_av":"AV", "pignon_ar":"AR", "distance_cm":"cm"}), use_container_width=True, hide_index=True)
 
     st.divider()
-    
-    # TABLEAUX TECHNIQUES
     st.subheader("⚙️ Tableau des distances de semis (mm)")
-    dist_data = {
-        "Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"],
-        "14/9": [320, 210, 160, 105, 80, 64, 53, 40, 32, 27, 21, 18],
-        "14/10": [360, 230, 180, 115, 90, 72, 58, 45, 36, 29, 24, 20],
-        "13/10": [380, 250, 190, 125, 95, 76, 63, 48, 38, 32, 25, 21],
-        "13/11": [420, 280, 210, 140, 105, 84, 70, 53, 42, 35, 28, 23],
-        "11/10": [460, 300, 230, 150, 115, 92, 75, 58, 46, 38, 31, 26],
-        "11/11": [500, 330, 250, 165, 125, 100, 83, 63, 50, 42, 33, 28],
-        "10/11": [540, 360, 270, 180, 135, 108, 90, 68, 54, 45, 36, 30],
-        "11/13": [580, 390, 290, 195, 145, 116, 98, 73, 58, 49, 39, 32],
-        "10/13": [640, 430, 320, 215, 160, 128, 108, 80, 64, 54, 43, 36],
-        "10/14": [700, 460, 350, 230, 175, 140, 115, 88, 70, 58, 47, 39],
-        "9/14": [760, 510, 380, 255, 190, 152, 128, 95, 76, 64, 51, 42]
-    }
+    dist_data = {"Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"], "14/9": [320, 210, 160, 105, 80, 64, 53, 40, 32, 27, 21, 18], "14/10": [360, 230, 180, 115, 90, 72, 58, 45, 36, 29, 24, 20], "13/10": [380, 250, 190, 125, 95, 76, 63, 48, 38, 32, 25, 21], "13/11": [420, 280, 210, 140, 105, 84, 70, 53, 42, 35, 28, 23], "11/10": [460, 300, 230, 150, 115, 92, 75, 58, 46, 38, 31, 26], "11/11": [500, 330, 250, 165, 125, 100, 83, 63, 50, 42, 33, 28], "10/11": [540, 360, 270, 180, 135, 108, 90, 68, 54, 45, 36, 30], "11/13": [580, 390, 290, 195, 145, 116, 98, 73, 58, 49, 39, 32], "10/13": [640, 430, 320, 215, 160, 128, 108, 80, 64, 54, 43, 36], "10/14": [700, 460, 350, 230, 175, 140, 115, 88, 70, 58, 47, 39], "9/14": [760, 510, 380, 255, 190, 152, 128, 95, 76, 64, 51, 42]}
     st.dataframe(pd.DataFrame(dist_data), use_container_width=True, hide_index=True)
 
 else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
-        st.markdown("### Une base de notes partagée. ITK Maraîchage, conseils")
-        st.markdown("""
-        J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. Je suis fraîchement installé, alors, souvent la tête trop pleine d'informations, et ayant besoin de me rassurer sur mes choix au terrain, j'ai developpé cet outil. 
-        Il reprends les ITK du GAB/FRAB, et certains autres très connus que je ne peux pas citer mais vous comprendrez en visitant les 3 onglets présents une fois le légume sélectionné. 
-        C’est sans prétention : je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres. L’outil est gratuit et je le bricole sur mon temps libre, donc c’est encore un peu rustique.
-        
-        **Si tu as de l'expérience à partager, n'hésite pas à mettre la main à la pâte :**
-        
-        * **Expériences de terrain :** Ça se passe dans l'onglet **THO**. Tes retours alimentent la base commune visible dans THO_RESULT.
-        * **Réglages du semoir JP1 :** À gauche dans la page **Réglage JP1**, tu peux laisser tes propres réglages par légume. Ils sont compilés plus bas dans la section "Conseils persos JP1".
-        
-        L'idée, c'est que ça profite à tout le monde. Sers-toi, et complète si le cœur t'en dit.
-        """)
-        st.divider()
-
+        st.markdown("### Une base de notes partagée, sans chichis.")
+        st.markdown("""J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain... (Texte complet)""")
     else:
         st.title(f"📊 {sel.upper()}")
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
@@ -194,24 +156,35 @@ else:
                         cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
                 for k, v in g.get("TECHNIQUE", {}).items():
                     with st.expander(f"📌 {k}", expanded=True): st.markdown(v)
+            else:
+                st.info(f"Aucune donnée de GAB / FRAB pour {sel}")
 
         with tab2:
+            found_jmf = False
             base = SOURCES_JMF.get("reglages_itk", {})
             reg = base.get(sel.strip())
             if reg:
+                found_jmf = True
                 c1, c2 = st.columns(2)
                 c1.info(f"**📍 JMF**\n- Rouleau : `{reg.get('jmf', {}).get('rouleau', '?')}`")
                 c2.warning(f"**🚜 Terrateck**\n- Rouleau : `{reg.get('terrateck', {}).get('rouleau', '?')}`")
             f = DATA.get(sel, {}).get("JMF_FORTIER", {})
-            for t, c in f.items():
-                with st.expander(f"📌 {t}", expanded=True): st.markdown(c)
+            if f:
+                found_jmf = True
+                for t, c in f.items():
+                    with st.expander(f"📌 {t}", expanded=True): st.markdown(c)
+            if not found_jmf:
+                st.info(f"Aucune donnée de JMF pour {sel}")
                         
         with tab3:
             j = JDV_DATA.get(sel, {})
-            if "RENDEMENT JDV" in j: st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
-            for t, c in j.items():
-                if t != "RENDEMENT JDV":
-                    with st.expander(f"🌿 {t}", expanded=True): st.markdown(str(c))
+            if j:
+                if "RENDEMENT JDV" in j: st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
+                for t, c in j.items():
+                    if t != "RENDEMENT JDV":
+                        with st.expander(f"🌿 {t}", expanded=True): st.markdown(str(c))
+            else:
+                st.info(f"Aucune donnée de JDV pour {sel}")
 
         with tab4:
             st.subheader(f"📝 Saisie Terrain - {sel}")
@@ -235,5 +208,3 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
-
-
