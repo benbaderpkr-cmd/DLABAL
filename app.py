@@ -80,6 +80,7 @@ if sel != "---":
 
     # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
     with tab4:
+        st.write(st.secrets)
         st.subheader(f"📝 Notes de culture : {sel}")
         
         # 1. Lecture des données depuis Google Sheets
@@ -144,3 +145,4 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
