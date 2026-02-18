@@ -6,14 +6,14 @@ from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 from streamlit_cookies_manager import EncryptedCookieManager
 
-# 1. CONFIGURATION ET COOKIES
+# 1. CONFIGURATION ET COOKIES (Ne pas toucher)
 st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
 
 cookies = EncryptedCookieManager(password="cle_secrete_dlabal_2026")
 if not cookies.ready():
     st.stop()
 
-# 2. SYSTÈME DE MOT DE PASSE
+# 2. SYSTÈME DE MOT DE PASSE (AVEC MÉMOIRE COOKIE)
 def check_password():
     if st.session_state.get("password_correct") or cookies.get("auth_token") == "valide":
         st.session_state["password_correct"] = True
@@ -38,7 +38,7 @@ if not check_password():
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-# 4. CHARGEMENT DES DONNÉES
+# 4. CHARGEMENT DES DONNÉES JSON
 def load_json(filename):
     if os.path.exists(filename):
         try:
@@ -57,7 +57,7 @@ tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + c
 
 # --- SIDEBAR ---
 with st.sidebar:
-    # TITRE CLIQUABLE POUR RETOUR ACCUEIL
+    # BOUTON TITRE CLIQUABLE POUR RETOUR ACCUEIL
     if st.button("🌱 DLABAL", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.session_state["last_sel"] = "---"
@@ -66,6 +66,7 @@ with st.sidebar:
     
     st.markdown("<p style='margin-top: -15px; font-weight: bold;'>Base de données des ITKs</p>", unsafe_allow_html=True)
     
+    # Selectbox avec clé de reset pour le bouton titre
     res_key = st.session_state.get("reset_key", 0)
     sel = st.selectbox(
         "Choisir ou taper le nom d'un légume :", 
@@ -91,33 +92,88 @@ with st.sidebar:
 
 # --- LOGIQUE D'AFFICHAGE ---
 
+# MODE A : RÉGLAGES JP1 GLOBAUX
 if st.session_state.get("view_mode") == "JP1_GLOBAL":
     st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
+    st.warning("**⚠️ AVERTISSEMENT :** Ces réglages sont indicatifs. La précision dépend de votre sol et de vos graines.")
+    
     if st.button("⬅️ Retour"):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
-    # (Ici les tableaux JP1 que tu avais déjà)
-    st.info("Consultez ici les abaques techniques du semoir.")
-    # ... code des tableaux ...
 
+    # 1. Préconisations par culture
+    liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
+    if liste:
+        st.subheader("📋 Préconisations par culture")
+        with st.expander("💡 Suggérer un réglage"):
+            with st.form("form_sug"):
+                s_leg = st.text_input("Légume")
+                s_note = st.text_input("Réglage (Rouleau / Pignons / Distance)")
+                if st.form_submit_button("Envoyer la suggestion"):
+                    st.success("Suggestion enregistrée (pensez à créer l'onglet SUGGESTIONS sur GSheet)")
+
+        df_c = pd.DataFrame(liste)
+        rech = st.text_input("🔍 Filtrer la liste globale...", key="filter_jp1")
+        if rech: df_c = df_c[df_c['légume'].str.contains(rech, case=False)]
+        st.dataframe(df_c.rename(columns={"légume":"Légume", "pignon_av":"AV", "pignon_ar":"AR", "distance_cm":"cm"}), use_container_width=True, hide_index=True)
+
+    st.divider()
+    
+    # 2. Tableau des distances
+    st.subheader("⚙️ Tableau des distances de semis (en mm)")
+    dist_data = {
+        "Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"],
+        "14/9": [320, 210, 160, 105, 80, 64, 53, 40, 32, 27, 21, 18],
+        "14/10": [360, 230, 180, 115, 90, 72, 58, 45, 36, 29, 24, 20],
+        "13/10": [380, 250, 190, 125, 95, 76, 63, 48, 38, 32, 25, 21],
+        "13/11": [420, 280, 210, 140, 105, 84, 70, 53, 42, 35, 28, 23],
+        "11/10": [460, 300, 230, 150, 115, 92, 75, 58, 46, 38, 31, 26],
+        "11/11": [500, 330, 250, 165, 125, 100, 83, 63, 50, 42, 33, 28],
+        "10/11": [540, 360, 270, 180, 135, 108, 90, 68, 54, 45, 36, 30],
+        "11/13": [580, 390, 290, 195, 145, 116, 98, 73, 58, 49, 39, 32],
+        "10/13": [640, 430, 320, 215, 160, 128, 108, 80, 64, 54, 43, 36],
+        "10/14": [700, 460, 350, 230, 175, 140, 115, 88, 70, 58, 47, 39],
+        "9/14": [760, 510, 380, 255, 190, 152, 128, 95, 76, 64, 51, 42]
+    }
+    st.dataframe(pd.DataFrame(dist_data), use_container_width=True, hide_index=True)
+    
+    st.divider()
+
+    # 3. Tableau des dimensions rouleaux
+    st.subheader("📏 Tableau des dimensions des trous des rouleaux (en mm)")
+    c1, c2 = st.columns(2)
+    with c1:
+        st.table(pd.DataFrame({
+            "Réf": ["A", "AA", "C", "F", "FJ", "G", "J", "L", "LJ", "M", "MJ", "MM", "N"],
+            "Ø trou": ["13,50", "12,00", "11,00", "5,00", "5,00", "9,00", "SPECIAL", "7,00", "7,00", "5,00", "6,00", "6,00", "SPECIAL"],
+            "Prof.": ["6,00", "6,00", "5,50", "2,50", "3,00", "4,50", "1,5 mm", "2,50", "3,70", "2,00", "3,50", "2,50", "16x6 mm"]
+        }))
+    with c2:
+        st.table(pd.DataFrame({
+            "Réf": ["R", "S-4", "U-4", "X", "XY", "XYY", "Y", "YJ", "YK", "YX", "YXX", "YYJ", "YYX"],
+            "Ø trou": ["9,00", "SPECIAL", "SPECIAL", "4,00", "2,50", "2,00", "3,50", "3,00", "3,50", "2,50", "2,50", "3,00", "2,00"],
+            "Prof.": ["3,50", "19x8 mm", "19x10 mm", "2,00", "1,20", "1,20", "1,50", "2,00", "2,30", "1,50", "1,80", "1,70", "1,80"]
+        }))
+
+# MODE B : DOSSIER (ACCUEIL OU FICHE)
 else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
         st.info("Sélectionnez un légume ci-contre ou consultez les réglages JP1 globaux.")
         
+        # TEXTE D'ACCUEIL OFFICIEL
         st.markdown("### Une base de notes partagée, sans chichis.")
         st.markdown("""
-        J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. C’est sans prétention : 
-        je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres. 
-        L’outil est gratuit et je le bricole sur mon temps libre, donc c’est encore un peu rustique.
-
+        J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. C’est sans prétention : je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres. L’outil est gratuit et je le bricole sur mon temps libre, donc c’est encore un peu rustique.
+        
         **Si tu as de l'expérience à partager, n'hésite pas à mettre la main à la pâte :**
-
+        
         * **Expériences de terrain :** Ça se passe dans l'onglet **THO**. Tes retours alimentent la base commune visible dans THO_RESULT.
         * **Réglages du semoir JP1 :** À gauche dans la page **Réglage JP1**, tu peux laisser tes propres réglages par légume. Ils sont compilés plus bas dans la section "Conseils persos JP1".
-
+        
         L'idée, c'est que ça profite à tout le monde. Sers-toi, et complète si le cœur t'en dit.
         """)
+        st.divider()
 
     else:
         st.title(f"📊 {sel.upper()}")
@@ -131,7 +187,6 @@ else:
                     for i, b in enumerate(g["BLOCS_IDENTITE"]):
                         cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
                 for k, v in g.get("TECHNIQUE", {}).items():
-                    # AJOUT DE expanded=True ici
                     with st.expander(f"📌 {k}", expanded=True):
                         st.markdown(v)
 
@@ -144,7 +199,6 @@ else:
                 c2.warning(f"**🚜 Terrateck**\n- Rouleau : `{reg.get('terrateck', {}).get('rouleau', '?')}`")
             f = DATA.get(sel, {}).get("JMF_FORTIER", {})
             for t, c in f.items():
-                # AJOUT DE expanded=True ici
                 with st.expander(f"📌 {t}", expanded=True):
                     st.markdown(c)
                         
@@ -153,11 +207,5 @@ else:
             if "RENDEMENT JDV" in j: st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
             for t, c in j.items():
                 if t != "RENDEMENT JDV":
-                    # AJOUT DE expanded=True ici
                     with st.expander(f"🌿 {t}", expanded=True):
                         st.markdown(str(c))
-
-        with tab4:
-            # (Ton formulaire THO reste tel quel)
-            st.subheader(f"📝 Saisie Terrain - {sel}")
-            # ...
