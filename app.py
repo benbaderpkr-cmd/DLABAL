@@ -45,15 +45,11 @@ def load_json(filename):
 DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
 SOURCES_JMF = load_json("sources_jmf.json")
-REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json") # Nouveau fichier
+REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json")
 
-# Création de la liste des légumes
-cles_jp1 = list(SOURCES_JMF.get("reglages_itk", {}).keys())
-tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + cles_jp1)))
-
-# --- LOGIQUE DE NAVIGATION ---
-if "page" not in st.session_state:
-    st.session_state.page = "Dossier"
+# Préparation de la liste des légumes
+cles_itk = list(SOURCES_JMF.get("reglages_itk", {}).keys())
+tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
 
 # --- SIDEBAR ---
 with st.sidebar:
@@ -66,69 +62,53 @@ with st.sidebar:
         <br>
     """, unsafe_allow_html=True)
     
-    # Menu de navigation
-    st.sidebar.subheader("Navigation")
-    if st.sidebar.button("📂 DOSSIER MARAÎCHAGE", use_container_width=True):
-        st.session_state.page = "Dossier"
+    # SÉLECTEUR AVEC LE NOUVEAU LIBELLÉ
+    sel = st.selectbox(
+        "Choisir ou taper le nom d'un légume :", 
+        ["---"] + tous_les_legumes,
+        help="Tapez les premières lettres pour filtrer rapidement."
+    )
+    
+    st.divider()
+
+    # BOUTON FIXE REGLAGE JP1
+    if st.button("📊 VOIR RÉGLAGES JP1 GLOBAUX", use_container_width=True):
+        st.session_state["view_mode"] = "JP1_GLOBAL"
+    
+    # Reset du mode si un légume est sélectionné
+    if sel != "---" and st.session_state.get("last_sel") != sel:
+        st.session_state["view_mode"] = "DOSSIER"
+        st.session_state["last_sel"] = sel
+
+# --- LOGIQUE D'AFFICHAGE DU CONTENU ---
+
+# MODE 1 : TABLEAU GLOBAL JP1 (Données Constructeur)
+if st.session_state.get("view_mode") == "JP1_GLOBAL":
+    st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
+    st.info("Données extraites des abaques officielles Jang / Terrateck.")
+    
+    if st.button("⬅️ Retour au dossier"):
+        st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
-        
-    if st.sidebar.button("📊 REGLAGE JP1", use_container_width=True):
-        st.session_state.page = "JP1"
-        st.rerun()
 
-    st.sidebar.divider()
-    
-    # Sélecteur de légume (uniquement visible sur la page Dossier)
-    if st.session_state.page == "Dossier":
-        sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
-    else:
-        sel = "---"
-
-# --- CONTENU PRINCIPAL ---
-
-# PAGE 1 : RÉGLAGES JP1 GLOBAUX
-if st.session_state.page == "JP1":
-    st.title("🚜 RÉGLAGES OFFICIELS JP1 (JANG / TERRATECK)")
-    st.info("Données extraites des abaques mécaniques officielles (Manuel JP1 p.6 et Guides Terradonis).")
-    
-    # Récupération des données du JSON
-    liste_reglages = REGLAGES_JP1_OFFICIEL.get("reglages", [])
-    
-    if liste_reglages:
-        df_jp1 = pd.DataFrame(liste_reglages)
-        
-        # Barre de recherche
-        recherche = st.text_input("🔍 Rechercher un légume ou une herbe...", "")
+    liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
+    if liste:
+        df = pd.DataFrame(liste)
+        recherche = st.text_input("🔍 Filtrer la liste globale...", "")
         if recherche:
-            df_jp1 = df_jp1[df_jp1['légume'].str.contains(recherche, case=False)]
+            df = df[df['légume'].str.contains(recherche, case=False)]
         
-        # Mise en forme
-        df_display = df_jp1.rename(columns={
-            "légume": "Légume",
-            "rouleau": "Rouleau",
-            "pignon_av": "Pignon AV",
-            "pignon_ar": "Pignon AR",
-            "distance_cm": "Distance (cm)",
-            "brosse": "Brosse",
-            "obs": "Observations"
-        })
-        
-        st.dataframe(df_display, use_container_width=True, hide_index=True)
-        
-        st.markdown("""
-        ---
-        **Note technique :** Les distances sont calculées sur la base du diamètre de roue standard.  
-        - Pour un rouleau **24 trous** avec pignons **11/14**, la distance est de **3.5 cm**.  
-        - Pour un rouleau **12 trous** avec pignons **11/11**, la distance est de **5.5 cm**.
-        """)
+        st.dataframe(df.rename(columns={
+            "légume": "Légume", "pignon_av": "Pignon AV", "pignon_ar": "Pignon AR", "distance_cm": "Distance (cm)"
+        }), use_container_width=True, hide_index=True)
     else:
-        st.error("Le fichier `reglages_jp1.json` est vide ou introuvable.")
+        st.error("Fichier reglages_jp1.json non trouvé ou mal formaté.")
 
-# PAGE 2 : DOSSIER MARAÎCHAGE (Ton code original)
-elif st.session_state.page == "Dossier":
+# MODE 2 : DOSSIER MARAÎCHAGE (Affichage par onglets)
+else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
-        st.info("Sélectionnez un légume dans la barre latérale pour consulter les ITKs.")
+        st.info("Sélectionnez un légume ci-contre ou consultez les réglages JP1 globaux.")
     else:
         st.title(f"📊 {sel.upper()}")
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
@@ -149,6 +129,7 @@ elif st.session_state.page == "Dossier":
 
         # --- TAB 2 : JMF ---
         with tab2:
+            # Réglages techniques JP1 spécifiques (Source JSON JMF)
             base = SOURCES_JMF.get("reglages_itk", SOURCES_JMF)
             reglages_propres = {str(k).strip(): v for k, v in base.items()}
             reglages = reglages_propres.get(sel.strip())
@@ -159,13 +140,14 @@ elif st.session_state.page == "Dossier":
                 with col_pdf:
                     st.info("**📍 Réglages JMF (Fiches PDF)**")
                     r_j = reglages.get("jmf", {})
-                    st.markdown(f"- **Rouleau :** `{r_j.get('rouleau', 'N/A')}`\n- **Pignons (AV/AR) :** `{r_j.get('pignon_av', '?')} / {r_j.get('pignon_ar', '?')}`\n- **Brosse :** `{r_j.get('brosse', 'Standard')}`\n- **Nombre de rangs :** `{r_j.get('rangs', '?')}`")
+                    st.markdown(f"- **Rouleau :** `{r_j.get('rouleau', 'N/A')}`\n- **Pignons (AV/AR) :** `{r_j.get('pignon_av', '?')} / {r_j.get('pignon_ar', '?')}`\n- **Brosse :** `{r_j.get('brosse', 'Standard')}`")
                 with col_terra:
                     st.warning("**🚜 Réglages Site Terrateck / Jang**")
                     r_t = reglages.get("terrateck", {})
-                    st.markdown(f"- **Rouleau :** `{r_t.get('rouleau', 'N/A')}`\n- **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`\n- **Brosse :** `{r_t.get('brosse', 'Standard')}`\n- **Note :** *{r_t.get('obs', '-')}*")
+                    st.markdown(f"- **Rouleau :** `{r_t.get('rouleau', 'N/A')}`\n- **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`\n- **Note :** *{r_t.get('obs', '-')}*")
                 st.divider()
 
+            # Fiches textuelles JMF
             f = DATA.get(sel, {}).get("JMF_FORTIER", {})
             if f:
                 for t, c in f.items():
