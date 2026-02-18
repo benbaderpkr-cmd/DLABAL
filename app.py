@@ -83,25 +83,27 @@ if sel != "---":
         st.subheader(f"📝 Notes de culture : {sel}")
         
         try:
-            # On garde l'ID qui fonctionne
             sheet_id = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
             
-            # On lit spécifiquement l'onglet THO
-            df = conn.read(spreadsheet=sheet_id, worksheet="THO", ttl=0)
+            # ÉTAPE 1 : On lit sans préciser l'onglet pour éviter la 400
+            df = conn.read(spreadsheet=sheet_id, ttl=0)
             
-            # On cherche si le légume (sel) existe déjà dans la colonne LEGUME
-            if not df.empty and "LEGUME" in df.columns:
+            # ÉTAPE 2 : On vérifie si la colonne 'LEGUME' existe
+            if "LEGUME" not in df.columns:
+                st.warning("⚠️ Attention : La colonne 'LEGUME' est introuvable. Vérifiez la ligne 1 de votre Sheet.")
+                notes = {}
+            else:
+                # ÉTAPE 3 : On cherche le légume sélectionné
                 existing_data = df[df['LEGUME'] == sel]
                 if not existing_data.empty:
-                    # On transforme la ligne trouvée en dictionnaire pour remplir le formulaire
                     notes = existing_data.iloc[0].to_dict()
                 else:
                     notes = {}
-            else:
-                notes = {}
-                
+            
+            st.success("✅ Connecté au tableau avec succès !")
+
         except Exception as e:
-            st.error(f"Erreur de lecture des données : {e}")
+            st.error(f"Erreur : {e}")
             notes = {}
         # 2. Formulaire avec clés dynamiques
         with st.form(key=f"form_gsheet_{sel}"):
@@ -144,6 +146,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
