@@ -20,6 +20,7 @@ def check_password():
         return True
     
     st.title("🔐 Accès Restreint")
+    # Formulaire pour permettre la validation par touche "Entrée"
     with st.form("auth_form", clear_on_submit=False):
         pwd = st.text_input("Entrez le mot de passe DLABAL :", type="password")
         submit = st.form_submit_button("Valider")
@@ -59,6 +60,7 @@ tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + c
 
 # --- SIDEBAR ---
 with st.sidebar:
+    # Bouton titre cliquable pour retour accueil
     if st.button("🌱 DLABAL", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.session_state["last_sel"] = "---"
@@ -101,30 +103,44 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
 
-    # 1. ZONE DE SAISIE CONSEILS PERSO (RÉTABLIE)
-    st.subheader("💡 Tes propres réglages par légume")
+    # SECTION : PROPOSE TON RÉGLAGE DU JP1 (MISE À JOUR)
+    st.subheader("💡 Propose ton réglage du JP1.")
     with st.form("form_sug_jp1", clear_on_submit=True):
-        col_s1, col_s2 = st.columns(2)
-        s_leg = col_s1.text_input("Légume concerné")
-        s_note = col_s2.text_input("Réglage (Rouleau / Pignons / Distance)")
+        c1, c2, c3 = st.columns(3)
+        s_leg = c1.text_input("Légume concerné")
+        s_rouleau = c2.text_input("rouleau")
+        s_pav = c3.text_input("pignon AV")
+        
+        c4, c5, c6 = st.columns(3)
+        s_par = c4.text_input("pignon AR")
+        s_brosse = c5.text_input("Brosse")
+        s_info = c6.text_input("info supp.")
+        
         if st.form_submit_button("Enregistrer mon conseil"):
-            if s_leg and s_note:
-                # Logique d'enregistrement GSheet pour l'onglet SUGGESTIONS
+            if s_leg and s_rouleau:
                 try:
                     df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", ttl=0)
                 except:
-                    df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "CONSEIL"])
+                    df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "ROULEAU", "PIGNON_AV", "PIGNON_AR", "BROSSE", "INFO_SUPP"])
                 
-                new_sug = pd.DataFrame([{"DATE": datetime.now().strftime("%d/%m/%Y"), "LEGUME": s_leg, "CONSEIL": s_note}])
+                new_sug = pd.DataFrame([{
+                    "DATE": datetime.now().strftime("%d/%m/%Y"),
+                    "LEGUME": s_leg,
+                    "ROULEAU": s_rouleau,
+                    "PIGNON_AV": s_pav,
+                    "PIGNON_AR": s_par,
+                    "BROSSE": s_brosse,
+                    "INFO_SUPP": s_info
+                }])
                 df_updated = pd.concat([df_sug, new_sug], ignore_index=True)
                 conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_updated)
-                st.success(f"Conseil pour le {s_leg} enregistré !")
+                st.success(f"Conseil pour le {s_leg} envoyé avec succès !")
             else:
-                st.error("Merci de remplir les deux champs.")
+                st.error("Merci de renseigner au moins le légume et le type de rouleau.")
 
     st.divider()
 
-    # 2. PRÉCONISATIONS OFFICIELLES
+    # PRÉCONISATIONS OFFICIELLES
     liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
     if liste:
         st.subheader("📋 Préconisations constructeur")
@@ -136,7 +152,7 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
 
     st.divider()
     
-    # 3. TABLEAUX TECHNIQUES
+    # TABLEAUX TECHNIQUES
     st.subheader("⚙️ Tableau des distances de semis (en mm)")
     dist_data = {
         "Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"],
