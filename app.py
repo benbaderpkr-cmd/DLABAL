@@ -42,15 +42,22 @@ if sel != "---":
         "📝 SOURCE THO"
     ])
 
-    # --- SOURCE GAB ---
+    # --- ONGLET 1 : GAB ---
     with tab1:
-        g = DATA.get(sel, {}).get("GAB_FRAB", {})
-        if g:
+        c = DATA.get(sel, {})
+        g = c.get("GAB_FRAB", {})
+        if not g:
+            st.warning("Aucune donnée GAB/FRAB.")
+        else:
+            if "BLOCS_IDENTITE" in g:
+                blocs = g["BLOCS_IDENTITE"]
+                cols = st.columns(len(blocs))
+                for i, b in enumerate(blocs):
+                    cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
+            
             for k, v in g.get("TECHNIQUE", {}).items():
                 with st.expander(f"📌 {k}", expanded=True):
                     st.markdown(v)
-        else: st.warning("Données GAB absentes.")
-
     # --- SOURCE JMF ---
     with tab2:
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
@@ -134,3 +141,4 @@ if sel != "---":
                     st.error(f"Erreur d'enregistrement : {e}")
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
