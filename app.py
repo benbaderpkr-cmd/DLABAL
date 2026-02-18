@@ -105,37 +105,40 @@ if sel != "---":
             submit = st.form_submit_button("💾 ENREGISTRER DANS GOOGLE SHEETS")
 
             if submit:
-                try:
-                    # Préparation des nouvelles données
-                    nouvelle_donnee = {
-                        "LEGUME": sel,
-                        "PLANTATION": v_plan,
-                        "ENTRETIEN": v_entr,
-                        "SANTE": v_sant,
-                        "RENDEMENT": v_rend,
-                        "VARIETE": v_vari,
-                        "INFO_SUPP": v_info
-                    }
-                    
-                    # Mise à jour locale du DataFrame
-                    if not df.empty and sel in df['LEGUME'].values:
-                        for col, val in nouvelle_donnee.items():
-                            df.loc[df['LEGUME'] == sel, col] = val
-                    else:
-                        df = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
-                    
-                    # Envoi vers Google
-                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
-                    st.cache_data.clear() # Vide le cache pour voir les changements
-                    st.success("✨ Données sauvegardées !")
-                    st.balloons()
-                    
-                except Exception as e:
-                    # Gestion du faux positif "Response 200"
-                    if "200" in str(e):
-                        st.success("✨ Données transmises avec succès !")
-                        st.balloons()
+            try:
+                # Préparation des nouvelles données
+                nouvelle_donnee = {
+                    "LEGUME": sel,
+                    "PLANTATION": v_plan,
+                    "ENTRETIEN": v_entr,
+                    "SANTE": v_sant,
+                    "RENDEMENT": v_rend,
+                    "VARIETE": v_vari,
+                    "INFO_SUPP": v_info
+                }
+                
+                # Conversion en DataFrame pour manipulation facile
+                new_df_row = pd.DataFrame([nouvelle_donnee])
+
+                if not df.empty:
+                    # Si le légume existe, on le supprime avant de le rajouter (plus propre pour Google Sheets)
+                    df = df[df['LEGUME'] != sel]
+                    df = pd.concat([df, new_df_row], ignore_index=True)
+                else:
+                    df = new_df_row
+                
+                # NETTOYAGE : On s'assure que l'ordre des colonnes est respecté
+                colonnes = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
+                df = df[colonnes] 
+                
+                # ENVOI
+                conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
+                
+                st.cache_data.clear() 
+                st.success("✨ Données envoyées ! Vérifiez votre Google Sheet.")
+                st.balloons()
                     else:
                         st.error(f"Erreur lors de l'enregistrement : {e}")
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
