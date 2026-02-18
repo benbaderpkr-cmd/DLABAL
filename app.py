@@ -83,7 +83,7 @@ if sel != "---":
         # Ligne de test forcé
         reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
         st.write(f"DEBUG: Recherche de '{sel}' dans le JSON...") # Cette ligne va s'afficher sur ton app
-        if reglages:
+            if reglages:
     st.write("DEBUG: Réglages trouvés !")
 else:
     st.write("DEBUG: Rien trouvé dans SOURCES_JMF")
@@ -164,4 +164,5 @@ else:
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
