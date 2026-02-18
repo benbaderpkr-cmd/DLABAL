@@ -83,7 +83,7 @@ if sel != "---":
 # --- TAB 2 : JMF ---
     with tab2:
         # --- DOUBLE SOURCE JP1 : JMF VS TERRATECK ---
-        reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
+        reglages = sources_jmf.get("reglages_itk", {}).get(sel)
         if reglages:
             st.markdown("### ⚙️ Configuration Semoir JP1")
             
@@ -177,5 +177,6 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
 
