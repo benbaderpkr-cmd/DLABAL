@@ -2,9 +2,13 @@ import streamlit as st
 import json
 import os
 import pandas as pd
+from streamlit_gsheets import GSheetsConnection
+import pandas as pd
 
 # Configuration de la page
 st.set_page_config(page_title="DLABAL", layout="wide", page_icon="🌱")
+# connexion gsheet
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # --- 1. FONCTIONS DE GESTION DES DONNÉES ---
 def load_json(filename):
@@ -74,18 +78,33 @@ if sel != "---":
         else:
             st.warning("Données JDV absentes.")
 
-    # --- ONGLET 4 : SAISIE TERRAIN (THO) ---
+    # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
     with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
-        # Récupération des notes existantes
-        notes = THO_DATA.get(sel, {
-            "PLANTATION": "", "ENTRETIEN": "", "SANTE": "",
-            "RENDEMENT": "", "VARIETE": "", "INFO_SUPP": ""
-        })
+        # 1. Lecture des données depuis Google Sheets
+        try:
+            # On lit la feuille "THO"
+            df = conn.read(worksheet="THO", ttl=0)
+            
+            # On cherche si le légume existe déjà
+            existing_data = df[df['LEGUME'] == sel]
+            
+            if not existing_data.empty:
+                # On récupère la première ligne correspondante sous forme de dictionnaire
+                notes = existing_data.iloc[0].to_dict()
+            else:
+                # Valeurs par défaut si le légume n'est pas encore dans le tableur
+                notes = {
+                    "PLANTATION": "", "ENTRETIEN": "", "SANTE": "",
+                    "RENDEMENT": "", "VARIETE": "", "INFO_SUPP": ""
+                }
+        except Exception as e:
+            st.error("Impossible de se connecter au Google Sheet. Vérifiez vos Secrets.")
+            notes = {}
 
-        # Formulaire avec clé dynamique pour éviter le "freeze"
-        with st.form(key=f"form_{sel}"):
+        # 2. Formulaire avec clés dynamiques
+        with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
             with c1:
                 v_plan = st.text_area("🌱 PLANTATION", value=notes.get("PLANTATION", ""), key=f"p_{sel}")
@@ -96,19 +115,32 @@ if sel != "---":
                 v_vari = st.text_area("🧬 VARIETE", value=notes.get("VARIETE", ""), key=f"v_{sel}")
                 v_info = st.text_area("➕ INFO SUPP", value=notes.get("INFO_SUPP", ""), key=f"i_{sel}")
 
-            if st.form_submit_button("💾 ENREGISTRER"):
-                # Mise à jour du dictionnaire global
-                THO_DATA[sel] = {
+            # 3. Logique d'enregistrement
+            if st.form_submit_button("💾 ENREGISTRER DANS GOOGLE SHEETS"):
+                # Préparation de la nouvelle ligne
+                nouvelle_ligne = pd.DataFrame([{
+                    "LEGUME": sel,
                     "PLANTATION": v_plan,
                     "ENTRETIEN": v_entr,
                     "SANTE": v_sant,
                     "RENDEMENT": v_rend,
                     "VARIETE": v_vari,
                     "INFO_SUPP": v_info
-                }
-                save_json("tho.json", THO_DATA)
-                st.success("C'est enregistré dans tho.json !")
-                st.rerun()
+                }])
+                
+                # On fusionne : on garde tout sauf l'ancienne ligne de ce légume, et on ajoute la nouvelle
+                if not df.empty:
+                    df_maj = pd.concat([df[df['LEGUME'] != sel], nouvelle_ligne], ignore_index=True)
+                else:
+                    df_maj = nouvelle_ligne
+                
+                # Envoi vers Google Sheets
+                try:
+                    conn.update(worksheet="THO", data=df_maj)
+                    st.success(f"Données de {sel} sauvegardées sur Google Sheets !")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Erreur lors de la sauvegarde : {e}")
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
