@@ -82,10 +82,6 @@ if sel != "---":
     with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
-        # --- BLOC DE TEST (À PLACER ICI) ---
-       with tab4:
-        st.subheader(f"📝 Notes de culture : {sel}")
-        
         try:
             # MÉTHODE ULTIME : On utilise juste l'ID brut
             # S'assure qu'il n'y a pas d'espace dans les guillemets
@@ -145,6 +141,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
