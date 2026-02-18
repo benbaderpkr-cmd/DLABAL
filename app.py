@@ -41,10 +41,11 @@ def load_json(filename):
 
 DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
-SOURCES_JMF = load_json("sources_jmf.json")
+SOURCES_JMF = load_json("sources_jmf.json") # <--- APPEL DU FICHIER ICI
 
-# Union de toutes les clés pour la liste de sélection
-tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + list(SOURCES_JMF.get("reglages_itk", {}).keys()))))
+# Création de la liste des légumes (priorité aux réglages JP1 pour être sûr qu'ils apparaissent)
+cles_jp1 = list(SOURCES_JMF.get("reglages_itk", {}).keys())
+tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + cles_jp1)))
 
 # --- SIDEBAR ---
 st.sidebar.markdown("""
@@ -80,7 +81,8 @@ if sel != "---":
 
     # --- TAB 2 : JMF ---
     with tab2:
-        # Récupération des réglages JP1
+        # APPEL DES RÉGLAGES JP1
+        # On vérifie si le légume 'sel' existe dans la clé 'reglages_itk' de SOURCES_JMF
         reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
         
         if reglages:
@@ -107,15 +109,16 @@ if sel != "---":
                 - **Note :** *{r_t.get('obs', '-')}*
                 """)
             st.divider()
+        else:
+            # Si le fichier est vide ou le nom ne correspond pas, on affiche un avertissement discret
+            st.caption(f"ℹ️ Aucun réglage JP1 spécifique trouvé pour '{sel}' dans sources_jmf.json")
 
-        # Affichage du contenu textuel JMF
+        # Affichage du contenu textuel classique (Fiches JMF)
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
                 with st.expander(f"📌 {t}", expanded=True):
                     st.markdown(c)
-        elif not reglages:
-            st.warning("Aucune donnée JMF disponible.")
 
     # --- TAB 3 : JDV ---
     with tab3:
