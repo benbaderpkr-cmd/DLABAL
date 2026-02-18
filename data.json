@@ -282,7 +282,7 @@
       "ENTREPROSAGE": "Chambre froide à 2°C, humidité 95%."
     }
   },
-  "Chou-Fleur": {
+  "Chou-fleur": {
     "GAB_FRAB": {
       "ENTETE": "Fiche n°7 - Chou-Fleur. Culture exigeante en eau et en oligo-éléments. Source : GAB-FRAB Bretagne.",
       "BLOCS_IDENTITE": [
@@ -1066,4 +1066,5 @@
       "ENTREPROSAGE": "Endroit frais et sec. Ne pas empiler trop de couches de tomates pour éviter l'écrasement."
     }
   }
+
 }
