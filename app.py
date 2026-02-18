@@ -63,41 +63,42 @@ with st.sidebar:
         <br>
     """, unsafe_allow_html=True)
     
+    # SÉLECTEUR
     sel = st.selectbox(
         "Choisir ou taper le nom d'un légume :", 
         ["---"] + tous_les_legumes,
         help="Tapez les premières lettres pour filtrer rapidement."
     )
     
+    # LOGIQUE DE RÉINITIALISATION : Si le légume change, on revient au mode DOSSIER
+    if sel != "---":
+        if "last_sel" not in st.session_state or st.session_state["last_sel"] != sel:
+            st.session_state["view_mode"] = "DOSSIER"
+            st.session_state["last_sel"] = sel
+
     st.divider()
 
-    if st.button("📊 RÉGLAGES JP1", use_container_width=True):
+    # BOUTON RÉGLAGES JP1
+    if st.button("📊 RÉGLAGES JP1 GLOBAUX", use_container_width=True):
         st.session_state["view_mode"] = "JP1_GLOBAL"
-    
-    if sel != "---" and st.session_state.get("last_sel") != sel:
-        st.session_state["view_mode"] = "DOSSIER"
-        st.session_state["last_sel"] = sel
+        st.rerun()
 
 # --- LOGIQUE D'AFFICHAGE DU CONTENU ---
 
+# CAS 1 : MODE RÉGLAGES JP1
 if st.session_state.get("view_mode") == "JP1_GLOBAL":
     st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
     
     st.warning("""
     **⚠️ AVERTISSEMENT :** Ces réglages proviennent du croisement des guides techniques Terrateck et Terradonis. 
-    Ajustez selon vos propres objectifs de distance.
+    Ils ne constituent pas une référence absolue. Ajustez selon vos propres objectifs de distance.
     """)
     
-    if st.button("⬅️ Retour au dossier"):
-        st.session_state["view_mode"] = "DOSSIER"
-        st.rerun()
-
     # SECTION 1 : PRÉCONISATIONS PAR CULTURE
     liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
     if liste:
         st.subheader("📋 Préconisations par culture")
         
-        # Formulaire de suggestion (Pop-up via expander)
         with st.expander("💡 Suggérer un nouveau réglage ou une correction"):
             with st.form("form_suggestion"):
                 col_s1, col_s2, col_s3 = st.columns(3)
@@ -113,28 +114,28 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
                     try:
                         df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS")
                         new_sug = pd.DataFrame([{
-                            "DATE": datetime.now().strftime("%d/%m/%Y"),
+                            "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
                             "LEGUME": s_leg, "ROULEAU": s_rou, "PIGNON_AV": s_pav, 
                             "PIGNON_AR": s_par, "DISTANCE": s_dist, "NOTE": s_note
                         }])
                         df_final_sug = pd.concat([df_sug, new_sug], ignore_index=True)
                         conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_final_sug)
-                        st.success("Merci ! Votre suggestion a été enregistrée.")
+                        st.success("Suggestion enregistrée !")
                     except:
-                        st.error("Erreur : Vérifiez que l'onglet 'SUGGESTIONS' existe dans votre Google Sheet.")
+                        st.error("Onglet 'SUGGESTIONS' manquant dans GSheets.")
 
         df_culture = pd.DataFrame(liste)
-        recherche = st.text_input("🔍 Filtrer la liste globale...", "")
+        recherche = st.text_input("🔍 Filtrer la liste...", "")
         if recherche:
             df_culture = df_culture[df_culture['légume'].str.contains(recherche, case=False)]
         
         st.dataframe(df_culture.rename(columns={
             "légume": "Légume", "pignon_av": "Pignon AV", "pignon_ar": "Pignon AR", "distance_cm": "Distance (cm)"
         }), use_container_width=True, hide_index=True)
-    
+
     st.divider()
 
-    # SECTION 2 : TABLEAU DES DISTANCES
+    # SECTION 2 : DISTANCES (PAGE 4)
     st.subheader("⚙️ Tableau des distances de semis (en mm)")
     dist_data = {
         "Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"],
@@ -154,24 +155,97 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
 
     st.divider()
 
-    # SECTION 3 : DIMENSIONS DES TROUS
+    # SECTION 3 : TROUS (PAGE 4)
     st.subheader("📏 Tableau des dimensions des trous des rouleaux (en mm)")
-    col1, col2 = st.columns(2)
-    with col1:
+    c1, c2 = st.columns(2)
+    with c1:
         trous_a = {
             "Réf": ["A", "AA", "C", "F", "FJ", "G", "J", "L", "LJ", "M", "MJ", "MM", "N"],
             "Ø trou": ["13,50", "12,00", "11,00", "5,00", "5,00", "9,00", "SPECIAL", "7,00", "7,00", "5,00", "6,00", "6,00", "SPECIAL"],
-            "Prof.": ["6,00", "6,00", "5,50", "2,50", "3,00", "4,50", "1,5 mm (1/2)", "2,50", "3,70", "2,00", "3,50", "2,50", "16 x 6 mm"]
+            "Prof.": ["6,00", "6,00", "5,50", "2,50", "3,00", "4,50", "1,5 mm", "2,50", "3,70", "2,00", "3,50", "2,50", "16x6 mm"]
         }
         st.table(pd.DataFrame(trous_a))
-    with col2:
+    with c2:
         trous_b = {
             "Réf": ["R", "S-4", "U-4", "X", "XY", "XYY", "Y", "YJ", "YK", "YX", "YXX", "YYJ", "YYX"],
             "Ø trou": ["9,00", "SPECIAL", "SPECIAL", "4,00", "2,50", "2,00", "3,50", "3,00", "3,50", "2,50", "2,50", "3,00", "2,00"],
-            "Prof.": ["3,50", "19 x 8 mm", "19 x 10 mm", "2,00", "1,20 (L:5)", "1,20 (L:4)", "1,50", "2,00", "2,30", "1,50", "1,80", "1,70", "1,80"]
+            "Prof.": ["3,50", "19x8 mm", "19x10 mm", "2,00", "1,20", "1,20", "1,50", "2,00", "2,30", "1,50", "1,80", "1,70", "1,80"]
         }
         st.table(pd.DataFrame(trous_b))
-    
-    st.caption("Source : Manuel utilisateur JP1 - Terradonis (www.terradonis.com) - Page 4")
+    st.caption("Source : Manuel utilisateur JP1 - Terradonis - Page 4")
 
-# (Reste du code identique pour la partie Dossier...)
+# CAS 2 : MODE DOSSIER (Légume sélectionné)
+else:
+    if sel == "---":
+        st.title("🌱 Bienvenue sur DLABAL")
+        st.info("Sélectionnez un légume ci-contre ou consultez les réglages JP1 globaux.")
+    else:
+        st.title(f"📊 {sel.upper()}")
+        tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
+
+        # --- TAB 1 : GAB ---
+        with tab1:
+            g = DATA.get(sel, {}).get("GAB_FRAB", {})
+            if g:
+                if "BLOCS_IDENTITE" in g:
+                    blocs = g["BLOCS_IDENTITE"]
+                    cols = st.columns(len(blocs))
+                    for i, b in enumerate(blocs):
+                        cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
+                for k, v in g.get("TECHNIQUE", {}).items():
+                    with st.expander(f"📌 {k}", expanded=True):
+                        st.markdown(v)
+            else: st.warning("Données GAB absentes.")
+
+        # --- TAB 2 : JMF ---
+        with tab2:
+            base = SOURCES_JMF.get("reglages_itk", SOURCES_JMF)
+            reglages = base.get(sel.strip())
+            if reglages and isinstance(reglages, dict):
+                st.markdown(f"### ⚙️ Configuration Semoir JP1 : {sel}")
+                c_j, c_t = st.columns(2)
+                with c_j:
+                    r_j = reglages.get("jmf", {})
+                    st.info(f"**📍 JMF**\n- Rouleau : `{r_j.get('rouleau', '?')}`\n- Pignons : `{r_j.get('pignon_av', '?')}/{r_j.get('pignon_ar', '?')}`")
+                with c_t:
+                    r_t = reglages.get("terrateck", {})
+                    st.warning(f"**🚜 Terrateck**\n- Rouleau : `{r_t.get('rouleau', '?')}`\n- Pignons : `{r_t.get('pignon_av', '?')}/{r_t.get('pignon_ar', '?')}`")
+            f = DATA.get(sel, {}).get("JMF_FORTIER", {})
+            if f:
+                for t, c in f.items():
+                    with st.expander(f"📌 {t}", expanded=True):
+                        st.markdown(c)
+
+        # --- TAB 3 : JDV ---
+        with tab3:
+            j = JDV_DATA.get(sel, {})
+            if j:
+                if "RENDEMENT JDV" in j: st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
+                for t, c in j.items():
+                    if t != "RENDEMENT JDV":
+                        with st.expander(f"🌿 {t}", expanded=True): st.markdown(str(c))
+
+        # --- TAB 4 : THO ---
+        with tab4:
+            st.subheader(f"📝 Saisie Terrain - {sel}")
+            try:
+                df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
+                notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
+            except: 
+                df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
+                notes = {}
+
+            with st.form(key=f"form_{sel}"):
+                c1, c2 = st.columns(2)
+                v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
+                v_e = c1.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")))
+                v_s = c1.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")))
+                v_r = c2.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")))
+                v_v = c2.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")))
+                v_i = c2.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")))
+                
+                if st.form_submit_button("💾 ENREGISTRER"):
+                    new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                    df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
+                    conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                    st.success("Enregistré !")
