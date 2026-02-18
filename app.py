@@ -67,14 +67,25 @@ if sel != "---":
                     st.markdown(contenu)
         else: st.warning("Données JMF absentes.")
 
-    # --- SOURCE JDV ---
+    # --- ONGLET 3 : JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
-        if j:
-            for t, c in j.items():
-                with st.expander(f"🌿 {t}", expanded=True):
-                    st.markdown(c)
-        else: st.warning("Données JDV absentes.")
+        if not j:
+            st.warning("Aucune donnée JDV.")
+        else:
+            # Affichage du rendement s'il existe
+            if "RENDEMENT JDV" in j:
+                st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
+            
+            # Affichage des autres sections
+            for titre, contenu in j.items():
+                if titre != "RENDEMENT JDV":
+                    with st.expander(f"🌿 {titre}", expanded=True):
+                        # La correction est ici : on force le respect des sauts de ligne
+                        if isinstance(contenu, str):
+                            st.markdown(contenu.replace('\n', '\n\n'))
+                        else:
+                            st.write(contenu)
 
     # --- SOURCE THO (GOOGLE SHEETS) ---
     with tab4:
@@ -141,4 +152,5 @@ if sel != "---":
                     st.error(f"Erreur d'enregistrement : {e}")
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
