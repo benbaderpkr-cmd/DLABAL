@@ -50,9 +50,10 @@ import streamlit as st
 
 # Rendu propre pour la sidebar
 st.sidebar.markdown("""
-    <div style="line-height: 1.1;">
-        <span style="font-size: 20px; font-weight: bold;">DLABAL - Base de données des ITKs (GAB, JMF, JDV)</span><br>
-        <span style="font-size: 13px; color: #666;">DB LA Braille Aux Loups</span>
+    <div style="line-height: 1.3;">
+        <span style="font-size: 24px; font-weight: bold;">DLABAL</span><br>
+        <span style="font-size: 15px; font-weight: bold;">Base de données des ITKs (GAB, JMF, JDV)</span><br>
+        <span style="font-size: 12px; color: gray;">DB LA Braille Aux Loups</span>
     </div>
     <br>
 """, unsafe_allow_html=True)
@@ -132,6 +133,7 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
 
 
