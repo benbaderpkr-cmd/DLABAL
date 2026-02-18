@@ -131,7 +131,7 @@ if sel != "---":
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
-                with st.expander(f"📌 {t}", expanded=False):
+                with st.expander(f"📌 {t}", expanded=True):
                     st.markdown(c)
                     
     # --- TAB 3 : JDV ---
@@ -176,6 +176,7 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
 
 
