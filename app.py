@@ -42,7 +42,7 @@ if sel != "---":
         "📝 SOURCE THO"
     ])
 
-    # --- SOURCE GAB / JMF / JDV (Style conservé) ---
+    # --- SOURCE GAB / JMF / JDV (Ton style) ---
     with tab1:
         g = DATA.get(sel, {}).get("GAB_FRAB", {})
         if g:
@@ -62,67 +62,76 @@ if sel != "---":
                 with st.expander(f"🌿 {t}", expanded=True):
                     st.markdown(c)
 
-    # --- SOURCE THO (C'est ici que l'erreur 'df' est corrigée) ---
+    # --- SOURCE THO (Correction ici) ---
     with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
-        # FIX : On définit df AVANT tout essai de lecture pour être sûr qu'il existe
-        df = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
+        # On définit la structure de base quoi qu'il arrive
+        cols_finales = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
+        df = pd.DataFrame(columns=cols_finales)
         notes = {}
 
         try:
-            # On tente de lire le Google Sheet
+            # Tentative de lecture forcée sans cache
             fetched_df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
-            if isinstance(fetched_df, pd.DataFrame) and not fetched_df.empty:
+            
+            if fetched_df is not None and not fetched_df.empty:
+                # On s'assure que les colonnes sont bien nommées (supprime les espaces)
+                fetched_df.columns = fetched_df.columns.str.strip()
                 df = fetched_df
-                # On cherche les notes du légume
+                
+                # On vérifie si le légume a déjà des notes
                 if 'LEGUME' in df.columns:
                     existing_data = df[df['LEGUME'] == sel]
                     if not existing_data.empty:
                         notes = existing_data.iloc[-1].to_dict()
-            st.success("✅ Connexion Google Sheets établie")
-        except Exception as e:
-            st.info("Initialisation d'un nouveau tableau (lecture impossible ou vide).")
+            st.success("✅ Connecté au Google Sheets")
+        except:
+            st.warning("⚠️ Impossible de lire l'onglet. Il sera créé/réinitialisé à l'enregistrement.")
 
-        # Ton formulaire en 2 colonnes
+        # Formulaire avec ton style 2 colonnes
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
             with c1:
-                v_plan = st.text_area("🌱 PLANTATION", value=notes.get("PLANTATION", ""), key=f"p_{sel}")
-                v_entr = st.text_area("🛠️ ENTRETIEN", value=notes.get("ENTRETIEN", ""), key=f"e_{sel}")
-                v_sant = st.text_area("🏥 SANTE", value=notes.get("SANTE", ""), key=f"s_{sel}")
+                v_plan = st.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")), key=f"p_{sel}")
+                v_entr = st.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")), key=f"e_{sel}")
+                v_sant = st.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")), key=f"s_{sel}")
             with c2:
-                v_rend = st.text_area("📊 RENDEMENT", value=notes.get("RENDEMENT", ""), key=f"r_{sel}")
-                v_vari = st.text_area("🧬 VARIETE", value=notes.get("VARIETE", ""), key=f"v_{sel}")
-                v_info = st.text_area("➕ INFO SUPP", value=notes.get("INFO_SUPP", ""), key=f"i_{sel}")
+                v_rend = st.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")), key=f"r_{sel}")
+                v_vari = st.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")), key=f"v_{sel}")
+                v_info = st.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")), key=f"i_{sel}")
 
             submit = st.form_submit_button("💾 ENREGISTRER DANS GOOGLE SHEETS")
 
             if submit:
                 try:
-                    # Préparation de la donnée
+                    # Préparation de la ligne
                     nouvelle_donnee = {
                         "LEGUME": sel, "PLANTATION": v_plan, "ENTRETIEN": v_entr,
                         "SANTE": v_sant, "RENDEMENT": v_rend, "VARIETE": v_vari, "INFO_SUPP": v_info
                     }
                     
-                    # Mise à jour de 'df' (qui est maintenant forcément défini)
-                    if 'LEGUME' in df.columns and sel in df['LEGUME'].values:
+                    # Mise à jour du tableau local (on remplace si le légume existe)
+                    if not df.empty and 'LEGUME' in df.columns and sel in df['LEGUME'].values:
                         df = df[df['LEGUME'] != sel]
                     
                     df_final = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
                     
-                    # Envoi
+                    # On force l'ordre des colonnes avant l'envoi
+                    df_final = df_final[cols_finales]
+                    
+                    # ENVOI
                     conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_final)
                     st.cache_data.clear() 
-                    st.success("✨ Enregistré !")
+                    
+                    st.success("✨ Données enregistrées dans Google Sheets !")
                     st.balloons()
                     
                 except Exception as e:
                     if "200" in str(e):
-                        st.success("✨ Enregistré !")
+                        st.success("✨ Données transmises avec succès !")
                         st.balloons()
                     else:
-                        st.error(f"Erreur : {e}")
+                        st.error(f"Détail de l'erreur : {e}")
 else:
-    st.info("Sélectionnez un légume.")
+    st.info("Sélectionnez un légume pour commencer.")
