@@ -83,28 +83,26 @@ if sel != "---":
         st.subheader(f"📝 Notes de culture : {sel}")
         
         try:
-            sheet_id = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
+            # On force la lecture en s'assurant que 'conn' est bien utilisé
+            # ttl=0 permet d'avoir les données fraîches à chaque fois
+            df = conn.read(worksheet="THO", ttl=0)
             
-            # ÉTAPE 1 : On lit sans préciser l'onglet pour éviter la 400
-            df = conn.read(spreadsheet=sheet_id, ttl=0)
+            # Diagnostic : si df est une réponse HTTP et pas un tableau, on le signale
+            if not isinstance(df, pd.DataFrame):
+                st.error("Le format reçu n'est pas un tableau. Tentative de reconnexion...")
+                conn.reset() # On réinitialise la connexion
+                df = conn.read(worksheet="THO", ttl=0)
+
+            # On cherche le légume
+            existing_data = df[df['LEGUME'] == sel] if not df.empty else pd.DataFrame()
+            notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
             
-            # ÉTAPE 2 : On vérifie si la colonne 'LEGUME' existe
-            if "LEGUME" not in df.columns:
-                st.warning("⚠️ Attention : La colonne 'LEGUME' est introuvable. Vérifiez la ligne 1 de votre Sheet.")
-                notes = {}
-            else:
-                # ÉTAPE 3 : On cherche le légume sélectionné
-                existing_data = df[df['LEGUME'] == sel]
-                if not existing_data.empty:
-                    notes = existing_data.iloc[0].to_dict()
-                else:
-                    notes = {}
-            
-            st.success("✅ Connecté au tableau avec succès !")
+            st.success("✅ Données chargées !")
 
         except Exception as e:
-            st.error(f"Erreur : {e}")
+            st.error(f"Erreur de lecture : {e}")
             notes = {}
+            df = pd.DataFrame() # On crée un df vide pour éviter le NameError
         # 2. Formulaire avec clés dynamiques
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
@@ -146,6 +144,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
