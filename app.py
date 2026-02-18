@@ -7,7 +7,7 @@ from streamlit_gsheets import GSheetsConnection
 # Configuration de la page
 st.set_page_config(page_title="DLABAL", layout="wide", page_icon="🌱")
 
-# Connexion gsheet (ID centralisé ici)
+# Connexion gsheet
 SHEET_ID = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -42,7 +42,7 @@ if sel != "---":
         "📝 SOURCE THO"
     ])
 
-    # --- ONGLET 1 : GAB/FRAB ---
+    # --- ONGLET 1, 2, 3 (Lecture JSON) ---
     with tab1:
         g = DATA.get(sel, {}).get("GAB_FRAB", {})
         if g:
@@ -51,7 +51,6 @@ if sel != "---":
                     st.markdown(v)
         else: st.warning("Données GAB absentes.")
 
-    # --- ONGLET 2 : JMF ---
     with tab2:
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
@@ -60,7 +59,6 @@ if sel != "---":
                     st.markdown(contenu)
         else: st.warning("Données JMF absentes.")
 
-    # --- ONGLET 3 : JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
         if j:
@@ -74,24 +72,19 @@ if sel != "---":
         st.subheader(f"📝 Notes de culture : {sel}")
         
         try:
-            # Lecture des données fraîches
+            # On lit le sheet actuel
             df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
             
-            if not isinstance(df, pd.DataFrame):
-                conn.reset()
-                df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
-
-            # Recherche des notes pour le légume choisi
+            # Recherche des notes existantes
             existing_data = df[df['LEGUME'] == sel] if not df.empty else pd.DataFrame()
             notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
-            st.success("✅ Données chargées !")
+            st.success("✅ Connexion Google Sheets OK")
 
         except Exception as e:
             st.error(f"Erreur de lecture : {e}")
             notes = {}
             df = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
 
-        # Formulaire avec ton style exact de blocs et colonnes
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
             with c1:
@@ -107,7 +100,6 @@ if sel != "---":
 
             if submit:
                 try:
-                    # Préparation de la ligne
                     nouvelle_donnee = {
                         "LEGUME": sel,
                         "PLANTATION": v_plan,
@@ -118,27 +110,28 @@ if sel != "---":
                         "INFO_SUPP": v_info
                     }
                     
-                    # Mise à jour du DataFrame local
+                    # On met à jour le DataFrame local
                     if not df.empty and sel in df['LEGUME'].values:
                         for col, val in nouvelle_donnee.items():
                             df.loc[df['LEGUME'] == sel, col] = val
-                        df_maj = df
                     else:
-                        df_maj = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
+                        df = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
                     
-                    # Envoi vers Google Sheets
-                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_maj)
+                    # NETTOYAGE : On s'assure que toutes les colonnes sont présentes avant l'envoi
+                    cols_attendues = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
+                    df = df.reindex(columns=cols_attendues)
+                    
+                    # ENVOI
+                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
                     st.cache_data.clear() 
-                    
-                    st.success("✨ Enregistré avec succès dans Google Sheets !")
+                    st.success("✨ Données sauvegardées !")
                     st.balloons()
                     
                 except Exception as e:
-                    # Gestion du faux message d'erreur 200
                     if "200" in str(e):
                         st.success("✨ Enregistré avec succès !")
                         st.balloons()
                     else:
-                        st.error(f"Erreur réelle : {e}")
+                        st.error(f"Erreur lors de la sauvegarde : {e}")
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
