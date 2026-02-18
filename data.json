@@ -1,0 +1,1069 @@
+{
+  "Ail": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°1 - Ail. Culture de cycle long (250-270 jours). Plante rustique mais exigeante sur le drainage et la fertilisation soufrée. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET PRÉCÉDENTS",
+          "contenu": "• **Sol :** Préférer les sols légers, profonds et sains. Éviter impérativement les sols hydromorphes qui provoquent l'asphyxie racinaire et le développement de maladies.\n\n• **Rotation :** Délai de retour de 5 ans minimum.\n\n• **Précédents :** Éviter les autres Alliacées (oignon, échalote, poireau). Précédents favorables : céréales, courges."
+        },
+        {
+          "titre": "FUMURE ET BESOINS",
+          "contenu": "• **Besoins (Exportations) :** 80N - 60P - 120K.\n\n• **Soufre :** Apport indispensable pour la synthèse des huiles essentielles (alliine) et la santé de la plante.\n\n• **Fumure :** Éviter les apports de fumier frais juste avant la plantation (risque de pourriture)."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Matériel :** Utiliser des caïeux sains, certifiés SOC si possible pour éviter les viroses et nématodes.\n\n• **Densité :** 30 à 45 caïeux / m² (soit environ 10-12 caïeux par mètre linéaire).\n\n• **Mise en place :** Enfoncer les caïeux à 3-5 cm de profondeur, pointe vers le haut.\n\n• **Espacement :** 10 cm sur le rang, 30 cm entre rangs.",
+        "SANTÉ BIO": "• **Rouille (Puccinia porri) :** Ponctuations orangées sur les feuilles. Favorisée par l'humidité et un excès d'azote.\n\n• **Pourriture blanche (Sclerotium cepivorum) :** Feutrage blanc et petits sclérotes noirs au collet.\n\n• **Mouche de l'oignon (Delia antiqua) :** Les larves minent le plateau et provoquent le flétrissement.",
+        "VARIÉTÉS": "| Type | Période Plantation | Caractéristiques / Variétés |\n| :--- | :--- | :--- |\n| **Ail Blanc** | Automne | Gros bulbes, productif. Variétés : Messidrome, Theridrome |\n| **Ail Violet** | Automne | Très précoce, gros caïeux colorés. Variétés : Germidour, Violet de Cadours |\n| **Ail Rose** | Printemps | Bulbes plus petits, excellente conservation. Variétés : Edenrose, Printanor |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Music (très rustique, gros caïeux), Siberian (Marbled Purple Stripe, goût prononcé).",
+      "ESPACEMENT INTENSIF": "• 4 rangs par planche.\n\n• Espacement de 15 cm (6 po) sur le rang.\n\n• Plantation en quinconce pour optimiser l'espace.",
+      "FERTILISATION": "• Appliquer 2,5 cm (1 po) de compost mûr avant la plantation.\n\n• Si le sol est pauvre, ajouter un engrais organique à libération lente (farine de sang ou plume).",
+      "TYPE D'IRRIGATION": "• Asperseurs pour la levée, puis goutte-à-goutte ou asperseurs selon la pression des maladies.",
+      "GESTION DE L'IRRIGATION": "• Irrigation régulière (environ 25 mm par semaine) pendant la croissance active au printemps.\n\n• Arrêt total de l'irrigation 2 à 3 semaines avant la récolte pour durcir les tuniques et faciliter le séchage.",
+      "TRANSPLANT": "• Pas de donnée (Plantation directe de gousses).",
+      "IMPLANTATION": "• Plantation à l'automne (mi-octobre dans les zones froides).\n\n• Séparer les gousses juste avant de planter.\n\n• Enfoncer à 5-8 cm (2-3 po) de profondeur, pointe vers le haut.",
+      "EQUIPEMENT": "• Grelinette, Râteau-maraîcher, Cordeau pour l'alignement, Fourche bêche pour la récolte.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Amendements et compost\n\n3. Râteau pour niveler\n\n4. Plantation manuelle\n\n5. Paillis massif (10-15 cm de paille ou feuilles mortes) pour protéger du gel et limiter les mauvaises herbes.",
+      "DESHERBAGE": "• Si le paillis est épais, très peu de désherbage est nécessaire.\n\n• Retrait manuel des quelques herbes qui percent au printemps.",
+      "ENTRETIEN": "• **Coupe de la fleur d'ail :** Couper la hampe florale (apes) dès qu'elle fait un ou deux tours sur elle-même. Cela permet de rediriger l'énergie vers le bulbe (+10 à 25% de calibre).",
+      "PHYTOPROTECTION": "• Rotation longue (5 ans).\n\n• Dépistage de la pourriture basale dans les zones mal drainées.",
+      "RECOLTE": "• Récolter quand les 3 ou 4 premières feuilles (en partant du bas) sont complètement sèches mais que le reste est encore vert.\n\n• Ne pas attendre que tout sèche au risque de voir les tuniques éclater.",
+      "CONDITIONNEMENT": "• Séchage (curing) : Suspendre en bottes de 10-12 têtes dans un endroit ombragé et très bien ventilé pendant 3 à 4 semaines.\n\n• Nettoyage : Couper les racines à 1 cm et la tige à 2-3 cm une fois sec.",
+      "ENTREPROSAGE": "• Type 'Hardneck' (à col dur) : se conserve environ 6 mois dans un endroit frais et sec (pas au frigo)."
+    }
+  },
+  "Aubergine": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°5 - Aubergine. Plante originaire de l'Inde. Exigence thermique supérieure à la tomate (optimum 25-30°C). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET EXIGENCES",
+          "contenu": "• **Sol :** Préférer les sols sablo-limoneux profonds avec 3-4% de matière organique.\n\n• **pH :** Entre 5,5 et 8.\n\n• **Sensibilité :** Proscrire les sols argileux froids. Culture sous abri quasi-indispensable en Bretagne."
+        },
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Compost :** Apport massif de 30 à 40 t/ha de compost mûr.\n\n• **Exportations :** 200N - 50P - 200K."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS / PLANTATION": "• **Semis :** En terrine à 20-25°C. Levée en 6 à 8 jours.\n\n• **Densité :** 1,4 à 1,6 plants / m².\n\n• **Espacement :** 1,20 m entre rangs et 0,50 m sur le rang.",
+        "ENTRETIEN": "• **Taille :** Supprimer les gourmands à la base jusqu’à la première fleur.\n\n• **Conduite :** Garder 2 à 4 bras principaux. Pincer les latérales après le 2ème bouquet.\n\n• **Palissage :** Indispensable sous abri (ficelles ou grillage à mouton).",
+        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Baluroi | Classique | Très précoce, fruit long et sombre |\n| Bonica | Classique | Demi-précoce, ovale, très productive |\n| Dourga | Blanche | Fruit blanc ivoire, saveur douce |\n| Zebrina | Striée | Violette rayée de blanc |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Nadia (standard noir), Fairy Tale (mini striée), Orient Express (longue asiatique), Hansel (mini noire).",
+      "ESPACEMENT INTENSIF": "• 1 rang par planche.\n\n• Espacement de 45 cm (18 po) sur le rang.",
+      "FERTILISATION": "• Culture très gourmande (100 jours en terre).\n\n• 5 cm (2 po) de compost mûr + engrais organique complet (type 5-3-2) + apport de potassium (Sul-Po-Mag).",
+      "TYPE D'IRRIGATION": "• 4 lignes de goutte-à-goutte installées sous le couvre-sol tissé.",
+      "GESTION DE L'IRRIGATION": "• Maintenir une humidité constante dès la floraison.\n\n• Préfère un sol qui s'assèche légèrement entre les arrosages (pas de saturation permanente).",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules, puis rempotage impératif en pots de 10 cm (4 po) après 3 semaines.\n\n• Température constante de 27°C pour la germination, 24°C jour / 18°C nuit pour l'élevage.\n\n• Sortie des plants à 25-30 cm avec boutons floraux visibles.",
+      "IMPLANTATION": "• Attendre que le sol atteigne 16-20°C.\n\n• Utilisation d'un couvre-sol tissé noir pour maximiser la chaleur du sol.",
+      "EQUIPEMENT": "• Grelinette, râteau-maraîcher, herse rotative, brûleur au propane (pour les trous du couvre-sol).\n\n• Tiges d'acier et corde à ballot pour le tuteurage.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Passage de la grelinette, fertilisation, herse rotative, pose du couvre-sol et plantation dans les trous brûlés.",
+      "DESHERBAGE": "Désherbage manuel 2-3 fois dans les trous autour du collet des plants.",
+      "ENTRETIEN": "• **Tuteurage :** Méthode 'Florida Weave' avec tiges d'acier aux 3 plants et ficelle à ballot.\n\n• **Taille :** Ne pas supprimer les drageons (gourmands).",
+      "PHYTOPROTECTION": "• Dépistage hebdomadaire du doryphore (larves et adultes).\n\n• Ramassage manuel ou application d'Entrust en cas d'infestation majeure.",
+      "RECOLTE": "• Récolter l’aubergine 2 fois par semaine à l’aide d’un sécateur.\n\n• Garder une tige d’environ 2 cm (3/4 po) sur le fruit.\n\n• Le fruit doit être brillant ; s'il devient mat, il est trop mûr.",
+      "CONDITIONNEMENT": "• NE JAMAIS LAVER.\n\n• Essuyer les fruits avec un linge humide si nécessaire.",
+      "ENTREPROSAGE": "• Entreposage en chambre froide (8-10 °C).\n\n• Les aubergines ont une courte durée de vie (4 jours)."
+    }
+  },
+  "Basilic": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°18 - Basilic. Plante annuelle thermophile, très sensible au froid (noircit dès 10°C). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "EXIGENCES",
+          "contenu": "• **Température :** Germination à 20°C. Ne supporte aucune température inférieure à 12°C.\n\n• **Sol :** Riche en humus, léger et bien drainé.\n\n• **Fumure :** 20 à 30 t/ha de compost décomposé. Exportations : 100N - 60P - 150K."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION / ENTRETIEN": "• **Densité :** 25 x 25 cm ou 30 x 30 cm.\n\n• **Pincement :** Supprimer les fleurs dès apparition pour favoriser les feuilles.\n\n• **Irrigation :** Goutte-à-goutte impératif (ne pas mouiller le feuillage).",
+        "SANTÉ": "• **Fusariose :** Flétrissement des tiges et brunissement des vaisseaux.\n\n• **Mildiou :** Feutrage grisâtre sous les feuilles par temps humide.",
+        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Genovese | Grand vert | Classique pour pesto |\n| Fin Vert | Petit | Port en boule, petites feuilles |\n| Red Rubin | Pourpre | Décoratif, saveur poivrée |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Genovese (standard), Dolce Vita (résistant Fusarium), Thai, Red Rubin (pourpre), Mrs. Burns’ Lemon (citron).",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 25 cm (10 po) sur le rang.",
+      "FERTILISATION": "• Appliquer 2,5 cm (1 po) de compost mûr.\n\n• Apport d'azote à libération rapide au moment de la plantation pour un démarrage vigoureux.",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte ou asperseurs.",
+      "GESTION DE L'IRRIGATION": "Maintenir un sol frais mais éviter de mouiller le feuillage en fin de journée pour limiter le mildiou.",
+      "TRANSPLANT": "• Semis en plateaux de 72 cellules (pour des plants robustes).\n\n• Semis successifs toutes les 3 semaines.",
+      "IMPLANTATION": "Plantation dans un lit de semence propre, sol bien réchauffé.",
+      "EQUIPEMENT": "• Râteau-maraîcher, Transplanteur manuel, Sécateur.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Compost et engrais\n\n3. Râteau\n\n4. Plantation manuelle.",
+      "DESHERBAGE": "Sarclage manuel fréquent car le basilic est peu compétitif.",
+      "ENTRETIEN": "Récoltes fréquentes pour empêcher la floraison.",
+      "PHYTOPROTECTION": "Rotation de 4 ans. Ventilation maximale sous abri.",
+      "RECOLTE": "• Récolter les tiges entières au-dessus d'un nœud (pour permettre la repousse).\n\n• Récolter de préférence le matin.",
+      "CONDITIONNEMENT": "• **NE JAMAIS LAVER :** Le basilic lavé noircit instantanément.\n\n• Garder les tiges dans un seau d'eau.",
+      "ENTREPROSAGE": "• Ne pas mettre au réfrigérateur (en dessous de 12°C, il s'abîme).\n\n• Garder à température ambiante ou 15°C."
+    }
+  },
+"Bette": {
+  "GAB_FRAB": {
+    "ENTETE": "Plante bisannuelle (Beta vulgaris var. cicla) cultivée pour ses feuilles ou ses côtes (cardes). Très productive, elle offre une récolte continue sur une longue période.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Préfère les sols frais, profonds, riches en azote et en potasse.\n• **pH :** Idéalement entre 6,5 et 7,5. Sensible à l'acidité.\n• **Climat :** Rustique, mais craint la sécheresse prolongée."
+      },
+      {
+        "titre": "FUMURE ET BESOINS",
+        "contenu": "• **Besoins (U/ha) :** 150N - 100P - 250K.\n• **Compost :** Apport massif de 30-40 t/ha de compost mûr.\n• **Oligo-éléments :** Sensible aux carences en Bore."
+      }
+    ],
+    "TECHNIQUE": {
+      "SEMIS ET PLANTATION": "• **Semis :** En mottes (3-4 cm) vivement conseillé.\n• **Période :** Mars à juillet.\n• **Densité :** 6 à 8 plants / m² (2 rangs par planche, 30-35 cm sur le rang).",
+      "ENTRETIEN": "• **Irrigation :** Cruciale pour la tendreté des côtes.\n• **Désherbage :** Binage et paillage recommandé.",
+      "SANTÉ BIO": "• **Mouche mineuse :** Pose de filet.\n• **Cercosporiose :** Éviter l'humidité stagnante sur le feuillage."
+    }
+  },
+  "JMF_FORTIER": {
+    "CULTIVARS": "Fordhook Giant (côtes blanches), Bright Lights (multicolore), Peppermint (rose).",
+    "ESPACEMENT INTENSIF": "• 2 rangs par planche de 75 cm.\n• 30 cm (12 po) sur le rang.",
+    "FERTILISATION": "• 2,5 cm de compost mûr.\n• Culture très gourmande en azote (compost de volaille possible).",
+    "TYPE D'IRRIGATION": "• Asperseurs.",
+    "GESTION DE L'IRRIGATION": "• Maintenir une humidité constante pour éviter le goût terreux et les fibres.",
+    "TRANSPLANT": "• Plateaux de 128 cellules. 1 graine par cellule (éclaircir si double).",
+    "IMPLANTATION": "• Transplantation après 4-5 semaines de pépinière.",
+    "EQUIPEMENT": "• Transplanteur manuel ou simple plantoir, Binette oscillante.",
+    "ITINERAIRE TECHNIQUE": "1. Préparation au râteau.\n2. Amendement azoté.\n3. Plantation manuelle.\n4. Arrosage immédiat.",
+    "DESHERBAGE": "• Binage rapide entre les rangs avant que les feuilles ne s'étalent.",
+    "ENTRETIEN": "• Retirer les feuilles jaunies à la base pour favoriser l'aération.",
+    "PHYTOPROTECTION": "• Enlever manuellement les feuilles atteintes de mineuse dès apparition.",
+    "RECOLTE": "• Récolte 'feuille à feuille' (coupe extérieure).\n• Toujours laisser le cœur pour la repousse.",
+    "CONDITIONNEMENT": "• Bottes fixées par élastique.\n• Refroidissement par eau (hydro-cooling) pour éviter le flétrissement.",
+    "ENTREPROSAGE": "• Chambre froide très humide. Durée courte (1 semaine max)."
+  }
+},
+"Betterave": {
+  "GAB_FRAB": {
+    "ENTETE": "Plante bisannuelle rustique (Beta vulgaris). La production bio mise sur la qualité gustative et la conservation hivernale. Très exigeante sur la structure du sol et l'équilibre minéral (Bore).",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Préfère les limons profonds et les terres riches en humus. Craint les sols battants et les cailloux (déformation des racines).\n• **pH :** 6,5 à 7,5. Très sensible à l'acidité (blocage de croissance si pH < 6).\n• **Climat :** Germination dès 5°C, optimum à 15-20°C."
+      },
+      {
+        "titre": "FUMURE / NPK",
+        "contenu": "• **Besoins (U/ha) :** 150N - 80P - 250K.\n• **Compost :** 20 à 40 t/ha de compost mûr selon le précédent.\n• **Oligo-éléments :** Apport de Bore indispensable (1 à 2 kg/ha) pour éviter le 'cœur noir'.\n• **Sensibilité :** L'excès d'azote favorise le feuillage au détriment de la racine."
+      }
+    ],
+    "TECHNIQUE": {
+      "SEMIS ET DENSITÉ": "• **Semis direct :** 10-12 kg de graines/ha.\n• **Plantation (mottes) :** Gain de 3 semaines sur la récolte. Mottes de 3-4 cm.\n• **Densité :** 150 000 à 250 000 pieds/ha. Sur planche de 75 cm : 3 à 4 rangs, 10-15 cm sur le rang.",
+      "ENTRETIEN ET IRRIGATION": "• **Eau :** Besoins réguliers (300-400 mm sur cycle). Un stress hydrique provoque une lignification (racine fibreuse).\n• **Désherbage :** Faux-semis impératif. Binage précoce (stade 2 feuilles) puis buttage léger.",
+      "PHYTOPROTECTION": "• **Pégomyie (Mouche) :** Galeries dans les feuilles. Filets mailles 0,8 mm.\n• **Cercosporiose :** Taches circulaires avec liseré pourpre. Rotation longue (4 ans)."
+    }
+  },
+  "JMF_FORTIER": {
+    "CULTIVARS": "Red Ace (polyvalente), Chioggia (rayée), Touchstone Gold (jaune), Cylindra (allongée).",
+    "ESPACEMENT INTENSIF": "• 3 rangs par planche de 75 cm.\n• 15 cm (6 po) sur le rang.",
+    "FERTILISATION": "• 2,5 cm (1 po) de compost mûr avant plantation.\n• Engrais organique complet si sol pauvre.",
+    "TYPE D'IRRIGATION": "• Asperseurs pour la levée et l'établissement.\n• Goutte-à-goutte possible ensuite.",
+    "GESTION DE L'IRRIGATION": "• Besoins modérés mais constants pour éviter les racines fibreuses.",
+    "TRANSPLANT": "• Possible en plateaux de 128 cellules (3 graines/cellule).",
+    "IMPLANTATION": "• Semis direct ou transplantation de mottes après 4 semaines.",
+    "EQUIPEMENT": "• Semoir Jang (si semis direct), Binette oscillante, Houe maraîchère.",
+    "ITINERAIRE TECHNIQUE": "1. Occultation.\n2. Préparation fine au râteau.\n3. Semis ou plantation.\n4. Voile thermique P17 (printemps).",
+    "DESHERBAGE": "• Faux-semis thermique.\n• Un sarclage manuel au stade jeune.\n• Binage entre les rangs.",
+    "ENTRETIEN": "• Éclaircissage si semis direct trop dense (garder 1 plant tous les 10 cm).",
+    "PHYTOPROTECTION": "• Filet contre la mouche si pression historique forte.",
+    "RECOLTE": "• Manuelle. Bottes dès 5 cm de diamètre. Vrac avant les gelées.",
+    "CONDITIONNEMENT": "• Lavage haute pression pour le vrac.\n• Bottelage par 3 ou 5 unités.",
+    "ENTREPROSAGE": "• Chambre froide (0-1°C) en bacs humides ou sable."
+  }
+},
+  "Brocoli": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°8 - Brocoli. Culture rapide, sensible à la chaleur et au stress hydrique. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 180N - 60P - 220K.\n\n• **Bore :** Carence fréquente provoquant des tiges creuses."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 3,5 à 4,5 plants / m².\n\n• **Écartement :** 60-70 cm entre rangs, 35-40 cm sur le rang.",
+        "SANTÉ": "• **Altises :** Protection par filets dès la plantation.\n\n• **Hernie du chou :** Éviter les sols acides, rotation de 7 ans.",
+        "VARIÉTÉS": "| Variété | Cycle | Caractéristiques |\n| :--- | :--- | :--- |\n| Belstar F1 | 75 jours | Bonne repousse latérale |\n| Marathon F1 | 85 jours | Référence automne, grain fin |\n| Ironman F1 | 80 jours | Résistant à la chaleur |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Belstar (pour ses jets latéraux), Imperial (résistant chaleur), Green Magic.",
+      "ESPACEMENT INTENSIF": "• 2 rangs par planche.\n\n• Espacement de 45 cm (18 po) sur le rang.",
+      "FERTILISATION": "• Gros apport de compost (5 cm).\n\n• Amendement riche en azote au moment de la plantation (farine de sang).",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Humidité constante. Le stress hydrique cause un développement prématuré de la pomme.",
+      "TRANSPLANT": "• Plateaux de 128 cellules, élevage de 4 à 5 semaines.\n\n• Plantation profonde.",
+      "IMPLANTATION": "Utilisation d'un lit de semence propre, souvent après une occultation.",
+      "EQUIPEMENT": "Grelinette, Râteau-maraîcher, Filets ProtekNet.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Compost\n\n3. Herse rotative\n\n4. Plantation\n\n5. Installation des filets.",
+      "DESHERBAGE": "Binette à étrier entre les rangs.",
+      "ENTRETIEN": "Surveillance étroite de la chenille du chou.",
+      "PHYTOPROTECTION": "• Filets anti-insectes systématiques.\n\n• Application de Bt toutes les 2 semaines.",
+      "RECOLTE": "• Couper la pomme centrale avec 15 cm de tige.\n\n• Récolter les jets latéraux les semaines suivantes.",
+      "CONDITIONNEMENT": "• Immersion immédiate dans l'eau glacée (Hydro-cooling).\n\n• Séchage rapide avant stockage.",
+      "ENTREPROSAGE": "Chambre froide à 2°C (35°F) avec 95% d'humidité."
+    }
+  },
+"Carotte": {
+  "GAB_FRAB": {
+    "ENTETE": "Plante bisannuelle (Daucus carota). Culture de plein champ à cycle long (140-180 jours). L'objectif est d'obtenir une racine de gros calibre, bien colorée et apte au stockage hivernal. Source : GAB/FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Impérativement profond et meuble. Les sols caillouteux ou trop compacts provoquent des racines fourchues ou courtes.\n• **pH :** Optimum entre 6,5 et 7,5.\n• **Rotation :** Délai de 4 à 5 ans. Éviter de revenir après des parcelles sales (vivaces) car le désherbage est long."
+      },
+      {
+        "titre": "FUMURE ET BESOINS",
+        "contenu": "• **Exportations (U/ha) :** 120N - 100P - 250K.\n• **Azote :** Attention aux excès qui favorisent le feuillage au détriment de la racine et nuisent à la conservation.\n• **Potasse :** Élément clé pour la résistance au froid et la teneur en sucre (conservation)."
+      }
+    ],
+    "TECHNIQUE": {
+      "SEMIS ET DENSITÉ": "• **Période :** De mi-mai à fin juin.\n• **Densité :** 1 à 1,2 million de graines/ha. Sur planche de 75 cm : 3 rangs, espacement 4-5 cm sur la ligne.\n• **Profondeur :** 1 cm. Le sol doit rester frais jusqu'à la levée (parfois 15 jours).",
+      "ENTRETIEN ET IRRIGATION": "• **Désherbage :** Phase critique jusqu'au stade 3 feuilles. Désherbage thermique en pré-levée indispensable.\n• **Irrigation :** Maintenir une humidité constante pour éviter le fractionnement des racines (éclatement) en cas de pluie soudaine après une sécheresse.",
+      "SANTÉ ET PROTECTION": "• **Mouche de la carotte :** Pose de filets indispensable si la pression est forte. Les vols d'été sont les plus dangereux pour les racines de conservation.\n• **Maladies du feuillage :** Alternariose et Oïdium peuvent stopper la croissance. Favoriser l'aération des rangs."
+    }
+  },
+  "JMF_FORTIER": {
+    "CULTIVARS": "Bolero (standard pour le stockage), Dolciva (excellente saveur, type Nantaise), Rolance (résistante alternariose).",
+    "ESPACEMENT INTENSIF": "• **Planche :** 75 cm de large.\n• **Rangs :** 4 rangs par planche.\n• **Sur le rang :** 5 cm (2 po) entre les plants.\n• **Outil :** Semoir Jang avec disque carotte pour une précision maximale.",
+    "FERTILISATION": "• Appliquer 2,5 cm (1 po) de compost mûr avant le semis.\n• Éviter les engrais à forte teneur en azote pour ne pas favoriser la fane au détriment de la racine.",
+    "TYPE D'IRRIGATION": "• Asperseurs pour la levée (maintien du sol humide pendant 10-14 jours).\n• Goutte-à-goutte possible une fois le feuillage bien établi.",
+    "GESTION DE L'IRRIGATION": "• Surveiller l'humidité à 15 cm de profondeur.\n• Éviter les chocs hydriques qui provoquent l'éclatement des racines.",
+    "IMPLANTATION": "• Semis direct en plein sol.\n• Faux-semis (2 passages de pyrodésherbeur) indispensable pour réduire la banque de graines de mauvaises herbes.",
+    "EQUIPEMENT": "• Semoir de précision (Jang ou Six-Row), Pyrodésherbeur, Sarcloir à dents, Souleveuse de racines.",
+    "ITINERAIRE TECHNIQUE": "1. Occultation (bâche ensilage 3-4 semaines).\n2. Préparation du lit de semence (Tilther ou râteau maraîcher).\n3. Faux-semis thermique.\n4. Semis de précision.\n5. Désherbage thermique pré-levée (Jour 5 ou 6).",
+    "DESHERBAGE": "• Désherbage thermique crucial avant la levée.\n• Sarclage manuel au stade 'poil' si nécessaire.\n• Binage entre les rangs dès que les plants font 2-3 cm.",
+    "ENTRETIEN": "• Aucun éclaircissage si le semoir est bien réglé.\n• Surveiller la couverture du collet (buttage léger possible) pour éviter les 'épaules vertes'.",
+    "PHYTOPROTECTION": "• Filet anti-insectes (maille 0,8 mm) installé dès le semis contre la mouche de la carotte.",
+    "RECOLTE": "• À l'automne, avant les gels sévères du sol.\n• Utiliser une souleveuse pour desserrer le sol sans briser les racines.",
+    "CONDITIONNEMENT": "• Décolletage manuel ou à la machine (coupe des fanes à 1 cm).\n• Nettoyage grossier (ne pas laver à grande eau avant le stockage longue durée).",
+    "ENTREPROSAGE": "• Température : 0-1°C.\n• Humidité : 95%.\n• Méthode : Bacs en bois avec bâche plastique perforée pour conserver l'humidité."
+  }
+},
+  "Celeri-Rave": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°10 - Céleri-Rave. Cycle long (150-180 jours). Exigeant en eau et fertilisation. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Fumure :** 30-40 t/ha de fumier composté.\n\n• **Exportations :** 150N - 100P - 250K.\n\n• **Potasse :** Exigence élevée pour le développement de la rave."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Semis :** Mars sous abri (20°C). Repiquage en mottes indispensable.\n\n• **Densité :** 6 à 9 plants / m² (Mai-Juin).",
+        "SANTÉ": "• **Septoriose :** Taches brunes à points noirs. Dévastateur en milieu humide.\n\n• **Carence Bore :** Craquelures sur la rave et cœur noir.",
+        "VARIÉTÉS": "| Variété | Particularité |\n| :--- | :--- |\n| Monarch | Gros volume, chair blanche |\n| Mars | Résistant septoriose |\n| President | Peau lisse, bonne conservation |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Brilliant, Mars.",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 30 cm (12 po) sur le rang.",
+      "FERTILISATION": "• 5 cm (2 po) de compost mûr.\n\n• Apport d'azote et de bore indispensables.",
+      "TYPE D'IRRIGATION": "Asperseurs ou goutte-à-goutte.",
+      "GESTION DE l'IRRIGATION": "Le sol ne doit jamais sécher complètement. Un manque d'eau stoppe le grossissement de la rave.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules.\n\n• Elevage long (10-12 semaines).\n\n• Ne pas enterrer le collet au moment de la plantation.",
+      "IMPLANTATION": "Planter après les derniers gels (sensible à la vernalisation).",
+      "EQUIPEMENT": "Grelinette, herse rotative, couteau de récolte.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Compost\n\n3. Herse rotative\n\n4. Plantation manuelle.",
+      "DESHERBAGE": "Désherbage manuel soigné (croissance lente au début).",
+      "ENTRETIEN": "Supprimer les vieilles feuilles si nécessaire pour aérer.",
+      "PHYTOPROTECTION": "Rotation longue. Traitement cuivre préventif si septoriose détectée.",
+      "RECOLTE": "• Récolte tardive à l'automne.\n\n• Couper les racines et les feuilles au ras de la rave.",
+      "CONDITIONNEMENT": "Lavage haute pression.",
+      "ENTREPROSAGE": "Chambre froide à 2°C, humidité 95%."
+    }
+  },
+  "Chou-Fleur": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°7 - Chou-Fleur. Culture exigeante en eau et en oligo-éléments. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET FUMURE",
+          "contenu": "• **Sol :** Profonds, frais, bonne réserve utile.\n\n• **Exportations :** 200N - 80P - 250K.\n\n• **Oligo-éléments :** Bore indispensable (cœur creux) et Molybdène (whiptail)."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 2,5 à 4 plants / m².\n\n• **Mise en place :** Plantation profonde pour l'assise du plant.",
+        "VARIÉTÉS": "| Variété | Cycle | Utilisation |\n| :--- | :--- | :--- |\n| Freedom F1 | 75 jours | Été / Automne |\n| Belot F1 | 90 jours | Automne |\n| Admiral F1 | 220 jours | Printemps |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Snow Crown (hâtif, 50 jours), Amazing (standard), Graffiti (pourpre), Cheddar (jaune).",
+      "ESPACEMENT INTENSIF": "• 2 rangs par planche.\n\n• Espacement de 45 cm (18 po) sur le rang.\n\n• Plantation en quinconce.",
+      "FERTILISATION": "• Appliquer 5 cm (2 po) de compost mûr.\n\n• Besoins élevés en azote (farine de sang ou plume).",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Besoin d'une humidité constante du sol pour éviter les pommes prématurées ('buttoning'). Irriguer généreusement pendant la phase foliaire.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules.\n\n• Elevage de 4 à 5 semaines.\n\n• Ne pas laisser les plants vieillir en plateau.",
+      "IMPLANTATION": "Occultation du sol avant plantation.",
+      "EQUIPEMENT": "Grelinette, Râteau-maraîcher, Filets anti-insectes.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Amendements et compost\n\n3. Herse rotative\n\n4. Plantation\n\n5. Installation immédiate des filets.",
+      "DESHERBAGE": "Sarclage à la binette à étrier entre les rangs.",
+      "ENTRETIEN": "• **Blanchiment :** Pour les variétés non auto-blanchissantes, casser les feuilles intérieures pour recouvrir la pomme dès qu'elle atteint la taille d'un œuf.",
+      "PHYTOPROTECTION": "• Filets ProtekNet systématiques.\n\n• Application de Bt si nécessaire.",
+      "RECOLTE": "Récolter quand la pomme est ferme et compacte. Couper avec deux rangées de feuilles protectrices.",
+      "CONDITIONNEMENT": "Hydro-cooling ou refroidissement rapide. Très périssable.",
+      "ENTREPROSAGE": "Chambre froide à 2°C (35°F) avec 95% d'humidité. Se conserve 1 à 2 semaines."
+    }
+  },
+  "Concombre": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°11 - Concombre. Exige chaleur et humidité atmosphérique. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 150N - 80P - 200K.\n\n• **Apports :** Fractionnement de l'azote par fertirrigation."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 1,5 à 2 plants / m² sous abri.\n\n• **Température sol :** Minimum 15°C pour planter.",
+        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Marketmore | Plein champ | Rustique, fruit court |\n| Loustik F1 | Long abri | Type hollandais |\n| Tanja | Long | Sans amertume |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Marketmore 76 (standard plein champ), Diva (libanais, peau fine), Tyria (long de serre).",
+      "ESPACEMENT INTENSIF": "• 1 rang par planche.\n\n• Espacement de 30 cm (12 po) sur le rang pour le tuteurage vertical.\n\n• 45 cm (18 po) si laissé au sol.",
+      "FERTILISATION": "• 5 cm (2 po) de compost mûr.\n\n• Amendements riches en azote et potassium (farine de luzerne, Sul-Po-Mag).",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (2 lignes par planche).",
+      "GESTION DE L'IRRIGATION": "Besoins en eau très élevés lors de la formation des fruits. Le manque d'eau rend les fruits amers.",
+      "TRANSPLANT": "• Semis en plateaux de 50 cellules.\n\n• Elevage court : 3 à 4 semaines.\n\n• Très sensible au choc de transplantation.",
+      "IMPLANTATION": "Utilisation d'un couvre-sol tissé noir. Plantation dans des trous brûlés.",
+      "EQUIPEMENT": "Grelinette, Treillis (grillage à mouton) ou filets à ramer.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Grelinette -> Compost -> Pose bâche -> Tuteurage -> Plantation.",
+      "DESHERBAGE": "Manuel uniquement dans les trous de plantation.",
+      "ENTRETIEN": "• **Tuteurage :** Conduite sur filet à ramer (6 pieds de haut).\n\n• **Taille :** Supprimer les premiers fruits et les départs latéraux sur les 45 premiers cm.",
+      "PHYTOPROTECTION": "• Surveillance du scarabée du concombre.\n\n• Application préventive de bicarbonate de soude ou soufre contre l'oïdium.",
+      "RECOLTE": "• Tous les 2 jours.\n\n• Récolter avant qu'ils ne deviennent trop gros (perte de saveur).",
+      "CONDITIONNEMENT": "Lavage rapide à l'eau froide.",
+      "ENTREPROSAGE": "Chambre froide à 10°C (50°F)."
+    }
+  },
+  "Courge": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°13 - Courges et Potirons. Grande diversité. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Fumure :** 30 à 50 t/ha de fumier composté.\n\n• **Exportations :** 150N - 80P - 250K."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 0,5 à 1,5 plants / m².\n\n• **Mise en place :** Fin mai.",
+        "VARIÉTÉS": "| Espèce | Variété | Description |\n| :--- | :--- | :--- |\n| Maxima | Potimarron | Goût de châtaigne |\n| Moschata | Butternut | Chair beurrée |\n| Pepo | Patidou | Chair sucrée |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Red Kuri (Potimarron), Waltham (Butternut), Delicata, Spaghetti.",
+      "ESPACEMENT INTENSIF": "• 1 rang par planche.\n\n• Espacement de 60 cm à 90 cm (24 à 36 po) sur le rang.",
+      "FERTILISATION": "• 5 cm (2 po) de compost mûr.\n\n• Culture gourmande. Amender au centre de la planche.",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (1 ligne par planche).",
+      "GESTION DE L'IRRIGATION": "Irrigation régulière au début. Réduire progressivement en fin de saison pour favoriser la maturation.",
+      "TRANSPLANT": "• Semis en plateaux de 50 cellules.\n\n• Elevage de 3 à 4 semaines.",
+      "IMPLANTATION": "Culture sur bâche d'ensilage ou couvre-sol tissé.",
+      "EQUIPEMENT": "Grelinette, Brûleur au propane, Brouette pour la récolte.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Grelinette -> Compost -> Pose bâche -> Plantation.",
+      "DESHERBAGE": "Désherbage des allées si pas de bâche.",
+      "ENTRETIEN": "Aucune taille pratiquée. Diriger les tiges coureuses vers le centre de la planche.",
+      "PHYTOPROTECTION": "Surveillance des punaises des citrouilles.",
+      "RECOLTE": "• Une seule récolte avant les premières gelées.\n\n• Couper le pédoncule proprement.",
+      "CONDITIONNEMENT": "Nettoyage à sec (brosse).",
+      "ENTREPROSAGE": "Endroit sec et tempéré (12-15°C)."
+    }
+  },
+  "Courgette": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°14 - Courgette. Production continue. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET FUMURE",
+          "contenu": "• **Exportations :** 150N - 80P - 200K.\n\n• **Fumure :** 30 t/ha de compost."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 1 à 1,2 plants / m².\n\n• **Espacement :** 1 m entre rangs.",
+        "VARIÉTÉS": "| Variété | Forme | Particularités |\n| :--- | :--- | :--- |\n| Milos F1 | Longue | Résistante virus |\n| Zephyr | Longue | Bicolore |\n| Ronde de Nice | Ronde | Pour farcis |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Dunja (verte, résistante virus), Zephyr (jaune), Magda (type libanais).",
+      "ESPACEMENT INTENSIF": "• 1 rang par planche.\n\n• Espacement de 60 cm (24 po) sur le rang.",
+      "FERTILISATION": "• 5 cm (2 po) de compost mûr.\n\n• Azote et Potassium essentiels pour la production continue.",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (1 ou 2 lignes).",
+      "GESTION DE L'IRRIGATION": "Apport constant pour éviter le flétrissement des feuilles.",
+      "TRANSPLANT": "• Semis en plateaux de 50 cellules.\n\n• Elevage de 3 semaines.",
+      "IMPLANTATION": "Couvre-sol tissé noir fortement recommandé.",
+      "EQUIPEMENT": "Grelinette, Brûleur au propane, Couteau de récolte.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Grelinette -> Herse rotative -> Pose bâche -> Plantation.",
+      "DESHERBAGE": "Désherbage manuel minimal au pied.",
+      "ENTRETIEN": "• **Pollinisation :** Nécessite des abeilles. Éviter les filets lors de la floraison.\n\n• **Taille :** Couper les vieilles feuilles malades au fur et à mesure.",
+      "RECOLTE": "• Récolte quotidienne ou tous les 2 jours.\n\n• Utiliser un couteau pour une coute nette.",
+      "CONDITIONNEMENT": "Refroidissement immédiat en chambre froide.",
+      "ENTREPROSAGE": "Chambre froide à 7-10°C."
+    }
+  },
+  "Echalote": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°15 - Échalote. Culture de type Alliacée. Sensible à l'excès d'humidité hivernale. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET FERTILISATION",
+          "contenu": "• **Sol :** Préférer les terres légères, bien drainées. Éviter les sols hydromorphes.\n\n• **Exportations :** 80N - 60P - 150K.\n\n• **Fumure :** Pas d'apport de fumier frais. Compost mûr uniquement."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Période :** Janvier à Mars (Échalote grise en automne).\n\n• **Densité :** 20 à 30 bulbes / m².\n\n• **Espacement :** 30 cm entre rangs, 10-15 cm sur le rang.",
+        "VARIÉTÉS": "| Variété | Type | Caractéristiques |\n| :--- | :--- | :--- |\n| Longor | Longue | Type Nantaise, peau cuivrée |\n| Jermor | Demi-longue | Très productive, bonne conservation |\n| Griselle | Grise | Goût puissant, plantation automne |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Conservor (échalote française à partir de semences), Ambassador.",
+      "ESPACEMENT INTENSIF": "• 4 rangs par planche.\n\n• Espacement de 15 cm (6 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Besoins modérés en azote, élevés en potassium.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Irrigation régulière au début. Arrêt complet 2-3 semaines avant récolte (maturation des tuniques).",
+      "TRANSPLANT": "• Semis en plateaux de 128 ou 288 cellules.\n\n• 3 à 4 graines par cellule (multi-plants).\n\n• Elevage de 8 à 10 semaines.",
+      "IMPLANTATION": "Plantation en touffes (clusters) pour faciliter le désherbage mécanique.",
+      "EQUIPEMENT": "Grelinette, Râteau-maraîcher, Transplanteur manuel.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Amendements\n\n3. Herse rotative\n\n4. Plantation des mottes.",
+      "DESHERBAGE": "Binage manuel ou mécanique précoce (peu de feuillage).",
+      "RECOLTE": "Quand le feuillage tombe au sol (50% de verse). Soulever à la fourche.",
+      "CONDITIONNEMENT": "Curing à l'ombre et ventilé (2-3 semaines).",
+      "ENTREPROSAGE": "Endroit sec et frais (2-4°C). Longue conservation."
+    }
+  },
+  "Epinard": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°16 - Épinard. Plante de jours courts, très sensible à la montaison en été. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 150N - 50P - 200K.\n\n• **Nitrates :** Vigilance sur les apports d'azote pour éviter l'accumulation de nitrates dans les feuilles."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Densité :** 1 à 2 millions de graines / ha.\n\n• **Écartement :** 15-20 cm entre rangs.\n\n• **Période :** Printemps et Automne (éviter juillet).",
+        "VARIÉTÉS": "| Variété | Résistances | Période |\n| :--- | :--- | :--- |\n| Viroflay | Classique | Automne |\n| Lavewa | Mildiou | Printemps/Automne |\n| Butterfly | Rustique | Hiver |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Space (standard, lisse), Seaside, Corvair (résistant mildiou).",
+      "ESPACEMENT INTENSIF": "• 5 rangs par planche.\n\n• Espacement de 2,5 à 5 cm (1 à 2 po) sur le rang pour le 'mesclun'.\n\n• 10 cm (4 po) pour des feuilles matures.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Azote à libération rapide indispensable.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Irrigation fréquente pour refroidir le sol en fin de printemps et éviter la montaison.",
+      "TRANSPLANT": "• Semis direct (majeure partie du temps).\n\n• Utilisation du semoir de précision (Six-row seeder).",
+      "IMPLANTATION": "Lit de semence très fin (passage de la herse rotative).",
+      "EQUIPEMENT": "Semoir de précision, Râteau-maraîcher, Couteau de récolte.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Grelinette -> Herse -> Semis direct -> Irrigation.",
+      "DESHERBAGE": "Pyrodésherbage pré-émergence si semis direct.",
+      "RECOLTE": "Coupe à la base (jeunes pousses) ou feuille à feuille. Récolte tôt le matin.",
+      "CONDITIONNEMENT": "Lavage à l'eau glacée (2 fois) et essorage (centrifugeuse).",
+      "ENTREPROSAGE": "Chambre froide à 2°C (35°F), très périssable."
+    }
+  },
+  "Fenouil": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°17 - Fenouil Bulbeux. Exigeant en eau et sensible à la montée à graine (stress). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "EXIGENCES",
+          "contenu": "• **Sol :** Frais, léger, riche en humus.\n\n• **Fumure :** 20-30 t/ha de compost. Exportations : 120N - 60P - 180K."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 8 à 10 plants / m².\n\n• **Mise en place :** Avril à Juillet.\n\n• **Irrigation :** Régulière. Le moindre stress hydrique déclenche la floraison.",
+        "VARIÉTÉS": "| Variété | Type | Particularité |\n| :--- | :--- | :--- |\n| Zefa Fino | Classique | Résistant montaison |\n| Solaris F1 | Hybride | Bulbe bien rond, blanc |\n| Preludio F1 | Précoce | Très rapide |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Preludio (standard), Antares.",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 30 cm (12 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Apport d'azote suffisant mais sans excès.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Garder le sol humide en permanence. Crucial en fin de cycle pour la tendreté.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules.\n\n• Elevage de 4 à 5 semaines.\n\n• Ne pas enterrer le collet (base du bulbe).",
+      "IMPLANTATION": "Lit de semence propre, sol bien meuble.",
+      "EQUIPEMENT": "Grelinette, Râteau, Couteau de récolte.",
+      "RECOLTE": "Couper la racine au ras du bulbe. Tailler le feuillage à 10 cm au-dessus du bulbe.",
+      "CONDITIONNEMENT": "Lavage rapide, immersion eau froide. Stockage à 2°C."
+    }
+  },
+  "Feve": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°19 - Fève. Légumineuse rustique. Fixe l'azote de l'air. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Azote :** Pas d'apport (symbiose racinaire).\n\n• **Exportations :** 0N - 60P - 150K.\n\n• **Chaux :** Sensible aux sols trop acides."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Période :** Novembre (climat doux) ou Février-Mars.\n\n• **Densité :** 10 à 15 graines / m².\n\n• **Profondeur :** 5-8 cm.",
+        "SANTÉ": "• **Puceron noir :** Très fréquent. Pincer la tête des plants dès l'apparition des fleurs.\n\n• **Botrytis :** Taches chocolat sur feuilles par temps humide.",
+        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Aguadulce | Longue cosse | Très précoce, grains tendres |\n| de Séville | Précoce | Adaptée aux semis d'automne |\n| Witkiem | Grosse graine | Très productive |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Broad Windsor, Vroma.",
+      "ESPACEMENT INTENSIF": "• 2 rangs par planche.\n\n• Espacement de 20 cm (8 po) sur le rang.",
+      "FERTILISATION": "• Aucun apport d'azote.\n\n• Compost mûr (2,5 cm) pour l'apport de phosphore et potasse.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "TRANSPLANT": "Semis direct le plus souvent. Possible en plateaux de 50 cellules pour un gain de temps.",
+      "ENTRETIEN": "Pincer la cime dès que 8-10 bouquets de fleurs sont formés.",
+      "RECOLTE": "Manuelle, quand les grains sont bien formés mais encore tendres.",
+      "CONDITIONNEMENT": "Vente en gousse. Entreposage à 4°C."
+    }
+  },
+  "Haricot": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°20 - Haricot vert / Beurre. Culture thermophile. Cycle court (60-80 jours). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 0N (Légumineuse) - 60P - 150K.\n\n• **Température :** Germination à partir de 12-15°C dans un sol réchauffé."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Densité :** 30 à 40 graines / m² (nains) ou 5 à 8 (grimpants).\n\n• **Profondeur :** 2-3 cm.\n\n• **Écartement :** 40-50 cm entre rangs.",
+        "SANTÉ": "• **Mouche des semis :** Larves dévorant la graine. Semer en sol chaud.\n\n• **Sclérotinia :** Pourriture blanche sur gousses en conditions humides.",
+        "VARIÉTÉS": "| Variété | Type | Particularité |\n| :--- | :--- | :--- |\n| Talisman | Nain vert | Très productif, sans fil |\n| Rocquencourt | Nain beurre | Jaune, très précoce |\n| Phénomène | Grimpant | Gousses très longues |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Provider (vert, très fiable), Maxibel (filet), Rocdor (beurre).",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 5 cm (2 po) sur le rang.",
+      "FERTILISATION": "• Aucun apport d'azote frais.\n\n• Compost mûr uniquement.",
+      "TYPE D'IRRIGATION": "Asperseurs (matin uniquement pour séchage rapide du feuillage).",
+      "GESTION DE L'IRRIGATION": "Besoins critiques au moment de la floraison et de la formation des gousses.",
+      "TRANSPLANT": "• Semis direct uniquement.\n\n• Utilisation du semoir EarthWay (disque à haricots).",
+      "IMPLANTATION": "Attendre que tout risque de gel soit passé. Sol à 18°C minimum.",
+      "DESHERBAGE": "Désherbage thermique pré-émergence. Sarclage mécanique précoce.",
+      "RECOLTE": "Tous les 2-3 jours manuellement. Ne pas récolter quand le feuillage est mouillé (propagation maladies).",
+      "CONDITIONNEMENT": "Refroidissement immédiat (hydro-cooling).",
+      "ENTREPROSAGE": "Chambre froide à 5-7°C. Ne pas descendre en dessous (taches de froid)."
+    }
+  },
+  "Laitue": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°22 - Laitue. Culture pivot des exploitations maraîchères. Cycle très variable (45 à 100 jours). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 80N - 40P - 180K.\n\n• **Besoins :** Faible système racinaire. Demande un sol riche et une fertilisation de proximité (compost mûr)."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 12 à 16 plants / m².\n\n• **Mise en place :** Toute l'année selon les abris.\n\n• **Irrigation :** Régulière, indispensable pour éviter le durcissement des tissus et le goût amer.",
+        "SANTÉ": "• **Mildiou (Bremia) :** Taches jaunes face supérieure, duvet blanc face inférieure.\n\n• **Pucerons :** Contrôler dès le début de la pommaison.\n\n• **Limaces :** Problématiques dès la plantation.",
+        "VARIÉTÉS": "| Type | Variété | Saison |\n| :--- | :--- | :--- |\n| Batavia | Dorée de Printemps | Printemps |\n| Batavia | Kamalia | Été (résistante chaleur) |\n| Beurre | Appia | Printemps/Automne |\n| Romaine | Galba | Été |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Adriana (beurre), Muir (batavia résistante chaleur), Red Mist (feuille de chêne rouge), Magenta.",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 30 cm (12 po) sur le rang.\n\n• Plantation en quinconce.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Azote à libération rapide (farine de sang) si le sol est froid.",
+      "TYPE D'IRRIGATION": "Asperseurs (maintient une température fraîche au niveau des feuilles).",
+      "GESTION DE L'IRRIGATION": "Arrosages courts mais fréquents en été pour éviter le stress thermique et la montée en graine.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules.\n\n• Elevage de 3 à 4 semaines.\n\n• Ne pas enterrer le collet.",
+      "IMPLANTATION": "Transition rapide : dès qu'une planche se libère, passage de la herse et plantation.",
+      "EQUIPEMENT": "Grelinette, Herse rotative, Râteau-maraîcher, Transplanteur manuel.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette\n\n2. Fertilisation\n\n3. Herse rotative\n\n4. Marquage au râteau\n\n5. Plantation.",
+      "DESHERBAGE": "Binage superficiel à la binette à étrier 10 jours après plantation.",
+      "RECOLTE": "Manuelle, le matin à la fraîche. Couper à la base avec un couteau bien affûté.",
+      "CONDITIONNEMENT": "Lavage à l'eau glacée (hydro-cooling) pour garder le croquant.",
+      "ENTREPROSAGE": "Chambre froide à 2°C (35°F) avec humidité saturée. Très fragile."
+    }
+  },
+  "Mache": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°23 - Mâche. Culture de jours courts. Sensible à la chaleur pour la levée. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "EXIGENCES",
+          "contenu": "• **Sol :** Préfère un sol ferme, peu travaillé en profondeur.\n\n• **Fumure :** Souvent cultivée sur les restes de fumure de la culture précédente.\n\n• **Exportations :** 60N - 30P - 100K."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Période :** Août à Octobre.\n\n• **Densité :** 1500 à 2500 graines / m².\n\n• **Espacement :** 10-15 cm entre rangs.",
+        "SANTÉ": "• **Mildiou :** Surveiller l'aération sous abri.\n\n• **Oïdium :** Feutrage blanc en conditions sèches.",
+        "VARIÉTÉS": "| Variété | Type | Période |\n| :--- | :--- | :--- |\n| Verte à cœur plein | Classique | Automne |\n| Gala | Résistante Mildiou | Automne/Hiver |\n| Vit | Croissance rapide | Hiver |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Vit.",
+      "ESPACEMENT INTENSIF": "• 5 rangs par planche.\n\n• Semis dense sur le rang.",
+      "FERTILISATION": "• 1 cm de compost mûr en surface.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Maintenir le sol humide pour assurer une levée homogène (sensible à la croûte de battance).",
+      "TRANSPLANT": "Semis direct uniquement.",
+      "IMPLANTATION": "Lit de semence très fin et surface bien nivelée.",
+      "EQUIPEMENT": "Semoir Six-row seeder, Râteau.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Faux-semis -> Passage de la herse rotative -> Semis direct.",
+      "DESHERBAGE": "Très difficile. Nécessite un lit de semence très propre (occultation préalable).",
+      "RECOLTE": "Coupe à la base (collet) ou récolte mécanique si surface importante.",
+      "CONDITIONNEMENT": "Lavage intensif pour enlever le sable ou la terre.",
+      "ENTREPROSAGE": "Chambre froide à 2°C. Très périssable."
+    }
+  },
+  "Melon": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°24 - Melon. Plante d'origine tropicale. Besoin de chaleur intense (> 20°C permanent). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 150N - 80P - 250K.\n\n• **Fumure :** 40 t/ha de fumier très décomposé. Exigence forte en potasse pour le taux de sucre."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Période :** Mai (sous abri) à Juin (plein champ).\n\n• **Densité :** 1,2 à 1,5 plants / m².\n\n• **Irrigation :** Goutte-à-goutte indispensable (ne pas mouiller le feuillage).",
+        "SANTÉ": "• **Oïdium :** Feutrage blanc sur feuilles.\n\n• **Pucerons :** Vecteurs de virus de la mosaïque.",
+        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Lunabel F1 | Charentais | Très sucré, bonne conservation |\n| Figaro F1 | Charentais | Précoce, vigoureux |\n| Petit Gris de Rennes | Local | Rustique, saveur exceptionnelle |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Halona (Charentais), Delicious 51.",
+      "ESPACEMENT INTENSIF": "• 1 rang par planche.\n\n• Espacement de 45 cm (18 po) sur le rang.",
+      "FERTILISATION": "• 5 cm (2 po) de compost mûr.\n\n• Amendement riche en potassium.",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (2 lignes par planche).",
+      "GESTION DE L'IRRIGATION": "Irrigation régulière jusqu'à la nouaison, puis réduction drastique en fin de maturation pour concentrer les sucres.",
+      "TRANSPLANT": "• Semis en plateaux de 50 cellules.\n\n• Elevage de 3 à 4 semaines.\n\n• Température sol à 18°C minimum pour planter.",
+      "IMPLANTATION": "Couvre-sol tissé noir impératif pour accumuler la chaleur.",
+      "EQUIPEMENT": "Grelinette, Brûleur au propane (pour la bâche).",
+      "ENTRETIEN": "• **Taille :** Aucune taille pratiquée en culture intensive intensive chez JMF.\n\n• **Pollinisation :** Nécessite des insectes pollinisateurs.",
+      "RECOLTE": "Quand la craquelure apparaît autour du pédoncule et que l'odeur est présente.",
+      "CONDITIONNEMENT": "Ne pas laver. Essuyer avec un chiffon sec.",
+      "ENTREPROSAGE": "Endroit frais (10-12°C), mais pas au froid intense."
+    }
+  },
+  "Navet": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°25 - Navet. Racine de cycle court (45-60 jours). Très sensible aux insectes du sol. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 100N - 60P - 150K.\n\n• **Azote :** Éviter les excès qui favorisent les feuilles au détriment de la racine."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Densité :** 40 à 60 graines / m².\n\n• **Espacement :** 20-30 cm entre rangs.\n\n• **Irrigation :** Primordiale pour la texture de la racine (éviter le navet fibreux).",
+        "SANTÉ": "• **Mouche du chou :** Larves creusant des galeries dans la racine.\n\n• **Altises :** Perforent le feuillage des jeunes plants.",
+        "VARIÉTÉS": "| Variété | Type | Particularité |\n| :--- | :--- | :--- |\n| de Milan | Plat | Collet violet, précoce |\n| de Nancy | Rond | Chair très tendre |\n| Boule d'Or | Jaune | Saveur sucrée, automne |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Hakurei (navet blanc japonais, très sucré), Purple Top White Globe.",
+      "ESPACEMENT INTENSIF": "• 5 rangs par planche.\n\n• Espacement de 2,5 à 5 cm (1 à 2 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Pas d'apport d'azote frais.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Irrigation fréquente pour garder les racines tendres et limiter les attaques d'altises.",
+      "TRANSPLANT": "Semis direct uniquement.",
+      "IMPLANTATION": "Lit de semence très fin.",
+      "EQUIPEMENT": "Semoir Six-row seeder, Filets anti-insectes ProtekNet.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Herse rotative -> Semis direct -> Installation immédiate des filets.",
+      "DESHERBAGE": "Pyrodésherbage ou binage manuel léger.",
+      "PHYTOPROTECTION": "Filets anti-insectes obligatoires pour éviter la mouche du chou.",
+      "RECOLTE": "Récolter quand ils atteignent la taille d'une balle de golf (pour les variétés japonaises).",
+      "CONDITIONNEMENT": "Lavage haute pression. Vendu en bottes avec feuillage.",
+      "ENTREPROSAGE": "Chambre froide à 2°C (35°F) avec 95% d'humidité."
+    }
+  },
+  "Oignon": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°26 - Oignon. Culture sensible à l'enherbement et à l'humidité stagnante. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 100N - 60P - 180K.\n\n• **Potasse :** Favorise la conservation et la fermeté du bulbe.\n\n• **Soufre :** Indispensable pour la saveur."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION / SEMIS": "• **Densité :** 40 à 60 plants / m².\n\n• **Période :** Février à Avril (bulbes) ou Août (semis d'automne).\n\n• **Récolte :** Dès que 50% des feuilles sont tombées.",
+        "SANTÉ": "• **Mildiou :** Duvet violacé. Favorisé par l'humidité.\n\n• **Mouche de l'oignon :** Larves au niveau du plateau.\n\n• **Thrips :** Décoloration argentée du feuillage par temps sec.",
+        "VARIÉTÉS": "| Variété | Type | Conservation |\n| :--- | :--- | :--- |\n| Jaune de Stuttgart | Jaune | Excellente |\n| Rouge de Brunswick | Rouge | Moyenne |\n| de Keravel | Rosé | Très bonne |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Cortland (jaune), Redwing (rouge), Patterson (conservation).",
+      "ESPACEMENT INTENSIF": "• 4 rangs par planche.\n\n• Espacement de 10 cm (4 po) sur le rang.\n\n• Plantation en touffes de 3 à 4 plants (multi-plant).",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Pas d'azote tardif (risque de mauvaise conservation).",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Régulière jusqu'au début de la formation du bulbe. Arrêt total dès le début de la verse.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules (3-4 graines par cellule).\n\n• Elevage de 8 à 10 semaines.\n\n• Tailler le feuillage à 10 cm pendant l'élevage en plateau pour fortifier la base.",
+      "IMPLANTATION": "Lit de semence propre (faux-semis préalable).",
+      "EQUIPEMENT": "Grelinette, Herse rotative, Transplanteur manuel.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Grelinette -> Compost -> Herse rotative -> Plantation des mottes.",
+      "DESHERBAGE": "Binage précoce entre les rangs.",
+      "RECOLTE": "Soulever les bulbes à la fourche-bêche. Laisser sécher sur le sol si le temps est sec.",
+      "CONDITIONNEMENT": "Curing indispensable : 2-3 semaines dans un tunnel ventilé.",
+      "ENTREPROSAGE": "Endroit sec, ventilé et hors gel. Se conserve 6 à 9 mois."
+    }
+  },
+  "Panais": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°27 - Panais. Racine rustique de cycle long (180-210 jours). Germination lente et capricieuse. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET FUMURE",
+          "contenu": "• **Sol :** Profonds, sans cailloux pour éviter les racines fourchues.\n\n• **Exportations :** 100N - 60P - 150K.\n\n• **Fumure :** Éviter les apports de fumier frais (risque de pourriture et de racines divergentes)."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Densité :** 30 à 50 graines / m².\n\n• **Période :** Mars à Mai.\n\n• **Espacement :** 30-40 cm entre rangs.",
+        "SANTÉ": "• **Mouche de la carotte :** Les larves creusent des galeries dans la racine.\n\n• **Mildiou :** Taches jaunes sur le feuillage.",
+        "VARIÉTÉS": "| Variété | Type | Caractéristiques |\n| :--- | :--- | :--- |\n| Demi-long de Guernesey | Classique | Racine volumineuse, chair blanche |\n| Javelin F1 | Hybride | Racine très régulière, peau lisse |\n| White Gem | Court | Adapté aux sols un peu lourds |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Javelin (standard), Albion.",
+      "ESPACEMENT INTENSIF": "• 4 rangs par planche.\n\n• Espacement de 10 cm (4 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Éviter les excès d'azote.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Cruciale pendant la germination (peut prendre 21 jours). Le sol ne doit jamais sécher en surface durant cette phase.",
+      "TRANSPLANT": "Semis direct uniquement.",
+      "IMPLANTATION": "Lit de semence très propre. Utilisation du semoir de précision.",
+      "EQUIPEMENT": "Semoir monorang (type Jang ou EarthWay), Râteau, Binette.",
+      "DESHERBAGE": "Pyrodésherbage pré-émergence impératif vu la lenteur de levée.",
+      "RECOLTE": "Récolte tardive à l'automne. Les gelées améliorent la saveur (transformation de l'amidon en sucre).",
+      "CONDITIONNEMENT": "Lavage haute pression (élimination de la terre dans les anfractuosités du collet).",
+      "ENTREPROSAGE": "Chambre froide à 2°C (35°F), 95% d'humidité. Se conserve tout l'hiver."
+    }
+  },
+  "Patate Douce": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°28 - Patate Douce. Plante tropicale, exigeante en chaleur (sol > 18°C). Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "SOL ET FUMURE",
+          "contenu": "• **Sol :** Léger, sablonneux, se réchauffant vite.\n\n• **Fumure :** 20 t/ha de compost. Exportations : 100N - 60P - 200K. Apport de potasse important."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Matériel :** Boutures racinées.\n\n• **Densité :** 3 à 4 plants / m².\n\n• **Période :** Fin Mai à Juin sous abri ou plein champ (si zone chaude).",
+        "SANTÉ": "• **Taupins :** Peuvent percer les tubercules.\n\n• **Sclérotinia :** Pourriture du collet en cas d'excès d'humidité.",
+        "VARIÉTÉS": "| Variété | Chair | Description |\n| :--- | :--- | :--- |\n| Beauregard | Orange | La plus cultivée, précoce |\n| Bonita | Blanche | Très sucrée, peau rose |\n| Evangeline | Orange | Très productive, goût intense |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Beauregard, Georgia Jet (très précoce).",
+      "ESPACEMENT INTENSIF": "• 2 rangs par planche.\n\n• Espacement de 30 cm (12 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Amendement riche en potassium.",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (2 lignes).",
+      "GESTION DE L'IRRIGATION": "Irrigation régulière au début. Arrêt total 1 mois avant la récolte pour éviter l'éclatement des tubercules.",
+      "TRANSPLANT": "• Plantation de boutures (slips) achetées ou produites soi-même.\n\n• Enfoncer profondément en laissant 2 feuilles dépasser.",
+      "IMPLANTATION": "Couvre-sol tissé noir ou plastique noir indispensable pour gagner des degrés au sol.",
+      "EQUIPEMENT": "Grelinette, Brûleur au propane, Couteau de récolte.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "Pose de bâche -> Plantation manuelle dans les trous brûlés.",
+      "RECOLTE": "Avant les premiers gels. Manipuler avec soin (peau très fine à la récolte).",
+      "CONDITIONNEMENT": "• **Curing (Essentiel) :** Placer les tubercules à 28-30°C avec 85% d'humidité pendant 7 à 10 jours pour durcir la peau et sucrer la chair.",
+      "ENTREPROSAGE": "Endroit sec et tempéré (13-15°C). Ne jamais mettre au frigo (noircissement)."
+    }
+  },
+  "Persil": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°29 - Persil. Bisannuelle cultivée en annuelle. Germination lente. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "EXIGENCES",
+          "contenu": "• **Sol :** Riche, frais, profond.\n\n• **Fumure :** 20 t/ha de compost. Exportations : 120N - 50P - 150K."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS / PLANTATION": "• **Densité :** 15-20 cm entre rangs.\n\n• **Période :** Mars à Août.\n\n• **Irrigation :** Régulière pour éviter le jaunissement des feuilles.",
+        "SANTÉ": "• **Septoriose :** Petites taches brunes à points noirs sur feuilles.\n\n• **Mouche de la carotte :** Peut attaquer les racines.",
+        "VARIÉTÉS": "| Type | Variété | Particularité |\n| :--- | :--- | :--- |\n| Frisé | d'Hiver | Très décoratif, rustique |\n| Plat | Géant d'Italie | Plus parfumé, pousse rapide |\n| Tubéreux | de Berlin | Pour sa racine |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Giant of Italy (plat), Darki (frisé).",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 20 cm (8 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Azote à libération lente.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "GESTION DE L'IRRIGATION": "Garder le sol humide surtout après chaque coupe.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules (3-4 graines par cellule).\n\n• Elevage de 6 à 8 semaines.",
+      "IMPLANTATION": "Lit de semence propre.",
+      "RECOLTE": "Couper les tiges à 2 cm du sol. Permet 3 à 4 repousses.",
+      "CONDITIONNEMENT": "Lavage à l'eau froide, mise en bottes.",
+      "ENTREPROSAGE": "Chambre froide à 2°C dans un bac avec un fond d'eau ou sac plastique perforé."
+    }
+  },
+  "Poireau": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°30 - Poireau. Culture emblématique de Bretagne. Très gourmande. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Exportations :** 200N - 80P - 250K.\n\n• **Fumure :** 40 t/ha de fumier composté. Besoins élevés en azote fractionné."
+        }
+      ],
+      "TECHNIQUE": {
+        "PLANTATION": "• **Densité :** 20 à 30 plants / m².\n\n• **Mise en place :** Mai à Juillet (pour l'hiver).\n\n• **Buttage :** Indispensable pour allonger le fût blanc.",
+        "SANTÉ": "• **Teigne du poireau :** Petite chenille minant les feuilles.\n\n• **Mouche mineuse (Phytomyza gymnostoma) :** Protection par filets obligatoire en automne.\n\n• **Thrips :** Grisaillement des feuilles.",
+        "VARIÉTÉS": "| Type | Variété | Période |\n| :--- | :--- | :--- |\n| Été | Gros court d'été | Récolte Août |\n| Automne | Tereos | Récolte Oct-Nov |\n| Hiver | Bleu de Solaise | Très rustique, Janv-Mars |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "King Richard (été, long fût), Lancelot (automne), Tadorna (hiver).",
+      "ESPACEMENT INTENSIF": "• 3 rangs par planche.\n\n• Espacement de 15 cm (6 po) sur le rang.",
+      "FERTILISATION": "• 5 cm (2 po) de compost mûr.\n\n• Gros apport d'azote organique (farine de sang ou plume).",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules (2 graines par cellule).\n\n• Plantation profonde dans des trous de 15 cm faits au plantoir.",
+      "IMPLANTATION": "Pas de buttage en système intensif sur planches permanentes (remplacé par la plantation profonde).",
+      "EQUIPEMENT": "Grelinette, Herse rotative, Plantoir manuel multi-point.",
+      "RECOLTE": "Soulever à la fourche-bêche. Nettoyage : couper les racines et les feuilles.",
+      "CONDITIONNEMENT": "Lavage haute pression.",
+      "ENTREPROSAGE": "Chambre froide à 2°C. Peut se conserver 2 mois (variétés d'hiver)."
+    }
+  },
+  "Pois": {
+    "GAB_FRAB": {
+      "ENTETE": "Fiche n°31 - Pois. Légumineuse de printemps. Source : GAB-FRAB Bretagne.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "FUMURE",
+          "contenu": "• **Azote :** 0N (Fixation symbiotique).\n\n• **Exportations :** 0N - 50P - 120K."
+        }
+      ],
+      "TECHNIQUE": {
+        "SEMIS": "• **Densité :** 80 à 100 graines / m².\n\n• **Période :** Février à Avril.\n\n• **Rame :** Nécessite un grillage ou des filets pour les variétés grimpantes.",
+        "SANTÉ": "• **Oïdium :** En fin de cycle.\n\n• **Tordeuse du pois :** Chenille dans les grains.",
+        "VARIÉTÉS": "| Type | Variété | Description |\n| :--- | :--- | :--- |\n| Grain ridé | de Téléphone | Grimpant, très sucré |\n| Nain | Petit Provençal | Très précoce |\n| Mangetout | Corne de Bélier | Gousse tendre sans parchemin |"
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Sugar Ann (nain mangetout), Cascadia, Super Sugar Snap (grimpant).",
+      "ESPACEMENT INTENSIF": "• 2 rangs par planche.\n\n• Espacement de 2,5 cm (1 po) sur le rang.",
+      "FERTILISATION": "• 2,5 cm (1 po) de compost mûr.\n\n• Pas d'azote.",
+      "TYPE D'IRRIGATION": "Asperseurs.",
+      "TRANSPLANT": "Semis direct uniquement.",
+      "ENTRETIEN": "Tuteurage sur filet à ramer de 1,50 m pour les variétés grimpantes.",
+      "RECOLTE": "Tous les 2 jours pour éviter que les gousses ne deviennent fibreuses.",
+      "CONDITIONNEMENT": "Refroidissement rapide à 2°C.",
+      "ENTREPROSAGE": "Chambre froide, très courte durée."
+    }
+  },
+  "Poivron": {
+    "GAB_FRAB": {
+      "ENTETE": "AUBERGINE / POIVRON - Solanacées. Origine : l’aubergine est originaire de l’Inde, le poivron de l’Amérique centrale et équatoriale. Ces 2 cultures sont regroupées en raison de la similitude de leur planning de culture, de leurs exigences climatiques et agronomiques. L’aubergine est un arbuste atteignant plus d’1,50 m de haut et 1 m de diamètre. Le poivron est plus petit. Ces deux légumes sont exigeants en chaleur. Aussi sont-ils presque exclusivement cultivés sous abri. Source : Joseph ARGOUARC'H.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "ENVIRONNEMENT",
+          "contenu": "• **Favorable :** Chaleur. Supportent 40° et +. Culture sous abri au nord de la France. Sol de limon, profond et riche en humus. PH>6,5.\n\n• **Défavorable :** Gel, vent. Sol argileux.\n\n• **Remarques :** Fertilisation par compost. Voraces.\n\n• **Rotation : durée, Précédents :** Après engrais vert ou laitue, radis…. Éviter les autres solanacées. Difficulté de rotation longue sous abri."
+        },
+        {
+          "titre": "FERTILISATION",
+          "contenu": "• **Mobilisations pour 40 T / ha :** N 300, P 70, K 300.\n\n• **Exportation nette pour 40t/ha :** environ N 60, P 20, K 130.\n\n• **Apports possibles :** Fumier composté, 50 T / ha ou compost du commerce 25-30 T. Un complément d’engrais organique de type guano peut être apporté à chaque plante en cours de culture au début de la récolte puis un mois plus tard."
+        }
+      ],
+      "TECHNIQUE": {
+        "ITINERAIRE TECHNIQUE CONSEILLÉ": "• Semis sur couche chaude à 22-25° + couverture de la couche chaude, mi-janvier.\n\n• Repiquage en motte de 7 (sur couche chaude) à 18°, au stade cotylédon.\n\n• Distançage vers le 10 mars, à 20 cm en quinconce. Suppression du chauffage.\n\n• Préparation du sol à la rotobêche après fertilisation. Si on laboure, il est préférable d’épandre le compost après le labour (mais avant la préparation du lit de semence).\n\n• Pose des tuyaux d’arrosage micro perforés, puis du paillage biodégradable ou plastique.\n\n• Plantation des mottes après immersion dans l’eau début avril.\n\n• Taille à 2 ou 3 branches + tuteurage.\n\n• Pollinisation par bourdons ou vibrage en début de floraison.\n\n• Lâcher d’auxiliaires si besoin (contre aleurode et puceron).\n\n• Arrosage 2 à 4 fois par semaine. Après la plantation il est intéressant de l’interrompre pendant environ 3 semaines afin d’obliger les plantes à développer leur système racinaire.\n\n• Récolte 2 à 3 fois par semaine jusqu'à fin octobre.",
+        "ASPECTS TECHNIQUES IMPORTANTS": "• La fertilisation doit être importante si on recherche des rendements élevés. Des apports fractionnés d’engrais organiques sont utiles pour maintenir la production à un bon niveau jusqu’à fin octobre.\n\n• Il est prudent de prévoir une protection contre le gel jusqu’à début mai (tunnel nantais).\n\n• La taille se fait une seule fois par exemple à 2 branches pour le poivron et 3 pour l’aubergine.\n\n• Le tuteurage se pratique plusieurs fois sur aubergine par enroulement de la ficelle autour des rameaux principaux ou par des clips.\n\n• Un développement précoce de botrytis est souvent le signe d’un arrosage excessif. L’aubergine est fréquemment envahie par des aleurodes et des pucerons.",
+        "DENSITÉ DE SEMIS ET PLANTATION": "• **Densité par m2 :** 2,5 à 3 plants / m2.\n\n• **Écartements :** 70-80 cm x 40-50 cm.\n\n• **Profondeur :** Semis 0,5 à 1 cm.\n\n• **Quantité de semence ou plant / are :** 300 plants/are (1 à 2 g de graines).",
+        "RÉCOLTE ET STOCKAGE": "• **Stade optimal :** Selon couleur et forme.\n\n• **Rendement par m2 :** 2,5 à 5 kg / m2. Retenu : 4 kg.\n\n• **Conservation :** 10 à 15 jours à 10 - 12° avec forte hygrométrie."
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "King of the North (très précoce, bon pour climat frais), Red Knight (gros fruits), Ace (le plus productif), Gourmet (orange).",
+      "ESPACEMENT INTENSIF": "• 2 rangs par planche.\n\n• Espacement de 30 cm (12 po) sur le rang, en quinconce.",
+      "FERTILISATION": "• Appliquer 5 cm (2 po) de compost mûr.\n\n• Ajouter un engrais organique complet (type 5-3-2) ainsi qu'un apport de potassium (Sul-Po-Mag) pour soutenir la fructification.",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (2 lignes par planche).",
+      "GESTION DE L'IRRIGATION": "Besoins élevés et constants, surtout lors de la nouaison. Un stress hydrique peut provoquer la chute des fleurs ou la pourriture apicale.",
+      "TRANSPLANT": "• Semis en plateaux de 128 cellules, puis rempotage impératif en pots de 10 cm (4 po).\n\n• Température de 27-32°C pour la germination, puis 24°C jour / 18°C nuit.\n\n• Sortie des plants à 8-10 semaines (20-25 cm) avec les premiers boutons visibles.",
+      "IMPLANTATION": "• Attendre que le sol soit bien réchauffé (minimum 15-18°C).\n\n• Utilisation systématique d'un couvre-sol tissé noir pour maintenir la chaleur du sol.",
+      "EQUIPEMENT": "Grelinette, Râteau-maraîcher, Herse rotative, Brûleur au propane (trous bâche), Tiges d'acier et filet pour le palissage.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette. 2. Fertilisation et compost. 3. Herse rotative. 4. Pose du couvre-sol. 5. Plantation manuelle dans les trous brûlés.",
+      "DESHERBAGE": "Très limité grâce au couvre-sol. Désherbage manuel uniquement dans les trous de plantation.",
+      "ENTRETIEN": "• **Tuteurage :** Palissage vertical sur filet ou méthode 'Florida Weave'.\n\n• **Taille :** Supprimer la première fleur (fleur royale) pour encourager la croissance végétative initiale.",
+      "PHYTOPROTECTION": "• Surveillance des pucerons et des punaises ternes.\n\n• Utilisation de voiles thermiques (P-19) pour protéger du froid nocturne et des insectes en début de saison.",
+      "RECOLTE": "• Récolter à l'aide d'un sécateur pour ne pas endommager les branches fragiles.\n\n• Récolter en vert pour stimuler la plante ou à pleine couleur pour plus de saveur.",
+      "CONDITIONNEMENT": "NE JAMAIS LAVER. Essuyer avec un linge sec si nécessaire pour préserver la cuticule.",
+      "ENTREPROSAGE": "Chambre froide à 10-12°C. Sensible au froid intense (ne pas descendre sous 7°C)."
+    }
+  },
+  "Pomme de terre": {
+    "GAB_FRAB": {
+      "ENTETE": "POMME DE TERRE - Solanacée. La pomme de terre est une culture pivot du maraîchage diversifié, exigeante en place mais structurante pour la rotation. Elle nécessite une attention particulière sur le mildiou et le choix des variétés selon l'usage (primeur, conservation).",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "ENVIRONNEMENT",
+          "contenu": "• **Sol :** Préférer les sols profonds, sablo-limoneux, drainant bien (pH 6.5 à 7.5). Eviter les sols lourds retenant l’eau (pourriture) ou caillouteux (déformation des racines).\n\n• **Rotation :** Retour tous les 4 à 5 ans. Précédents favorables : liliacées, artichaut, chou-fleur, céréales .\n\n• **Associations bénéfiques :** Haricot, laitue, oignon, pois, poireau, radis, salade."
+        },
+        {
+          "titre": "FERTILISATION",
+          "contenu": "• **Fumure :** Compost bien décomposé 20 t/ha + apport calcaire si terre acide + magnésie. Éviter les fumures fraîches juste avant la plantation pour limiter le rhizoctone .\n\n• **Exportations :** Environ 66N - 35P - 105K pour des rendements de 35T/ha."
+        }
+      ],
+      "TECHNIQUE": {
+        "MALADIES - MILDIOU": "• Débuter les applications quand le mildiou apparaît dans le voisinage ou que les conditions météo sont favorables .\n\n• Renouveler toutes les semaines en phase de croissance des fanes, ou tous les 5 jours en cas de pluies régulières .\n\n• Renouveler après un lessivage continu de 20mm ou cumulé de 25mm.\n\n• Limite cuivre : 6 kg/ha/an de cuivre métal. Planter profond et créer une butte pointue pour protéger les tubercules.",
+        "MALADIES - RHIZOCTONE ET GALE": "• **Rhizoctone :** Provoque des lésions brunes sur les germes. Planter dans un sol à au moins 10°C ou pré-germer. Éviter la MO fraîche.\n\n• **Gale argentée :** Taches claires argentées. Choisir des plants sains, éviter les sols sableux, sécher rapidement après récolte et conserver à basse température.",
+        "RAVAGEURS - DORYPHORE ET TAUPIN": "• **Doryphore :** Larves et adultes consomment le feuillage. Traitements Bacillus thuringiensis (Bt) sur les jeunes larves (stade grain de blé). Ramassage manuel possible.\n\n• **Taupin :** Vers fil de fer. Éviter les jachères et prairies en précédent. Travailler le sol superficiellement au moment de la ponte pour dessécher les œufs.",
+        "DÉFANAGE ET RÉCOLTE": "• **Défanage :** Arrête le développement et contrôle le calibre. Impératif en cas de mildiou (sortir les fanes du champ). Réalisé mécaniquement (gyrobroyeur) .\n\n• **Délai :** Généralement 3 semaines entre défanage et récolte pour former l'epiderme.\n\n• **Récolte :** En période sèche pour limiter le mildiou. Rendements moyens : 25T à 40T/ha à maturité complète.",
+        "CONSERVATION": "• Ramasser tôt après arrachage. Sécher au champ si humide.\n\n• Local noir, sec et aéré. Température : 6-8°C (longue durée à 4°C, mais attention : l'amidon se transforme en sucre sous 8°C) .\n\n• Humidité relative idéale en chambre froide : 90-95%."
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Sélectionner selon précocité et résistance au mildiou. Les cultivars spécifiques varient selon les régions, se référer aux catalogues bio locaux.",
+      "ESPACEMENT": "• 70 cm entre les rangs .\n\n• 25 à 30 cm sur le rang pour les plants.",
+      "ITINÉRAIRE TECHNIQUE": "• Pré-germination des plants une dizaine de jours à 15°C (par exemple local de stockage des courges) .\n\n• Si le local est noir, mettre les tubercules quelques jours en tunnel avant plantation pour durcir les germes .\n\n• Plantation soignée après immersion ou en mottes .\n\n• Buttage : indispensable pour protéger les tubercules de la lumière (verdissement) et du mildiou.",
+      "ENTRETIEN": "• 2 binages tractés et 1 buttage .\n\n• Possibilité de plantation sur paillage plastique pour la pomme de terre nouvelle afin de limiter le désherbage.",
+      "IRRIGATION": "• Arrosages abondants à la plantation et lors du grossissement des tubercules.",
+      "NOTES DE PRODUCTEUR": "• Du lait peut être utilisé comme mouillant pour limiter le lessivage de la bouillie bordelaise .\n\n• La pomme de terre peut être une culture dérobée avec une durée d'occupation du sol de 3-4 mois."
+    }
+  },
+  "Radis botte": {
+    "GAB_FRAB": {
+      "ENTETE": "RADIS - Brassicacées. Culture à cycle court. Exigeante en eau et en suivi sanitaire (altises). Source : Réseau GAB/FRAB.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "ENVIRONNEMENT",
+          "contenu": "• **Sol :** Préférer les sols légers, frais, riches en humus, sans cailloux. pH idéal entre 6 et 7. Éviter les sols trop argileux qui durcissent et gênent le gonflement.\n\n• **Climat :** Culture de climat tempéré. Sensible aux fortes chaleurs qui provoquent le creusement et le goût piquant.\n\n• **Rotation :** Retour tous les 3 à 4 ans pour limiter les maladies du sol (hernie du chou). Précédents favorables : liliacées, salades. Éviter les autres crucifères."
+        },
+        {
+          "titre": "FERTILISATION",
+          "contenu": "• **Besoins :** Culture peu exigeante si le précédent a été bien fumé. Un apport de compost bien mûr (10-20 t/ha) est suffisant.\n\n• **Attention :** Éviter les fumures organiques trop fraîches qui favorisent la mouche du chou et les brûlures de racines."
+        }
+      ],
+      "TECHNIQUE": {
+        "ITINERAIRE TECHNIQUE": "• Semis échelonné tous les 10-15 jours.\n• Densité : 300 à 500 graines au m².\n• Irrigation : Le sol doit rester humide en permanence.\n• Protection : Filets insect-proof contre les altises dès le semis."
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Cherry Belle, French Breakfast, Easter Egg, Sora.",
+      "TYPE D'IRRIGATION": "Micro-aspersion ou aspersion (besoins constants).",
+      "GESTION DE L'IRRIGATION": "Maintenir le sol humide pendant tout le cycle de culture pour éviter que les radis ne deviennent piquants ou fibreux.",
+      "ESPACEMENT": "• 10 à 12 rangs par planche.\n• Semis avec le semoir Jang (Disque XY) à une densité de 1,5 à 2,5 cm (0,5 à 1 po) sur le rang.",
+      "TRANSPLANT": "N/A (Semis direct uniquement).",
+      "IMPLANTATION": "Semis direct sur des planches bien préparées avec un lit de semence très fin.",
+      "FERTILISATION": "Appliquer 2,5 cm (1 po) de compost mûr. Le radis est une culture peu exigeante qui profite souvent des restes de fertilisation de la culture précédente.",
+      "EQUIPEMENT": "Grelinette (si nécessaire), Râteau-maraîcher, Semoir de précision (Jang), Couverture flottante.",
+      "ITINERAIRE POUR LE SEMIS": "1. Préparation du lit de semence au râteau. 2. Semis avec le semoir Jang. 3. Arrosage immédiat. 4. Pose de la couverture flottante.",
+      "DESHERBAGE": "Généralement pas nécessaire en raison du cycle très court (25-30 jours). Un faux-semis peut être pratiqué en cas de forte pression d'adventices.",
+      "ENTRETIEN": "Surveiller l'humidité du sol quotidiennement. Pas de taille ou de tuteurage requis.",
+      "PHYTOPROTECTION": "Protection systématique avec une couverture flottante (P-19) ou un filet anti-insectes pour bloquer les altises dès la levée.",
+      "RECOLTE": "Récolter manuellement par bottes de 10 à 15 radis. Utiliser un élastique directement au champ.",
+      "CONDITIONNEMENT": "Laver à grande eau immédiatement après la récolte pour enlever la terre et refroidir les tissus. Garder les fanes bien hydratées.",
+      "ENTREPROSAGE": "Chambre froide à 1-2°C. Très périssable, à vendre le jour même ou le lendemain."
+    }
+  },
+  "Roquette": {
+    "GAB_FRAB": {
+      "ENTETE": "ROQUETTE - Brassicacées (Eruca sativa). Plante annuelle à cycle très court, appréciée pour sa saveur piquante. Très sensible aux altises. Cultivée toute l'année sous abri ou en plein champ selon les régions.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "ENVIRONNEMENT",
+          "contenu": "• **Sol :** Peu exigeante mais préfère les sols légers, frais et riches en matières organiques. pH optimal 6 à 7.\n\n• **Climat :** Résistante au froid mais craint les fortes chaleurs qui provoquent une montée à graine précoce et un goût trop fort.\n\n• **Rotation :** Retour tous les 3 ans minimum. Précédents favorables : liliacées, ombellifères. Éviter les autres crucifères (choux, radis) pour limiter les risques de hernie du chou."
+        },
+        {
+          "titre": "FERTILISATION",
+          "contenu": "• **Besoins :** Culture à cycle court, se contente souvent des restes de fumure de la culture précédente. Un apport de compost très mûr peut être bénéfique si le sol est pauvre.\n\n• **Azote :** Attention aux excès d'azote qui favorisent l'accumulation de nitrates dans les feuilles."
+        }
+      ],
+      "TECHNIQUE": {
+        "ITINÉRAIRE TECHNIQUE": "• **Semis :** Échelonné tous les 15 jours. Semis direct en rangs espacés de 15 à 20 cm ou à la volée.\n\n• **Densité :** Environ 2 à 3 kg de semences par hectare.\n\n• **Profondeur :** 0,5 à 1 cm.\n\n• **Irrigation :** Maintenir une humidité constante pour assurer une croissance rapide et limiter le piquant des feuilles.\n\n• **Désherbage :** Uniquement manuel ou par faux-semis car la culture est très dense.",
+        "PROTECTION SANITAIRE": "• **Altises :** Ravageur majeur. Pose de filet insect-proof indispensable dès le semis. Arrosages fréquents par aspersion pour perturber l'activité des insectes.\n\n• **Mildiou :** En cas d'excès d'humidité sous abri. Assurer une bonne ventilation.",
+        "RÉCOLTE ET CONDITIONNEMENT": "• **Stade :** Récolte des jeunes feuilles (8 à 12 cm) environ 3 à 6 semaines après le semis.\n\n• **Méthode :** Coupe à la main ou à la moissonneuse à salade. Possibilité de faire 2 à 3 coupes successives.\n\n• **Rendement :** Environ 1 à 2 kg par m² selon le nombre de coupes.",
+        "STOCKAGE": "• Très fragile. Refroidissement rapide indispensable. Conserver à 1-2°C sous atmosphère humide."
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Esmee (standard, feuilles dentelées), Roquette sauvage (plus piquante, croissance lente), Astro (croissance rapide).",
+      "TYPE D'IRRIGATION": "Aspersion ou micro-aspersion pour maintenir le feuillage frais.",
+      "GESTION DE L'IRRIGATION": "Besoins en eau constants. Un stress hydrique accélère la floraison et durcit les tissus.",
+      "ESPACEMENT": "• 10 à 12 rangs par planche.\n• Semis avec le semoir Jang (Disque XY) à une densité de 1,5 à 2,5 cm (0,5 à 1 po) sur le rang.",
+      "TRANSPLANT": "N/A (uniquement semis direct).",
+      "IMPLANTATION": "Semis direct sur des planches de 75 cm. Le lit de semence doit être parfaitement nivelé.",
+      "FERTILISATION": "Appliquer 2,5 cm (1 po) de compost mûr. Aucun autre apport n'est généralement nécessaire pour cette culture.",
+      "EQUIPEMENT": "Râteau-maraîcher, Semoir de précision (Jang), Couverture flottante (P-19), Moissonneuse manuelle (type Greensward).",
+      "ITINERAIRE POUR LE SEMIS": "1. Préparation au râteau-maraîcher. 2. Passage du semoir Jang. 3. Arrosage immédiat. 4. Pose immédiate de la couverture flottante.",
+      "DESHERBAGE": "Pas de désherbage nécessaire si le faux-semis a été bien réalisé avant le semis.",
+      "ENTRETIEN": "Surveillance rigoureuse des altises sous la couverture flottante.",
+      "PHYTOPROTECTION": "Usage systématique de la couverture flottante (P-19) ou d'un filet à mailles très fines dès le jour 1 pour bloquer les altises.",
+      "RECOLTE": "Récolte à la moissonneuse à salade ou au couteau dès que les feuilles atteignent la taille désirée.",
+      "CONDITIONNEMENT": "Lavage à l'eau glacée (hydro-cooling) pour retirer la chaleur du champ et prolonger la durée de conservation.",
+      "ENTREPROSAGE": "Stocker en bacs perforés en chambre froide (1-2°C). Humidité relative élevée requise."
+    }
+  },
+  "Tomate": {
+    "GAB_FRAB": {
+      "ENTETE": "TOMATE SOUS ABRI - Solanacées. Culture phare sous abri, très exigeante en chaleur, lumière et suivi technique. Nécessite une structure de soutien et une taille régulière pour optimiser le rendement et la qualité sanitaire.",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "ENVIRONNEMENT",
+          "contenu": "• **Sol :** Préférer les sols profonds, bien drainés et riches en humus. pH idéal entre 6 et 6,8. Éviter les sols trop compacts qui favorisent l'asphyxie racinaire.\n\n• **Climat :** Température optimale de croissance entre 18°C et 25°C. Sensible au gel (0°C) et aux fortes chaleurs (>32°C) qui perturbent la nouaison.\n\n• **Rotation :** Retour tous les 4 ans minimum pour limiter les pathogènes du sol (Fusarium, Verticillium). Précédents favorables : liliacées, légumineuses. Éviter les autres solanacées."
+        },
+        {
+          "titre": "FERTILISATION",
+          "contenu": "• **Besoins :** Très exigeante. Apport de compost bien décomposé (40-60 t/ha) avant plantation.\n\n• **Équilibre NPK :** Forte demande en potassium (K) pour la qualité des fruits et en azote (N) pour la croissance végétative, sans excès pour éviter la sensibilité aux maladies."
+        }
+      ],
+      "TECHNIQUE": {
+        "ITINÉRAIRE TECHNIQUE": "• **Semis :** Mi-février à mi-mars sur couche chaude (22-25°C).\n\n• **Repiquage :** En mottes ou pots de 10 cm au stade 2 feuilles.\n\n• **Plantation :** Dès que le sol atteint 15°C (souvent début avril sous abri). Plantation profonde pour favoriser les racines adventives.\n\n• **Densité :** 2,5 à 3 plants par m² selon la vigueur de la variété.\n\n• **Conduite :** Tuteurage sur ficelles. Taille des gourmands hebdomadaire. Effeuillage progressif du bas pour aérer.",
+        "PROTECTION SANITAIRE": "• **Mildiou :** Surveillance accrue dès que l'humidité dépasse 80%. Aération maximale des abris. Traitements préventifs au cuivre possibles.\n\n• **Alternaria :** Taches circulaires sur feuilles. Éviter l'aspersion sur le feuillage.\n\n• **Ravageurs :** Aleurodes et pucerons. Introduction d'auxiliaires (Macrolophus, Encarsia) recommandée.",
+        "RÉCOLTE ET CONDITIONNEMENT": "• **Stade :** Récolte à maturité colorée 2 à 3 fois par semaine.\n\n• **Rendement :** 10 à 20 kg par m² selon la durée de culture et la variété.",
+        "STOCKAGE": "• Conserver à 12-15°C. Ne jamais stocker au réfrigérateur (perte de saveur et texture farineuse)."
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Cobra (standard), Buffalo (gros fruits), Goldie (jaune), Cherry Bomb (cerise), Sun Gold (cerise orange très sucrée).",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte (2 lignes par planche).",
+      "GESTION DE L'IRRIGATION": "Apports réguliers et profonds. Éviter les variations brusques d'humidité qui causent le cul noir (nécrose apicale) ou l'éclatement des fruits.",
+      "ESPACEMENT": "• 1 rang par planche de 75 cm.\n• 45 cm (18 po) entre les plants sur le rang.",
+      "TRANSPLANT": "• Semis en plateaux de 72 cellules, puis rempotage en pots de 10 cm (4 po).\n• Sortie des plants à 6-8 semaines, bien robustes, avec les premiers boutons floraux visibles.",
+      "IMPLANTATION": "Plantation manuelle dans des trous profonds. Utilisation d'un paillis de plastique noir ou de toile tissée pour chauffer le sol.",
+      "FERTILISATION": "Appliquer 5 cm (2 po) de compost mûr + engrais organique complet type 5-3-2 + apport de chaux (calcium) pour prévenir le cul noir.",
+      "EQUIPEMENT": "Grelinette, Râteau-maraîcher, Système de tuteurage (ficelles et clips), Effeuilleur, Crochets de palissage.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette. 2. Amendement et compost. 3. Pose du paillage. 4. Plantation. 5. Installation immédiate du système de palissage.",
+      "DESHERBAGE": "Minimal grâce au paillage. Désherbage manuel autour du collet si nécessaire.",
+      "ENTRETIEN": "• **Palissage :** Enrouler hebdomadairement autour de la ficelle.\n• **Taille :** Suppression systématique de tous les gourmands (tiges latérales).\n• **Effeuillage :** Retirer les feuilles sous le premier bouquet dès qu'il commence à mûrir.",
+      "PHYTOPROTECTION": "• Gestion rigoureuse de l'humidité par ventilation.\n• Surveillance des pucerons et aleurodes. Utilisation de pièges englués jaunes.",
+      "RECOLTE": "Récolte manuelle soignée. Utiliser des caissettes peu profondes pour éviter l'écrasement.",
+      "CONDITIONNEMENT": "Trier par calibre et degré de maturité. Ne pas laver les fruits.",
+      "ENTREPROSAGE": "Stocker dans un endroit frais et ventilé (hors chambre froide si possible pour la saveur)."
+    }
+  },
+  "Tomate Plein Champ": {
+    "GAB_FRAB": {
+      "ENTETE": "TOMATE PLEIN CHAMP - Solanacées. Culture de saison nécessitant un emplacement ensoleillé et abrité des vents dominants. Moins productive qu'en serre mais avec des coûts d'investissement moindres. Très exposée aux aléas climatiques (pluie, mildiou).",
+      "BLOCS_IDENTITE": [
+        {
+          "titre": "ENVIRONNEMENT",
+          "contenu": "• **Sol :** Préférer les terres saines, profondes et réchauffables. Un sol riche en humus est indispensable.\n\n• **Climat :** Exposition Sud/Sud-Ouest recommandée. Risque élevé de mildiou en cas d'été pluvieux. Nécessite une protection contre le vent pour éviter le dessèchement et la casse des tiges.\n\n• **Rotation :** Respecter un délai de 4 ans entre deux solanacées. Intégrer dans une rotation après une culture nettoyante ou une prairie."
+        },
+        {
+          "titre": "FERTILISATION",
+          "contenu": "• **Fumure de fond :** Apport de 30 à 40 t/ha de fumier composté à l'automne ou au printemps.\n\n• **Compléments :** Apport de potasse organique (type Patenkali) si le sol est carencé, pour favoriser la fermeté des fruits."
+        }
+      ],
+      "TECHNIQUE": {
+        "ITINÉRAIRE TECHNIQUE": "• **Semis :** Mars en pépinière chauffée.\n\n• **Plantation :** Après les risques de gelées (mi-mai, après les 'Saints de Glace').\n\n• **Densité :** 2,5 plants/m². Écartement de 80 cm à 1 m entre les rangs et 50 cm sur le rang.\n\n• **Tuteurage :** Utilisation de piquets individuels (bois ou métal) ou système de palissage sur fils.\n\n• **Taille :** Conduite sur une seule tige. Ébourgeonnage régulier des gourmands.",
+        "PROTECTION SANITAIRE": "• **Mildiou (Phytophthora infestans) :** Risque majeur en plein champ. Traitement préventif à la bouillie bordelaise (cuivre) obligatoire après chaque épisode pluvieux important.\n\n• **Ravageurs :** Noctuelle défoliatrice (chenilles). Surveillance des pontes sous les feuilles.",
+        "RÉCOLTE ET CONDITIONNEMENT": "• **Stade :** Récolte à maturité. Attention à l'éclatement des fruits en cas de pluie soudaine après une période sèche.\n\n• **Rendement :** 4 à 8 kg par m² selon les conditions climatiques et la durée de la saison.",
+        "STOCKAGE": "• Conservation courte (quelques jours) à température ambiante ou local frais (12°C). Éviter le froid."
+      }
+    },
+    "JMF_FORTIER": {
+      "CULTIVARS": "Defiant (résistant au mildiou), Mountain Fresh, Iron Lady (résistance multiple), New Girl (précoce).",
+      "TYPE D'IRRIGATION": "Goutte-à-goutte indispensable (ne jamais mouiller le feuillage).",
+      "GESTION DE L'IRRIGATION": "Irrigation régulière pour maintenir une humidité constante. Le paillage aide à stabiliser les niveaux d'eau.",
+      "ESPACEMENT": "• 1 rang par planche de 75 cm.\n• 45 cm (18 po) entre les plants sur le rang.",
+      "TRANSPLANT": "• Semis en plateaux de 72 cellules, puis rempotage en pots de 10 cm (4 po).\n• Acclimatation (durcissement) des plants à l'extérieur pendant 1 semaine avant la plantation.",
+      "IMPLANTATION": "Plantation sur paillis de plastique noir ou sur sol nu avec un désherbage mécanique fréquent. Utilisation de tunnels chenilles amovibles en début de saison possible.",
+      "FERTILISATION": "Appliquer 5 cm (2 po) de compost mûr + engrais organique complet type 5-3-2.",
+      "EQUIPEMENT": "Piquets en T (T-posts), Ficelle de mise en balles, Système de palissage 'Florida Weave'.",
+      "ITINERAIRE POUR LA TRANSPLANTATION": "1. Grelinette. 2. Fertilisation. 3. Pose du paillis (optionnel). 4. Plantation. 5. Installation des piquets de soutien.",
+      "DESHERBAGE": "Désherbage manuel ou à la houe maraîchère si la culture est sur sol nu.",
+      "ENTRETIEN": "• **Tuteurage :** Méthode 'Florida Weave' (tissage entre les piquets) tous les 20 cm de croissance.\n• **Taille :** Taille limitée (suppression des gourmands jusqu'au premier bouquet) pour certaines variétés déterminées, ou taille stricte pour les indéterminées.",
+      "PHYTOPROTECTION": "• Utilisation de variétés résistantes au mildiou (critère n°1 pour le plein champ).\n• Pulvérisation de purin de prêle ou de bicarbonate pour renforcer les tissus foliaires.",
+      "RECOLTE": "Récolte manuelle. Priorité à la récolte rapide en cas d'annonce de fortes pluies pour éviter les pertes par éclatement.",
+      "CONDITIONNEMENT": "Trier au champ. Éliminer les fruits piqués ou abîmés pour ne pas contaminer les caisses.",
+      "ENTREPROSAGE": "Endroit frais et sec. Ne pas empiler trop de couches de tomates pour éviter l'écrasement."
+    }
+  }
+}
