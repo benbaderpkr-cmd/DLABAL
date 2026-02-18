@@ -76,8 +76,11 @@ if sel != "---":
             df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
             
             # Recherche des notes existantes
-            existing_data = df[df['LEGUME'] == sel] if not df.empty else pd.DataFrame()
-            notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
+            if not df.empty and 'LEGUME' in df.columns:
+                existing_data = df[df['LEGUME'] == sel]
+                notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
+            else:
+                notes = {}
             st.success("✅ Connexion Google Sheets OK")
 
         except Exception as e:
@@ -100,6 +103,7 @@ if sel != "---":
 
             if submit:
                 try:
+                    # 1. Préparation de la nouvelle ligne
                     nouvelle_donnee = {
                         "LEGUME": sel,
                         "PLANTATION": v_plan,
@@ -110,21 +114,24 @@ if sel != "---":
                         "INFO_SUPP": v_info
                     }
                     
-                    # On met à jour le DataFrame local
-                    if not df.empty and sel in df['LEGUME'].values:
-                        for col, val in nouvelle_donnee.items():
-                            df.loc[df['LEGUME'] == sel, col] = val
-                    else:
-                        df = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
+                    # 2. On reconstruit le tableau proprement
+                    # Si le légume existe, on l'enlève pour le remettre à jour
+                    if not df.empty and 'LEGUME' in df.columns:
+                        df = df[df['LEGUME'] != sel]
                     
-                    # NETTOYAGE : On s'assure que toutes les colonnes sont présentes avant l'envoi
-                    cols_attendues = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
-                    df = df.reindex(columns=cols_attendues)
+                    df_final = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
                     
-                    # ENVOI
-                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df)
+                    # 3. On force l'ordre des colonnes pour correspondre au Sheet
+                    cols = ["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"]
+                    df_final = df_final[cols]
+                    
+                    # 4. ENVOI ET CLEAR CACHE
+                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_final)
                     st.cache_data.clear() 
-                    st.success("✨ Données sauvegardées !")
+                    
+                    # 5. Diagnostic visuel (pour toi)
+                    st.write("Dernière ligne envoyée :", nouvelle_donnee)
+                    st.success("✨ Données envoyées ! Vérifie ton fichier Google Sheets.")
                     st.balloons()
                     
                 except Exception as e:
