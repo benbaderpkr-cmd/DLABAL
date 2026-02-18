@@ -42,51 +42,49 @@ if sel != "---":
         "📝 SOURCE THO"
     ])
 
-    # --- SOURCE GAB ---
+    # --- SOURCE GAB / JMF / JDV (Style conservé) ---
     with tab1:
         g = DATA.get(sel, {}).get("GAB_FRAB", {})
         if g:
             for k, v in g.get("TECHNIQUE", {}).items():
                 with st.expander(f"📌 {k}", expanded=True):
                     st.markdown(v)
-        else: st.warning("Données GAB absentes.")
-
-    # --- SOURCE JMF ---
     with tab2:
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for titre, contenu in f.items():
                 with st.expander(f"📌 {titre}", expanded=True):
                     st.markdown(contenu)
-        else: st.warning("Données JMF absentes.")
-
-    # --- SOURCE JDV ---
     with tab3:
         j = JDV_DATA.get(sel, {})
         if j:
             for t, c in j.items():
                 with st.expander(f"🌿 {t}", expanded=True):
                     st.markdown(c)
-        else: st.warning("Données JDV absentes.")
 
-    # --- SOURCE THO (GOOGLE SHEETS) ---
-    # --- SOURCE THO (GOOGLE SHEETS) ---
+    # --- SOURCE THO (C'est ici que l'erreur 'df' est corrigée) ---
     with tab4:
         st.subheader(f"📝 Notes de culture : {sel}")
         
-        try:
-            # Lecture pour afficher les données existantes
-            df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
-            if not df.empty and 'LEGUME' in df.columns:
-                existing_data = df[df['LEGUME'] == sel]
-                # On prend la dernière note en date si plusieurs existent
-                notes = existing_data.iloc[-1].to_dict() if not existing_data.empty else {}
-            else:
-                notes = {}
-        except:
-            notes = {}
+        # FIX : On définit df AVANT tout essai de lecture pour être sûr qu'il existe
+        df = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
+        notes = {}
 
-        # TON STYLE DE FORMULAIRE (Inchangé)
+        try:
+            # On tente de lire le Google Sheet
+            fetched_df = conn.read(spreadsheet=SHEET_ID, worksheet="THO", ttl=0)
+            if isinstance(fetched_df, pd.DataFrame) and not fetched_df.empty:
+                df = fetched_df
+                # On cherche les notes du légume
+                if 'LEGUME' in df.columns:
+                    existing_data = df[df['LEGUME'] == sel]
+                    if not existing_data.empty:
+                        notes = existing_data.iloc[-1].to_dict()
+            st.success("✅ Connexion Google Sheets établie")
+        except Exception as e:
+            st.info("Initialisation d'un nouveau tableau (lecture impossible ou vide).")
+
+        # Ton formulaire en 2 colonnes
         with st.form(key=f"form_gsheet_{sel}"):
             c1, c2 = st.columns(2)
             with c1:
@@ -102,33 +100,29 @@ if sel != "---":
 
             if submit:
                 try:
-                    # On crée la nouvelle ligne
-                    nouvelle_ligne = pd.DataFrame([{
-                        "LEGUME": sel,
-                        "PLANTATION": v_plan,
-                        "ENTRETIEN": v_entr,
-                        "SANTE": v_sant,
-                        "RENDEMENT": v_rend,
-                        "VARIETE": v_vari,
-                        "INFO_SUPP": v_info
-                    }])
+                    # Préparation de la donnée
+                    nouvelle_donnee = {
+                        "LEGUME": sel, "PLANTATION": v_plan, "ENTRETIEN": v_entr,
+                        "SANTE": v_sant, "RENDEMENT": v_rend, "VARIETE": v_vari, "INFO_SUPP": v_info
+                    }
                     
-                    # METHODE D'ENVOI ALTERNATIVE (Plus robuste)
-                    # On ajoute la ligne au tableau actuel et on renvoie tout
-                    df_total = pd.concat([df, nouvelle_ligne], ignore_index=True)
+                    # Mise à jour de 'df' (qui est maintenant forcément défini)
+                    if 'LEGUME' in df.columns and sel in df['LEGUME'].values:
+                        df = df[df['LEGUME'] != sel]
                     
-                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_total)
+                    df_final = pd.concat([df, pd.DataFrame([nouvelle_donnee])], ignore_index=True)
                     
-                    st.cache_data.clear()
-                    st.success("✨ Enregistré ! Vérifiez le bas de votre fichier Google Sheets.")
+                    # Envoi
+                    conn.update(spreadsheet=SHEET_ID, worksheet="THO", data=df_final)
+                    st.cache_data.clear() 
+                    st.success("✨ Enregistré !")
                     st.balloons()
                     
                 except Exception as e:
                     if "200" in str(e):
-                        st.success("✨ Données transmises !")
+                        st.success("✨ Enregistré !")
                         st.balloons()
                     else:
                         st.error(f"Erreur : {e}")
 else:
-    st.info("Sélectionnez un légume pour afficher les données.")
-
+    st.info("Sélectionnez un légume.")
