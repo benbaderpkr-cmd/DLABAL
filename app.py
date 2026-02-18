@@ -79,7 +79,7 @@ if sel != "---":
                     st.markdown(v)
         else: st.warning("Données absentes.")
 
-    # --- TAB 2 : JMF ---
+
 # --- TAB 2 : JMF ---
     with tab2:
         # --- DOUBLE SOURCE JP1 : JMF VS TERRATECK ---
@@ -97,10 +97,11 @@ if sel != "---":
                     st.markdown(f"""
                     - **Rouleau :** `{r_j.get('rouleau', 'N/A')}`
                     - **Pignons (AV/AR) :** `{r_j.get('pignon_av', '?')} / {r_j.get('pignon_ar', '?')}`
+                    - **Brosse :** `{r_j.get('brosse', 'Standard')}`
                     - **Nombre de rangs :** `{r_j.get('rangs', '?')}`
                     """)
                 else:
-                    st.write("Données JMF non disponibles.")
+                    st.write("Données JMF non disponibles pour ce semis.")
             
             with col_terra:
                 st.warning("**🚜 Réglages Site Terrateck / Jang**")
@@ -109,11 +110,21 @@ if sel != "---":
                     st.markdown(f"""
                     - **Rouleau :** `{r_t.get('rouleau', 'N/A')}`
                     - **Pignons (AV/AR) :** `{r_t.get('pignon_av', '?')} / {r_t.get('pignon_ar', '?')}`
+                    - **Brosse :** `{r_t.get('brosse', 'Standard')}`
                     - **Note :** *{r_t.get('obs', '-')}*
                     """)
                 else:
                     st.write("Données Terrateck non disponibles.")
             st.divider()
+        # --- FIN INSERTION ---
+
+        f = DATA.get(sel, {}).get("JMF_FORTIER", {})
+        if f:
+            for t, c in f.items():
+                with st.expander(f"📌 {t}", expanded=True):
+                    st.markdown(c)
+        else:
+            st.warning("Aucune fiche technique JMF détaillée pour ce légume.")
         # --- FIN INSERTION ---
 
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
@@ -166,4 +177,5 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
