@@ -79,29 +79,32 @@ if sel != "---":
             st.warning("Données JDV absentes.")
 
     # --- ONGLET 4 : SAISIE TERRAIN (GOOGLE SHEETS) ---
-    with tab4:
-        st.write(st.secrets)
-        st.subheader(f"📝 Notes de culture : {sel}")
+with tab4:
+        # 1. On garde le debug pour être sûr
+        st.write("DEBUG SECRETS :", st.secrets) 
         
-        # 1. Lecture des données depuis Google Sheets
+        st.subheader(f"📝 Test de connexion : {sel}")
+        
         try:
-            # On lit la feuille "THO"
-            df = conn.read(worksheet="THO", ttl=0)
+            # 2. TEST DE LECTURE SIMPLIFIÉ
+            # On essaye de lire le sheet sans filtre pour voir s'il répond
+            test_df = conn.read(worksheet="THO", ttl=0)
             
-            # On cherche si le légume existe déjà
-            existing_data = df[df['LEGUME'] == sel]
+            st.success("✅ Connexion établie avec le fichier !")
+            st.write("Voici ce que je vois dans le fichier :")
+            st.dataframe(test_df.head()) # Affiche les premières lignes du Google Sheet
             
-            if not existing_data.empty:
-                # On récupère la première ligne correspondante sous forme de dictionnaire
-                notes = existing_data.iloc[0].to_dict()
+            # On définit 'notes' pour ne pas faire planter le formulaire plus bas
+            if not test_df.empty and "LEGUME" in test_df.columns:
+                existing_data = test_df[test_df['LEGUME'] == sel]
+                notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
             else:
-                # Valeurs par défaut si le légume n'est pas encore dans le tableur
-                notes = {
-                    "PLANTATION": "", "ENTRETIEN": "", "SANTE": "",
-                    "RENDEMENT": "", "VARIETE": "", "INFO_SUPP": ""
-                }
+                notes = {}
+
         except Exception as e:
-            st.error("Impossible de se connecter au Google Sheet. Vérifiez vos Secrets.")
+            # 3. AFFICHAGE DE L'ERREUR PRÉCISE
+            st.error("❌ La connexion a échoué.")
+            st.exception(e) 
             notes = {}
 
         # 2. Formulaire avec clés dynamiques
@@ -145,4 +148,5 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
