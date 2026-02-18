@@ -89,7 +89,7 @@ if sel != "---":
             # 2. TEST DE LECTURE SIMPLIFIÉ
             # On essaye de lire le sheet sans filtre pour voir s'il répond
             test_df = conn.read(worksheet="THO", ttl=0)
-            
+            df = conn.read(spreadsheet=sheet_id, worksheet="THO", ttl=0)
             st.success("✅ Connexion établie avec le fichier !")
             st.write("Voici ce que je vois dans le fichier :")
             st.dataframe(test_df.head()) # Affiche les premières lignes du Google Sheet
@@ -148,6 +148,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
