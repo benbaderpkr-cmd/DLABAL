@@ -83,14 +83,20 @@ if sel != "---":
         st.subheader(f"📝 Notes de culture : {sel}")
         
         # --- BLOC DE TEST (À PLACER ICI) ---
+        with tab4:
+        st.subheader(f"📝 Notes de culture : {sel}")
+        
         try:
-            url = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
-            # On lit la première feuille sans préciser le nom pour éviter l'erreur 400
-            df = conn.read(spreadsheet=url, ttl=0)
+            # On utilise uniquement l'ID du document
+            sheet_id = "1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s"
             
-            st.success("✅ Connexion établie !")
+            # On tente la lecture SANS l'argument worksheet pour l'instant
+            # La connexion va automatiquement prendre la première feuille
+            df = conn.read(spreadsheet=sheet_id, ttl=0)
             
-            # On cherche les notes pour le légume sélectionné
+            st.success("✅ Connexion réussie !")
+            
+            # On prépare les données pour le formulaire
             if not df.empty and "LEGUME" in df.columns:
                 existing_data = df[df['LEGUME'] == sel]
                 notes = existing_data.iloc[0].to_dict() if not existing_data.empty else {}
@@ -98,9 +104,8 @@ if sel != "---":
                 notes = {}
                 
         except Exception as e:
-            st.error(f"Problème de connexion : {e}")
+            st.error(f"Erreur de connexion : {e}")
             notes = {}
-        # --- FIN DU BLOC DE TEST ---
 
         # 2. Formulaire avec clés dynamiques
         with st.form(key=f"form_gsheet_{sel}"):
@@ -143,6 +148,7 @@ if sel != "---":
 
 else:
     st.info("Sélectionnez un légume pour afficher les données.")
+
 
 
 
