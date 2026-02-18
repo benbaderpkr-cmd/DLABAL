@@ -65,7 +65,7 @@ with st.sidebar:
         st.session_state["reset_key"] = st.session_state.get("reset_key", 0) + 1
         st.rerun()
     
-    st.markdown("<p style='margin-top: -15px; font-weight: bold;'>Base de données des ITKs</p>", unsafe_allow_html=True)
+    st.markdown("<p style='margin-top: -15px; font-weight: bold;'>Base de données pour maraîchers</p>", unsafe_allow_html=True)
     
     res_key = st.session_state.get("reset_key", 0)
     sel = st.selectbox(
@@ -208,3 +208,4 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
+
