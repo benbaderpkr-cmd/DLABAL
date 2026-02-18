@@ -13,14 +13,13 @@ cookies = EncryptedCookieManager(password="cle_secrete_dlabal_2026")
 if not cookies.ready():
     st.stop()
 
-# 2. SYSTÈME DE MOT DE PASSE (Touche Entrée activée via le formulaire)
+# 2. SYSTÈME DE MOT DE PASSE (Validation par touche Entrée via formulaire)
 def check_password():
     if st.session_state.get("password_correct") or cookies.get("auth_token") == "valide":
         st.session_state["password_correct"] = True
         return True
     
     st.title("🔐 Accès Restreint")
-    # Formulaire pour permettre la validation par touche "Entrée"
     with st.form("auth_form", clear_on_submit=False):
         pwd = st.text_input("Entrez le mot de passe DLABAL :", type="password")
         submit = st.form_submit_button("Valider")
@@ -60,7 +59,6 @@ tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + c
 
 # --- SIDEBAR ---
 with st.sidebar:
-    # Bouton titre cliquable pour retour accueil
     if st.button("🌱 DLABAL", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.session_state["last_sel"] = "---"
@@ -94,49 +92,44 @@ with st.sidebar:
 
 # --- LOGIQUE D'AFFICHAGE ---
 
-# CAS A : LA PAGE JP1 GLOBAUX
 if st.session_state.get("view_mode") == "JP1_GLOBAL":
     st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
-    st.warning("**⚠️ AVERTISSEMENT :** Ces réglages sont indicatifs. La précision dépend du contexte et du calibre de vos semences.")
+    st.warning("**⚠️ AVERTISSEMENT :** Ces réglages sont indicatifs.")
     
     if st.button("⬅️ Retour au dossier"):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
 
-    # SECTION : PROPOSE TON RÉGLAGE DU JP1 (MISE À JOUR)
-    st.subheader("💡 Propose ton réglage du JP1.")
-    with st.form("form_sug_jp1", clear_on_submit=True):
-        c1, c2, c3 = st.columns(3)
-        s_leg = c1.text_input("Légume concerné")
-        s_rouleau = c2.text_input("rouleau")
-        s_pav = c3.text_input("pignon AV")
-        
-        c4, c5, c6 = st.columns(3)
-        s_par = c4.text_input("pignon AR")
-        s_brosse = c5.text_input("Brosse")
-        s_info = c6.text_input("info supp.")
-        
-        if st.form_submit_button("Enregistrer mon conseil"):
-            if s_leg and s_rouleau:
-                try:
-                    df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", ttl=0)
-                except:
-                    df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "ROULEAU", "PIGNON_AV", "PIGNON_AR", "BROSSE", "INFO_SUPP"])
-                
-                new_sug = pd.DataFrame([{
-                    "DATE": datetime.now().strftime("%d/%m/%Y"),
-                    "LEGUME": s_leg,
-                    "ROULEAU": s_rouleau,
-                    "PIGNON_AV": s_pav,
-                    "PIGNON_AR": s_par,
-                    "BROSSE": s_brosse,
-                    "INFO_SUPP": s_info
-                }])
-                df_updated = pd.concat([df_sug, new_sug], ignore_index=True)
-                conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_updated)
-                st.success(f"Conseil pour le {s_leg} envoyé avec succès !")
-            else:
-                st.error("Merci de renseigner au moins le légume et le type de rouleau.")
+    # SECTION : PROPOSE TON RÉGLAGE DU JP1 (FERMÉ PAR DÉFAUT)
+    with st.expander("💡 Propose ton réglage du JP1.", expanded=False):
+        with st.form("form_sug_jp1", clear_on_submit=True):
+            c1, c2, c3 = st.columns(3)
+            s_leg = c1.text_input("Légume concerné")
+            s_rouleau = c2.text_input("rouleau")
+            s_pav = c3.text_input("pignon AV")
+            
+            c4, c5, c6 = st.columns(3)
+            s_par = c4.text_input("pignon AR")
+            s_brosse = c5.text_input("Brosse")
+            s_info = c6.text_input("info supp.")
+            
+            if st.form_submit_button("Enregistrer mon conseil"):
+                if s_leg and s_rouleau:
+                    try:
+                        df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", ttl=0)
+                    except:
+                        df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "ROULEAU", "PIGNON_AV", "PIGNON_AR", "BROSSE", "INFO_SUPP"])
+                    
+                    new_sug = pd.DataFrame([{
+                        "DATE": datetime.now().strftime("%d/%m/%Y"),
+                        "LEGUME": s_leg, "ROULEAU": s_rouleau, "PIGNON_AV": s_pav,
+                        "PIGNON_AR": s_par, "BROSSE": s_brosse, "INFO_SUPP": s_info
+                    }])
+                    df_updated = pd.concat([df_sug, new_sug], ignore_index=True)
+                    conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_updated)
+                    st.success(f"Conseil pour le {s_leg} envoyé avec succès !")
+                else:
+                    st.error("Merci de renseigner au moins le légume et le type de rouleau.")
 
     st.divider()
 
@@ -153,7 +146,7 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
     st.divider()
     
     # TABLEAUX TECHNIQUES
-    st.subheader("⚙️ Tableau des distances de semis (en mm)")
+    st.subheader("⚙️ Tableau des distances de semis (mm)")
     dist_data = {
         "Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"],
         "14/9": [320, 210, 160, 105, 80, 64, 53, 40, 32, 27, 21, 18],
@@ -169,27 +162,10 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
         "9/14": [760, 510, 380, 255, 190, 152, 128, 95, 76, 64, 51, 42]
     }
     st.dataframe(pd.DataFrame(dist_data), use_container_width=True, hide_index=True)
-    
-    st.subheader("📏 Tableau des dimensions des trous des rouleaux (en mm)")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.table(pd.DataFrame({
-            "Réf": ["A", "AA", "C", "F", "FJ", "G", "J", "L", "LJ", "M", "MJ", "MM", "N"],
-            "Ø trou": ["13,50", "12,00", "11,00", "5,00", "5,00", "9,00", "SPECIAL", "7,00", "7,00", "5,00", "6,00", "6,00", "SPECIAL"],
-            "Prof.": ["6,00", "6,00", "5,50", "2,50", "3,00", "4,50", "1,5 mm", "2,50", "3,70", "2,00", "3,50", "2,50", "16x6 mm"]
-        }))
-    with col2:
-        st.table(pd.DataFrame({
-            "Réf": ["R", "S-4", "U-4", "X", "XY", "XYY", "Y", "YJ", "YK", "YX", "YXX", "YYJ", "YYX"],
-            "Ø trou": ["9,00", "SPECIAL", "SPECIAL", "4,00", "2,50", "2,00", "3,50", "3,00", "3,50", "2,50", "2,50", "3,00", "2,00"],
-            "Prof.": ["3,50", "19x8 mm", "19x10 mm", "2,00", "1,20", "1,20", "1,50", "2,00", "2,30", "1,50", "1,80", "1,70", "1,80"]
-        }))
 
-# CAS B : LE DOSSIER (ACCUEIL OU FICHE)
 else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
-        st.info("Sélectionnez un légume ci-contre ou consultez les réglages JP1 globaux.")
         st.markdown("### Une base de notes partagée, sans chichis.")
         st.markdown("""
         J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. C’est sans prétention : je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres. L’outil est gratuit et je le bricole sur mon temps libre, donc c’est encore un peu rustique.
