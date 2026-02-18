@@ -2,23 +2,40 @@ import streamlit as st
 import json
 import os
 import pandas as pd
-from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
+from datetime import datetime
+from streamlit_cookies_manager import EncryptedCookieManager # Nouveau
 
-# 1. CONFIGURATION
+# 1. CONFIGURATION ET COOKIES
 st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
 
-# 2. SYSTÈME DE MOT DE PASSE
+# On initialise le manager de cookies (choisis un mot de passe de chiffrement au hasard)
+cookies = EncryptedCookieManager(password="cle_secrete_pour_les_cookies_dlabal")
+
+if not cookies.ready():
+    st.stop()
+
+# 2. SYSTÈME DE MOT DE PASSE AVEC MÉMOIRE
 def check_password():
-    if "password_correct" not in st.session_state:
-        st.session_state["password_correct"] = False
-    if st.session_state["password_correct"]:
+    # 1. Vérifie si l'utilisateur est déjà validé pour cette session
+    if st.session_state.get("password_correct"):
         return True
+    
+    # 2. Vérifie si un cookie de connexion existe sur le navigateur
+    if cookies.get("auth_token") == "valide":
+        st.session_state["password_correct"] = True
+        return True
+
+    # 3. Sinon, affiche le formulaire
     st.title("🔐 Accès Restreint")
-    pwd = st.text_input("Entrez le mot de passe pour accéder à DLABAL :", type="password")
+    pwd = st.text_input("Entrez le mot de passe DLABAL :", type="password")
+    
     if st.button("Valider"):
         if pwd == st.secrets["password"]:
+            # On enregistre dans la session ET dans le cookie
             st.session_state["password_correct"] = True
+            cookies["auth_token"] = "valide"
+            cookies.save() # Sauvegarde sur le disque dur de l'utilisateur
             st.rerun()
         else:
             st.error("Mot de passe incorrect")
@@ -249,3 +266,4 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré !")
+
