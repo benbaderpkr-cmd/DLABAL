@@ -35,13 +35,17 @@ def load_json(filename):
     if os.path.exists(filename):
         try:
             with open(filename, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except: return {}
+                content = json.load(f)
+                # On vérifie si c'est bien un dictionnaire
+                return content if isinstance(content, dict) else {}
+        except Exception as e:
+            st.error(f"Erreur de lecture du fichier {filename} : {e}")
+            return {}
     return {}
 
 DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
-SOURCES_JMF = load_json("sources_jmf.json") # <--- APPEL DU FICHIER ICI
+SOURCES_JMF = load_json("sources_jmf.json")
 
 # Création de la liste des légumes (priorité aux réglages JP1 pour être sûr qu'ils apparaissent)
 cles_jp1 = list(SOURCES_JMF.get("reglages_itk", {}).keys())
@@ -79,22 +83,19 @@ if sel != "---":
                     st.markdown(v)
         else: st.warning("Données GAB absentes.")
 
-    # --- TAB 2 : JMF ---
-    # --- TAB 2 : JMF ---
+# --- TAB 2 : JMF ---
     with tab2:
-        # 1. On récupère le dictionnaire brut
-        base_reglages = SOURCES_JMF.get("reglages_itk", {})
+        # On essaie de récupérer reglages_itk, sinon on prend le dictionnaire entier
+        base = SOURCES_JMF.get("reglages_itk", SOURCES_JMF)
         
-        # 2. NETTOYAGE EXTRÊME : On crée un nouveau dico avec des clés propres
-        # (Enlève les espaces invisibles, les retours à la ligne, etc.)
-        reglages_propres = {str(k).strip(): v for k, v in base_reglages.items()}
+        # Nettoyage des clés pour éviter les erreurs d'espaces ou de majuscules
+        reglages_propres = {str(k).strip(): v for k, v in base.items()}
         
-        # 3. On cherche le légume sélectionné
-        nom_cherche = sel.strip()
-        reglages = reglages_propres.get(nom_cherche)
-        
-        if reglages:
-            st.markdown(f"### ⚙️ Configuration Semoir JP1 : {nom_cherche}")
+        # Recherche du légume
+        reglages = reglages_propres.get(sel.strip())
+
+        if reglages and isinstance(reglages, dict):
+            st.markdown(f"### ⚙️ Configuration Semoir JP1 : {sel}")
             col_pdf, col_terra = st.columns(2)
             
             with col_pdf:
@@ -118,11 +119,15 @@ if sel != "---":
                 """)
             st.divider()
         else:
-            # AFFICHAGE DE DIAGNOSTIC SI CA NE MARCHE TOUJOURS PAS
-            st.error(f"❌ '{nom_cherche}' n'a pas été trouvé dans le fichier.")
-            st.write("Clés réellement lues par Python :", list(reglages_propres.keys()))
+            # Si toujours vide, on affiche un message d'aide
+            if not SOURCES_JMF:
+                st.error("⚠️ Le fichier 'sources_jmf.json' semble vide ou n'a pas pu être chargé.")
+            else:
+                st.warning(f"ℹ️ Aucun réglage JP1 trouvé pour '{sel}'.")
+                with st.expander("Diagnostic technique (clés lues)"):
+                    st.write(list(reglages_propres.keys()))
 
-        # Suite : Fiches JMF classiques
+        # Suite : Contenu textuel JMF
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
         if f:
             for t, c in f.items():
@@ -171,5 +176,6 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
 
