@@ -1,62 +1,93 @@
 {
-  "source": "Comparatif Technique JMF vs Terrateck",
+  "source": "Réglages JP1 - Dossier Benjamin Baderspach",
   "reglages_itk": {
-    "Aisaka (Mizuna)": {
-      "jmf": {"rouleau": "XY-24", "pignon_av": 11, "pignon_ar": 14, "rangs": 5, "brosse": "Standard"},
-      "terrateck": {"rouleau": "X-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "X-24 est le standard pour les moutardes fines."}
-    },
     "Betterave": {
       "jmf": {"rouleau": "LJ-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 3, "brosse": "Standard"},
-      "terrateck": {"rouleau": "M-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "M-12 si graine monogerme (2.5-3.5mm)."}
+      "terrateck": {"rouleau": "M-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "M-12 recommandé pour graine monogerme"}
     },
     "Blette": {
       "jmf": {"rouleau": "M-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 3, "brosse": "Standard"},
-      "terrateck": {"rouleau": "L-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "L-12 pour glomérules plus volumineux."}
+      "terrateck": {"rouleau": "L-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "L-12 si glomérules volumineux"}
     },
     "Brocoli (Semis)": {
       "jmf": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 2, "brosse": "Standard"},
-      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Réglage standard Brassicacées."}
+      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Réglage standard Brassicacées"}
     },
     "Carotte": {
       "jmf": {"rouleau": "XY-24", "pignon_av": 11, "pignon_ar": 14, "rangs": 5, "brosse": "Souple"},
-      "terrateck": {"rouleau": "X-24", "pignon_av": 13, "pignon_ar": 11, "brosse": "Souple", "obs": "Brosse souple indispensable pour ne pas briser la graine."}
+      "terrateck": {"rouleau": "X-24", "pignon_av": 13, "pignon_ar": 11, "brosse": "Souple", "obs": "Brosse souple indispensable [cite: 1]"}
     },
     "Céleri-Rave": {
       "jmf": {"rouleau": "YY-24", "pignon_av": 11, "pignon_ar": 14, "rangs": 3, "brosse": "Souple"},
-      "terrateck": {"rouleau": "XY-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Souple", "obs": "Graine ultra-fine, profondeur minimale."}
+      "terrateck": {"rouleau": "XY-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Souple", "obs": "Graine très fine"}
     },
     "Chou Chinois": {
       "jmf": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 3, "brosse": "Standard"},
-      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Espacement 10-15cm."}
+      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Espacement 10-15cm"}
     },
     "Chou Kale": {
       "jmf": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 3, "brosse": "Standard"},
-      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Identique aux choux pommés."}
+      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Identique aux choux pommés"}
     },
     "Chou-Rave": {
       "jmf": {"rouleau": "X-12", "pignon_av": 13, "pignon_ar": 11, "rangs": 3, "brosse": "Standard"},
-      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Pignons 13/11 pour serrer sur le rang."}
+      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Serré sur le rang"}
     },
     "Coriandre": {
       "jmf": {"rouleau": "N-12", "pignon_av": 14, "pignon_ar": 11, "rangs": 3, "brosse": "Standard"},
-      "terrateck": {"rouleau": "N-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Graine ronde, débit fluide."}
+      "terrateck": {"rouleau": "N-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Graine ronde, débit fluide"}
     },
     "Cresson": {
       "jmf": {"rouleau": "YY-24", "pignon_av": 11, "pignon_ar": 14, "rangs": 5, "brosse": "Souple"},
-      "terrateck": {"rouleau": "Y-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Souple", "obs": "Semis très dense."}
+      "terrateck": {"rouleau": "Y-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Souple", "obs": "Semis très dense"}
     },
     "Épinard": {
       "jmf": {"rouleau": "N-6", "pignon_av": 14, "pignon_ar": 11, "rangs": 5, "brosse": "Standard"},
-      "terrateck": {"rouleau": "N-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "N-6 pour densité type 'baby leaf'."}
+      "terrateck": {"rouleau": "N-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "N-6 pour densité 'baby leaf'"}
     },
     "Haricot": {
       "jmf": {"rouleau": "L-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 2, "brosse": "Standard"},
-      "terrateck": {"rouleau": "AA-6", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "AA-6 si graine très grosse (évite les blocages)."}
+      "terrateck": {"rouleau": "AA-6", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "AA-6 pour éviter les blocages"}
     },
     "Mâche": {
       "jmf": {"rouleau": "R-12", "pignon_av": 14, "pignon_ar": 11, "rangs": 5, "brosse": "Standard"},
-      "terrateck": {"rouleau": "R-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "JMF densifie fortement avec 14/11."}
+      "terrateck": {"rouleau": "R-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "JMF densifie fortement"}
     },
     "Mesclun": {
       "jmf": {"rouleau": "X-24", "pignon_av": 14, "pignon_ar": 11, "rangs": 5, "brosse": "Standard"},
-      "terrateck": {"rouleau": "X-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs
+      "terrateck": {"rouleau": "X-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Standard mélange"}
+    },
+    "Navet": {
+      "jmf": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 5, "brosse": "Standard"},
+      "terrateck": {"rouleau": "X-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Semis haute précision"}
+    },
+    "Oignon": {
+      "jmf": {"rouleau": "XY-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 4, "brosse": "Standard"},
+      "terrateck": {"rouleau": "X-12", "pignon_av": 13, "pignon_ar": 11, "brosse": "Standard", "obs": "XY-12 recommandé pour débit constant"}
+    },
+    "Panais": {
+      "jmf": {"rouleau": "XY-24", "pignon_av": 14, "pignon_ar": 11, "rangs": 3, "brosse": "Souple"},
+      "terrateck": {"rouleau": "Y-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Souple", "obs": "Graine plate délicate"}
+    },
+    "Persil": {
+      "jmf": {"rouleau": "XY-24", "pignon_av": 11, "pignon_ar": 14, "rangs": 5, "brosse": "Standard"},
+      "terrateck": {"rouleau": "X-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Réglage standard herbes"}
+    },
+    "Petit Pois": {
+      "jmf": {"rouleau": "MJ-12", "pignon_av": 11, "pignon_ar": 14, "rangs": 2, "brosse": "Standard"},
+      "terrateck": {"rouleau": "MJ-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Rouleau MJ spécifique"}
+    },
+    "Poireau (Semis)": {
+      "jmf": {"rouleau": "XY-12", "pignon_av": 13, "pignon_ar": 11, "rangs": 4, "brosse": "Standard"},
+      "terrateck": {"rouleau": "XY-12", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Semis pépinière"}
+    },
+    "Radis": {
+      "jmf": {"rouleau": "F-24", "pignon_av": 14, "pignon_ar": 11, "rangs": 5, "brosse": "Standard"},
+      "terrateck": {"rouleau": "F-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Semis très rapide"}
+    },
+    "Roquette": {
+      "jmf": {"rouleau": "X-24", "pignon_av": 14, "pignon_ar": 11, "rangs": 5, "brosse": "Standard"},
+      "terrateck": {"rouleau": "X-24", "pignon_av": 11, "pignon_ar": 14, "brosse": "Standard", "obs": "Densité élevée sur rang"}
+    }
+  }
+}
