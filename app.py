@@ -46,12 +46,13 @@ JDV_DATA = load_json("jdv.json")
 tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()))))
 
 # --- SIDEBAR ---
+import streamlit as st
+
+# Rendu propre pour la sidebar
 st.sidebar.markdown("""
-    <div style="line-height: 1.2;">
-        <span style="font-size: 24px; font-weight: bold;">J</span><br>
-        <span style="font-size: 14px; color: gray;">Jardins</span><br>
-        <span style="font-size: 24px; font-weight: bold;">DLABAL</span><br>
-        <span style="font-size: 14px; color: gray;">De LA Braille Aux Loups</span>
+    <div style="line-height: 1.1;">
+        <span style="font-size: 20px; font-weight: bold;">DLABAL - Base de données des ITKs (GAB, JMF, JDV)</span><br>
+        <span style="font-size: 13px; color: #666;">DB LA Braille Aux Loups</span>
     </div>
     <br>
 """, unsafe_allow_html=True)
@@ -131,5 +132,6 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
 
