@@ -80,16 +80,21 @@ if sel != "---":
         else: st.warning("Données GAB absentes.")
 
     # --- TAB 2 : JMF ---
+    # --- TAB 2 : JMF ---
     with tab2:
-        # On s'assure de chercher dans la sous-clé 'reglages_itk'
+        # 1. On récupère le dictionnaire brut
         base_reglages = SOURCES_JMF.get("reglages_itk", {})
         
-        # Sécurité : on enlève les espaces en trop s'il y en a dans le nom sélectionné
-        nom_nettoye = sel.strip()
-        reglages = base_reglages.get(nom_nettoye)
+        # 2. NETTOYAGE EXTRÊME : On crée un nouveau dico avec des clés propres
+        # (Enlève les espaces invisibles, les retours à la ligne, etc.)
+        reglages_propres = {str(k).strip(): v for k, v in base_reglages.items()}
+        
+        # 3. On cherche le légume sélectionné
+        nom_cherche = sel.strip()
+        reglages = reglages_propres.get(nom_cherche)
         
         if reglages:
-            st.markdown("### ⚙️ Configuration Semoir JP1")
+            st.markdown(f"### ⚙️ Configuration Semoir JP1 : {nom_cherche}")
             col_pdf, col_terra = st.columns(2)
             
             with col_pdf:
@@ -113,11 +118,9 @@ if sel != "---":
                 """)
             st.divider()
         else:
-            # Si Carotte n'est pas trouvé, on affiche ce qu'il y a RÉELLEMENT dans le fichier pour comprendre
-            cles_dispo = list(base_reglages.keys())
-            st.error(f"❌ '{nom_nettoye}' introuvable dans reglages_itk.")
-            with st.expander("Vérifier les noms disponibles dans le fichier JSON"):
-                st.write(cles_dispo)
+            # AFFICHAGE DE DIAGNOSTIC SI CA NE MARCHE TOUJOURS PAS
+            st.error(f"❌ '{nom_cherche}' n'a pas été trouvé dans le fichier.")
+            st.write("Clés réellement lues par Python :", list(reglages_propres.keys()))
 
         # Suite : Fiches JMF classiques
         f = DATA.get(sel, {}).get("JMF_FORTIER", {})
@@ -168,4 +171,5 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
