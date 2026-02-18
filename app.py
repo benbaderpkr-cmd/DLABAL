@@ -79,15 +79,14 @@ if sel != "---":
                     st.markdown(v)
         else: st.warning("Données absentes.")
 
-
 # --- TAB 2 : JMF ---
     with tab2:
-        # --- DOUBLE SOURCE JP1 : JMF VS TERRATECK ---
+        # On utilise SOURCES_JMF (en majuscules)
         reglages = SOURCES_JMF.get("reglages_itk", {}).get(sel)
+        
         if reglages:
             st.markdown("### ⚙️ Configuration Semoir JP1")
             
-            # Utilisation de colonnes pour le comparatif
             col_pdf, col_terra = st.columns(2)
             
             with col_pdf:
@@ -101,7 +100,7 @@ if sel != "---":
                     - **Nombre de rangs :** `{r_j.get('rangs', '?')}`
                     """)
                 else:
-                    st.write("Données JMF non disponibles pour ce semis.")
+                    st.write("Données JMF non disponibles.")
             
             with col_terra:
                 st.warning("**🚜 Réglages Site Terrateck / Jang**")
@@ -177,6 +176,7 @@ if sel != "---":
                 st.cache_data.clear()
                 st.success("Enregistré !")
                 st.balloons()
+
 
 
 
