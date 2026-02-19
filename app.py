@@ -11,7 +11,7 @@ from streamlit_cookies_manager import EncryptedCookieManager
 # ==========================================
 # 1. CONFIGURATION ET SECURITE
 # ==========================================
-st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
+st.set_page_config(page_title="DLABAL - BDD ITK Maraîchage", layout="wide", page_icon="🌱")
 
 cookies = EncryptedCookieManager(password="cle_secrete_dlabal_2026")
 if not cookies.ready():
@@ -136,7 +136,7 @@ with st.sidebar:
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
-    sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    sel = st.selectbox("Choisir ou taper le nom d'un légume :", ["---"] + tous_les_legumes)
     st.divider()
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save()
@@ -206,6 +206,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
