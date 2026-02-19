@@ -42,7 +42,7 @@ if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
 
 # ==========================================
-# 2. FONCTIONS UTILES (DÉFINIES EN HAUT)
+# 2. FONCTIONS UTILES
 # ==========================================
 def load_json(f):
     if os.path.exists(f):
@@ -64,13 +64,11 @@ URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwMW0m4CJPvv5rJ0tFjmo
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-# Chargement des 4 fichiers JSON
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 REGLAGES_DATA = load_json("reglages_jp1.json")
 
-# Préparation de la liste des légumes triée A-Z sans accents
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
                    if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
 tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
@@ -114,15 +112,17 @@ with st.sidebar:
     
     st.divider()
 
-    # --- BLOC JP1 DANS LA SIDEBAR ---
-    if sel != "---" and sel in REGLAGES_DATA:
-        with st.expander("⚙️ RÉGLAGE JP1 TERRADONIS", expanded=False):
-            d = REGLAGES_DATA[sel]
-            st.write(f"**Pignon Menant :** {d.get('pignon_menant', '-')}")
-            st.write(f"**Pignon Mené :** {d.get('pignon_mene', '-')}")
-            st.write(f"**Rouleau :** {d.get('rouleau', '-')}")
-            if "observations" in d: st.caption(f"Note : {d['observations']}")
-        st.write("") 
+    # --- BLOC REGLAGES JP1 (Permanent - Affiche tout le JSON) ---
+    with st.expander("⚙️ RÉGLAGES JP1 TERRADONIS", expanded=False):
+        if REGLAGES_DATA:
+            for legume_key, infos in REGLAGES_DATA.items():
+                st.markdown(f"**{legume_key.upper()}**")
+                st.write(f"Pignons: {infos.get('pignon_menant','?')}/{infos.get('pignon_mene','?')} | Rouleau: {infos.get('rouleau','?')}")
+                if "observations" in infos:
+                    st.caption(f"Note: {infos['observations']}")
+                st.divider()
+        else:
+            st.info("Aucun réglage disponible.")
 
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
@@ -186,12 +186,19 @@ else:
     st.markdown("---")
     st.markdown("""
     ### DLABAL - BDD ITK Maraîchage
+    
     Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
-    1. **Sélectionnez un légume** à gauche.
-    2. **Consultez les fiches** ou suggérez des corrections via 📝.
-    3. **Saisie Terrain** : Utilisez l'onglet **THO**.
+    
+    **Comment utiliser l'application :**
+    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
+    2. **Consultez les fiches** via les onglets thématiques.
+    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
+    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
+    
+    ---
+    *Toutes les modifications de données textuelles sont soumises à validation.*
     """)
-    st.info("👈 Choisissez un légume dans la barre latérale.")
+    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
 
 st.sidebar.markdown("---")
 with st.sidebar:
