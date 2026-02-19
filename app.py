@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import os
 import pandas as pd
+import streamlit.components.v1 as components
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 from streamlit_cookies_manager import EncryptedCookieManager
@@ -271,4 +272,5 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
+
 
