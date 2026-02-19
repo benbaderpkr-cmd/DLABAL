@@ -187,18 +187,27 @@ else:
 
         with tab2:
             found_jmf = False
+            # 1. Gestion des réglages ITK (Sources JMF)
             base = SOURCES_JMF.get("reglages_itk", {})
-            reg = base.get(sel.strip())
+            # On cherche avec plusieurs variantes de casse pour être robuste
+            reg = base.get(sel) or base.get(sel.capitalize()) or base.get(sel.upper())
+            
             if reg:
                 found_jmf = True
                 c1, c2 = st.columns(2)
                 c1.info(f"**📍 JMF**\n- Rouleau : `{reg.get('jmf', {}).get('rouleau', '?')}`")
                 c2.warning(f"**🚜 Terrateck**\n- Rouleau : `{reg.get('terrateck', {}).get('rouleau', '?')}`")
-            f = JMF_DATA.get(sel, {})
+            
+            # 2. Gestion du contenu texte (JMF_DATA)
+            # On cherche 'Ail', 'AIL' ou 'ail'
+            f = JMF_DATA.get(sel) or JMF_DATA.get(sel.capitalize()) or JMF_DATA.get(sel.upper())
+            
             if f:
                 found_jmf = True
                 for t, c in f.items():
-                    with st.expander(f"📌 {t}", expanded=True): st.markdown(c)
+                    with st.expander(f"📌 {t}", expanded=True): 
+                        st.markdown(c)
+            
             if not found_jmf:
                 st.info(f"Aucune donnée de JMF pour {sel}")
                         
@@ -255,4 +264,5 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
