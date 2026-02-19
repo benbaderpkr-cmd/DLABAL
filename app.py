@@ -42,34 +42,24 @@ if not check_password():
 # WIDGET METEO
 # ==========================================
 
-def add_weather_widget():
-    # 1. Localisation IP
-    try:
-        geo_data = requests.get('https://ipapi.co/json/').json()
-        lat = geo_data.get('latitude', 46.50)
-        lon = geo_data.get('longitude', -0.84)
-        city = geo_data.get('city', 'Ma position')
-    except Exception:
-        lat, lon, city = 46.50, -0.84, "Sérigné"
-
-    # 2. Utilisation du domaine WIDGET (autorisé en iframe)
-    # L'URL est structurée différemment pour le serveur de widget
-    meteoblue_widget_url = f"https://www.meteoblue.com/fr/meteo/widgets/daily?geoloc=fixed&lat={lat}&lon={lon}&asl=47&tz=Europe%2FParis&city={city}&days=4&tempunit=CELSIUS&windunit=KILOMETRE_PER_HOUR&precipunit=MILLIMETRE&coloured=coloured&pictoicon=1&elm%5B1%5D=1&elm%5B2%5D=1&elm%5B3%5D=1&layout=light"
-
-    with st.sidebar:
-        st.markdown(f"### 🌦️ Météo : {city}")
-        
-        # Code d'intégration standard de Meteoblue
-        iframe_code = f"""
-        <iframe src="{meteoblue_widget_url}" 
-                frameborder="0" scrolling="NO" allowtransparency="true" 
-                sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" 
-                style="width: 100%; height: 420px;">
-        </iframe>
-        """
-        components.html(iframe_code, height=450)
-
-add_weather_widget()
+with st.sidebar:
+    st.markdown("### 🌦️ Météo locale")
+    
+    # On utilise components.html pour injecter le code iframe
+    # Note : j'ai ajusté le scrolling="no" pour éviter les doubles barres de défilement
+    iframe_code = """
+    <iframe id="widget_autocomplete_preview" 
+            width="150" 
+            height="300" 
+            frameborder="0" 
+            scrolling="no"
+            src="https://meteofrance.com/widget/prevision/852810##3D6AA2" 
+            title="Prévisions Sérigné par Météo-France"
+            style="display: block; margin: 0 auto;"> 
+    </iframe>
+    """
+    
+    components.html(iframe_code, height=320)
 
 # Appel de la fonction
 add_weather_widget()
@@ -270,6 +260,7 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
+
 
 
 
