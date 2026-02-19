@@ -48,7 +48,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 def envoyer_feedback(legume, nom_onglet_app, message):
     try:
         nom_sheet = legume.upper()
-        # Création de la ligne avec tes 4 colonnes
+        # 1. Préparation de ta ligne (tes 4 colonnes)
         new_row = pd.DataFrame([{
             "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
             "LEGUME": nom_sheet,
@@ -56,19 +56,26 @@ def envoyer_feedback(legume, nom_onglet_app, message):
             "FEEDBACK": message
         }])
         
+        # 2. tentative de lecture sécurisée
         try:
-            # On force la lecture sur URL_SHEET2
+            # On essaie de lire l'existant sur le 2ème Spreadsheet
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
-            df_updated = pd.concat([df_existing, new_row], ignore_index=True)
-        except:
-            # Si l'onglet n'existe pas, on commence avec la nouvelle ligne
+            if df_existing is not None and not df_existing.empty:
+                df_updated = pd.concat([df_existing, new_row], ignore_index=True)
+            else:
+                df_updated = new_row
+        except Exception:
+            # Si erreur de lecture (onglet inexistant), on utilise juste la nouvelle ligne
+            # C'est ici que la "création" se prépare
             df_updated = new_row
         
-        # On force l'écriture sur URL_SHEET2
+        # 3. L'envoi (conn.update crée l'onglet s'il n'existe pas)
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        st.success(f"✅ Suggestion enregistrée dans l'onglet {nom_sheet} (Feedback)")
+        st.success(f"✅ Enregistré dans l'onglet {nom_sheet} de ton GSheet Feedback")
+        
     except Exception as e:
-        st.error(f"Erreur GSheets : {e}")
+        # Si ça plante encore ici, c'est un problème de droits (Partage du fichier)
+        st.error(f"Erreur technique : {e}")
         
 def load_json(filename):
     if os.path.exists(filename):
@@ -318,6 +325,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
