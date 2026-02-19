@@ -48,7 +48,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 def envoyer_feedback(legume, nom_onglet_app, message):
     try:
         nom_sheet = legume.upper()
-        # 1. Préparation de ta ligne (tes 4 colonnes)
+        # 1. Ta ligne de données
         new_row = pd.DataFrame([{
             "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
             "LEGUME": nom_sheet,
@@ -56,26 +56,27 @@ def envoyer_feedback(legume, nom_onglet_app, message):
             "FEEDBACK": message
         }])
         
-        # 2. tentative de lecture sécurisée
+        # 2. On essaie de récupérer l'existant
         try:
-            # On essaie de lire l'existant sur le 2ème Spreadsheet
+            # On tente de lire. Si l'onglet n'existe pas, ça va dans le 'except'
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
             if df_existing is not None and not df_existing.empty:
                 df_updated = pd.concat([df_existing, new_row], ignore_index=True)
             else:
                 df_updated = new_row
-        except Exception:
-            # Si erreur de lecture (onglet inexistant), on utilise juste la nouvelle ligne
-            # C'est ici que la "création" se prépare
+        except:
+            # L'onglet n'existe pas ou est illisible -> On prépare la création
             df_updated = new_row
         
-        # 3. L'envoi (conn.update crée l'onglet s'il n'existe pas)
+        # 3. L'ACTION CRUCIALE : On met à jour
+        # Si nom_sheet n'existe pas, conn.update VA tenter de le créer.
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        st.success(f"✅ Enregistré dans l'onglet {nom_sheet} de ton GSheet Feedback")
+        st.success(f"✅ Suggestion enregistrée pour {nom_sheet} !")
         
     except Exception as e:
-        # Si ça plante encore ici, c'est un problème de droits (Partage du fichier)
-        st.error(f"Erreur technique : {e}")
+        # Si ça bloque encore ici, c'est que l'API bloque la création d'onglet
+        st.error(f"Désolé, l'onglet '{nom_sheet}' doit être créé manuellement dans le GSheet de Feedback une première fois.")
+        st.info("Crée un onglet vide nommé exactement comme le légume en majuscules dans ton GSheet.")
         
 def load_json(filename):
     if os.path.exists(filename):
@@ -325,6 +326,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
