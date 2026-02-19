@@ -38,10 +38,6 @@ def check_password():
 if not check_password():
     st.stop()
 
-# Initialisation du cache pour le NOM
-if "user_name" not in st.session_state:
-    st.session_state["user_name"] = ""
-
 # ==========================================
 # 2. CONNEXIONS ET CHARGEMENT
 # ==========================================
@@ -86,22 +82,11 @@ JDV_DATA = load_json("jdv.json")
 SOURCES_JMF = load_json("sources_jmf.json")
 REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json")
 
-# --- FILTRAGE DES LÉGUMES (Supprime les vides) ---
+# Filtrage des légumes
 tous_les_legumes_potentiels = sorted(list(set(
-    list(GAB_DATA.keys()) + 
-    list(JMF_DATA.keys()) + 
-    list(JDV_DATA.keys()) + 
-    list(SOURCES_JMF.get("reglages_itk", {}).keys())
+    list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + list(SOURCES_JMF.get("reglages_itk", {}).keys())
 )))
-
-tous_les_legumes = []
-for leg in tous_les_legumes_potentiels:
-    has_gab = leg in GAB_DATA and GAB_DATA[leg] != {}
-    has_jmf = leg in JMF_DATA and JMF_DATA[leg] != {}
-    has_jdv = leg in JDV_DATA and JDV_DATA[leg] != {}
-    has_itk = leg in SOURCES_JMF.get("reglages_itk", {})
-    if has_gab or has_jmf or has_jdv or has_itk:
-        tous_les_legumes.append(leg)
+tous_les_legumes = [l for l in tous_les_legumes_potentiels if (GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l) or l in SOURCES_JMF.get("reglages_itk", {}))]
 
 # ==========================================
 # 3. SIDEBAR
@@ -145,23 +130,20 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
     if st.button("⬅️ Retour au dossier"):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
-    # (Le code JP1 global reste le même)
-
 else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
         st.info("👈 Sélectionnez un légume dans le menu à gauche.")
     else:
         st.title(f"📊 {sel.upper()}")
+        
+        # --- LE CHAMP NOM (CACHE IMMÉDIAT) ---
+        # On utilise une 'key' pour que Streamlit gère le session_state tout seul
+        st.text_input("👤 Ton Nom (obligatoire pour corriger) :", key="user_name", help="Ton nom sera mémorisé pour toute la session.")
+        
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
+        nom_utilisateur = st.session_state.get("user_name", "")
 
-        # On crée un champ nom unique en haut de la page pour le cache immédiat
-        nom_cache = st.text_input("👤 Ton Nom (requis pour les corrections) :", 
-                                  value=st.session_state["user_name"], 
-                                  key="user_name",
-                                  help="Ton nom sera mémorisé pour toute la session.")
-
-        # --- TAB 1 : GAB ---
         with tab1:
             g = GAB_DATA.get(sel, {})
             if g:
@@ -172,11 +154,11 @@ else:
                             st.success(f"**{b['titre']}**\n\n{b['contenu']}")
                             pop = st.popover("📝", help=f"Suggérer une correction sur {b['titre']}")
                             with pop.form(key=f"fb_gab_id_{sel}_{i}"):
-                                st.write(f"Utilisateur : **{nom_cache or 'Anonyme'}**")
+                                st.info(f"Auteur : {nom_utilisateur or 'Anonyme'}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not nom_cache: st.error("Inscris ton nom en haut de la fiche.")
-                                    else: envoyer_feedback(sel, "GAB", msg, b['titre'], nom_cache)
+                                    if not nom_utilisateur: st.error("Inscris ton nom au dessus des onglets.")
+                                    else: envoyer_feedback(sel, "GAB", msg, b['titre'], nom_utilisateur)
 
                 for k, v in g.get("TECHNIQUE", {}).items():
                     with st.expander(f"📌 {k}", expanded=True): 
@@ -185,13 +167,12 @@ else:
                         with c2:
                             pop = st.popover("📝", help=f"Suggérer une correction pour {k}")
                             with pop.form(key=f"fb_gab_tech_{sel}_{k}"):
-                                st.write(f"Utilisateur : **{nom_cache or 'Anonyme'}**")
+                                st.info(f"Auteur : {nom_utilisateur or 'Anonyme'}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not nom_cache: st.error("Inscris ton nom en haut de la fiche.")
-                                    else: envoyer_feedback(sel, "GAB", msg, k, nom_cache)
+                                    if not nom_utilisateur: st.error("Inscris ton nom au dessus des onglets.")
+                                    else: envoyer_feedback(sel, "GAB", msg, k, nom_utilisateur)
 
-        # --- TAB 2 : JMF ---
         with tab2:
             f = JMF_DATA.get(sel, {})
             if f:
@@ -202,13 +183,12 @@ else:
                         with c2:
                             pop = st.popover("📝", help=f"Suggérer une correction pour {t}")
                             with pop.form(key=f"fb_jmf_{sel}_{t}"):
-                                st.write(f"Utilisateur : **{nom_cache or 'Anonyme'}**")
+                                st.info(f"Auteur : {nom_utilisateur or 'Anonyme'}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not nom_cache: st.error("Inscris ton nom en haut de la fiche.")
-                                    else: envoyer_feedback(sel, "JMF", msg, t, nom_cache)
+                                    if not nom_utilisateur: st.error("Inscris ton nom au dessus des onglets.")
+                                    else: envoyer_feedback(sel, "JMF", msg, t, nom_utilisateur)
 
-        # --- TAB 3 : JDV ---
         with tab3:
             j = JDV_DATA.get(sel, {})
             if j:
@@ -219,13 +199,12 @@ else:
                         with c2:
                             pop = st.popover("📝", help=f"Suggérer une correction pour {t}")
                             with pop.form(key=f"fb_jdv_{sel}_{t}"):
-                                st.write(f"Utilisateur : **{nom_cache or 'Anonyme'}**")
+                                st.info(f"Auteur : {nom_utilisateur or 'Anonyme'}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not nom_cache: st.error("Inscris ton nom en haut de la fiche.")
-                                    else: envoyer_feedback(sel, "JDV", msg, t, nom_cache)
+                                    if not nom_utilisateur: st.error("Inscris ton nom au dessus des onglets.")
+                                    else: envoyer_feedback(sel, "JDV", msg, t, nom_utilisateur)
 
-        # --- TAB 4 : THO ---
         with tab4:
             st.subheader(f"📝 Saisie Terrain - {sel}")
             try:
@@ -234,7 +213,6 @@ else:
             except: 
                 df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
                 notes = {}
-            
             with st.form(key=f"f_tho_{sel}"):
                 c1, c2 = st.columns(2)
                 v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
@@ -249,9 +227,9 @@ else:
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Données THO enregistrées !")
 
-# --- METEO SIDEBAR ---
+# --- METEO ---
 st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
-    mf_iframe = """<iframe id="widget_autocomplete_preview" width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="display: block; margin: 0 auto; border: none;"></iframe>"""
+    mf_iframe = """<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>"""
     components.html(mf_iframe, height=310)
