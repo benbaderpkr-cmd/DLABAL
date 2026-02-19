@@ -1,564 +1,505 @@
-"Ail": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°1 - Ail. Culture de cycle long (250-270 jours). Plante rustique mais exigeante sur le drainage et la fertilisation soufrée. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET PRÉCÉDENTS",
-          "contenu": "• **Sol :** Préférer les sols légers, profonds et sains. Éviter impérativement les sols hydromorphes qui provoquent l'asphyxie racinaire et le développement de maladies.\n\n• **Rotation :** Délai de retour de 5 ans minimum.\n\n• **Précédents :** Éviter les autres Alliacées (oignon, échalote, poireau). Précédents favorables : céréales, courges."
-        },
-        {
-          "titre": "FUMURE ET BESOINS",
-          "contenu": "• **Besoins (Exportations) :** 80N - 60P - 120K.\n\n• **Soufre :** Apport indispensable pour la synthèse des huiles essentielles (alliine) et la santé de la plante.\n\n• **Fumure :** Éviter les apports de fumier frais juste avant la plantation (risque de pourriture)."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Matériel :** Utiliser des caïeux sains, certifiés SOC si possible pour éviter les viroses et nématodes.\n\n• **Densité :** 30 à 45 caïeux / m² (soit environ 10-12 caïeux par mètre linéaire).\n\n• **Mise en place :** Enfoncer les caïeux à 3-5 cm de profondeur, pointe vers le haut.\n\n• **Espacement :** 10 cm sur le rang, 30 cm entre rangs.",
-        "SANTÉ BIO": "• **Rouille (Puccinia porri) :** Ponctuations orangées sur les feuilles. Favorisée par l'humidité et un excès d'azote.\n\n• **Pourriture blanche (Sclerotium cepivorum) :** Feutrage blanc et petits sclérotes noirs au collet.\n\n• **Mouche de l'oignon (Delia antiqua) :** Les larves minent le plateau et provoquent le flétrissement.",
-        "VARIÉTÉS": "| Type | Période Plantation | Caractéristiques / Variétés |\n| :--- | :--- | :--- |\n| **Ail Blanc** | Automne | Gros bulbes, productif. Variétés : Messidrome, Theridrome |\n| **Ail Violet** | Automne | Très précoce, gros caïeux colorés. Variétés : Germidour, Violet de Cadours |\n| **Ail Rose** | Printemps | Bulbes plus petits, excellente conservation. Variétés : Edenrose, Printanor |"
+{
+  "Ail": {
+    "ENTETE": "Fiche n°1 - Ail. Culture de cycle long (250-270 jours). Plante rustique mais exigeante sur le drainage et la fertilisation soufrée. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET PRÉCÉDENTS",
+        "contenu": "• **Sol :** Préférer les sols légers, profonds et sains. Éviter impérativement les sols hydromorphes qui provoquent l'asphyxie racinaire et le développement de maladies.\n\n• **Rotation :** Délai de retour de 5 ans minimum.\n\n• **Précédents :** Éviter les autres Alliacées (oignon, échalote, poireau). Précédents favorables : céréales, courges."
+      },
+      {
+        "titre": "FUMURE ET BESOINS",
+        "contenu": "• **Besoins (Exportations) :** 80N - 60P - 120K.\n\n• **Soufre :** Apport indispensable pour la synthèse des huiles essentielles (alliine) et la santé de la plante.\n\n• **Fumure :** Éviter les apports de fumier frais juste avant la plantation (risque de pourriture)."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Matériel :** Utiliser des caïeux sains, certifiés SOC si possible pour éviter les viroses et nématodes.\n\n• **Densité :** 30 à 45 caïeux / m² (soit environ 10-12 caïeux par mètre linéaire).\n\n• **Mise en place :** Enfoncer les caïeux à 3-5 cm de profondeur, pointe vers le haut.\n\n• **Espacement :** 10 cm sur le rang, 30 cm entre rangs.",
+      "SANTÉ BIO": "• **Rouille (Puccinia porri) :** Ponctuations orangées sur les feuilles. Favorisée par l'humidité et un excès d'azote.\n\n• **Pourriture blanche (Sclerotium cepivorum) :** Feutrage blanc et petits sclérotes noirs au collet.\n\n• **Mouche de l'oignon (Delia antiqua) :** Les larves minent le plateau et provoquent le flétrissement.",
+      "VARIÉTÉS": "| Type | Période Plantation | Caractéristiques / Variétés |\n| :--- | :--- | :--- |\n| **Ail Blanc** | Automne | Gros bulbes, productif. Variétés : Messidrome, Theridrome |\n| **Ail Violet** | Automne | Très précoce, gros caïeux colorés. Variétés : Germidour, Violet de Cadours |\n| **Ail Rose** | Printemps | Bulbes plus petits, excellente conservation. Variétés : Edenrose, Printanor |"
     }
   },
   "Aubergine": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°5 - Aubergine. Plante originaire de l'Inde. Exigence thermique supérieure à la tomate (optimum 25-30°C). Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Préférer les sols sablo-limoneux profonds avec 3-4% de matière organique.\n\n• **pH :** Entre 5,5 et 8.\n\n• **Sensibilité :** Proscrire les sols argileux froids. Culture sous abri quasi-indispensable en Bretagne."
-        },
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Compost :** Apport massif de 30 à 40 t/ha de compost mûr.\n\n• **Exportations :** 200N - 50P - 200K."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS / PLANTATION": "• **Semis :** En terrine à 20-25°C. Levée en 6 à 8 jours.\n\n• **Densité :** 1,4 à 1,6 plants / m².\n\n• **Espacement :** 1,20 m entre rangs et 0,50 m sur le rang.",
-        "ENTRETIEN": "• **Taille :** Supprimer les gourmands à la base jusqu’à la première fleur.\n\n• **Conduite :** Garder 2 à 4 bras principaux. Pincer les latérales après le 2ème bouquet.\n\n• **Palissage :** Indispensable sous abri (ficelles ou grillage à mouton).",
-        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Baluroi | Classique | Très précoce, fruit long et sombre |\n| Bonica | Classique | Demi-précoce, ovale, très productive |\n| Dourga | Blanche | Fruit blanc ivoire, saveur douce |\n| Zebrina | Striée | Violette rayée de blanc |"
+    "ENTETE": "Fiche n°5 - Aubergine. Plante originaire de l'Inde. Exigence thermique supérieure à la tomate (optimum 25-30°C). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Préférer les sols sablo-limoneux profonds avec 3-4% de matière organique.\n\n• **pH :** Entre 5,5 et 8.\n\n• **Sensibilité :** Proscrire les sols argileux froids. Culture sous abri quasi-indispensable en Bretagne."
+      },
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Compost :** Apport massif de 30 à 40 t/ha de compost mûr.\n\n• **Exportations :** 200N - 50P - 200K."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS / PLANTATION": "• **Semis :** En terrine à 20-25°C. Levée en 6 à 8 jours.\n\n• **Densité :** 1,4 à 1,6 plants / m².\n\n• **Espacement :** 1,20 m entre rangs et 0,50 m sur le rang.",
+      "ENTRETIEN": "• **Taille :** Supprimer les gourmands à la base jusqu’à la première fleur.\n\n• **Conduite :** Garder 2 à 4 bras principaux. Pincer les latérales après le 2ème bouquet.\n\n• **Palissage :** Indispensable sous abri (ficelles ou grillage à mouton).",
+      "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Baluroi | Classique | Très précoce, fruit long et sombre |\n| Bonica | Classique | Demi-précoce, ovale, très productive |\n| Dourga | Blanche | Fruit blanc ivoire, saveur douce |\n| Zebrina | Striée | Violette rayée de blanc |"
     }
   },
   "Basilic": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°18 - Basilic. Plante annuelle thermophile, très sensible au froid (noircit dès 10°C). Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "EXIGENCES",
-          "contenu": "• **Température :** Germination à 20°C. Ne supporte aucune température inférieure à 12°C.\n\n• **Sol :** Riche en humus, léger et bien drainé.\n\n• **Fumure :** 20 à 30 t/ha de compost décomposé. Exportations : 100N - 60P - 150K."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION / ENTRETIEN": "• **Densité :** 25 x 25 cm ou 30 x 30 cm.\n\n• **Pincement :** Supprimer les fleurs dès apparition pour favoriser les feuilles.\n\n• **Irrigation :** Goutte-à-goutte impératif (ne pas mouiller le feuillage).",
-        "SANTÉ": "• **Fusariose :** Flétrissement des tiges et brunissement des vaisseaux.\n\n• **Mildiou :** Feutrage grisâtre sous les feuilles par temps humide.",
-        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Genovese | Grand vert | Classique pour pesto |\n| Fin Vert | Petit | Port en boule, petites feuilles |\n| Red Rubin | Pourpre | Décoratif, saveur poivrée |"
+    "ENTETE": "Fiche n°18 - Basilic. Plante annuelle thermophile, très sensible au froid (noircit dès 10°C). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "EXIGENCES",
+        "contenu": "• **Température :** Germination à 20°C. Ne supporte aucune température inférieure à 12°C.\n\n• **Sol :** Riche en humus, léger et bien drainé.\n\n• **Fumure :** 20 à 30 t/ha de compost décomposé. Exportations : 100N - 60P - 150K."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION / ENTRETIEN": "• **Densité :** 25 x 25 cm ou 30 x 30 cm.\n\n• **Pincement :** Supprimer les fleurs dès apparition pour favoriser les feuilles.\n\n• **Irrigation :** Goutte-à-goutte impératif (ne pas mouiller le feuillage).",
+      "SANTÉ": "• **Fusariose :** Flétrissement des tiges et brunissement des vaisseaux.\n\n• **Mildiou :** Feutrage grisâtre sous les feuilles par temps humide.",
+      "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Genovese | Grand vert | Classique pour pesto |\n| Fin Vert | Petit | Port en boule, petites feuilles |\n| Red Rubin | Pourpre | Décoratif, saveur poivrée |"
     }
   },
   "Bette": {
-    "GAB_FRAB": {
-      "ENTETE": "Plante bisannuelle (Beta vulgaris var. cicla) cultivée pour ses feuilles ou ses côtes (cardes). Très productive, elle offre une récolte continue sur une longue période.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Préfère les sols frais, profonds, riches en azote et en potasse.\n• **pH :** Idéalement entre 6,5 et 7,5. Sensible à l'acidité.\n• **Climat :** Rustique, mais craint la sécheresse prolongée."
-        },
-        {
-          "titre": "FUMURE ET BESOINS",
-          "contenu": "• **Besoins (U/ha) :** 150N - 100P - 250K.\n• **Compost :** Apport massif de 30-40 t/ha de compost mûr.\n• **Oligo-éléments :** Sensible aux carences en Bore."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS ET PLANTATION": "• **Semis :** En mottes (3-4 cm) vivement conseillé.\n• **Période :** Mars à juillet.\n• **Densité :** 6 à 8 plants / m² (2 rangs par planche, 30-35 cm sur le rang).",
-        "ENTRETIEN": "• **Irrigation :** Cruciale pour la tendreté des côtes.\n• **Désherbage :** Binage et paillage recommandé.",
-        "SANTÉ BIO": "• **Mouche mineuse :** Pose de filet.\n• **Cercosporiose :** Éviter l'humidité stagnante sur le feuillage."
+    "ENTETE": "Plante bisannuelle (Beta vulgaris var. cicla) cultivée pour ses feuilles ou ses côtes (cardes). Très productive, elle offre une récolte continue sur une longue période.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Préfère les sols frais, profonds, riches en azote et en potasse.\n• **pH :** Idéalement entre 6,5 et 7,5. Sensible à l'acidité.\n• **Climat :** Rustique, mais craint la sécheresse prolongée."
+      },
+      {
+        "titre": "FUMURE ET BESOINS",
+        "contenu": "• **Besoins (U/ha) :** 150N - 100P - 250K.\n• **Compost :** Apport massif de 30-40 t/ha de compost mûr.\n• **Oligo-éléments :** Sensible aux carences en Bore."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS ET PLANTATION": "• **Semis :** En mottes (3-4 cm) vivement conseillé.\n• **Période :** Mars à juillet.\n• **Densité :** 6 à 8 plants / m² (2 rangs par planche, 30-35 cm sur le rang).",
+      "ENTRETIEN": "• **Irrigation :** Cruciale pour la tendreté des côtes.\n• **Désherbage :** Binage et paillage recommandé.",
+      "SANTÉ BIO": "• **Mouche mineuse :** Pose de filet.\n• **Cercosporiose :** Éviter l'humidité stagnante sur le feuillage."
     }
   },
   "Betterave": {
-    "GAB_FRAB": {
-      "ENTETE": "Plante bisannuelle rustique (Beta vulgaris). La production bio mise sur la qualité gustative et la conservation hivernale. Très exigeante sur la structure du sol et l'équilibre minéral (Bore).",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Préfère les limons profonds et les terres riches en humus. Craint les sols battants et les cailloux (déformation des racines).\n• **pH :** 6,5 à 7,5. Très sensible à l'acidité (blocage de croissance si pH < 6).\n• **Climat :** Germination dès 5°C, optimum à 15-20°C."
-        },
-        {
-          "titre": "FUMURE / NPK",
-          "contenu": "• **Besoins (U/ha) :** 150N - 80P - 250K.\n• **Compost :** 20 à 40 t/ha de compost mûr selon le précédent.\n• **Oligo-éléments :** Apport de Bore indispensable (1 à 2 kg/ha) pour éviter le 'cœur noir'.\n• **Sensibilité :** L'excès d'azote favorise le feuillage au détriment de la racine."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS ET DENSITÉ": "• **Semis direct :** 10-12 kg de graines/ha.\n• **Plantation (mottes) :** Gain de 3 semaines sur la récolte. Mottes de 3-4 cm.\n• **Densité :** 150 000 à 250 000 pieds/ha. Sur planche de 75 cm : 3 à 4 rangs, 10-15 cm sur le rang.",
-        "ENTRETIEN ET IRRIGATION": "• **Eau :** Besoins réguliers (300-400 mm sur cycle). Un stress hydrique provoque une lignification (racine fibreuse).\n• **Désherbage :** Faux-semis impératif. Binage précoce (stade 2 feuilles) puis buttage léger.",
-        "PHYTOPROTECTION": "• **Pégomyie (Mouche) :** Galeries dans les feuilles. Filets mailles 0,8 mm.\n• **Cercosporiose :** Taches circulaires avec liseré pourpre. Rotation longue (4 ans)."
+    "ENTETE": "Plante bisannuelle rustique (Beta vulgaris). La production bio mise sur la qualité gustative et la conservation hivernale. Très exigeante sur la structure du sol et l'équilibre minéral (Bore).",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Préfère les limons profonds et les terres riches en humus. Craint les sols battants et les cailloux (déformation des racines).\n• **pH :** 6,5 à 7,5. Très sensible à l'acidité (blocage de croissance si pH < 6).\n• **Climat :** Germination dès 5°C, optimum à 15-20°C."
+      },
+      {
+        "titre": "FUMURE / NPK",
+        "contenu": "• **Besoins (U/ha) :** 150N - 80P - 250K.\n• **Compost :** 20 à 40 t/ha de compost mûr selon le précédent.\n• **Oligo-éléments :** Apport de Bore indispensable (1 à 2 kg/ha) pour éviter le 'cœur noir'.\n• **Sensibilité :** L'excès d'azote favorise le feuillage au détriment de la racine."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS ET DENSITÉ": "• **Semis direct :** 10-12 kg de graines/ha.\n• **Plantation (mottes) :** Gain de 3 semaines sur la récolte. Mottes de 3-4 cm.\n• **Densité :** 150 000 à 250 000 pieds/ha. Sur planche de 75 cm : 3 à 4 rangs, 10-15 cm sur le rang.",
+      "ENTRETIEN ET IRRIGATION": "• **Eau :** Besoins réguliers (300-400 mm sur cycle). Un stress hydrique provoque une lignification (racine fibreuse).\n• **Désherbage :** Faux-semis impératif. Binage précoce (stade 2 feuilles) puis buttage léger.",
+      "PHYTOPROTECTION": "• **Pégomyie (Mouche) :** Galeries dans les feuilles. Filets mailles 0,8 mm.\n• **Cercosporiose :** Taches circulaires avec liseré pourpre. Rotation longue (4 ans)."
     }
   },
   "Brocoli": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°8 - Brocoli. Culture rapide, sensible à la chaleur et au stress hydrique. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Exportations :** 180N - 60P - 220K.\n\n• **Bore :** Carence fréquente provoquant des tiges creuses."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 3,5 à 4,5 plants / m².\n\n• **Écartement :** 60-70 cm entre rangs, 35-40 cm sur le rang.",
-        "SANTÉ": "• **Altises :** Protection par filets dès la plantation.\n\n• **Hernie du chou :** Éviter les sols acides, rotation de 7 ans.",
-        "VARIÉTÉS": "| Variété | Cycle | Caractéristiques |\n| :--- | :--- | :--- |\n| Belstar F1 | 75 jours | Bonne repousse latérale |\n| Marathon F1 | 85 jours | Référence automne, grain fin |\n| Ironman F1 | 80 jours | Résistant à la chaleur |"
+    "ENTETE": "Fiche n°8 - Brocoli. Culture rapide, sensible à la chaleur et au stress hydrique. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 180N - 60P - 220K.\n\n• **Bore :** Carence fréquente provoquant des tiges creuses."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 3,5 à 4,5 plants / m².\n\n• **Écartement :** 60-70 cm entre rangs, 35-40 cm sur le rang.",
+      "SANTÉ": "• **Altises :** Protection par filets dès la plantation.\n\n• **Hernie du chou :** Éviter les sols acides, rotation de 7 ans.",
+      "VARIÉTÉS": "| Variété | Cycle | Caractéristiques |\n| :--- | :--- | :--- |\n| Belstar F1 | 75 jours | Bonne repousse latérale |\n| Marathon F1 | 85 jours | Référence automne, grain fin |\n| Ironman F1 | 80 jours | Résistant à la chaleur |"
     }
   },
   "Carotte": {
-    "GAB_FRAB": {
-      "ENTETE": "Plante bisannuelle (Daucus carota). Culture de plein champ à cycle long (140-180 jours). L'objectif est d'obtenir une racine de gros calibre, bien colorée et apte au stockage hivernal. Source : GAB/FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Impérativement profond et meuble. Les sols caillouteux ou trop compacts provoquent des racines fourchues ou courtes.\n• **pH :** Optimum entre 6,5 et 7,5.\n• **Rotation :** Délai de 4 à 5 ans. Éviter de revenir après des parcelles sales (vivaces) car le désherbage est long."
-        },
-        {
-          "titre": "FUMURE ET BESOINS",
-          "contenu": "• **Exportations (U/ha) :** 120N - 100P - 250K.\n• **Azote :** Attention aux excès qui favorisent le feuillage au détriment de la racine et nuisent à la conservation.\n• **Potasse :** Élément clé pour la résistance au froid et la teneur en sucre (conservation)."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS ET DENSITÉ": "• **Période :** De mi-mai à fin juin.\n• **Densité :** 1 à 1,2 million de graines/ha. Sur planche de 75 cm : 3 rangs, espacement 4-5 cm sur la ligne.\n• **Profondeur :** 1 cm. Le sol doit rester frais jusqu'à la levée (parfois 15 jours).",
-        "ENTRETIEN ET IRRIGATION": "• **Désherbage :** Phase critique jusqu'au stade 3 feuilles. Désherbage thermique en pré-levée indispensable.\n• **Irrigation :** Maintenir une humidité constante pour éviter le fractionnement des racines (éclatement) en cas de pluie soudaine après une sécheresse.",
-        "SANTÉ ET PROTECTION": "• **Mouche de la carotte :** Pose de filets indispensable si la pression est forte. Les vols d'été sont les plus dangereux pour les racines de conservation.\n• **Maladies du feuillage :** Alternariose et Oïdium peuvent stopper la croissance. Favoriser l'aération des rangs."
+    "ENTETE": "Plante bisannuelle (Daucus carota). Culture de plein champ à cycle long (140-180 jours). L'objectif est d'obtenir une racine de gros calibre, bien colorée et apte au stockage hivernal. Source : GAB/FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET EXIGENCES",
+        "contenu": "• **Sol :** Impérativement profond et meuble. Les sols caillouteux ou trop compacts provoquent des racines fourchues ou courtes.\n• **pH :** Optimum entre 6,5 et 7,5.\n• **Rotation :** Délai de 4 à 5 ans. Éviter de revenir après des parcelles sales (vivaces) car le désherbage est long."
+      },
+      {
+        "titre": "FUMURE ET BESOINS",
+        "contenu": "• **Exportations (U/ha) :** 120N - 100P - 250K.\n• **Azote :** Attention aux excès qui favorisent le feuillage au détriment de la racine et nuisent à la conservation.\n• **Potasse :** Élément clé pour la résistance au froid et la teneur en sucre (conservation)."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS ET DENSITÉ": "• **Période :** De mi-mai à fin juin.\n• **Densité :** 1 à 1,2 million de graines/ha. Sur planche de 75 cm : 3 rangs, espacement 4-5 cm sur la ligne.\n• **Profondeur :** 1 cm. Le sol doit rester frais jusqu'à la levée (parfois 15 jours).",
+      "ENTRETIEN ET IRRIGATION": "• **Désherbage :** Phase critique jusqu'au stade 3 feuilles. Désherbage thermique en pré-levée indispensable.\n• **Irrigation :** Maintenir une humidité constante pour éviter le fractionnement des racines (éclatement) en cas de pluie soudaine après une sécheresse.",
+      "SANTÉ ET PROTECTION": "• **Mouche de la carotte :** Pose de filets indispensable si la pression est forte. Les vols d'été sont les plus dangereux pour les racines de conservation.\n• **Maladies du feuillage :** Alternariose et Oïdium peuvent stopper la croissance. Favoriser l'aération des rangs."
     }
   },
   "Celeri-Rave": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°10 - Céleri-Rave. Cycle long (150-180 jours). Exigeant en eau et fertilisation. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Fumure :** 30-40 t/ha de fumier composté.\n\n• **Exportations :** 150N - 100P - 250K.\n\n• **Potasse :** Exigence élevée pour le développement de la rave."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Semis :** Mars sous abri (20°C). Repiquage en mottes indispensable.\n\n• **Densité :** 6 à 9 plants / m² (Mai-Juin).",
-        "SANTÉ": "• **Septoriose :** Taches brunes à points noirs. Dévastateur en milieu humide.\n\n• **Carence Bore :** Craquelures sur la rave et cœur noir.",
-        "VARIÉTÉS": "| Variété | Particularité |\n| :--- | :--- |\n| Monarch | Gros volume, chair blanche |\n| Mars | Résistant septoriose |\n| President | Peau lisse, bonne conservation |"
+    "ENTETE": "Fiche n°10 - Céleri-Rave. Cycle long (150-180 jours). Exigeant en eau et fertilisation. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Fumure :** 30-40 t/ha de fumier composté.\n\n• **Exportations :** 150N - 100P - 250K.\n\n• **Potasse :** Exigence élevée pour le développement de la rave."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Semis :** Mars sous abri (20°C). Repiquage en mottes indispensable.\n\n• **Densité :** 6 à 9 plants / m² (Mai-Juin).",
+      "SANTÉ": "• **Septoriose :** Taches brunes à points noirs. Dévastateur en milieu humide.\n\n• **Carence Bore :** Craquelures sur la rave et cœur noir.",
+      "VARIÉTÉS": "| Variété | Particularité |\n| :--- | :--- |\n| Monarch | Gros volume, chair blanche |\n| Mars | Résistant septoriose |\n| President | Peau lisse, bonne conservation |"
     }
   },
   "Chou-fleur": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°7 - Chou-Fleur. Culture exigeante en eau et en oligo-éléments. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET FUMURE",
-          "contenu": "• **Sol :** Profonds, frais, bonne réserve utile.\n\n• **Exportations :** 200N - 80P - 250K.\n\n• **Oligo-éléments :** Bore indispensable (cœur creux) et Molybdène (whiptail)."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 2,5 à 4 plants / m².\n\n• **Mise en place :** Plantation profonde pour l'assise du plant.",
-        "VARIÉTÉS": "| Variété | Cycle | Utilisation |\n| :--- | :--- | :--- |\n| Freedom F1 | 75 jours | Été / Automne |\n| Belot F1 | 90 jours | Automne |\n| Admiral F1 | 220 jours | Printemps |"
+    "ENTETE": "Fiche n°7 - Chou-Fleur. Culture exigeante en eau et en oligo-éléments. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET FUMURE",
+        "contenu": "• **Sol :** Profonds, frais, bonne réserve utile.\n\n• **Exportations :** 200N - 80P - 250K.\n\n• **Oligo-éléments :** Bore indispensable (cœur creux) et Molybdène (whiptail)."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 2,5 à 4 plants / m².\n\n• **Mise en place :** Plantation profonde pour l'assise du plant.",
+      "VARIÉTÉS": "| Variété | Cycle | Utilisation |\n| :--- | :--- | :--- |\n| Freedom F1 | 75 jours | Été / Automne |\n| Belot F1 | 90 jours | Automne |\n| Admiral F1 | 220 jours | Printemps |"
     }
   },
   "Concombre": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°11 - Concombre. Exige chaleur et humidité atmosphérique. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Exportations :** 150N - 80P - 200K.\n\n• **Apports :** Fractionnement de l'azote par fertirrigation."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 1,5 à 2 plants / m² sous abri.\n\n• **Température sol :** Minimum 15°C pour planter.",
-        "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Marketmore | Plein champ | Rustique, fruit court |\n| Loustik F1 | Long abri | Type hollandais |\n| Tanja | Long | Sans amertume |"
+    "ENTETE": "Fiche n°11 - Concombre. Exige chaleur et humidité atmosphérique. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 150N - 80P - 200K.\n\n• **Apports :** Fractionnement de l'azote par fertirrigation."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 1,5 à 2 plants / m² sous abri.\n\n• **Température sol :** Minimum 15°C pour planter.",
+      "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Marketmore | Plein champ | Rustique, fruit court |\n| Loustik F1 | Long abri | Type hollandais |\n| Tanja | Long | Sans amertume |"
     }
   },
-"Courge": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°13 - Courges et Potirons. Famille des Cucurbitacées. Culture pivot de la rotation pour sa capacité couvrante. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Riche en humus, profond, retenant bien l'humidité.\n\n• **Température :** Germination à 12°C minimum. Optimum de croissance à 20-25°C."
-        },
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Besoins :** 150N - 100P - 250K.\n\n• **Apports :** Compost de ferme (25-30 t/ha). Éviter l'azote en excès en fin de cycle (nuit à la conservation)."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Semis :** En godets (Avril) ou semis direct (Mai) si le sol est réchauffé.\n\n• **Densité :** 0,5 à 1 plant / m² selon le port (coureur ou non).\n\n• **Espacement :** 1 m à 1,50 m entre rangs.",
-        "SANTÉ": "• **Oïdium :** Feutrage blanc sur feuilles. Favorisé par les rosées matinales.\n\n• **Pucerons :** Vecteurs de virus. Surveillance dès la levée.",
-        "VARIÉTÉS": "| Espèce | Variétés | Particularités |\n| :--- | :--- | :--- |\n| Maxima | Potimarron, Potiron | Chair sucrée, conservation moyenne |\n| Moschata | Butternut, Musquée | Très exigeante en chaleur, excellente conservation |\n| Pepo | Patisson, Spaghetti | Cycle court |"
+  "Courge": {
+    "ENTETE": "Fiche n°13 - Courges et Potirons. Grande diversité. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Fumure :** 30 à 50 t/ha de fumier composté.\n\n• **Exportations :** 150N - 80P - 250K."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 0,5 à 1,5 plants / m².\n\n• **Mise en place :** Fin mai.",
+      "VARIÉTÉS": "| Espèce | Variété | Description |\n| :--- | :--- | :--- |\n| Maxima | Potimarron | Goût de châtaigne |\n| Moschata | Butternut | Chair beurrée |\n| Pepo | Patidou | Chair sucrée |"
     }
   },
   "Courgette": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°12 - Courgette. Production intensive de plein champ ou abri. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "EXIGENCES",
-          "contenu": "• **Climat :** Très sensible au gel. Température optimale 18-22°C.\n\n• **Eau :** Besoins très élevés et réguliers pendant la fructification."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Période :** Dès que les gelées ne sont plus à craindre (mi-mai).\n\n• **Densité :** 1 à 1,2 plant / m².\n\n• **Espacement :** 1 m x 0,80 m ou 1 m x 1 m.",
-        "RÉCOLTE": "Tous les 2 jours pour maintenir la floraison. Fruits de 15-20 cm idéalement.",
-        "SANTÉ": "• **Oïdium :** Quasi systématique en fin d'été. Traitement soufre si nécessaire.\n\n• **Viroses :** Transmises par pucerons, provoquent des déformations des fruits."
+    "ENTETE": "Fiche n°14 - Courgette. Production continue. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET FUMURE",
+        "contenu": "• **Exportations :** 150N - 80P - 200K.\n\n• **Fumure :** 30 t/ha de compost."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 1 à 1,2 plants / m².\n\n• **Espacement :** 1 m entre rangs.",
+      "VARIÉTÉS": "| Variété | Forme | Particularités |\n| :--- | :--- | :--- |\n| Milos F1 | Longue | Résistante virus |\n| Zephyr | Longue | Bicolore |\n| Ronde de Nice | Ronde | Pour farcis |"
     }
   },
   "Echalote": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°2 - Échalote. Bulbe de conservation. Moins exigeante que l'oignon mais sensible à l'humidité. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Type :** Sols légers, de préférence sur buttes en cas de terres lourdes pour assurer un drainage parfait.\n\n• **Fumure :** Pas d'azote organique frais avant plantation (risque de pourriture des bulbes)."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Période :** Février - Mars.\n\n• **Densité :** 10-12 cm sur le rang, 30 cm entre rangs.\n\n• **Profondeur :** Enfoncer aux 2/3, la pointe affleurante.",
-        "RÉCOLTE": "• **Période :** Juillet.\n\n• **Signe :** Quand le feuillage tombe et sèche à 50%.\n\n• **Séchage :** Indispensable au champ (si sec) ou sous abri ventilé."
+    "ENTETE": "Fiche n°15 - Échalote. Culture de type Alliacée. Sensible à l'excès d'humidité hivernale. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET FERTILISATION",
+        "contenu": "• **Sol :** Préférer les terres légères, bien drainées. Éviter les sols hydromorphes.\n\n• **Exportations :** 80N - 60P - 150K.\n\n• **Fumure :** Pas d'apport de fumier frais. Compost mûr uniquement."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Période :** Janvier à Mars (Échalote grise en automne).\n\n• **Densité :** 20 à 30 bulbes / m².\n\n• **Espacement :** 30 cm entre rangs, 10-15 cm sur le rang.",
+      "VARIÉTÉS": "| Variété | Type | Caractéristiques |\n| :--- | :--- | :--- |\n| Longor | Longue | Type Nantaise, peau cuivrée |\n| Jermor | Demi-longue | Très productive, bonne conservation |\n| Griselle | Grise | Goût puissant, plantation automne |"
     }
   },
   "Epinard": {
-    "GAB_FRAB": {
-      "ENTETE": "Plante annuelle de jours courts (Spinacia oleracea). Très sensible à la photopériode (monte en graines si jours > 14h). Source : GAB/FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Riche en azote, frais et humifère. Sensible à l'acidité (pH idéal > 6,5).\n• **Climat :** Supporte le froid (-10°C). Optimum de croissance 15°C."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Printemps (mars-avril) ou Automne (août-sept).\n• **Densité :** 2,5 à 4 millions de graines / ha (selon récolte jeunes pousses ou feuilles).\n• **Espacement :** 3 à 4 rangs par planche, 3-5 cm sur le rang.",
-        "SANTÉ BIO": "• **Mildiou :** Le plus gros risque (Peronospora farinosa). Utiliser des variétés résistantes (races 1 à 15+).\n• **Limaces :** Très dommageables au stade levée."
+    "ENTETE": "Fiche n°16 - Épinard. Plante de jours courts, très sensible à la montaison en été. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 150N - 50P - 200K.\n\n• **Nitrates :** Vigilance sur les apports d'azote pour éviter l'accumulation de nitrates dans les feuilles."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Densité :** 1 à 2 millions de graines / ha.\n\n• **Écartement :** 15-20 cm entre rangs.\n\n• **Période :** Printemps et Automne (éviter juillet).",
+      "VARIÉTÉS": "| Variété | Résistances | Période |\n| :--- | :--- | :--- |\n| Viroflay | Classique | Automne |\n| Lavewa | Mildiou | Printemps/Automne |\n| Butterfly | Rustique | Hiver |"
     }
   },
   "Fenouil": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°14 - Fenouil Bulbeux. Plante exigeante pour la qualité du bulbe (pomme). Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET CLIMAT",
-          "contenu": "• **Exigence :** Très sensible à la photopériode et au stress hydrique (montaison immédiate).\n\n• **Sol :** Léger, profond et très riche en humus."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 8 à 10 plants / m².\n\n• **Espacement :** 30 cm x 35 cm.\n\n• **Buttage :** Léger en fin de croissance pour blanchir la base.",
-        "RÉCOLTE": "Couper à ras du sol quand le bulbe atteint 250-300g.",
-        "SANTÉ": "• **Mouche de la carotte :** Peut miner la base du bulbe.\n\n• **Pucerons :** S'installent dans le feuillage plumeux."
+    "ENTETE": "Fiche n°17 - Fenouil Bulbeux. Exigeant en eau et sensible à la montée à graine (stress). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "EXIGENCES",
+        "contenu": "• **Sol :** Frais, léger, riche en humus.\n\n• **Fumure :** 20-30 t/ha de compost. Exportations : 120N - 60P - 180K."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 8 à 10 plants / m².\n\n• **Mise en place :** Avril à Juillet.\n\n• **Irrigation :** Régulière. Le moindre stress hydrique déclenche la floraison.",
+      "VARIÉTÉS": "| Variété | Type | Particularité |\n| :--- | :--- | :--- |\n| Zefa Fino | Classique | Résistant montaison |\n| Solaris F1 | Hybride | Bulbe bien rond, blanc |\n| Preludio F1 | Précoce | Très rapide |"
     }
   },
   "Feve": {
-    "GAB_FRAB": {
-      "ENTETE": "Légumineuse annuelle (Vicia faba). Excellente plante améliorante pour la structure et l'azote du sol. Source : GAB-FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FERTILISATION",
-          "contenu": "• **Azote :** Autonome grâce aux nodosités (Rhizobium).\n\n• **Besoins :** 60P - 150K."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Très précoce (février) ou automne en climat doux.\n\n• **Profondeur :** 5-8 cm.\n\n• **Densité :** 15-20 cm sur le rang, 40-50 cm entre rangs.",
-        "ENTRETIEN": "• **Pincement :** Étêter après le 6ème bouquet de fleurs pour limiter les pucerons noirs.",
-        "SANTÉ": "• **Pucerons noirs :** Quasi systématiques. Favoriser les auxiliaires.\n\n• **Anthracnose :** Taches noires sur feuilles et gousses par temps humide."
+    "ENTETE": "Fiche n°19 - Fève. Légumineuse rustique. Fixe l'azote de l'air. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Azote :** Pas d'apport (symbiose racinaire).\n\n• **Exportations :** 0N - 60P - 150K.\n\n• **Chaux :** Sensible aux sols trop acides."
       }
-    }
-  },
-  "Fraise": {
-    "GAB_FRAB": {
-      "ENTETE": "Culture pérenne (Fragaria x ananassa). Investissement technique et main-d'œuvre important. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Exigence :** pH 5,5 à 6,5 (légèrement acide). Craint le calcaire actif (chlorose).\n\n• **Drainage :** Crucial. Plantation sur buttes obligatoire en terre lourde."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 4 à 6 plants / m².\n\n• **Paillage :** Plastique ou paille pour protéger les fruits de la terre et garder l'humidité.",
-        "ENTRETIEN": "• **Irrigation :** Goutte-à-goutte sous le paillage.\n\n• **Stolons :** Supprimer régulièrement pour ne pas épuiser le pied mère.",
-        "VARIÉTÉS": "| Type | Variétés | Particularités |\n| :--- | :--- | :--- |\n| Non-remontantes | Gariguette, Ciflorette | Récolte groupée (mai-juin) |\n| Remontantes | Mara des Bois, Charlotte | Récolte étalée (juin aux gelées) |"
-      }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Période :** Novembre (climat doux) ou Février-Mars.\n\n• **Densité :** 10 à 15 graines / m².\n\n• **Profondeur :** 5-8 cm.",
+      "SANTÉ": "• **Puceron noir :** Très fréquent. Pincer la tête des plants dès l'apparition des fleurs.\n\n• **Botrytis :** Taches chocolat sur feuilles par temps humide.",
+      "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Aguadulce | Longue cosse | Très précoce, grains tendres |\n| de Séville | Précoce | Adaptée aux semis d'automne |\n| Witkiem | Grosse graine | Très productive |"
     }
   },
   "Haricot": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°15 - Haricot (Phaseolus vulgaris). Culture thermophile sensible à l'humidité au semis. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "EXIGENCES",
-          "contenu": "• **Température :** Sol à 15°C minimum pour semer. Risque de pourriture des graines en dessous.\n\n• **pH :** 6,0 à 7,5."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Densité :** 30-40 graines / mètre linéaire.\n\n• **Espacement :** 40-50 cm entre rangs.\n\n• **Buttage :** Quand les plants font 15-20 cm pour améliorer l'ancrage.",
-        "RÉCOLTE": "Fréquente (tous les 2-3 jours) pour les haricots verts filets.",
-        "SANTÉ": "• **Sclérotinia :** Pourriture blanche des gousses.\n\n• **Mouche des semis :** Larves détruisant les cotylédons."
+    "ENTETE": "Fiche n°20 - Haricot vert / Beurre. Culture thermophile. Cycle court (60-80 jours). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 0N (Légumineuse) - 60P - 150K.\n\n• **Température :** Germination à partir de 12-15°C dans un sol réchauffé."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Densité :** 30 à 40 graines / m² (nains) ou 5 à 8 (grimpants).\n\n• **Profondeur :** 2-3 cm.\n\n• **Écartement :** 40-50 cm entre rangs.",
+      "SANTÉ": "• **Mouche des semis :** Larves dévorant la graine. Semer en sol chaud.\n\n• **Sclérotinia :** Pourriture blanche sur gousses en conditions humides.",
+      "VARIÉTÉS": "| Variété | Type | Particularité |\n| :--- | :--- | :--- |\n| Talisman | Nain vert | Très productif, sans fil |\n| Rocquencourt | Nain beurre | Jaune, très précoce |\n| Phénomène | Grimpant | Gousses très longues |"
     }
   },
   "Laitue": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°16 - Laitue. Culture de cycle court, base du maraîchage bio. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Exportations :** 80N - 40P - 150K.\n\n• **Sensibilité :** Attention aux nitrates. Ne pas sur-fertiliser en azote avant l'hiver."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 12 à 16 plants / m².\n\n• **Collet :** Ne jamais enterrer la motte (doit affleurer) pour éviter les pourritures.",
-        "SANTÉ": "• **Mildiou (Bremia) :** Utiliser des variétés avec résistances Bl 1-30+.\n\n• **Limaces :** Surveillance quotidienne après plantation.",
-        "VARIÉTÉS": "| Type | Saison | Caractéristiques |\n| :--- | :--- | :--- |\n| Batavia | Toutes saisons | Pomme ferme, croquante |\n| Beurre | Printemps/Hiver | Feuilles tendres |\n| Romaine | Été | Résistante à la chaleur |"
+    "ENTETE": "Fiche n°22 - Laitue. Culture pivot des exploitations maraîchères. Cycle très variable (45 à 100 jours). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 80N - 40P - 180K.\n\n• **Besoins :** Faible système racinaire. Demande un sol riche et une fertilisation de proximité (compost mûr)."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 12 à 16 plants / m².\n\n• **Mise en place :** Toute l'année selon les abris.\n\n• **Irrigation :** Régulière, indispensable pour éviter le durcissement des tissus et le goût amer.",
+      "SANTÉ": "• **Mildiou (Bremia) :** Taches jaunes face supérieure, duvet blanc face inférieure.\n\n• **Pucerons :** Contrôler dès le début de la pommaison.\n\n• **Limaces :** Problématiques dès la plantation.",
+      "VARIÉTÉS": "| Type | Variété | Saison |\n| :--- | :--- | :--- |\n| Batavia | Dorée de Printemps | Printemps |\n| Batavia | Kamalia | Été (résistante chaleur) |\n| Beurre | Appia | Printemps/Automne |\n| Romaine | Galba | Été |"
     }
   },
   "Mache": {
-    "GAB_FRAB": {
-      "ENTETE": "Valerianella locusta. Salade d'hiver rustique. Cycle lent en période froide. Source : GAB-FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Exigence :** Demande un sol ferme et bien tassé pour la germination.\n\n• **Fumure :** Souvent cultivée sur les restes de fumure de la culture précédente."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Août à Octobre.\n\n• **Densité :** 1000 à 2000 graines / m².\n\n• **Ombrage :** Parfois nécessaire en août pour la levée.",
-        "RÉCOLTE": "Manuelle au couteau ou mécanique (tondeuse) pour le vrac.",
-        "SANTÉ": "• **Oïdium :** Feutrage blanc par temps doux et humide.\n\n• **Rouille :** Points jaunes/orangés sur feuilles."
+    "ENTETE": "Fiche n°23 - Mâche. Culture de jours courts. Sensible à la chaleur pour la levée. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "EXIGENCES",
+        "contenu": "• **Sol :** Préfère un sol ferme, peu travaillé en profondeur.\n\n• **Fumure :** Souvent cultivée sur les restes de fumure de la culture précédente.\n\n• **Exportations :** 60N - 30P - 100K."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Période :** Août à Octobre.\n\n• **Densité :** 1500 à 2500 graines / m².\n\n• **Espacement :** 10-15 cm entre rangs.",
+      "SANTÉ": "• **Mildiou :** Surveiller l'aération sous abri.\n\n• **Oïdium :** Feutrage blanc en conditions sèches.",
+      "VARIÉTÉS": "| Variété | Type | Période |\n| :--- | :--- | :--- |\n| Verte à cœur plein | Classique | Automne |\n| Gala | Résistante Mildiou | Automne/Hiver |\n| Vit | Croissance rapide | Hiver |"
     }
   },
   "Melon": {
-    "GAB_FRAB": {
-      "ENTETE": "Cucumis melo. Plante très exigeante en chaleur et lumière. Culture délicate en zone Nord. Source : GAB-FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "CLIMAT",
-          "contenu": "• **Température :** Optimum 25-30°C. Stoppe sa croissance sous 15°C.\n\n• **Protection :** Paillage noir + tunnels ou chenilles indispensables."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 1,5 à 2 plants / m².\n\n• **Irrigation :** Régulière mais modérée. Arrêt total 1 semaine avant récolte pour le taux de sucre.",
-        "TAILLE": "• **Principe :** Pincer au-dessus de la 2ème feuille, puis les deux rameaux obtenus au-dessus de la 3ème ou 4ème feuille.",
-        "SANTÉ": "• **Oïdium :** Très fréquent.\n\n• **Fusariose :** Flétrissement brutal de la plante."
+    "ENTETE": "Fiche n°24 - Melon. Plante d'origine tropicale. Besoin de chaleur intense (> 20°C permanent). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 150N - 80P - 250K.\n\n• **Fumure :** 40 t/ha de fumier très décomposé. Exigence forte en potasse pour le taux de sucre."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Période :** Mai (sous abri) à Juin (plein champ).\n\n• **Densité :** 1,2 à 1,5 plants / m².\n\n• **Irrigation :** Goutte-à-goutte indispensable (ne pas mouiller le feuillage).",
+      "SANTÉ": "• **Oïdium :** Feutrage blanc sur feuilles.\n\n• **Pucerons :** Vecteurs de virus de la mosaïque.",
+      "VARIÉTÉS": "| Variété | Type | Description |\n| :--- | :--- | :--- |\n| Lunabel F1 | Charentais | Très sucré, bonne conservation |\n| Figaro F1 | Charentais | Précoce, vigoureux |\n| Petit Gris de Rennes | Local | Rustique, saveur exceptionnelle |"
     }
   },
   "Navet": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°17 - Navet (Brassica rapa). Culture rapide (45-60 jours). Sensible aux ravageurs du feuillage. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Exigence :** Sol frais. Un manque d'eau rend la racine fibreuse et forte en goût."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Mars à Mai (printemps) ou Août-Septembre (automne).\n\n• **Densité :** 30-40 graines / mètre linéaire.\n\n• **Filet :** Voile anti-insectes obligatoire dès le semis contre les altises et la mouche du chou.",
-        "VARIÉTÉS": "| Variété | Type | Utilisation |\n| :--- | :--- | :--- |\n| De Milan | Blanc à collet violet | Primeur |\n| Boule d'Or | Jaune | Saveur sucrée, conservation |\n| Tokyo Cross | Blanc rond | Très rapide |"
+    "ENTETE": "Fiche n°25 - Navet. Racine de cycle court (45-60 jours). Très sensible aux insectes du sol. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 100N - 60P - 150K.\n\n• **Azote :** Éviter les excès qui favorisent les feuilles au détriment de la racine."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Densité :** 40 à 60 graines / m².\n\n• **Espacement :** 20-30 cm entre rangs.\n\n• **Irrigation :** Primordiale pour la texture de la racine (éviter le navet fibreux).",
+      "SANTÉ": "• **Mouche du chou :** Larves creusant des galeries dans la racine.\n\n• **Altises :** Perforent le feuillage des jeunes plants.",
+      "VARIÉTÉS": "| Variété | Type | Particularité |\n| :--- | :--- | :--- |\n| de Milan | Plat | Collet violet, précoce |\n| de Nancy | Rond | Chair très tendre |\n| Boule d'Or | Jaune | Saveur sucrée, automne |"
     }
   },
-"Courge": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°13 - Courges et Potirons. Famille des Cucurbitacées. Culture pivot de la rotation pour sa capacité couvrante. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Riche en humus, profond, retenant bien l'humidité.\n\n• **Température :** Germination à 12°C minimum. Optimum de croissance à 20-25°C."
-        },
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Besoins :** 150N - 100P - 250K.\n\n• **Apports :** Compost de ferme (25-30 t/ha). Éviter l'azote en excès en fin de cycle (nuit à la conservation)."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Semis :** En godets (Avril) ou semis direct (Mai) si le sol est réchauffé.\n\n• **Densité :** 0,5 à 1 plant / m² selon le port (coureur ou non).\n\n• **Espacement :** 1 m à 1,50 m entre rangs.",
-        "SANTÉ": "• **Oïdium :** Feutrage blanc sur feuilles. Favorisé par les rosées matinales.\n\n• **Pucerons :** Vecteurs de virus. Surveillance dès la levée.",
-        "VARIÉTÉS": "| Espèce | Variétés | Particularités |\n| :--- | :--- | :--- |\n| Maxima | Potimarron, Potiron | Chair sucrée, conservation moyenne |\n| Moschata | Butternut, Musquée | Très exigeante en chaleur, excellente conservation |\n| Pepo | Patisson, Spaghetti | Cycle court |"
+  "Oignon": {
+    "ENTETE": "Fiche n°26 - Oignon. Culture sensible à l'enherbement et à l'humidité stagnante. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 100N - 60P - 180K.\n\n• **Potasse :** Favorise la conservation et la fermeté du bulbe.\n\n• **Soufre :** Indispensable pour la saveur."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION / SEMIS": "• **Densité :** 40 à 60 plants / m².\n\n• **Période :** Février à Avril (bulbes) ou Août (semis d'automne).\n\n• **Récolte :** Dès que 50% des feuilles sont tombées.",
+      "SANTÉ": "• **Mildiou :** Duvet violacé. Favorisé par l'humidité.\n\n• **Mouche de l'oignon :** Larves au niveau du plateau.\n\n• **Thrips :** Décoloration argentée du feuillage par temps sec.",
+      "VARIÉTÉS": "| Variété | Type | Conservation |\n| :--- | :--- | :--- |\n| Jaune de Stuttgart | Jaune | Excellente |\n| Rouge de Brunswick | Rouge | Moyenne |\n| de Keravel | Rosé | Très bonne |"
     }
   },
-  "Courgette": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°12 - Courgette. Production intensive de plein champ ou abri. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "EXIGENCES",
-          "contenu": "• **Climat :** Très sensible au gel. Température optimale 18-22°C.\n\n• **Eau :** Besoins très élevés et réguliers pendant la fructification."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Période :** Dès que les gelées ne sont plus à craindre (mi-mai).\n\n• **Densité :** 1 à 1,2 plant / m².\n\n• **Espacement :** 1 m x 0,80 m ou 1 m x 1 m.",
-        "RÉCOLTE": "Tous les 2 jours pour maintenir la floraison. Fruits de 15-20 cm idéalement.",
-        "SANTÉ": "• **Oïdium :** Quasi systématique en fin d'été. Traitement soufre si nécessaire.\n\n• **Viroses :** Transmises par pucerons, provoquent des déformations des fruits."
+  "Panais": {
+    "ENTETE": "Fiche n°27 - Panais. Racine rustique de cycle long (180-210 jours). Germination lente et capricieuse. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET FUMURE",
+        "contenu": "• **Sol :** Profonds, sans cailloux pour éviter les racines fourchues.\n\n• **Exportations :** 100N - 60P - 150K.\n\n• **Fumure :** Éviter les apports de fumier frais (risque de pourriture et de racines divergentes)."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Densité :** 30 à 50 graines / m².\n\n• **Période :** Mars à Mai.\n\n• **Espacement :** 30-40 cm entre rangs.",
+      "SANTÉ": "• **Mouche de la carotte :** Les larves creusent des galeries dans la racine.\n\n• **Mildiou :** Taches jaunes sur le feuillage.",
+      "VARIÉTÉS": "| Variété | Type | Caractéristiques |\n| :--- | :--- | :--- |\n| Demi-long de Guernesey | Classique | Racine volumineuse, chair blanche |\n| Javelin F1 | Hybride | Racine très régulière, peau lisse |\n| White Gem | Court | Adapté aux sols un peu lourds |"
     }
   },
-  "Echalote": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°2 - Échalote. Bulbe de conservation. Moins exigeante que l'oignon mais sensible à l'humidité. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Type :** Sols légers, de préférence sur buttes en cas de terres lourdes pour assurer un drainage parfait.\n\n• **Fumure :** Pas d'azote organique frais avant plantation (risque de pourriture des bulbes)."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Période :** Février - Mars.\n\n• **Densité :** 10-12 cm sur le rang, 30 cm entre rangs.\n\n• **Profondeur :** Enfoncer aux 2/3, la pointe affleurante.",
-        "RÉCOLTE": "• **Période :** Juillet.\n\n• **Signe :** Quand le feuillage tombe et sèche à 50%.\n\n• **Séchage :** Indispensable au champ (si sec) ou sous abri ventilé."
+  "Patate Douce": {
+    "ENTETE": "Fiche n°28 - Patate Douce. Plante tropicale, exigeante en chaleur (sol > 18°C). Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "SOL ET FUMURE",
+        "contenu": "• **Sol :** Léger, sablonneux, se réchauffant vite.\n\n• **Fumure :** 20 t/ha de compost. Exportations : 100N - 60P - 200K. Apport de potasse important."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Matériel :** Boutures racinées.\n\n• **Densité :** 3 à 4 plants / m².\n\n• **Période :** Fin Mai à Juin sous abri ou plein champ (si zone chaude).",
+      "SANTÉ": "• **Taupins :** Peuvent percer les tubercules.\n\n• **Sclérotinia :** Pourriture du collet en cas d'excès d'humidité.",
+      "VARIÉTÉS": "| Variété | Chair | Description |\n| :--- | :--- | :--- |\n| Beauregard | Orange | La plus cultivée, précoce |\n| Bonita | Blanche | Très sucrée, peau rose |\n| Evangeline | Orange | Très productive, goût intense |"
     }
   },
-  "Epinard": {
-    "GAB_FRAB": {
-      "ENTETE": "Plante annuelle de jours courts (Spinacia oleracea). Très sensible à la photopériode (monte en graines si jours > 14h). Source : GAB/FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET EXIGENCES",
-          "contenu": "• **Sol :** Riche en azote, frais et humifère. Sensible à l'acidité (pH idéal > 6,5).\n• **Climat :** Supporte le froid (-10°C). Optimum de croissance 15°C."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Printemps (mars-avril) ou Automne (août-sept).\n• **Densité :** 2,5 à 4 millions de graines / ha (selon récolte jeunes pousses ou feuilles).\n• **Espacement :** 3 à 4 rangs par planche, 3-5 cm sur le rang.",
-        "SANTÉ BIO": "• **Mildiou :** Le plus gros risque (Peronospora farinosa). Utiliser des variétés résistantes (races 1 à 15+).\n• **Limaces :** Très dommageables au stade levée."
+  "Persil": {
+    "ENTETE": "Fiche n°29 - Persil. Bisannuelle cultivée en annuelle. Germination lente. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "EXIGENCES",
+        "contenu": "• **Sol :** Riche, frais, profond.\n\n• **Fumure :** 20 t/ha de compost. Exportations : 120N - 50P - 150K."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS / PLANTATION": "• **Densité :** 15-20 cm entre rangs.\n\n• **Période :** Mars à Août.\n\n• **Irrigation :** Régulière pour éviter le jaunissement des feuilles.",
+      "SANTÉ": "• **Septoriose :** Petites taches brunes à points noirs sur feuilles.\n\n• **Mouche de la carotte :** Peut attaquer les racines.",
+      "VARIÉTÉS": "| Type | Variété | Particularité |\n| :--- | :--- | :--- |\n| Frisé | d'Hiver | Très décoratif, rustique |\n| Plat | Géant d'Italie | Plus parfumé, pousse rapide |\n| Tubéreux | de Berlin | Pour sa racine |"
     }
   },
-  "Fenouil": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°14 - Fenouil Bulbeux. Plante exigeante pour la qualité du bulbe (pomme). Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL ET CLIMAT",
-          "contenu": "• **Exigence :** Très sensible à la photopériode et au stress hydrique (montaison immédiate).\n\n• **Sol :** Léger, profond et très riche en humus."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 8 à 10 plants / m².\n\n• **Espacement :** 30 cm x 35 cm.\n\n• **Buttage :** Léger en fin de croissance pour blanchir la base.",
-        "RÉCOLTE": "Couper à ras du sol quand le bulbe atteint 250-300g.",
-        "SANTÉ": "• **Mouche de la carotte :** Peut miner la base du bulbe.\n\n• **Pucerons :** S'installent dans le feuillage plumeux."
+  "Poireau": {
+    "ENTETE": "Fiche n°30 - Poireau. Culture emblématique de Bretagne. Très gourmande. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Exportations :** 200N - 80P - 250K.\n\n• **Fumure :** 40 t/ha de fumier composté. Besoins élevés en azote fractionné."
       }
+    ],
+    "TECHNIQUE": {
+      "PLANTATION": "• **Densité :** 20 à 30 plants / m².\n\n• **Mise en place :** Mai à Juillet (pour l'hiver).\n\n• **Buttage :** Indispensable pour allonger le fût blanc.",
+      "SANTÉ": "• **Teigne du poireau :** Petite chenille minant les feuilles.\n\n• **Mouche mineuse (Phytomyza gymnostoma) :** Protection par filets obligatoire en automne.\n\n• **Thrips :** Grisaillement des feuilles.",
+      "VARIÉTÉS": "| Type | Variété | Période |\n| :--- | :--- | :--- |\n| Été | Gros court d'été | Récolte Août |\n| Automne | Tereos | Récolte Oct-Nov |\n| Hiver | Bleu de Solaise | Très rustique, Janv-Mars |"
     }
   },
-  "Feve": {
-    "GAB_FRAB": {
-      "ENTETE": "Légumineuse annuelle (Vicia faba). Excellente plante améliorante pour la structure et l'azote du sol. Source : GAB-FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FERTILISATION",
-          "contenu": "• **Azote :** Autonome grâce aux nodosités (Rhizobium).\n\n• **Besoins :** 60P - 150K."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Très précoce (février) ou automne en climat doux.\n\n• **Profondeur :** 5-8 cm.\n\n• **Densité :** 15-20 cm sur le rang, 40-50 cm entre rangs.",
-        "ENTRETIEN": "• **Pincement :** Étêter après le 6ème bouquet de fleurs pour limiter les pucerons noirs.",
-        "SANTÉ": "• **Pucerons noirs :** Quasi systématiques. Favoriser les auxiliaires.\n\n• **Anthracnose :** Taches noires sur feuilles et gousses par temps humide."
+  "Pois": {
+    "ENTETE": "Fiche n°31 - Pois. Légumineuse de printemps. Source : GAB-FRAB Bretagne.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "FUMURE",
+        "contenu": "• **Azote :** 0N (Fixation symbiotique).\n\n• **Exportations :** 0N - 50P - 120K."
       }
+    ],
+    "TECHNIQUE": {
+      "SEMIS": "• **Densité :** 80 à 100 graines / m².\n\n• **Période :** Février à Avril.\n\n• **Rame :** Nécessite un grillage ou des filets pour les variétés grimpantes.",
+      "SANTÉ": "• **Oïdium :** En fin de cycle.\n\n• **Tordeuse du pois :** Chenille dans les grains.",
+      "VARIÉTÉS": "| Type | Variété | Description |\n| :--- | :--- | :--- |\n| Grain ridé | de Téléphone | Grimpant, très sucré |\n| Nain | Petit Provençal | Très précoce |\n| Mangetout | Corne de Bélier | Gousse tendre sans parchemin |"
     }
   },
-  "Fraise": {
-    "GAB_FRAB": {
-      "ENTETE": "Culture pérenne (Fragaria x ananassa). Investissement technique et main-d'œuvre important. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Exigence :** pH 5,5 à 6,5 (légèrement acide). Craint le calcaire actif (chlorose).\n\n• **Drainage :** Crucial. Plantation sur buttes obligatoire en terre lourde."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 4 à 6 plants / m².\n\n• **Paillage :** Plastique ou paille pour protéger les fruits de la terre et garder l'humidité.",
-        "ENTRETIEN": "• **Irrigation :** Goutte-à-goutte sous le paillage.\n\n• **Stolons :** Supprimer régulièrement pour ne pas épuiser le pied mère.",
-        "VARIÉTÉS": "| Type | Variétés | Particularités |\n| :--- | :--- | :--- |\n| Non-remontantes | Gariguette, Ciflorette | Récolte groupée (mai-juin) |\n| Remontantes | Mara des Bois, Charlotte | Récolte étalée (juin aux gelées) |"
+  "Poivron": {
+    "ENTETE": "AUBERGINE / POIVRON - Solanacées. Origine : l’aubergine est originaire de l’Inde, le poivron de l’Amérique centrale et équatoriale. Ces 2 cultures sont regroupées en raison de la similitude de leur planning de culture, de leurs exigences climatiques et agronomiques. L’aubergine est un arbuste atteignant plus d’1,50 m de haut et 1 m de diamètre. Le poivron est plus petit. Ces deux légumes sont exigeants en chaleur. Aussi sont-ils presque exclusivement cultivés sous abri. Source : Joseph ARGOUARC'H.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "ENVIRONNEMENT",
+        "contenu": "• **Favorable :** Chaleur. Supportent 40° et +. Culture sous abri au nord de la France. Sol de limon, profond et riche en humus. PH>6,5.\n\n• **Défavorable :** Gel, vent. Sol argileux.\n\n• **Remarques :** Fertilisation par compost. Voraces.\n\n• **Rotation : durée, Précédents :** Après engrais vert ou laitue, radis…. Éviter les autres solanacées. Difficulté de rotation longue sous abri."
+      },
+      {
+        "titre": "FERTILISATION",
+        "contenu": "• **Mobilisations pour 40 T / ha :** N 300, P 70, K 300.\n\n• **Exportation nette pour 40t/ha :** environ N 60, P 20, K 130.\n\n• **Apports possibles :** Fumier composté, 50 T / ha ou compost du commerce 25-30 T. Un complément d’engrais organique de type guano peut être apporté à chaque plante en cours de culture au début de la récolte puis un mois plus tard."
       }
+    ],
+    "TECHNIQUE": {
+      "ITINERAIRE TECHNIQUE CONSEILLÉ": "• Semis sur couche chaude à 22-25° + couverture de la couche chaude, mi-janvier.\n\n• Repiquage en motte de 7 (sur couche chaude) à 18°, au stade cotylédon.\n\n• Distançage vers le 10 mars, à 20 cm en quinconce. Suppression du chauffage.\n\n• Préparation du sol à la rotobêche après fertilisation. Si on laboure, il est préférable d’épandre le compost après le labour (mais avant la préparation du lit de semence).\n\n• Pose des tuyaux d’arrosage micro perforés, puis du paillage biodégradable ou plastique.\n\n• Plantation des mottes après immersion dans l’eau début avril.\n\n• Taille à 2 ou 3 branches + tuteurage.\n\n• Pollinisation par bourdons ou vibrage en début de floraison.\n\n• Lâcher d’auxiliaires si besoin (contre aleurode et puceron).\n\n• Arrosage 2 à 4 fois par semaine. Après la plantation il est intéressant de l’interrompre pendant environ 3 semaines afin d’obliger les plantes à développer leur système racinaire.\n\n• Récolte 2 à 3 fois par semaine jusqu'à fin octobre.",
+      "ASPECTS TECHNIQUES IMPORTANTS": "• La fertilisation doit être importante si on recherche des rendements élevés. Des apports fractionnés d’engrais organiques sont utiles pour maintenir la production à un bon niveau jusqu’à fin octobre.\n\n• Il est prudent de prévoir une protection contre le gel jusqu’à début mai (tunnel nantais).\n\n• La taille se fait une seule fois par exemple à 2 branches pour le poivron et 3 pour l’aubergine.\n\n• Le tuteurage se pratique plusieurs fois sur aubergine par enroulement de la ficelle autour des rameaux principaux ou par des clips.\n\n• Un développement précoce de botrytis est souvent le signe d’un arrosage excessif. L’aubergine est fréquemment envahie par des aleurodes et des pucerons.",
+      "DENSITÉ DE SEMIS ET PLANTATION": "• **Densité par m2 :** 2,5 à 3 plants / m2.\n\n• **Écartements :** 70-80 cm x 40-50 cm.\n\n• **Profondeur :** Semis 0,5 à 1 cm.\n\n• **Quantité de semence ou plant / are :** 300 plants/are (1 à 2 g de graines).",
+      "RÉCOLTE ET STOCKAGE": "• **Stade optimal :** Selon couleur et forme.\n\n• **Rendement par m2 :** 2,5 à 5 kg / m2. Retenu : 4 kg.\n\n• **Conservation :** 10 à 15 jours à 10 - 12° avec forte hygrométrie."
     }
   },
-  "Haricot": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°15 - Haricot (Phaseolus vulgaris). Culture thermophile sensible à l'humidité au semis. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "EXIGENCES",
-          "contenu": "• **Température :** Sol à 15°C minimum pour semer. Risque de pourriture des graines en dessous.\n\n• **pH :** 6,0 à 7,5."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Densité :** 30-40 graines / mètre linéaire.\n\n• **Espacement :** 40-50 cm entre rangs.\n\n• **Buttage :** Quand les plants font 15-20 cm pour améliorer l'ancrage.",
-        "RÉCOLTE": "Fréquente (tous les 2-3 jours) pour les haricots verts filets.",
-        "SANTÉ": "• **Sclérotinia :** Pourriture blanche des gousses.\n\n• **Mouche des semis :** Larves détruisant les cotylédons."
+  "Pomme de terre": {
+    "ENTETE": "POMME DE TERRE - Solanacée. La pomme de terre est une culture pivot du maraîchage diversifié, exigeante en place mais structurante pour la rotation. Elle nécessite une attention particulière sur le mildiou et le choix des variétés selon l'usage (primeur, conservation).",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "ENVIRONNEMENT",
+        "contenu": "• **Sol :** Préférer les sols profonds, sablo-limoneux, drainant bien (pH 6.5 à 7.5). Eviter les sols lourds retenant l’eau (pourriture) ou caillouteux (déformation des racines).\n\n• **Rotation :** Retour tous les 4 à 5 ans. Précédents favorables : liliacées, artichaut, chou-fleur, céréales .\n\n• **Associations bénéfiques :** Haricot, laitue, oignon, pois, poireau, radis, salade."
+      },
+      {
+        "titre": "FERTILISATION",
+        "contenu": "• **Fumure :** Compost bien décomposé 20 t/ha + apport calcaire si terre acide + magnésie. Éviter les fumures fraîches juste avant la plantation pour limiter le rhizoctone .\n\n• **Exportations :** Environ 66N - 35P - 105K pour des rendements de 35T/ha."
       }
+    ],
+    "TECHNIQUE": {
+      "MALADIES - MILDIOU": "• Débuter les applications quand le mildiou apparaît dans le voisinage ou que les conditions météo sont favorables .\n\n• Renouveler toutes les semaines en phase de croissance des fanes, ou tous les 5 jours en cas de pluies régulières .\n\n• Renouveler après un lessivage continu de 20mm ou cumulé de 25mm.\n\n• Limite cuivre : 6 kg/ha/an de cuivre métal. Planter profond et créer une butte pointue pour protéger les tubercules.",
+      "MALADIES - RHIZOCTONE ET GALE": "• **Rhizoctone :** Provoque des lésions brunes sur les germes. Planter dans un sol à au moins 10°C ou pré-germer. Éviter la MO fraîche.\n\n• **Gale argentée :** Taches claires argentées. Choisir des plants sains, éviter les sols sableux, sécher rapidement après récolte et conserver à basse température.",
+      "RAVAGEURS - DORYPHORE ET TAUPIN": "• **Doryphore :** Larves et adultes consomment le feuillage. Traitements Bacillus thuringiensis (Bt) sur les jeunes larves (stade grain de blé). Ramassage manuel possible.\n\n• **Taupin :** Vers fil de fer. Éviter les jachères et prairies en précédent. Travailler le sol superficiellement au moment de la ponte pour dessécher les œufs.",
+      "DÉFANAGE ET RÉCOLTE": "• **Défanage :** Arrête le développement et contrôle le calibre. Impératif en cas de mildiou (sortir les fanes du champ). Réalisé mécaniquement (gyrobroyeur) .\n\n• **Délai :** Généralement 3 semaines entre défanage et récolte pour former l'epiderme.\n\n• **Récolte :** En période sèche pour limiter le mildiou. Rendements moyens : 25T à 40T/ha à maturité complète.",
+      "CONSERVATION": "• Ramasser tôt après arrachage. Sécher au champ si humide.\n\n• Local noir, sec et aéré. Température : 6-8°C (longue durée à 4°C, mais attention : l'amidon se transforme en sucre sous 8°C) .\n\n• Humidité relative idéale en chambre froide : 90-95%."
     }
   },
-  "Laitue": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°16 - Laitue. Culture de cycle court, base du maraîchage bio. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "FUMURE",
-          "contenu": "• **Exportations :** 80N - 40P - 150K.\n\n• **Sensibilité :** Attention aux nitrates. Ne pas sur-fertiliser en azote avant l'hiver."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 12 à 16 plants / m².\n\n• **Collet :** Ne jamais enterrer la motte (doit affleurer) pour éviter les pourritures.",
-        "SANTÉ": "• **Mildiou (Bremia) :** Utiliser des variétés avec résistances Bl 1-30+.\n\n• **Limaces :** Surveillance quotidienne après plantation.",
-        "VARIÉTÉS": "| Type | Saison | Caractéristiques |\n| :--- | :--- | :--- |\n| Batavia | Toutes saisons | Pomme ferme, croquante |\n| Beurre | Printemps/Hiver | Feuilles tendres |\n| Romaine | Été | Résistante à la chaleur |"
+  "Radis botte": {
+    "ENTETE": "RADIS - Brassicacées. Culture à cycle court. Exigeante en eau et en suivi sanitaire (altises). Source : Réseau GAB/FRAB.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "ENVIRONNEMENT",
+        "contenu": "• **Sol :** Préférer les sols légers, frais, riches en humus, sans cailloux. pH idéal entre 6 et 7. Éviter les sols trop argileux qui durcissent et gênent le gonflement.\n\n• **Climat :** Culture de climat tempéré. Sensible aux fortes chaleurs qui provoquent le creusement et le goût piquant.\n\n• **Rotation :** Retour tous les 3 à 4 ans pour limiter les maladies du sol (hernie du chou). Précédents favorables : liliacées, salades. Éviter les autres crucifères."
+      },
+      {
+        "titre": "FERTILISATION",
+        "contenu": "• **Besoins :** Culture peu exigeante si le précédent a été bien fumé. Un apport de compost bien mûr (10-20 t/ha) est suffisant.\n\n• **Attention :** Éviter les fumures organiques trop fraîches qui favorisent la mouche du chou et les brûlures de racines."
       }
+    ],
+    "TECHNIQUE": {
+      "ITINERAIRE TECHNIQUE": "• Semis échelonné tous les 10-15 jours.\n• Densité : 300 à 500 graines au m².\n• Irrigation : Le sol doit rester humide en permanence.\n• Protection : Filets insect-proof contre les altises dès le semis."
     }
   },
-  "Mache": {
-    "GAB_FRAB": {
-      "ENTETE": "Valerianella locusta. Salade d'hiver rustique. Cycle lent en période froide. Source : GAB-FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Exigence :** Demande un sol ferme et bien tassé pour la germination.\n\n• **Fumure :** Souvent cultivée sur les restes de fumure de la culture précédente."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Août à Octobre.\n\n• **Densité :** 1000 à 2000 graines / m².\n\n• **Ombrage :** Parfois nécessaire en août pour la levée.",
-        "RÉCOLTE": "Manuelle au couteau ou mécanique (tondeuse) pour le vrac.",
-        "SANTÉ": "• **Oïdium :** Feutrage blanc par temps doux et humide.\n\n• **Rouille :** Points jaunes/orangés sur feuilles."
+  "Roquette": {
+    "ENTETE": "ROQUETTE - Brassicacées (Eruca sativa). Plante annuelle à cycle très court, appréciée pour sa saveur piquante. Très sensible aux altises. Cultivée toute l'année sous abri ou en plein champ selon les régions.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "ENVIRONNEMENT",
+        "contenu": "• **Sol :** Peu exigeante mais préfère les sols légers, frais et riches en matières organiques. pH optimal 6 à 7.\n\n• **Climat :** Résistante au froid mais craint les fortes chaleurs qui provoquent une montée à graine précoce et un goût trop fort.\n\n• **Rotation :** Retour tous les 3 ans minimum. Précédents favorables : liliacées, ombellifères. Éviter les autres crucifères (choux, radis) pour limiter les risques de hernie du chou."
+      },
+      {
+        "titre": "FERTILISATION",
+        "contenu": "• **Besoins :** Culture à cycle court, se contente souvent des restes de fumure de la culture précédente. Un apport de compost très mûr peut être bénéfique si le sol est pauvre.\n\n• **Azote :** Attention aux excès d'azote qui favorisent l'accumulation de nitrates dans les feuilles."
       }
+    ],
+    "TECHNIQUE": {
+      "ITINÉRAIRE TECHNIQUE": "• **Semis :** Échelonné tous les 15 jours. Semis direct en rangs espacés de 15 à 20 cm ou à la volée.\n\n• **Densité :** Environ 2 à 3 kg de semences par hectare.\n\n• **Profondeur :** 0,5 à 1 cm.\n\n• **Irrigation :** Maintenir une humidité constante pour assurer une croissance rapide et limiter le piquant des feuilles.\n\n• **Désherbage :** Uniquement manuel ou par faux-semis car la culture est très dense.",
+      "PROTECTION SANITAIRE": "• **Altises :** Ravageur majeur. Pose de filet insect-proof indispensable dès le semis. Arrosages fréquents par aspersion pour perturber l'activité des insectes.\n\n• **Mildiou :** En cas d'excès d'humidité sous abri. Assurer une bonne ventilation.",
+      "RÉCOLTE ET CONDITIONNEMENT": "• **Stade :** Récolte des jeunes feuilles (8 à 12 cm) environ 3 à 6 semaines après le semis.\n\n• **Méthode :** Coupe à la main ou à la moissonneuse à salade. Possibilité de faire 2 à 3 coupes successives.\n\n• **Rendement :** Environ 1 à 2 kg par m² selon le nombre de coupes.",
+      "STOCKAGE": "• Très fragile. Refroidissement rapide indispensable. Conserver à 1-2°C sous atmosphère humide."
     }
   },
-  "Melon": {
-    "GAB_FRAB": {
-      "ENTETE": "Cucumis melo. Plante très exigeante en chaleur et lumière. Culture délicate en zone Nord. Source : GAB-FRAB.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "CLIMAT",
-          "contenu": "• **Température :** Optimum 25-30°C. Stoppe sa croissance sous 15°C.\n\n• **Protection :** Paillage noir + tunnels ou chenilles indispensables."
-        }
-      ],
-      "TECHNIQUE": {
-        "PLANTATION": "• **Densité :** 1,5 à 2 plants / m².\n\n• **Irrigation :** Régulière mais modérée. Arrêt total 1 semaine avant récolte pour le taux de sucre.",
-        "TAILLE": "• **Principe :** Pincer au-dessus de la 2ème feuille, puis les deux rameaux obtenus au-dessus de la 3ème ou 4ème feuille.",
-        "SANTÉ": "• **Oïdium :** Très fréquent.\n\n• **Fusariose :** Flétrissement brutal de la plante."
+  "Tomate": {
+    "ENTETE": "TOMATE SOUS ABRI - Solanacées. Culture phare sous abri, très exigeante en chaleur, lumière et suivi technique. Nécessite une structure de soutien et une taille régulière pour optimiser le rendement et la qualité sanitaire.",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "ENVIRONNEMENT",
+        "contenu": "• **Sol :** Préférer les sols profonds, bien drainés et riches en humus. pH idéal entre 6 et 6,8. Éviter les sols trop compacts qui favorisent l'asphyxie racinaire.\n\n• **Climat :** Température optimale de croissance entre 18°C et 25°C. Sensible au gel (0°C) et aux fortes chaleurs (>32°C) qui perturbent la nouaison.\n\n• **Rotation :** Retour tous les 4 ans minimum pour limiter les pathogènes du sol (Fusarium, Verticillium). Précédents favorables : liliacées, légumineuses. Éviter les autres solanacées."
+      },
+      {
+        "titre": "FERTILISATION",
+        "contenu": "• **Besoins :** Très exigeante. Apport de compost bien décomposé (40-60 t/ha) avant plantation.\n\n• **Équilibre NPK :** Forte demande en potassium (K) pour la qualité des fruits et en azote (N) pour la croissance végétative, sans excès pour éviter la sensibilité aux maladies."
       }
+    ],
+    "TECHNIQUE": {
+      "ITINÉRAIRE TECHNIQUE": "• **Semis :** Mi-février à mi-mars sur couche chaude (22-25°C).\n\n• **Repiquage :** En mottes ou pots de 10 cm au stade 2 feuilles.\n\n• **Plantation :** Dès que le sol atteint 15°C (souvent début avril sous abri). Plantation profonde pour favoriser les racines adventives.\n\n• **Densité :** 2,5 à 3 plants par m² selon la vigueur de la variété.\n\n• **Conduite :** Tuteurage sur ficelles. Taille des gourmands hebdomadaire. Effeuillage progressif du bas pour aérer.",
+      "PROTECTION SANITAIRE": "• **Mildiou :** Surveillance accrue dès que l'humidité dépasse 80%. Aération maximale des abris. Traitements préventifs au cuivre possibles.\n\n• **Alternaria :** Taches circulaires sur feuilles. Éviter l'aspersion sur le feuillage.\n\n• **Ravageurs :** Aleurodes et pucerons. Introduction d'auxiliaires (Macrolophus, Encarsia) recommandée.",
+      "RÉCOLTE ET CONDITIONNEMENT": "• **Stade :** Récolte à maturité colorée 2 à 3 fois par semaine.\n\n• **Rendement :** 10 à 20 kg par m² selon la durée de culture et la variété.",
+      "STOCKAGE": "• Conserver à 12-15°C. Ne jamais stocker au réfrigérateur (perte de saveur et texture farineuse)."
     }
   },
-  "Navet": {
-    "GAB_FRAB": {
-      "ENTETE": "Fiche n°17 - Navet (Brassica rapa). Culture rapide (45-60 jours). Sensible aux ravageurs du feuillage. Source : GAB-FRAB Bretagne.",
-      "BLOCS_IDENTITE": [
-        {
-          "titre": "SOL",
-          "contenu": "• **Exigence :** Sol frais. Un manque d'eau rend la racine fibreuse et forte en goût."
-        }
-      ],
-      "TECHNIQUE": {
-        "SEMIS": "• **Période :** Mars à Mai (printemps) ou Août-Septembre (automne).\n\n• **Densité :** 30-40 graines / mètre linéaire.\n\n• **Filet :** Voile anti-insectes obligatoire dès le semis contre les altises et la mouche du chou.",
-        "VARIÉTÉS": "| Variété | Type | Utilisation |\n| :--- | :--- | :--- |\n| De Milan | Blanc à collet violet | Primeur |\n| Boule d'Or | Jaune | Saveur sucrée, conservation |\n| Tokyo Cross | Blanc rond | Très rapide |"
+  "Tomate Plein Champ": {
+    "ENTETE": "TOMATE PLEIN CHAMP - Solanacées. Culture de saison nécessitant un emplacement ensoleillé et abrité des vents dominants. Moins productive qu'en serre mais avec des coûts d'investissement moindres. Très exposée aux aléas climatiques (pluie, mildiou).",
+    "BLOCS_IDENTITE": [
+      {
+        "titre": "ENVIRONNEMENT",
+        "contenu": "• **Sol :** Préférer les terres saines, profondes et réchauffables. Un sol riche en humus est indispensable.\n\n• **Climat :** Exposition Sud/Sud-Ouest recommandée. Risque élevé de mildiou en cas d'été pluvieux. Nécessite une protection contre le vent pour éviter le dessèchement et la casse des tiges.\n\n• **Rotation :** Respecter un délai de 4 ans entre deux solanacées. Intégrer dans une rotation après une culture nettoyante ou une prairie."
+      },
+      {
+        "titre": "FERTILISATION",
+        "contenu": "• **Fumure de fond :** Apport de 30 à 40 t/ha de fumier composté à l'automne ou au printemps.\n\n• **Compléments :** Apport de potasse organique (type Patenkali) si le sol est carencé, pour favoriser la fermeté des fruits."
       }
+    ],
+    "TECHNIQUE": {
+      "ITINÉRAIRE TECHNIQUE": "• **Semis :** Mars en pépinière chauffée.\n\n• **Plantation :** Après les risques de gelées (mi-mai, après les 'Saints de Glace').\n\n• **Densité :** 2,5 plants/m². Écartement de 80 cm à 1 m entre les rangs et 50 cm sur le rang.\n\n• **Tuteurage :** Utilisation de piquets individuels (bois ou métal) ou système de palissage sur fils.\n\n• **Taille :** Conduite sur une seule tige. Ébourgeonnage régulier des gourmands.",
+      "PROTECTION SANITAIRE": "• **Mildiou (Phytophthora infestans) :** Risque majeur en plein champ. Traitement préventif à la bouillie bordelaise (cuivre) obligatoire après chaque épisode pluvieux important.\n\n• **Ravageurs :** Noctuelle défoliatrice (chenilles). Surveillance des pontes sous les feuilles.",
+      "RÉCOLTE ET CONDITIONNEMENT": "• **Stade :** Récolte à maturité. Attention à l'éclatement des fruits en cas de pluie soudaine après une période sèche.\n\n• **Rendement :** 4 à 8 kg par m² selon les conditions climatiques et la durée de la saison.",
+      "STOCKAGE": "• Conservation courte (quelques jours) à température ambiante ou local frais (12°C). Éviter le froid."
     }
-  },
+  }
+}
