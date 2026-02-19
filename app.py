@@ -207,7 +207,7 @@ else:
                             # Petit bouton sous chaque bloc vert
                             pop = st.popover("📝", use_container_width=False)
                             with pop.form(key=f"fb_gab_id_{sel}_{i}"):
-                                msg = st.text_area(f"Erreur sur {b['titre']} ?")
+                                msg = st.text_area(f"Conseil ou erreur sur {b['titre']} ?")
                                 if st.form_submit_button("OK"):
                                     envoyer_feedback(sel, "GAB", msg, b['titre'])
 
@@ -219,7 +219,7 @@ else:
                         with c2:
                             pop = st.popover("📝")
                             with pop.form(key=f"fb_gab_tech_{sel}_{k}"):
-                                msg = st.text_area(f"Erreur sur {k} ?")
+                                msg = st.text_area(f"Conseil ou erreur sur {k} ?")
                                 if st.form_submit_button("OK"):
                                     envoyer_feedback(sel, "GAB", msg, k)
 
@@ -239,7 +239,7 @@ else:
                         with col2:
                             pop = st.popover("📝")
                             with pop.form(key=f"fb_jmf_{sel}_{t}"):
-                                msg = st.text_area(f"Erreur sur {t} ?")
+                                msg = st.text_area(f"Conseil ou erreur sur {t} ?")
                                 if st.form_submit_button("OK"):
                                     envoyer_feedback(sel, "JMF", msg, t)
                         
@@ -307,6 +307,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
