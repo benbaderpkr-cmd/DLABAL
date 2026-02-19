@@ -151,12 +151,12 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
             if st.form_submit_button("Enregistrer mon conseil"):
                 if s_leg and s_rouleau:
                     try:
-                        df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", ttl=0)
+                        df_sug = conn.read(spreadsheet=URL_SHEET2, worksheet="SUGGESTIONS", ttl=0)
                     except:
                         df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "ROULEAU", "PIGNON_AV", "PIGNON_AR", "BROSSE", "INFO_SUPP"])
                     new_sug = pd.DataFrame([{"DATE": datetime.now().strftime("%d/%m/%Y"), "LEGUME": s_leg, "ROULEAU": s_rouleau, "PIGNON_AV": s_pav, "PIGNON_AR": s_par, "BROSSE": s_brosse, "INFO_SUPP": s_info}])
                     df_updated = pd.concat([df_sug, new_sug], ignore_index=True)
-                    conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_updated)
+                    conn.update(spreadsheet=URL_SHEET2, worksheet="SUGGESTIONS", data=df_updated)
                     st.success(f"Conseil pour le {s_leg} envoyé !")
                 else:
                     st.error("Merci de renseigner au moins le légume et le type de rouleau.")
@@ -317,6 +317,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
