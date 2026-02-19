@@ -51,13 +51,14 @@ def load_json(filename):
         except: return {}
     return {}
 
-DATA = load_json("data.json")
+GAB_DATA = load_json("gab.json")
+JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 SOURCES_JMF = load_json("sources_jmf.json")
 REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json")
 
 cles_itk = list(SOURCES_JMF.get("reglages_itk", {}).keys())
-tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
+tous_les_legumes = sorted(list(set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
 
 # ==========================================
 # 3. SIDEBAR (INTERFACE ET NAVIGATION)
@@ -172,7 +173,7 @@ else:
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
 
         with tab1:
-            g = DATA.get(sel, {}).get("GAB_FRAB", {})
+            g = GAB_DATA.get(sel, {})
             if g:
                 if "BLOCS_IDENTITE" in g:
                     cols = st.columns(len(g["BLOCS_IDENTITE"]))
@@ -192,7 +193,7 @@ else:
                 c1, c2 = st.columns(2)
                 c1.info(f"**📍 JMF**\n- Rouleau : `{reg.get('jmf', {}).get('rouleau', '?')}`")
                 c2.warning(f"**🚜 Terrateck**\n- Rouleau : `{reg.get('terrateck', {}).get('rouleau', '?')}`")
-            f = DATA.get(sel, {}).get("JMF_FORTIER", {})
+            f = JMF_DATA.get(sel, {})
             if f:
                 found_jmf = True
                 for t, c in f.items():
