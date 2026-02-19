@@ -48,24 +48,25 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 def envoyer_feedback(legume, nom_onglet_app, message):
     try:
         nom_sheet = legume.upper()
-        # Tes 4 colonnes demandées
+        # Création de la ligne avec tes 4 colonnes
         new_row = pd.DataFrame([{
             "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
             "LEGUME": nom_sheet,
             "ONGLET": nom_onglet_app,
             "FEEDBACK": message
         }])
+        
         try:
-            # On lit l'onglet s'il existe
+            # On force la lecture sur URL_SHEET2
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
             df_updated = pd.concat([df_existing, new_row], ignore_index=True)
         except:
-            # Sinon on part de la nouvelle ligne
+            # Si l'onglet n'existe pas, on commence avec la nouvelle ligne
             df_updated = new_row
         
-        # On met à jour (ça crée l'onglet s'il n'existe pas)
+        # On force l'écriture sur URL_SHEET2
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        st.success(f"✅ Suggestion enregistrée dans l'onglet {nom_sheet}")
+        st.success(f"✅ Suggestion enregistrée dans l'onglet {nom_sheet} (Feedback)")
     except Exception as e:
         st.error(f"Erreur GSheets : {e}")
         
@@ -317,6 +318,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
