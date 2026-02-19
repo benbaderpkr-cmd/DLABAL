@@ -122,16 +122,36 @@ def popover_feedback(onglet, bloc, legume_sel):
 # 4. SIDEBAR ET NAVIGATION
 # ==========================================
 with st.sidebar:
+    # 1. Titre et Sous-titre
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
     
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     st.write("") 
+    
+    # 2. Sélecteur de légume
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    
     st.divider()
+
+    # 3. RÉGLAGE JP1 (S'affiche juste au-dessus de Déconnexion si données présentes)
+    if sel != "---" and sel in REGLAGES_DATA:
+        with st.expander("⚙️ RÉGLAGE JP1 TERRADONIS", expanded=False):
+            d = REGLAGES_DATA[sel]
+            st.write(f"**Pignon Menant :** {d.get('pignon_menant', '-')}")
+            st.write(f"**Pignon Mené :** {d.get('pignon_mene', '-')}")
+            st.write(f"**Rouleau :** {d.get('rouleau', '-')}")
+            if "observations" in d:
+                st.caption(f"Note : {d['observations']}")
+        st.write("") # Petit espace entre le réglage et le bouton
+
+    # 4. Bouton Déconnexion
     if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
+        cookies["auth_token"] = ""
+        cookies.save()
+        st.session_state["password_correct"] = False
+        st.rerun()
 
 # ==========================================
 # 5. AFFICHAGE
@@ -222,3 +242,4 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
