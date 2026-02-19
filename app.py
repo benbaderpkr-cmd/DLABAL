@@ -230,7 +230,7 @@ else:
             # On cherche avec plusieurs variantes de casse pour être robuste
             reg = base.get(sel) or base.get(sel.capitalize()) or base.get(sel.upper())
             
-f = JMF_DATA.get(sel, {})
+            f = JMF_DATA.get(sel, {})
             if f:
                 for t, c in f.items():
                     with st.expander(f"📌 {t}", expanded=True):
@@ -307,6 +307,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
