@@ -60,7 +60,7 @@ REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json")
 
 cles_itk = list(SOURCES_JMF.get("reglages_itk", {}).keys())
 tous_les_legumes = sorted(list(set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
-st.write("Clés JMF détectées :", list(JMF_DATA.keys()))
+
 # ==========================================
 # 3. SIDEBAR (INTERFACE ET NAVIGATION)
 # ==========================================
@@ -264,6 +264,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
