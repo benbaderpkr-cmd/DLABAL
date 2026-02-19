@@ -38,8 +38,12 @@ def check_password():
 if not check_password():
     st.stop()
 
+# Initialisation du cache pour le NOM
+if "user_name" not in st.session_state:
+    st.session_state["user_name"] = ""
+
 # ==========================================
-# 2. CONNEXIONS ET CHARGEMENT (PILIERS 1 & 5)
+# 2. CONNEXIONS ET CHARGEMENT
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
@@ -66,7 +70,7 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
         st.toast(f"✅ Merci {nom_utilisateur} ! Feedback enregistré.", icon="🚀")
     except Exception as e:
-        st.error(f"L'onglet '{nom_sheet}' doit être créé manuellement dans le GSheet Feedback.")
+        st.error(f"L'onglet '{nom_sheet}' doit être créé dans le GSheet Feedback.")
         
 def load_json(filename):
     if os.path.exists(filename):
@@ -86,7 +90,7 @@ cles_itk = list(SOURCES_JMF.get("reglages_itk", {}).keys())
 tous_les_legumes = sorted(list(set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
 
 # ==========================================
-# 3. SIDEBAR (INTERFACE ET CACHE NOM)
+# 3. SIDEBAR
 # ==========================================
 with st.sidebar:
     if st.button("**DLABAL**", key="btn_home", use_container_width=True):
@@ -97,17 +101,6 @@ with st.sidebar:
     
     st.markdown("<p style='font-size: 0.85em; color: gray; margin-top: -15px;'>Base de données maraîchère</p>", unsafe_allow_html=True)
     
-    st.divider()
-    
-    # --- GESTION DU NOM EN CACHE ---
-    if "user_name" not in st.session_state:
-        st.session_state["user_name"] = ""
-    
-    u_name = st.text_input("👤 Ton Nom / Pseudo :", 
-                           value=st.session_state["user_name"], 
-                           help="Ton nom sera mémorisé pour tous tes feedbacks de la session.")
-    st.session_state["user_name"] = u_name
-
     res_key = st.session_state.get("reset_key", 0)
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes, key=f"sel_{res_key}")
     
@@ -117,7 +110,6 @@ with st.sidebar:
             st.session_state["last_sel"] = sel
 
     st.divider()
-    
     if st.button("📊 RÉGLAGES JP1 GLOBAUX", use_container_width=True):
         st.session_state["view_mode"] = "JP1_GLOBAL"
         st.rerun()
@@ -139,16 +131,17 @@ if st.session_state.get("view_mode") == "JP1_GLOBAL":
     if st.button("⬅️ Retour au dossier"):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
-    # ... (Le reste du code JP1 Global reste identique) ...
+    # (Le code JP1 global reste le même ici)
 
 else:
     if sel == "---":
         st.title("🌱 Bienvenue sur DLABAL")
-        st.info("👈 Sélectionnez un légume et renseignez votre nom dans la barre latérale.")
+        st.info("👈 Sélectionnez un légume dans le menu à gauche.")
     else:
         st.title(f"📊 {sel.upper()}")
         tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
 
+        # --- TAB 1 : GAB ---
         with tab1:
             g = GAB_DATA.get(sel, {})
             if g:
@@ -159,11 +152,12 @@ else:
                             st.success(f"**{b['titre']}**\n\n{b['contenu']}")
                             pop = st.popover("📝", help=f"Suggérer une correction sur {b['titre']}")
                             with pop.form(key=f"fb_gab_id_{sel}_{i}"):
-                                st.write(f"Auteur : **{st.session_state['user_name'] or 'Anonyme'}**")
+                                nom_input = st.text_input("Ton Nom :", value=st.session_state["user_name"], key=f"nom_gab_id_{i}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not st.session_state['user_name']: st.error("Note ton nom à gauche !")
-                                    else: envoyer_feedback(sel, "GAB", msg, b['titre'], st.session_state['user_name'])
+                                    st.session_state["user_name"] = nom_input # Mise en cache
+                                    if not nom_input: st.error("Ton nom est requis.")
+                                    else: envoyer_feedback(sel, "GAB", msg, b['titre'], nom_input)
 
                 for k, v in g.get("TECHNIQUE", {}).items():
                     with st.expander(f"📌 {k}", expanded=True): 
@@ -172,12 +166,14 @@ else:
                         with c2:
                             pop = st.popover("📝", help=f"Suggérer une correction pour {k}")
                             with pop.form(key=f"fb_gab_tech_{sel}_{k}"):
-                                st.write(f"Auteur : **{st.session_state['user_name'] or 'Anonyme'}**")
+                                nom_input = st.text_input("Ton Nom :", value=st.session_state["user_name"], key=f"nom_gab_tech_{k}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not st.session_state['user_name']: st.error("Note ton nom à gauche !")
-                                    else: envoyer_feedback(sel, "GAB", msg, k, st.session_state['user_name'])
+                                    st.session_state["user_name"] = nom_input
+                                    if not nom_input: st.error("Ton nom est requis.")
+                                    else: envoyer_feedback(sel, "GAB", msg, k, nom_input)
 
+        # --- TAB 2 : JMF ---
         with tab2:
             f = JMF_DATA.get(sel, {})
             if f:
@@ -188,12 +184,14 @@ else:
                         with c2:
                             pop = st.popover("📝", help=f"Suggérer une correction pour {t}")
                             with pop.form(key=f"fb_jmf_{sel}_{t}"):
-                                st.write(f"Auteur : **{st.session_state['user_name'] or 'Anonyme'}**")
+                                nom_input = st.text_input("Ton Nom :", value=st.session_state["user_name"], key=f"nom_jmf_{t}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not st.session_state['user_name']: st.error("Note ton nom à gauche !")
-                                    else: envoyer_feedback(sel, "JMF", msg, t, st.session_state['user_name'])
+                                    st.session_state["user_name"] = nom_input
+                                    if not nom_input: st.error("Ton nom est requis.")
+                                    else: envoyer_feedback(sel, "JMF", msg, t, nom_input)
 
+        # --- TAB 3 : JDV ---
         with tab3:
             j = JDV_DATA.get(sel, {})
             if j:
@@ -204,15 +202,16 @@ else:
                         with c2:
                             pop = st.popover("📝", help=f"Suggérer une correction pour {t}")
                             with pop.form(key=f"fb_jdv_{sel}_{t}"):
-                                st.write(f"Auteur : **{st.session_state['user_name'] or 'Anonyme'}**")
+                                nom_input = st.text_input("Ton Nom :", value=st.session_state["user_name"], key=f"nom_jdv_{t}")
                                 msg = st.text_area("Ta suggestion :")
                                 if st.form_submit_button("Envoyer"):
-                                    if not st.session_state['user_name']: st.error("Note ton nom à gauche !")
-                                    else: envoyer_feedback(sel, "JDV", msg, t, st.session_state['user_name'])
+                                    st.session_state["user_name"] = nom_input
+                                    if not nom_input: st.error("Ton nom est requis.")
+                                    else: envoyer_feedback(sel, "JDV", msg, t, nom_input)
 
+        # --- TAB 4 : THO ---
         with tab4:
             st.subheader(f"📝 Saisie Terrain - {sel}")
-            # ... (Ton code THO existant avec conn.read et conn.update sur URL_SHEET) ...
             try:
                 df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
                 notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
@@ -234,7 +233,7 @@ else:
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Données THO enregistrées !")
 
-# --- METEO ---
+# --- METEO SIDEBAR ---
 st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
