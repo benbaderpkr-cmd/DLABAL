@@ -90,7 +90,7 @@ with st.sidebar:
         st.session_state["view_mode"] = "JP1_GLOBAL"
         st.rerun()
 
-    st.link_button("📩 Me contacter", "https://forms.google.com/ton-lien-ici", use_container_width=True)
+    st.link_button("📩 Me contacter", "https://docs.google.com/forms/d/e/1FAIpQLSf0xs8AXpRAkZ4yChDo1HtarrAsxxnudS5TXMVtaZRwrbClmQ/viewform?usp=dialog", use_container_width=True)
     
     st.divider()
     if st.button("🚪 Déconnexion", use_container_width=True):
@@ -255,3 +255,4 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
