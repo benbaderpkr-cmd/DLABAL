@@ -86,8 +86,24 @@ JDV_DATA = load_json("jdv.json")
 SOURCES_JMF = load_json("sources_jmf.json")
 REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json")
 
-cles_itk = list(SOURCES_JMF.get("reglages_itk", {}).keys())
-tous_les_legumes = sorted(list(set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
+tous_les_legumes_potentiels = sorted(list(set(
+    list(GAB_DATA.keys()) + 
+    list(JMF_DATA.keys()) + 
+    list(JDV_DATA.keys()) + 
+    list(SOURCES_JMF.get("reglages_itk", {}).keys())
+)))
+
+tous_les_legumes = []
+for leg in tous_les_legumes_potentiels:
+    # On vérifie s'il y a de la donnée réelle quelque part
+    has_gab = leg in GAB_DATA and GAB_DATA[leg] != {}
+    has_jmf = leg in JMF_DATA and JMF_DATA[leg] != {}
+    has_jdv = leg in JDV_DATA and JDV_DATA[leg] != {}
+    has_itk = leg in SOURCES_JMF.get("reglages_itk", {})
+    
+    # Si le légume existe dans au moins un tab, on l'ajoute à la liste finale
+    if has_gab or has_jmf or has_jdv or has_itk:
+        tous_les_legumes.append(leg)
 
 # ==========================================
 # 3. SIDEBAR
@@ -239,3 +255,4 @@ with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     mf_iframe = """<iframe id="widget_autocomplete_preview" width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="display: block; margin: 0 auto; border: none;"></iframe>"""
     components.html(mf_iframe, height=310)
+
