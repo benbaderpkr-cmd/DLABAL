@@ -36,7 +36,7 @@ def check_password():
 if not check_password():
     st.stop()
 
-# Initialisation silencieuse du cache
+# Initialisation silencieuse du cache pour le NOM
 if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
 
@@ -58,16 +58,23 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
             "BLOC": nom_bloc,
             "FEEDBACK": message
         }])
-        df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
-        df_updated = pd.concat([df_existing, new_row], ignore_index=True)
+        
+        try:
+            df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
+            df_updated = pd.concat([df_existing, new_row], ignore_index=True)
+        except:
+            df_updated = new_row
+        
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        st.toast(f"✅ Merci {nom_utilisateur} ! Feedback enregistré.", icon="🚀")
+        st.toast(f"✅ Merci {nom_utilisateur} ! Enregistré.", icon="🚀")
     except Exception:
-        st.error("Erreur d'enregistrement.")
+        st.error(f"Erreur d'enregistrement sur l'onglet {legume.upper()}.")
 
 def load_json(f):
     if os.path.exists(f):
-        with open(f, "r", encoding="utf-8") as file: return json.load(file)
+        try:
+            with open(f, "r", encoding="utf-8") as file: return json.load(file)
+        except: return {}
     return {}
 
 GAB_DATA = load_json("gab.json")
@@ -75,43 +82,52 @@ JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 SOURCES_JMF = load_json("sources_jmf.json")
 
-# Filtrage intelligent
-tous_les_legumes = sorted([l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)])
+# Filtrage intelligent (Pilier 5) : On ne garde que les légumes avec de la donnée
+tous_les_legumes = sorted([l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
+                           if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)])
 
 # ==========================================
-# 3. SIDEBAR
+# 3. FONCTION FORMULAIRE INTEGREE (POPOVER)
+# ==========================================
+def popover_feedback(onglet, bloc, legume_sel):
+    pop = st.popover("📝", help=f"Suggérer une correction pour {bloc}")
+    with pop.form(key=f"form_{onglet}_{bloc}_{legume_sel}"):
+        # Champ Nom : il lit st.session_state["user_name"] par défaut
+        nom_in = st.text_input("Ton Nom :", value=st.session_state["user_name"])
+        msg_in = st.text_area("Ta suggestion :")
+        
+        if st.form_submit_button("Envoyer"):
+            if not nom_in or not msg_in:
+                st.warning("Le nom et le message sont requis.")
+            else:
+                # On met à jour le cache global pour que le nom soit pré-rempli ailleurs
+                st.session_state["user_name"] = nom_in 
+                envoyer_feedback(legume_sel, onglet, msg_in, bloc, nom_in)
+                st.rerun()
+
+# ==========================================
+# 4. SIDEBAR
 # ==========================================
 with st.sidebar:
-    if st.button("**DLABAL**", use_container_width=True):
+    if st.button("**DLABAL**", key="btn_home", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
+    
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    
     st.divider()
     if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""; cookies.save()
-        st.session_state["password_correct"] = False; st.rerun()
+        cookies["auth_token"] = ""
+        cookies.save()
+        st.session_state["password_correct"] = False
+        st.rerun()
 
 # ==========================================
-# 4. AFFICHAGE ET FORMULAIRES INTEGRES
+# 5. AFFICHAGE PRINCIPAL
 # ==========================================
 if sel != "---":
     st.title(f"📊 {sel.upper()}")
     tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
-
-    # Fonction pour générer le petit formulaire de feedback dans le popover
-    def popover_feedback(onglet, bloc):
-        pop = st.popover("📝", help=f"Suggérer une correction pour {bloc}")
-        with pop.form(key=f"form_{onglet}_{bloc}_{sel}"):
-            # Champ Nom qui récupère la valeur en cache
-            nom = st.text_input("Ton Nom :", value=st.session_state["user_name"])
-            msg = st.text_area("Ta suggestion :")
-            if st.form_submit_button("Envoyer"):
-                if not nom or not msg:
-                    st.warning("Nom et message requis.")
-                else:
-                    st.session_state["user_name"] = nom # On met à jour le cache
-                    envoyer_feedback(sel, onglet, msg, bloc, nom)
-                    st.rerun() # Relance pour que le nom s'affiche partout au prochain coup
 
     with tab1:
         g = GAB_DATA.get(sel, {})
@@ -120,24 +136,61 @@ if sel != "---":
             for i, b in enumerate(g["BLOCS_IDENTITE"]):
                 with cols[i]:
                     st.success(f"**{b['titre']}**\n\n{b['contenu']}")
-                    popover_feedback("GAB", b['titre'])
+                    popover_feedback("GAB", b['titre'], sel)
+        
         for k, v in g.get("TECHNIQUE", {}).items():
             with st.expander(f"📌 {k}", expanded=True):
                 st.markdown(v)
-                c1, c2 = st.columns([0.96, 0.04]); with c2: popover_feedback("GAB", k)
+                c1, c2 = st.columns([0.96, 0.04])
+                with c2:
+                    popover_feedback("GAB", k, sel)
 
     with tab2:
         for t, c in JMF_DATA.get(sel, {}).items():
             with st.expander(f"📌 {t}", expanded=True):
                 st.markdown(c)
-                c1, c2 = st.columns([0.96, 0.04]); with c2: popover_feedback("JMF", t)
+                c1, c2 = st.columns([0.96, 0.04])
+                with c2:
+                    popover_feedback("JMF", t, sel)
 
     with tab3:
         for t, c in JDV_DATA.get(sel, {}).items():
             with st.expander(f"🌿 {t}", expanded=True):
                 st.markdown(str(c))
-                c1, c2 = st.columns([0.96, 0.04]); with c2: popover_feedback("JDV", t)
+                c1, c2 = st.columns([0.96, 0.04])
+                with c2:
+                    popover_feedback("JDV", t, sel)
 
     with tab4:
         st.subheader("📝 Saisie Terrain")
-        # Ton code THO reste identique ici...
+        try:
+            df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
+            notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
+        except:
+            df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
+            notes = {}
+
+        with st.form(key=f"f_tho_{sel}"):
+            c1, c2 = st.columns(2)
+            v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
+            v_e = c1.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")))
+            v_s = c1.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")))
+            v_r = c2.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")))
+            v_v = c2.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")))
+            v_i = c2.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")))
+            if st.form_submit_button("💾 ENREGISTRER"):
+                new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
+                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                st.success("Données THO enregistrées !")
+
+else:
+    st.title("🌱 Bienvenue sur DLABAL")
+    st.info("👈 Sélectionnez un légume dans le menu à gauche pour commencer.")
+
+# --- METEO ---
+st.sidebar.markdown("---")
+with st.sidebar:
+    st.markdown("### 🌦️ Météo locale")
+    mf_iframe = '<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>'
+    components.html(mf_iframe, height=310)
