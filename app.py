@@ -63,7 +63,7 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
             "FEEDBACK": message
         }])
         
-        # Enregistrement dans le GSheet
+        # 1. ÉCRITURE DANS LE GSHEET
         try:
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
             df_updated = pd.concat([df_existing, new_row], ignore_index=True)
@@ -72,13 +72,20 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
         
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
         
-        # --- ENVOI DE LA NOTIFICATION MAIL ---
+        # 2. ENVOI DE LA NOTIFICATION (avec diagnostic)
         if "https" in URL_SCRIPT_MAIL:
-            # On envoie les infos au script Google en arrière-plan
-            requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}")
+            try:
+                # On ajoute un timeout pour ne pas bloquer l'app si Google est lent
+                response = requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
+                if response.status_code != 200:
+                    st.error(f"Erreur Script Google : {response.status_code}")
+            except Exception as e:
+                st.warning(f"Le GSheet a été mis à jour, mais le mail n'a pu être envoyé.")
         
-        st.toast(f"✅ Merci {nom_utilisateur} ! Enregistré.", icon="🚀")
-    except Exception:
+        # 3. INFOBULLE DE RÉUSSITE (REMISE ICI)
+        st.toast(f"🚀 Merci {nom_utilisateur} ! Feedback enregistré.", icon="✅")
+
+    except Exception as e:
         st.error(f"Erreur d'enregistrement sur l'onglet {legume.upper()}.")
 
 def load_json(f):
@@ -189,3 +196,4 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
