@@ -45,38 +45,27 @@ URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz
 URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-def envoyer_feedback(legume, nom_onglet_app, message):
+def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc):
     try:
         nom_sheet = legume.upper()
-        # 1. Ta ligne de données
         new_row = pd.DataFrame([{
             "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
             "LEGUME": nom_sheet,
             "ONGLET": nom_onglet_app,
+            "BLOC": nom_bloc, # Nouvelle colonne
             "FEEDBACK": message
         }])
         
-        # 2. On essaie de récupérer l'existant
         try:
-            # On tente de lire. Si l'onglet n'existe pas, ça va dans le 'except'
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
-            if df_existing is not None and not df_existing.empty:
-                df_updated = pd.concat([df_existing, new_row], ignore_index=True)
-            else:
-                df_updated = new_row
+            df_updated = pd.concat([df_existing, new_row], ignore_index=True)
         except:
-            # L'onglet n'existe pas ou est illisible -> On prépare la création
             df_updated = new_row
         
-        # 3. L'ACTION CRUCIALE : On met à jour
-        # Si nom_sheet n'existe pas, conn.update VA tenter de le créer.
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        st.success(f"✅ Suggestion enregistrée pour {nom_sheet} !")
-        
+        st.success(f"✅ Correction enregistrée pour le bloc {nom_bloc}")
     except Exception as e:
-        # Si ça bloque encore ici, c'est que l'API bloque la création d'onglet
-        st.error(f"Désolé, l'onglet '{nom_sheet}' doit être créé manuellement dans le GSheet de Feedback une première fois.")
-        st.info("Crée un onglet vide nommé exactement comme le légume en majuscules dans ton GSheet.")
+        st.error(f"Erreur : L'onglet '{nom_sheet}' n'existe pas dans le GSheet de Feedback.")
         
 def load_json(filename):
     if os.path.exists(filename):
@@ -213,18 +202,26 @@ else:
                 if "BLOCS_IDENTITE" in g:
                     cols = st.columns(len(g["BLOCS_IDENTITE"]))
                     for i, b in enumerate(g["BLOCS_IDENTITE"]):
-                        cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
+                        with cols[i]:
+                            st.success(f"**{b['titre']}**\n\n{b['contenu']}")
+                            # Petit bouton sous chaque bloc vert
+                            pop = st.popover("📝", use_container_width=False)
+                            with pop.form(key=f"fb_gab_id_{sel}_{i}"):
+                                msg = st.text_area(f"Erreur sur {b['titre']} ?")
+                                if st.form_submit_button("OK"):
+                                    envoyer_feedback(sel, "GAB", msg, b['titre'])
+
                 for k, v in g.get("TECHNIQUE", {}).items():
-                    with st.expander(f"📌 {k}", expanded=True): st.markdown(v)
-            else:
-                st.info(f"Aucune donnée de GAB / FRAB pour {sel}")
-                
-            st.divider()
-            with st.expander("📝 Une erreur dans GAB / FRAB ?"):
-                with st.form(key=f"fb_gab_{sel}", clear_on_submit=True):
-                    msg = st.text_area("Ta suggestion :")
-                    if st.form_submit_button("Envoyer"):
-                        envoyer_feedback(sel, "GAB / FRAB", msg)
+                    with st.expander(f"📌 {k}", expanded=True): 
+                        st.markdown(v)
+                        # Popover en bas à droite de l'expander
+                        c1, c2 = st.columns([0.9, 0.1])
+                        with c2:
+                            pop = st.popover("📝")
+                            with pop.form(key=f"fb_gab_tech_{sel}_{k}"):
+                                msg = st.text_area(f"Erreur sur {k} ?")
+                                if st.form_submit_button("OK"):
+                                    envoyer_feedback(sel, "GAB", msg, k)
 
         with tab2:
             found_jmf = False
@@ -233,48 +230,32 @@ else:
             # On cherche avec plusieurs variantes de casse pour être robuste
             reg = base.get(sel) or base.get(sel.capitalize()) or base.get(sel.upper())
             
-            if reg:
-                found_jmf = True
-                c1, c2 = st.columns(2)
-                c1.info(f"**📍 JMF**\n- Rouleau : `{reg.get('jmf', {}).get('rouleau', '?')}`")
-                c2.warning(f"**🚜 Terrateck**\n- Rouleau : `{reg.get('terrateck', {}).get('rouleau', '?')}`")
-            
-            # 2. Gestion du contenu texte (JMF_DATA)
-            # On cherche 'Ail', 'AIL' ou 'ail'
-            f = JMF_DATA.get(sel) or JMF_DATA.get(sel.capitalize()) or JMF_DATA.get(sel.upper())
-            
+f = JMF_DATA.get(sel, {})
             if f:
-                found_jmf = True
                 for t, c in f.items():
-                    with st.expander(f"📌 {t}", expanded=True): 
+                    with st.expander(f"📌 {t}", expanded=True):
                         st.markdown(c)
-            
-            if not found_jmf:
-                st.info(f"Aucune donnée de JMF pour {sel}")
-                
-            st.divider()
-            with st.expander("📝 Une erreur dans JMF ?"):
-                with st.form(key=f"fb_jmf_{sel}", clear_on_submit=True):
-                    msg = st.text_area("Ta suggestion :")
-                    if st.form_submit_button("Envoyer"):
-                        envoyer_feedback(sel, "JMF", msg)
+                        col1, col2 = st.columns([0.9, 0.1])
+                        with col2:
+                            pop = st.popover("📝")
+                            with pop.form(key=f"fb_jmf_{sel}_{t}"):
+                                msg = st.text_area(f"Erreur sur {t} ?")
+                                if st.form_submit_button("OK"):
+                                    envoyer_feedback(sel, "JMF", msg, t)
                         
         with tab3:
             j = JDV_DATA.get(sel, {})
             if j:
-                if "RENDEMENT JDV" in j: st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
                 for t, c in j.items():
-                    if t != "RENDEMENT JDV":
-                        with st.expander(f"🌿 {t}", expanded=True): st.markdown(str(c))
-            else:
-                st.info(f"Aucune donnée de JDV pour {sel}")
-
-            st.divider()
-            with st.expander("📝 Une erreur dans JDV ?"):
-                with st.form(key=f"fb_jdv_{sel}", clear_on_submit=True):
-                    msg = st.text_area("Ta suggestion :")
-                    if st.form_submit_button("Envoyer"):
-                        envoyer_feedback(sel, "JDV", msg)
+                    with st.expander(f"🌿 {t}", expanded=True):
+                        st.markdown(str(c))
+                        col1, col2 = st.columns([0.9, 0.1])
+                        with col2:
+                            pop = st.popover("📝")
+                            with pop.form(key=f"fb_jdv_{sel}_{t}"):
+                                msg = st.text_area(f"Erreur sur {t} ?")
+                                if st.form_submit_button("OK"):
+                                    envoyer_feedback(sel, "JDV", msg, t)
 
         with tab4:
             st.subheader(f"📝 Saisie Terrain - {sel}")
@@ -326,6 +307,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
