@@ -47,7 +47,7 @@ URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz
 URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
 
 # --- ACTION REQUISE : COLLE TON URL ICI (DOIT FINIR PAR /exec) ---
-URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbxXcWFlYVaBpl9PMni_eup_t3qbDt3JmvELczAIx0lnLXU4Dt9YEh1dEDqlOURx4QNsUQ/exec" 
+URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwnEgcHYUOpCizzxSm69qA2Jk69hOC9M5otSluJXZC2qEs_-OV0k4JlryIGs-lIoUGIlQ/exec" 
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -196,4 +196,5 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
