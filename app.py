@@ -3,6 +3,7 @@ import json
 import os
 import pandas as pd
 import streamlit.components.v1 as components
+import requests
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 from streamlit_cookies_manager import EncryptedCookieManager
@@ -35,7 +36,7 @@ def check_password():
 
 if not check_password():
     st.stop()
-
+    
 # Initialisation silencieuse du cache pour le NOM
 if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
@@ -45,6 +46,8 @@ if "user_name" not in st.session_state:
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
+URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbxanmNkOfEyhjuxMU-i_enk4x9OjUTh-D82ogg1B2d9EtwBDgOkHaCfU70z4RUmX5nanA/exec"
+
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur):
@@ -58,6 +61,22 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
             "BLOC": nom_bloc,
             "FEEDBACK": message
         }])
+        
+        try:
+            df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
+            df_updated = pd.concat([df_existing, new_row], ignore_index=True)
+        except:
+            df_updated = new_row
+        
+        conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
+        
+        # --- ENVOI DE LA NOTIFICATION ---
+        if URL_SCRIPT_MAIL != "TA_NOUVELLE_URL_DEPLOIEE":
+            requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}")
+        
+        st.toast(f"✅ Merci {nom_utilisateur} ! Enregistré.", icon="🚀")
+    except Exception:
+        st.error(f"Erreur d'enregistrement sur l'onglet {legume.upper()}.")
         
         try:
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
@@ -194,3 +213,4 @@ with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     mf_iframe = '<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>'
     components.html(mf_iframe, height=310)
+
