@@ -2,7 +2,8 @@ import streamlit as st
 import json
 import os
 import pandas as pd
-import requests # <-- AJOUTÉ : Pour communiquer avec Google
+import requests
+import unicodedata
 import streamlit.components.v1 as components
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
@@ -41,15 +42,38 @@ if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
 
 # ==========================================
-# 2. CONNEXIONS ET URL NOTIFICATION
+# 2. FONCTIONS UTILES
+# ==========================================
+def load_json(f):
+    if os.path.exists(f):
+        try:
+            with open(f, "r", encoding="utf-8") as file: return json.load(file)
+        except: return {}
+    return {}
+
+def sans_accent(texte):
+    return ''.join(c for c in unicodedata.normalize('NFD', texte)
+                   if unicodedata.category(c) != 'Mn').lower()
+
+# ==========================================
+# 3. CONNEXIONS ET CHARGEMENT DONNÉES
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
-
-# --- ACTION REQUISE : COLLE TON URL ICI (DOIT FINIR PAR /exec) ---
 URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwMW0m4CJPvv5rJ0tFjmoU58F6LTnpNmB1BYsp3bKiKy9vBi3PFUQqmWP9n-axt-iqXZA/exec" 
 
 conn = st.connection("gsheets", type=GSheetsConnection)
+
+# Chargement des fichiers JSON
+GAB_DATA = load_json("gab.json")
+JMF_DATA = load_json("jmf.json")
+JDV_DATA = load_json("jdv.json")
+REGLAGES_DATA = load_json("reglages_jp1.json")
+
+# Tri alphabétique intelligent
+legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
+                   if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
+tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
 
 def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur):
     try:
@@ -63,7 +87,6 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
             "FEEDBACK": message
         }])
         
-        # 1. ÉCRITURE DANS LE GSHEET
         try:
             df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
             df_updated = pd.concat([df_existing, new_row], ignore_index=True)
@@ -72,52 +95,16 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
         
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
         
-        # 2. ENVOI DE LA NOTIFICATION (avec diagnostic)
         if "https" in URL_SCRIPT_MAIL:
             try:
-                # On ajoute un timeout pour ne pas bloquer l'app si Google est lent
-                response = requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
-                if response.status_code != 200:
-                    st.error(f"Erreur Script Google : {response.status_code}")
-            except Exception as e:
-                st.warning(f"Le GSheet a été mis à jour, mais le mail n'a pu être envoyé.")
+                requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
+            except:
+                pass
         
-        # 3. INFOBULLE DE RÉUSSITE (REMISE ICI)
         st.toast(f"🚀 Merci {nom_utilisateur} ! Feedback enregistré.", icon="✅")
+    except Exception:
+        st.error(f"Erreur d'enregistrement.")
 
-    except Exception as e:
-        st.error(f"Erreur d'enregistrement sur l'onglet {legume.upper()}.")
-
-REGLAGES_DATA = load_json("reglages_jp1.json")
-
-def load_json(f):
-    if os.path.exists(f):
-        try:
-            with open(f, "r", encoding="utf-8") as file: return json.load(file)
-        except: return {}
-    return {}
-
-GAB_DATA = load_json("gab.json")
-JMF_DATA = load_json("jmf.json")
-JDV_DATA = load_json("jdv.json")
-
-import unicodedata
-
-# 1. On récupère la liste des légumes avec données
-legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
-                   if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
-
-# 2. Fonction pour supprimer les accents pour le tri uniquement
-def sans_accent(texte):
-    return ''.join(c for c in unicodedata.normalize('NFD', texte)
-                   if unicodedata.category(c) != 'Mn').lower()
-
-# 3. On trie la liste en utilisant cette fonction
-tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
-
-# ==========================================
-# 3. FONCTION FORMULAIRE (POPOVER)
-# ==========================================
 def popover_feedback(onglet, bloc, legume_sel):
     pop = st.popover("📝", help=f"Suggérer une correction pour {bloc}")
     with pop.form(key=f"form_{onglet}_{bloc}_{legume_sel}"):
@@ -135,27 +122,16 @@ def popover_feedback(onglet, bloc, legume_sel):
 # 4. SIDEBAR ET NAVIGATION
 # ==========================================
 with st.sidebar:
-    # 1. Le Titre (Bouton)
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "DOSSIER"
         st.rerun()
     
-    # 2. Le Sous-titre (Ajouté ici explicitement)
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
-    
-    st.write("") # Un petit espace pour respirer
-    
-    # 3. La sélection du légume
+    st.write("") 
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
-    
     st.divider()
-    
-    # 4. Déconnexion
     if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""
-        cookies.save()
-        st.session_state["password_correct"] = False
-        st.rerun()
+        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
 # ==========================================
 # 5. AFFICHAGE
@@ -174,22 +150,19 @@ if sel != "---":
                     popover_feedback("GAB", b['titre'], sel)
         for k, v in g.get("TECHNIQUE", {}).items():
             with st.expander(f"📌 {k}", expanded=True):
-                st.markdown(v)
-                c1, c2 = st.columns([0.96, 0.04])
+                st.markdown(v); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("GAB", k, sel)
 
     with tab2:
         for t, c in JMF_DATA.get(sel, {}).items():
             with st.expander(f"📌 {t}", expanded=True):
-                st.markdown(c)
-                c1, c2 = st.columns([0.96, 0.04])
+                st.markdown(c); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JMF", t, sel)
 
     with tab3:
         for t, c in JDV_DATA.get(sel, {}).items():
             with st.expander(f"🌿 {t}", expanded=True):
-                st.markdown(str(c))
-                c1, c2 = st.columns([0.96, 0.04])
+                st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JDV", t, sel)
 
     with tab4:
@@ -201,20 +174,6 @@ if sel != "---":
             df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
             notes = {}
 
-        # --- BLOC REGLAGES JP1 TERRADONIS ---
-    if sel in REGLAGES_DATA:
-        st.divider()
-        with st.expander(f"⚙️ RÉGLAGE JP1 TERRADONIS - {sel.upper()}", expanded=False):
-            data_jp1 = REGLAGES_DATA[sel]
-            # Affichage sous forme de colonnes pour une lecture propre
-            c1, c2, c3 = st.columns(3)
-            c1.metric("Pignon Menant", data_jp1.get("pignon_menant", "N/A"))
-            c2.metric("Pignon Mené", data_jp1.get("pignon_mene", "N/A"))
-            c3.metric("Type de Rouleau", data_jp1.get("rouleau", "N/A"))
-            
-            if "observations" in data_jp1:
-                st.info(f"**Observations :** {data_jp1['observations']}")
-        
         with st.form(key=f"f_tho_{sel}"):
             c1, c2 = st.columns(2)
             v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
@@ -228,8 +187,19 @@ if sel != "---":
                 df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
+
+    # --- REGLAGES JP1 TERRADONIS ---
+    if sel in REGLAGES_DATA:
+        st.divider()
+        with st.expander(f"⚙️ RÉGLAGE JP1 TERRADONIS - {sel.upper()}", expanded=True):
+            data_jp1 = REGLAGES_DATA[sel]
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Pignon Menant", data_jp1.get("pignon_menant", "N/A"))
+            c2.metric("Pignon Mené", data_jp1.get("pignon_mene", "N/A"))
+            c3.metric("Type de Rouleau", data_jp1.get("rouleau", "N/A"))
+            if "observations" in data_jp1: st.info(f"**Observations :** {data_jp1['observations']}")
+
 else:
-    # --- ICI ON REMET LE TEXTE DE LA PAGE D'ACCUEIL ---
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("""
@@ -252,9 +222,3 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
-
-
-
-
-
