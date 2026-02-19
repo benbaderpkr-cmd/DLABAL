@@ -202,7 +202,7 @@ if sel != "---":
             notes = {}
 
         # --- BLOC REGLAGES JP1 TERRADONIS ---
-        if sel in REGLAGES_DATA:
+    if sel in REGLAGES_DATA:
         st.divider()
         with st.expander(f"⚙️ RÉGLAGE JP1 TERRADONIS - {sel.upper()}", expanded=False):
             data_jp1 = REGLAGES_DATA[sel]
@@ -252,6 +252,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
