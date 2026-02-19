@@ -112,20 +112,29 @@ with st.sidebar:
     
     st.divider()
 
-    # --- BLOC REGLAGES JP1 (Permanent - Affiche tout le JSON) ---
+# --- BLOC REGLAGES JP1 (Sécurisé) ---
     with st.expander("⚙️ RÉGLAGES JP1 TERRADONIS", expanded=False):
         if REGLAGES_DATA:
+            # On parcourt les éléments du JSON
             for legume_key, infos in REGLAGES_DATA.items():
                 st.markdown(f"**{legume_key.upper()}**")
-                st.write(f"Pignons: {infos.get('pignon_menant','?')}/{infos.get('pignon_mene','?')} | Rouleau: {infos.get('rouleau','?')}")
-                if "observations" in infos:
-                    st.caption(f"Note: {infos['observations']}")
+                
+                # On vérifie que 'infos' est bien un dictionnaire avant d'utiliser .get()
+                if isinstance(infos, dict):
+                    p_menant = infos.get('pignon_menant', '?')
+                    p_mene = infos.get('pignon_mene', '?')
+                    rouleau = infos.get('rouleau', '?')
+                    st.write(f"Pignons: {p_menant}/{p_mene} | Rouleau: {rouleau}")
+                    
+                    if "observations" in infos:
+                        st.caption(f"Note: {infos['observations']}")
+                else:
+                    # Si la donnée n'est pas un dictionnaire, on affiche la valeur brute
+                    st.write(str(infos))
+                
                 st.divider()
         else:
             st.info("Aucun réglage disponible.")
-
-    if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
 # ==========================================
 # 5. AFFICHAGE
@@ -204,3 +213,4 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
