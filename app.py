@@ -42,8 +42,33 @@ if not check_password():
 # 2. CONNEXIONS ET CHARGEMENT (PILIERS 1 & 5)
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
+URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+def envoyer_feedback(legume, nom_onglet_app, message):
+    try:
+        nom_sheet = legume.upper()
+        # Tes 4 colonnes demandées
+        new_row = pd.DataFrame([{
+            "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
+            "LEGUME": nom_sheet,
+            "ONGLET": nom_onglet_app,
+            "FEEDBACK": message
+        }])
+        try:
+            # On lit l'onglet s'il existe
+            df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
+            df_updated = pd.concat([df_existing, new_row], ignore_index=True)
+        except:
+            # Sinon on part de la nouvelle ligne
+            df_updated = new_row
+        
+        # On met à jour (ça crée l'onglet s'il n'existe pas)
+        conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
+        st.success(f"✅ Suggestion enregistrée dans l'onglet {nom_sheet}")
+    except Exception as e:
+        st.error(f"Erreur GSheets : {e}")
+        
 def load_json(filename):
     if os.path.exists(filename):
         try:
@@ -184,6 +209,13 @@ else:
                     with st.expander(f"📌 {k}", expanded=True): st.markdown(v)
             else:
                 st.info(f"Aucune donnée de GAB / FRAB pour {sel}")
+                
+                st.divider()
+        with st.expander("📝 Une erreur dans GAB / FRAB ?"):
+            with st.form(key=f"fb_gab_{sel}", clear_on_submit=True):
+                msg = st.text_area("Ta suggestion :")
+                if st.form_submit_button("Envoyer"):
+                    envoyer_feedback(sel, "GAB / FRAB", msg)
 
         with tab2:
             found_jmf = False
@@ -210,6 +242,13 @@ else:
             
             if not found_jmf:
                 st.info(f"Aucune donnée de JMF pour {sel}")
+
+        st.divider()
+        with st.expander("📝 Une erreur dans JMF ?"):
+            with st.form(key=f"fb_jmf_{sel}", clear_on_submit=True):
+                msg = st.text_area("Ta suggestion :")
+                if st.form_submit_button("Envoyer"):
+                    envoyer_feedback(sel, "JMF", msg)
                         
         with tab3:
             j = JDV_DATA.get(sel, {})
@@ -220,6 +259,13 @@ else:
                         with st.expander(f"🌿 {t}", expanded=True): st.markdown(str(c))
             else:
                 st.info(f"Aucune donnée de JDV pour {sel}")
+
+        st.divider()
+        with st.expander("📝 Une erreur dans JDV ?"):
+            with st.form(key=f"fb_jdv_{sel}", clear_on_submit=True):
+                msg = st.text_area("Ta suggestion :")
+                if st.form_submit_button("Envoyer"):
+                    envoyer_feedback(sel, "JDV", msg)
 
         with tab4:
             st.subheader(f"📝 Saisie Terrain - {sel}")
@@ -244,6 +290,13 @@ else:
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
 
+        st.divider()
+        with st.expander("📝 Une erreur dans THO ?"):
+            with st.form(key=f"fb_tho_err_{sel}", clear_on_submit=True): # clé différente du bouton 'enregistrer'
+                msg = st.text_area("Ta suggestion :")
+                if st.form_submit_button("Envoyer"):
+                    envoyer_feedback(sel, "THO", msg)
+
 st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
@@ -264,6 +317,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
