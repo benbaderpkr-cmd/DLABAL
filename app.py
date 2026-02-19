@@ -39,32 +39,6 @@ if not check_password():
     st.stop()
 
 # ==========================================
-# WIDGET METEO
-# ==========================================
-
-with st.sidebar:
-    st.markdown("### 🌦️ Météo locale")
-    
-    # On utilise components.html pour injecter le code iframe
-    # Note : j'ai ajusté le scrolling="no" pour éviter les doubles barres de défilement
-    iframe_code = """
-    <iframe id="widget_autocomplete_preview" 
-            width="150" 
-            height="300" 
-            frameborder="0" 
-            scrolling="no"
-            src="https://meteofrance.com/widget/prevision/852810##3D6AA2" 
-            title="Prévisions Sérigné par Météo-France"
-            style="display: block; margin: 0 auto;"> 
-    </iframe>
-    """
-    
-    components.html(iframe_code, height=320)
-
-# Appel de la fonction
-add_weather_widget()
-
-# ==========================================
 # 2. CONNEXIONS ET CHARGEMENT (PILIERS 1 & 5)
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
@@ -261,6 +235,23 @@ else:
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
 
-
-
-
+st.sidebar.markdown("---")
+with st.sidebar:
+    st.markdown("### 🌦️ Météo locale")
+    
+    # Votre iframe Météo-France
+    mf_iframe = """
+    <iframe id="widget_autocomplete_preview" 
+            width="150" 
+            height="300" 
+            frameborder="0" 
+            scrolling="no"
+            src="https://meteofrance.com/widget/prevision/852810##3D6AA2" 
+            title="Prévisions Sérigné par Météo-France"
+            style="display: block; margin: 0 auto; border: none;"> 
+    </iframe>
+    """
+    
+    # Affichage du composant
+    import streamlit.components.v1 as components
+    components.html(mf_iframe, height=310)
