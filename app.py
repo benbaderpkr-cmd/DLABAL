@@ -213,16 +213,29 @@ if sel != "---":
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 else:
+    # --- ICI ON REMET LE TEXTE DE LA PAGE D'ACCUEIL ---
     st.title("🌱 Bienvenue sur DLABAL")
+    st.markdown("---")
+    st.markdown("""
+    ### DLABAL - BDD ITK Maraîchage
+    
+    Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
+    
+    **Comment utiliser l'application :**
+    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
+    2. **Consultez les fiches** via les onglets thématiques.
+    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
+    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
+    
+    ---
+    *Toutes les modifications de données textuelles sont soumises à validation.*
+    """)
+    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
 
 st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
-
-
-
 
 
 
