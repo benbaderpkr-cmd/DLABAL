@@ -336,7 +336,7 @@
     "RÉCOLTE ET CONSERVATION": "• **Stades :** Début de récolte en avril (cébettes), puis oignons bottes classiques.\n• **Technique :** Stockage en caisses (alignés), bottelage en salle de lavage avec pesée, puis lavage final.\n• **Astuce :** En cas de besoin de libérer la planche, arrachage complet et séchage pour vente en vrac (moins rentable).",
     "COMMERCIALISATION": "• **Prix :** 2,00 € à 2,50 € la botte (Cébette ~8€/kg ; Blanc ~5€/kg).\n• **Vente :** Uniquement en botte pour maximiser la rentabilité. La demande est forte et constante toute l'année."
   },
-"Oignon de conservation": {
+"Oignon": {
     "RENDEMENT JDV": "**4 kg/m²** (96 kg pour le jaune / 40 kg pour l'échalion) — CA : ~265 € / planche. *Note : Culture à faible rentabilité au m². À limiter en surface face à la concurrence des producteurs mécanisés. L'intérêt réside dans le service client après la fin des oignons bottes.*",
     "PRÉSENTATION": "Légume de garde pour l'automne et l'hiver. Contrairement à l'oignon botte, il nécessite une phase de séchage (ressuyage) importante pour garantir sa conservation.",
     "CHOIX VARIÉTAL": "Deux types produits pour varier les usages culinaires.\n• **Oignon Jaune :** Hylander, Jaune paille.\n• **Échalion (type cuisse de poulet) :** Zebrune.",
@@ -536,3 +536,4 @@
   }
 
 }
+
