@@ -99,9 +99,19 @@ GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 
-# Filtrage intelligent des légumes (Pilier 5)
-tous_les_legumes = sorted([l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
-                           if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)])
+import unicodedata
+
+# 1. On récupère la liste des légumes avec données
+legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
+                   if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
+
+# 2. Fonction pour supprimer les accents pour le tri uniquement
+def sans_accent(texte):
+    return ''.join(c for c in unicodedata.normalize('NFD', texte)
+                   if unicodedata.category(c) != 'Mn').lower()
+
+# 3. On trie la liste en utilisant cette fonction
+tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
 
 # ==========================================
 # 3. FONCTION FORMULAIRE (POPOVER)
@@ -196,6 +206,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
