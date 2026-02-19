@@ -38,6 +38,44 @@ if not check_password():
     st.stop()
 
 # ==========================================
+# WIDGET METEO
+# ==========================================
+
+def add_weather_widget():
+    # 1. Récupération de la localisation de l'utilisateur via IP
+    try:
+        # Service gratuit et fiable pour la géolocalisation par IP
+        geo_data = requests.get('https://ipapi.co/json/').json()
+        lat = geo_data.get('latitude')
+        lon = geo_data.get('longitude')
+        city = geo_data.get('city', 'Ma position')
+    except Exception:
+        # Valeurs par défaut si la détection échoue
+        lat, lon, city = 46.50, -0.84, "Sérigné"
+
+    # 2. Construction de l'URL du widget Meteoblue
+    # On injecte dynamiquement lat et lon
+    # Note : 'layout=light' peut être changé en 'layout=dark' selon votre thème
+    meteoblue_url = f"https://www.meteoblue.com/fr/meteo/widgets/daily/{city.lower()}_{lat}_{lon}?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETRE_PER_HOUR&precipunit=MILLIMETRE&coloured=coloured&pictoicon=1&elm%5B1%5D=1&elm%5B2%5D=1&elm%5B3%5D=1&layout=light"
+
+    # 3. Affichage dans la sidebar (pour respecter l'intégrité de l'interface)
+    with st.sidebar:
+        st.markdown(f"### 🌦️ Météo : {city}")
+        
+        # Le widget Meteoblue nécessite un iframe
+        iframe_code = f"""
+        <iframe src="{meteoblue_url}" 
+                frameborder="0" scrolling="NO" allowtransparency="true" 
+                sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" 
+                style="width: 100%; height: 420px;">
+        </iframe>
+        """
+        components.html(iframe_code, height=450)
+
+# Appel de la fonction
+add_weather_widget()
+
+# ==========================================
 # 2. CONNEXIONS ET CHARGEMENT (PILIERS 1 & 5)
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
@@ -233,3 +271,4 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
+
