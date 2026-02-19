@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 from streamlit_cookies_manager import EncryptedCookieManager
-
+st.write("Clés JMF détectées :", list(JMF_DATA.keys()))
 # ==========================================
 # 1. CONFIGURATION, COOKIES ET SECURITE
 # ==========================================
@@ -264,5 +264,6 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
