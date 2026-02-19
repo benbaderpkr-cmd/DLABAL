@@ -42,7 +42,7 @@ if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
 
 # ==========================================
-# 2. FONCTIONS UTILES
+# 2. FONCTIONS UTILES (DÉFINIES EN HAUT)
 # ==========================================
 def load_json(f):
     if os.path.exists(f):
@@ -64,13 +64,13 @@ URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwMW0m4CJPvv5rJ0tFjmo
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-# Chargement des fichiers JSON
+# Chargement des 4 fichiers JSON
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 REGLAGES_DATA = load_json("reglages_jp1.json")
 
-# Tri alphabétique intelligent
+# Préparation de la liste des légumes triée A-Z sans accents
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
                    if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
 tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
@@ -80,78 +80,52 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
         nom_sheet = legume.upper()
         new_row = pd.DataFrame([{
             "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
-            "NOM": nom_utilisateur,
-            "LEGUME": nom_sheet,
-            "ONGLET": nom_onglet_app,
-            "BLOC": nom_bloc,
-            "FEEDBACK": message
+            "NOM": nom_utilisateur, "LEGUME": nom_sheet, "ONGLET": nom_onglet_app,
+            "BLOC": nom_bloc, "FEEDBACK": message
         }])
-        
-        try:
-            df_existing = conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0)
-            df_updated = pd.concat([df_existing, new_row], ignore_index=True)
-        except:
-            df_updated = new_row
-        
+        df_updated = pd.concat([conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0), new_row], ignore_index=True)
         conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        
         if "https" in URL_SCRIPT_MAIL:
-            try:
-                requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
-            except:
-                pass
-        
-        st.toast(f"🚀 Merci {nom_utilisateur} ! Feedback enregistré.", icon="✅")
-    except Exception:
-        st.error(f"Erreur d'enregistrement.")
+            requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
+        st.toast(f"🚀 Merci {nom_utilisateur} ! Enregistré.", icon="✅")
+    except: st.error("Erreur d'enregistrement.")
 
 def popover_feedback(onglet, bloc, legume_sel):
-    pop = st.popover("📝", help=f"Suggérer une correction pour {bloc}")
+    pop = st.popover("📝")
     with pop.form(key=f"form_{onglet}_{bloc}_{legume_sel}"):
-        nom_in = st.text_input("Ton Nom :", value=st.session_state["user_name"])
-        msg_in = st.text_area("Ta suggestion :")
+        nom_in = st.text_input("Nom :", value=st.session_state["user_name"])
+        msg_in = st.text_area("Suggestion :")
         if st.form_submit_button("Envoyer"):
-            if not nom_in or not msg_in:
-                st.warning("Nom et message requis.")
-            else:
-                st.session_state["user_name"] = nom_in 
-                envoyer_feedback(legume_sel, onglet, msg_in, bloc, nom_in)
-                st.rerun()
+            st.session_state["user_name"] = nom_in 
+            envoyer_feedback(legume_sel, onglet, msg_in, bloc, nom_in)
+            st.rerun()
 
 # ==========================================
 # 4. SIDEBAR ET NAVIGATION
 # ==========================================
 with st.sidebar:
-    # 1. Titre et Sous-titre
     if st.button("**DLABAL**", use_container_width=True):
-        st.session_state["view_mode"] = "DOSSIER"
-        st.rerun()
+        st.session_state["view_mode"] = "DOSSIER"; st.rerun()
     
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     st.write("") 
     
-    # 2. Sélecteur de légume
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
     
     st.divider()
 
-    # 3. RÉGLAGE JP1 (S'affiche juste au-dessus de Déconnexion si données présentes)
+    # --- BLOC JP1 DANS LA SIDEBAR ---
     if sel != "---" and sel in REGLAGES_DATA:
         with st.expander("⚙️ RÉGLAGE JP1 TERRADONIS", expanded=False):
             d = REGLAGES_DATA[sel]
             st.write(f"**Pignon Menant :** {d.get('pignon_menant', '-')}")
             st.write(f"**Pignon Mené :** {d.get('pignon_mene', '-')}")
             st.write(f"**Rouleau :** {d.get('rouleau', '-')}")
-            if "observations" in d:
-                st.caption(f"Note : {d['observations']}")
-        st.write("") # Petit espace entre le réglage et le bouton
+            if "observations" in d: st.caption(f"Note : {d['observations']}")
+        st.write("") 
 
-    # 4. Bouton Déconnexion
     if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""
-        cookies.save()
-        st.session_state["password_correct"] = False
-        st.rerun()
+        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
 # ==========================================
 # 5. AFFICHAGE
@@ -193,7 +167,6 @@ if sel != "---":
         except:
             df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
             notes = {}
-
         with st.form(key=f"f_tho_{sel}"):
             c1, c2 = st.columns(2)
             v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
@@ -208,38 +181,19 @@ if sel != "---":
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-    # --- REGLAGES JP1 TERRADONIS ---
-    if sel in REGLAGES_DATA:
-        st.divider()
-        with st.expander(f"⚙️ RÉGLAGE JP1 TERRADONIS - {sel.upper()}", expanded=True):
-            data_jp1 = REGLAGES_DATA[sel]
-            c1, c2, c3 = st.columns(3)
-            c1.metric("Pignon Menant", data_jp1.get("pignon_menant", "N/A"))
-            c2.metric("Pignon Mené", data_jp1.get("pignon_mene", "N/A"))
-            c3.metric("Type de Rouleau", data_jp1.get("rouleau", "N/A"))
-            if "observations" in data_jp1: st.info(f"**Observations :** {data_jp1['observations']}")
-
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("""
     ### DLABAL - BDD ITK Maraîchage
-    
     Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
-    
-    **Comment utiliser l'application :**
-    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
-    2. **Consultez les fiches** via les onglets thématiques.
-    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
-    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
-    
-    ---
-    *Toutes les modifications de données textuelles sont soumises à validation.*
+    1. **Sélectionnez un légume** à gauche.
+    2. **Consultez les fiches** ou suggérez des corrections via 📝.
+    3. **Saisie Terrain** : Utilisez l'onglet **THO**.
     """)
-    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
+    st.info("👈 Choisissez un légume dans la barre latérale.")
 
 st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
