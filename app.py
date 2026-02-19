@@ -46,7 +46,7 @@ if "user_name" not in st.session_state:
 # ==========================================
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
-URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbxanmNkOfEyhjuxMU-i_enk4x9OjUTh-D82ogg1B2d9EtwBDgOkHaCfU70z4RUmX5nanA/exec"
+URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbxXcWFlYVaBpl9PMni_eup_t3qbDt3JmvELczAIx0lnLXU4Dt9YEh1dEDqlOURx4QNsUQ/exec"
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
@@ -213,4 +213,5 @@ with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     mf_iframe = '<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>'
     components.html(mf_iframe, height=310)
+
 
