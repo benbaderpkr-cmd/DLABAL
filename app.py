@@ -210,12 +210,12 @@ else:
             else:
                 st.info(f"Aucune donnée de GAB / FRAB pour {sel}")
                 
-                st.divider()
-        with st.expander("📝 Une erreur dans GAB / FRAB ?"):
-            with st.form(key=f"fb_gab_{sel}", clear_on_submit=True):
-                msg = st.text_area("Ta suggestion :")
-                if st.form_submit_button("Envoyer"):
-                    envoyer_feedback(sel, "GAB / FRAB", msg)
+            st.divider()
+            with st.expander("📝 Une erreur dans GAB / FRAB ?"):
+                with st.form(key=f"fb_gab_{sel}", clear_on_submit=True):
+                    msg = st.text_area("Ta suggestion :")
+                    if st.form_submit_button("Envoyer"):
+                        envoyer_feedback(sel, "GAB / FRAB", msg)
 
         with tab2:
             found_jmf = False
@@ -242,13 +242,13 @@ else:
             
             if not found_jmf:
                 st.info(f"Aucune donnée de JMF pour {sel}")
-
-        st.divider()
-        with st.expander("📝 Une erreur dans JMF ?"):
-            with st.form(key=f"fb_jmf_{sel}", clear_on_submit=True):
-                msg = st.text_area("Ta suggestion :")
-                if st.form_submit_button("Envoyer"):
-                    envoyer_feedback(sel, "JMF", msg)
+                
+            st.divider()
+            with st.expander("📝 Une erreur dans JMF ?"):
+                with st.form(key=f"fb_jmf_{sel}", clear_on_submit=True):
+                    msg = st.text_area("Ta suggestion :")
+                    if st.form_submit_button("Envoyer"):
+                        envoyer_feedback(sel, "JMF", msg)
                         
         with tab3:
             j = JDV_DATA.get(sel, {})
@@ -260,12 +260,12 @@ else:
             else:
                 st.info(f"Aucune donnée de JDV pour {sel}")
 
-        st.divider()
-        with st.expander("📝 Une erreur dans JDV ?"):
-            with st.form(key=f"fb_jdv_{sel}", clear_on_submit=True):
-                msg = st.text_area("Ta suggestion :")
-                if st.form_submit_button("Envoyer"):
-                    envoyer_feedback(sel, "JDV", msg)
+            st.divider()
+            with st.expander("📝 Une erreur dans JDV ?"):
+                with st.form(key=f"fb_jdv_{sel}", clear_on_submit=True):
+                    msg = st.text_area("Ta suggestion :")
+                    if st.form_submit_button("Envoyer"):
+                        envoyer_feedback(sel, "JDV", msg)
 
         with tab4:
             st.subheader(f"📝 Saisie Terrain - {sel}")
@@ -290,12 +290,12 @@ else:
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
 
-        st.divider()
-        with st.expander("📝 Une erreur dans THO ?"):
-            with st.form(key=f"fb_tho_err_{sel}", clear_on_submit=True): # clé différente du bouton 'enregistrer'
-                msg = st.text_area("Ta suggestion :")
-                if st.form_submit_button("Envoyer"):
-                    envoyer_feedback(sel, "THO", msg)
+            st.divider()
+            with st.expander("📝 Une erreur dans THO ?"):
+                with st.form(key=f"fb_tho_err_{sel}", clear_on_submit=True):
+                    msg = st.text_area("Ta suggestion :")
+                    if st.form_submit_button("Envoyer"):
+                        envoyer_feedback(sel, "THO", msg)
 
 st.sidebar.markdown("---")
 with st.sidebar:
@@ -317,6 +317,7 @@ with st.sidebar:
     # Affichage du composant
     import streamlit.components.v1 as components
     components.html(mf_iframe, height=310)
+
 
 
 
