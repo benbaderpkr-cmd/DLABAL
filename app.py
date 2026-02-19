@@ -88,6 +88,8 @@ def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur)
     except Exception as e:
         st.error(f"Erreur d'enregistrement sur l'onglet {legume.upper()}.")
 
+REGLAGES_DATA = load_json("reglages_jp1.json")
+
 def load_json(f):
     if os.path.exists(f):
         try:
@@ -199,6 +201,20 @@ if sel != "---":
             df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
             notes = {}
 
+    # --- BLOC REGLAGES JP1 TERRADONIS ---
+    if sel in REGLAGES_DATA:
+        st.divider()
+        with st.expander(f"⚙️ RÉGLAGE JP1 TERRADONIS - {sel.upper()}", expanded=False):
+            data_jp1 = REGLAGES_DATA[sel]
+            # Affichage sous forme de colonnes pour une lecture propre
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Pignon Menant", data_jp1.get("pignon_menant", "N/A"))
+            c2.metric("Pignon Mené", data_jp1.get("pignon_mene", "N/A"))
+            c3.metric("Type de Rouleau", data_jp1.get("rouleau", "N/A"))
+            
+            if "observations" in data_jp1:
+                st.info(f"**Observations :** {data_jp1['observations']}")
+        
         with st.form(key=f"f_tho_{sel}"):
             c1, c2 = st.columns(2)
             v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
@@ -236,6 +252,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
