@@ -43,35 +43,33 @@ if not check_password():
 # ==========================================
 
 def add_weather_widget():
-    # 1. Récupération de la localisation de l'utilisateur via IP
+    # 1. Localisation IP
     try:
-        # Service gratuit et fiable pour la géolocalisation par IP
         geo_data = requests.get('https://ipapi.co/json/').json()
-        lat = geo_data.get('latitude')
-        lon = geo_data.get('longitude')
+        lat = geo_data.get('latitude', 46.50)
+        lon = geo_data.get('longitude', -0.84)
         city = geo_data.get('city', 'Ma position')
     except Exception:
-        # Valeurs par défaut si la détection échoue
         lat, lon, city = 46.50, -0.84, "Sérigné"
 
-    # 2. Construction de l'URL du widget Meteoblue
-    # On injecte dynamiquement lat et lon
-    # Note : 'layout=light' peut être changé en 'layout=dark' selon votre thème
-    meteoblue_url = f"https://www.meteoblue.com/fr/meteo/widgets/daily/{city.lower()}_{lat}_{lon}?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETRE_PER_HOUR&precipunit=MILLIMETRE&coloured=coloured&pictoicon=1&elm%5B1%5D=1&elm%5B2%5D=1&elm%5B3%5D=1&layout=light"
+    # 2. Utilisation du domaine WIDGET (autorisé en iframe)
+    # L'URL est structurée différemment pour le serveur de widget
+    meteoblue_widget_url = f"https://www.meteoblue.com/fr/meteo/widgets/daily?geoloc=fixed&lat={lat}&lon={lon}&asl=47&tz=Europe%2FParis&city={city}&days=4&tempunit=CELSIUS&windunit=KILOMETRE_PER_HOUR&precipunit=MILLIMETRE&coloured=coloured&pictoicon=1&elm%5B1%5D=1&elm%5B2%5D=1&elm%5B3%5D=1&layout=light"
 
-    # 3. Affichage dans la sidebar (pour respecter l'intégrité de l'interface)
     with st.sidebar:
         st.markdown(f"### 🌦️ Météo : {city}")
         
-        # Le widget Meteoblue nécessite un iframe
+        # Code d'intégration standard de Meteoblue
         iframe_code = f"""
-        <iframe src="{meteoblue_url}" 
+        <iframe src="{meteoblue_widget_url}" 
                 frameborder="0" scrolling="NO" allowtransparency="true" 
                 sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" 
                 style="width: 100%; height: 420px;">
         </iframe>
         """
         components.html(iframe_code, height=450)
+
+add_weather_widget()
 
 # Appel de la fonction
 add_weather_widget()
@@ -272,5 +270,6 @@ else:
                     df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
                     conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                     st.success("Enregistré dans GSheet !")
+
 
 
