@@ -70,7 +70,8 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
-ITAB_DATA = load_json("itab.json")  # ← NOUVEAU
+ITAB_DATA = load_json("itab.json")
+FERTI_DATA = load_json("calcul_ferti.json") # ← NOUVEAU
 RAW_JP1 = load_json("reglages_jp1.json")
 REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
@@ -124,6 +125,10 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
 
+    if st.button("🧪 CALCUL FERTI", use_container_width=True): # ← NOUVEAU BOUTON
+        st.session_state["view_mode"] = "PAGE_FERTI"
+        st.rerun()
+
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
@@ -131,47 +136,44 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
+# --- NOUVEAU : PAGE CALCUL FERTI ---
+if st.session_state["view_mode"] == "PAGE_FERTI":
+    st.title("🧪 CALCUL FERTI")
+    if FERTI_DATA:
+        st.json(FERTI_DATA) # Affiche le contenu brut pour le moment
+    else:
+        st.info("Le fichier calcul_ferti.json est vide ou introuvable.")
+
 # --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
-if st.session_state["view_mode"] == "PAGE_JP1":
+elif st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
     
-# === TABLEAU 1 : SOURCE JMF (COMPLET) ===
     st.subheader("📋 Réglages Techniques (Source : JMF)")
     DATA_JMF = load_json("reglages_jmf.json")
     if DATA_JMF:
         df_jmf = pd.DataFrame(DATA_JMF["reglages"])
         st.dataframe(
-            df_jmf.rename(columns={
-                "AV": "Pignon AV", 
-                "AR": "Pignon AR", 
-                "OBS": "Observations"
-            }), 
-            use_container_width=True, 
-            hide_index=True
+            df_jmf.rename(columns={"AV": "Pignon AV", "AR": "Pignon AR", "OBS": "Observations"}), 
+            use_container_width=True, hide_index=True
         )
     st.caption("Source : Jean-Martin Fortier (JMF) - Guide technique")
 
     st.write("")
     st.divider()
 
-    # === TABLEAU 2 : SOURCE TERRADONIS / TERRAIN ===
     st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
     DATA_TERRA = load_json("reglages_jp1.json") 
     if DATA_TERRA and "reglages" in DATA_TERRA:
         df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
-        st.dataframe(
-            df_terra.sort_values("CULTURE"), 
-            use_container_width=True, 
-            hide_index=True
-        )
+        st.dataframe(df_terra.sort_values("CULTURE"), use_container_width=True, hide_index=True)
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])  # ← MODIFIÉ
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
     with tab1:
         g = GAB_DATA.get(sel, {})
@@ -198,7 +200,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JDV", t, sel)
 
-    with tab4:  # ← NOUVEAU BLOC ITAB
+    with tab4:
         itab = ITAB_DATA.get(sel, {})
         if itab:
             for t, c in itab.items():
@@ -208,7 +210,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
         else:
             st.info("Aucune donnée ITAB disponible pour ce légume.")
 
-    with tab5:  # ← était tab4
+    with tab5:
         st.subheader("📝 Saisie Terrain")
         try:
             df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
