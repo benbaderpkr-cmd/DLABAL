@@ -136,24 +136,39 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
     
-    # --- TABLEAU 1 : RÉGLAGES PAR CULTURES ---
-    st.subheader("📋 Réglages par cultures")
-    if REGLAGES_LISTE:
-        df_jp1 = pd.DataFrame(REGLAGES_LISTE)
-        
-        # Correction : On ne force plus les 7 colonnes si elles n'existent pas
-        # On renomme proprement les colonnes existantes
-        mapping_noms = {
-            "CULTURE": "Légume / Culture",
-            "ROULEAUX": "Rouleau(x) préconisé(s)"
-        }
-        df_jp1 = df_jp1.rename(columns=mapping_noms)
-        
-        st.dataframe(df_jp1, use_container_width=True, hide_index=True)
-    
+# === TABLEAU 1 : SOURCE JMF (COMPLET) ===
+    st.subheader("📋 Réglages Techniques (Source : JMF)")
+    DATA_JMF = load_json("reglages_jmf.json")
+    if DATA_JMF:
+        df_jmf = pd.DataFrame(DATA_JMF["reglages"])
+        st.dataframe(
+            df_jmf.rename(columns={
+                "AV": "Pignon AV", 
+                "AR": "Pignon AR", 
+                "OBS": "Observations"
+            }), 
+            use_container_width=True, 
+            hide_index=True
+        )
+    st.caption("Source : Jean-Martin Fortier (JMF) - Guide technique")
+
     st.write("")
     st.divider()
-            
+
+    # === TABLEAU 2 : SOURCE TERRADONIS / TERRAIN ===
+    st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
+    # Ici on utilise ton fichier d'origine sans le modifier
+    DATA_TERRA = load_json("reglages_jp1 (3).json") 
+    if DATA_TERRA and "reglages" in DATA_TERRA:
+        # On affiche uniquement Culture et Rouleau pour ce tableau
+        df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
+        st.dataframe(
+            df_terra.sort_values("CULTURE"), 
+            use_container_width=True, 
+            hide_index=True
+        )
+    st.caption("Source : Catalogue Terradonis & Observations Terrain")
+    
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
@@ -230,6 +245,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
