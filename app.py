@@ -70,7 +70,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
-ITAB_DATA = load_json("itab.json")
+ITAB_DATA = load_json("itab.json")  # ← NOUVEAU
 RAW_JP1 = load_json("reglages_jp1.json")
 REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
@@ -158,10 +158,8 @@ if st.session_state["view_mode"] == "PAGE_JP1":
 
     # === TABLEAU 2 : SOURCE TERRADONIS / TERRAIN ===
     st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
-    # Ici on utilise ton fichier d'origine sans le modifier
     DATA_TERRA = load_json("reglages_jp1.json") 
     if DATA_TERRA and "reglages" in DATA_TERRA:
-        # On affiche uniquement Culture et Rouleau pour ce tableau
         df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
         st.dataframe(
             df_terra.sort_values("CULTURE"), 
@@ -173,7 +171,7 @@ if st.session_state["view_mode"] == "PAGE_JP1":
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
-    tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])  # ← MODIFIÉ
 
     with tab1:
         g = GAB_DATA.get(sel, {})
@@ -200,7 +198,17 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JDV", t, sel)
 
-    with tab4:
+    with tab4:  # ← NOUVEAU BLOC ITAB
+        itab = ITAB_DATA.get(sel, {})
+        if itab:
+            for t, c in itab.items():
+                with st.expander(f"📗 {t}", expanded=True):
+                    st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
+                    with c2: popover_feedback("ITAB", t, sel)
+        else:
+            st.info("Aucune donnée ITAB disponible pour ce légume.")
+
+    with tab5:  # ← était tab4
         st.subheader("📝 Saisie Terrain")
         try:
             df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
@@ -229,7 +237,7 @@ else:
     st.markdown("""
     ### DLABAL - BDD ITK Maraîchage
     
-    Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
+    Cet outil centralise les connaissances techniques du **GAB**, de **JMF**, de **JDV** et de l'**ITAB**.
     
     **Comment utiliser l'application :**
     1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
@@ -246,9 +254,3 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
-
-
-
-
-
