@@ -41,7 +41,6 @@ if not check_password():
 if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
 
-# Initialisation du mode de vue par défaut
 if "view_mode" not in st.session_state:
     st.session_state["view_mode"] = "ACCUEIL"
 
@@ -68,13 +67,10 @@ URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwMW0m4CJPvv5rJ0tFjmo
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-# Chargement des fichiers JSON
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 RAW_JP1 = load_json("reglages_jp1.json")
-
-# Extraction propre de la liste des réglages pour le tableau
 REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
@@ -118,58 +114,36 @@ with st.sidebar:
     st.write("") 
     
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
-    
     if sel != "---":
         st.session_state["view_mode"] = "LEGUME"
     
     st.divider()
 
-    # --- BOUTON POUR LA PAGE RÉGLAGES JP1 ---
     if st.button("⚙️ RÉGLAGES JP1 TERRADONIS", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
-
-    st.write("") 
 
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
 # ==========================================
-# 5. LOGIQUE D'AFFICHAGE (PAGE CENTRALE)
+# 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAU) ---
+# --- CAS 1 : TABLEAU DES RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
-    st.caption(f"Source : {RAW_JP1.get('source', 'Inconnue')}")
+    st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
-    
     if REGLAGES_LISTE:
-        # Conversion de la liste JSON en DataFrame Pandas pour l'affichage en tableau
         df_jp1 = pd.DataFrame(REGLAGES_LISTE)
-        
-        # Renommage des colonnes pour un affichage plus propre dans l'interface
-        df_jp1.columns = [
-            "Légume", "Rouleau", "Pignon AV", "Pignon AR", 
-            "Distance (cm)", "Brosse", "Observations"
-        ]
-        
-        # Affichage du tableau interactif
-        st.dataframe(
-            df_jp1, 
-            use_container_width=True, 
-            hide_index=True,
-            column_config={
-                "Légume": st.column_config.TextColumn(help="Nom de la culture"),
-                "Distance (cm)": st.column_config.NumberColumn(format="%.1f cm"),
-            }
-        )
-        
-        st.info("💡 Vous pouvez cliquer sur les entêtes de colonnes pour trier ou utiliser l'icône loupe pour chercher un légume.")
+        df_jp1.columns = ["Légume", "Rouleau", "Pignon AV", "Pignon AR", "Distance (cm)", "Brosse", "Observations"]
+        st.dataframe(df_jp1, use_container_width=True, hide_index=True)
+        st.info("💡 Vous pouvez cliquer sur les entêtes de colonnes pour trier.")
     else:
-        st.warning("Aucun réglage trouvé dans le fichier reglages_jp1.json.")
+        st.warning("Fichier vide.")
 
-# --- CAS B : AFFICHAGE D'UN LÉGUME SÉLECTIONNÉ ---
+# --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
     tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
@@ -221,18 +195,25 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-# --- CAS C : PAGE D'ACCUEIL ---
+# --- CAS 3 : PAGE D'ACCUEIL (TEXTE ORIGINAL RÉTABLI) ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("""
     ### DLABAL - BDD ITK Maraîchage
+    
     Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
-    1. **Sélectionnez un légume** à gauche pour consulter sa fiche.
-    2. **Contribuez** via l'icône 📝 pour suggérer des corrections.
-    3. **Saisie Terrain** : Enregistrez vos notes dans l'onglet **THO**.
+    
+    **Comment utiliser l'application :**
+    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
+    2. **Consultez les fiches** via les onglets thématiques.
+    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
+    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
+    
+    ---
+    *Toutes les modifications de données textuelles sont soumises à validation.*
     """)
-    st.info("👈 Choisissez un légume ou accédez aux réglages JP1 dans la barre latérale.")
+    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
 
 st.sidebar.markdown("---")
 with st.sidebar:
