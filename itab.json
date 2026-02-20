@@ -1,82 +1,32 @@
 {
   "Ail": {
-    "CULTIVARS": "Le choix des variétés est assez restreint pour l'ail, et les fournisseurs de caïeux bio sont peu nombreux. Du fait des faibles stocks en « semences » biologiques, les demandes de dérogation sont nombreuses.\n\n**Ail blanc** : Messidor, Messidrome, Thermidrome, Therador, Vigor, Supreme, Sabadrome, Corail et Jolimont. Ces différentes variétés ont une dormance et une conservation moyennes, et peuvent être récoltées à partir du 20 juin. La variété Corail est l'une des plus rustiques.\n\n**Ail violet** : Germidour, Paradour, Primor et Sprint. La variété Germidour précoce présente une tendance à la verse lorsqu'elle arrive à maturité.\n\n**Ail rose** : Goulurose, Ibérose, Edenrose et Jardirose, ainsi que l'ail rose de Lautrec en variété ancienne. Ces variétés ont une dormance élevée, une bonne conservation, et sont de récolte tardive.\n\n**Types de plantation :**\n- L'ail d'automne comprend les variétés d'ail blanc et d'ail violet, planté entre novembre et décembre. Le rendement de ces variétés est généralement plus élevé, avec des têtes plus grosses.\n- L'ail de printemps englobe principalement les variétés d'ail rose, planté de janvier à mars. C'est le type le plus recherché par les consommateurs.\n\n⚠️ Vérifier la disponibilité en semences biologiques sur www.semences-biologiques.org et se référer aux guides de préconisations régionaux proposés par les organismes de développement.",
-    "ENVIRONNEMENT DE LA PLANTE": "**Climat**\nL'ail s'adapte bien aux différents climats, sauf aux extrêmes. C'est une plante très résistante au froid, qui tolère ainsi des périodes de gel allant jusqu'à -15 ou -18 °C (lorsque le caïeu est au repos dans le sol).\n\nLa dormance du caïeu est levée par des températures fraîches (optimum de 7 °C pendant 8 à 16 jours). Les températures optimales de germination sont de l'ordre de 17 °C, avec un zéro de végétation proche de 0 °C.\n\n**Sol**\nComme l'oignon, l'ail peut se développer sur de nombreux types de sols car il est relativement peu exigeant. Toutefois, compte-tenu de son système racinaire fragile, l'ail est sensible au stress hydrique et requiert donc une bonne structure de sol pour éviter la stagnation de l'eau.\n\nLes zones traditionnelles de culture de l'ail coïncident avec des sols riches à la fois en limon, en argile et en calcium, dépourvus de gros cailloux. Le pH doit être supérieur à 6, idéalement situé autour de 7 et plus.\n\nL'ail craint en revanche les terres humides, les sols hydromorphes et battants. Les sols lourds ont tendance à durcir lorsqu'ils sèchent, ce qui peut entraver le développement des bulbes.",
-    "PLACE DANS LA ROTATION": "Il faut respecter un intervalle d'au moins cinq ans entre deux cultures d'ail, et éviter tout précédent de la même famille (oignon, poireau, échalote).\n\nL'ail peut être planté après une légumineuse ou une culture de pomme de terre. Il constitue un bon précédent pour un légume-feuille.\n\nL'ail a une action fongicide sur certains champignons et constitue un répulsif général. Ces propriétés peuvent être valorisées dans l'élaboration des rotations.\n\n**Phases du cycle**\nL'ail présente deux phases phénologiques (émission des feuilles, bulbification) suivies d'un repos plus ou moins marqué : la dormance. La durée de la dormance dépend des températures de conservation et de la variété ; elle est levée par le froid.",
-    "FERTILISATION": "L'ail est une culture peu exigeante. Exportations et mobilisations moyennes (8 t/ha) :\n- Mobilisations : 70 kg N/ha — 70 kg P₂O₅/ha — 150 kg K₂O/ha\n- Exportations nettes : 70 kg N/ha — 25 kg P₂O₅/ha — 45 kg K₂O/ha\n\nIl faut éviter les fertilisations organiques fraîches et préférer un compost bien mûr.",
-    "IMPLANTATION ET PLANTATION": "**Préparation du sol**\nSemblable à l'oignon. Un engrais vert (trèfle-avoine) peut précéder la culture.\n\n**Plantation**\nManuelle (2 à 3 h/are). Densité : 7 à 10 kg de caïeux/are pour l'ail sec. Distance de 7 à 11 cm sur le rang, 20 à 50 cm entre rangs. Plantation profonde (5-10 cm) pointe vers le haut.",
-    "CONDUITE DE LA CULTURE": "**Irrigation**\nBesoins critiques à la levée et lors de la bulbaison (stade 8 à 12 feuilles). Cesser toute irrigation 2 à 3 semaines avant la récolte.\n\n**Désherbage**\nL'ail ne couvre pas le sol. Techniques : faux-semis, herse étrille (stade 2 feuilles à 6 feuilles), ou binages mécaniques réguliers.",
-    "MALADIES ET RAVAGEURS": "**RAVAGEURS**\n\n**Nématodes** : Éclatement du plateau racinaire.\n\n**MALADIES FONGIQUES**\n\n**Rouille** : Pustules orangées.\n**Suie** : Noircissement des écailles en conservation.\n**Waxy Breakdown** : Chair des caïeux translucide et cireuse.",
-    "RÉCOLTE ET CONSERVATION": "**Stade de récolte**\nAil sec : quand les 2/3 du feuillage sont secs (juillet-août).\n\n**Conservation**\nTempérature constante : soit > 15 °C (18-21 °C), soit proche de 0 °C. Éviter la zone 4-10 °C qui favorise la germination."
+    "CULTIVARS": "Le choix des variétés est assez restreint pour l'ail, et les fournisseurs de caïeux bio sont peu nombreux. Du fait des faibles stocks en « semences » biologiques, les demandes de dérogation sont nombreuses.\n\n**Ail blanc** : Messidor, Messidrome, Thermidrome, Therador, Vigor, Supreme, Sabadrome, Corail et Jolimont. Ces différentes variétés ont une dormance et une conservation moyennes, et peuvent être récoltées à partir du 20 juin.\n\n**Ail violet** : Germidour, Paradour, Primor et Sprint. La variété Germidour précoce présente une tendance à la verse lorsqu'elle arrive à maturité.\n\n**Ail rose** : Goulurose, Ibérose, Edenrose et Jardirose, ainsi que l'ail rose de Lautrec en variété ancienne.\n\n⚠️ Vérifier la disponibilité en semences biologiques sur www.semences-biologiques.org.",
+    "ENVIRONNEMENT DE LA PLANTE": "**Climat**\nL'ail est une plante très résistante au froid, qui tolère des périodes de gel allant jusqu'à -15 ou -18 °C. La dormance du caïeu est levée par des températures fraîches (optimum de 7 °C).\n\n**Sol**\nL'ail requiert une bonne structure de sol pour éviter la stagnation de l'eau. Le pH doit être supérieur à 6, idéalement situé autour de 7.",
+    "PLACE DANS LA ROTATION": "Il faut respecter un intervalle d'au moins cinq ans entre deux cultures d'ail. L'ail présente deux phases phénologiques (émission des feuilles, bulbification) suivies d'un repos : la dormance.",
+    "FERTILISATION": "L'ail est une culture peu exigeante. Exportations (8 t/ha) : 70 kg N/ha — 25 kg P₂O₅/ha — 45 kg K₂O/ha. Éviter les fertilisations organiques fraîches.",
+    "IMPLANTATION ET PLANTATION": "**Préparation du sol**\nSemblable à l'oignon. **Plantation** : Manuelle (2 à 3 h/are). Densité : 7 à 10 kg de caïeux/are. Plantation profonde (5-10 cm) pointe vers le haut.",
+    "CONDUITE DE LA CULTURE": "**Irrigation**\nBesoins critiques à la levée et lors de la bulbaison (stade 8 à 12 feuilles). **Désherbage** : L'ail ne couvre pas le sol. Binages mécaniques réguliers nécessaires.",
+    "MALADIES ET RAVAGEURS": "**Ravageurs** : Nématodes. **Maladies** : Rouille (Puccinia allii), Suie (Helminthosporium allii), Waxy Breakdown (caïeux translucides).",
+    "RÉCOLTE ET CONSERVATION": "**Stade de récolte**\nQuand les 2/3 du feuillage sont secs. **Conservation** : Température constante soit > 15 °C, soit proche de 0 °C. Éviter la zone 4-10 °C."
   },
   "Betterave": {
-    "CULTIVARS": "**CULTURE PRIMEUR**\n\n**Noire plate d'Egypte** : Hâtive, se récolte et se consomme tôt sur semis précoce. Racine ronde et plate.\n\n**Detroit 2 Bolivar** : Précoce. Conservation excellente. Racine régulière, ronde et lisse.\n\n**CONSERVATION**\n\n**Crapaudine** : Tardive. Racine allongée. Excellente qualité gustative.",
-    "ENVIRONNEMENT DE LA PLANTE": "**Climat**\nLes climats maritimes, doux et humides conviennent particulièrement. Températures idéales entre 16 et 18 °C. La betterave redoute la sécheresse.\n\n**Sol**\nPeu exigeante mais préfère les sols profonds (> 40 cm), sans cailloux et non asphyxiants. pH proche de la neutralité.",
-    "PLACE DANS LA ROTATION": "Intervalle de retour de 3 à 4 ans minimum (5 à 7 ans idéal). Les Brassicacées, les tomates et les céréales sont de bons précédents.",
-    "FERTILISATION": "Très sensible aux carences en bore (noircissement des feuilles internes et des racines). Exportations (20 t/ha) : 48 kg N — 25 kg P₂O₅ — 100 kg K₂O.",
-    "IMPLANTATION ET SEMIS": "Semis quand le sol est à 6-10 °C. Profondeur 1 à 2 cm. Densité : 5 000 à 7 000 plants/are. Faux semis indispensables.",
-    "CONDUITE DE LA CULTURE": "**Irrigation**\nNécessaire au semis pour la levée et lors du grossissement de la racine.\n\n**Désherbage**\nBineuse sur l'inter-rang et désherbage manuel sur le rang.",
-    "MALADIES ET RAVAGEURS": "**Cercosporiose** : Petites taches circulaires brunes.\n**Pucerons** : Risque de transmission de virus.\n**Gale** : Taches liégeuses (éviter fumier frais).",
-    "RÉCOLTE ET CONSERVATION": "Récolte avant les gelées. Stockage idéal entre 2 et 4 °C. Surveillance des rongeurs en hiver."
+    "CULTIVARS": "**CULTURE PRIMEUR**\n\n**Noire plate d'Egypte** : Hâtive. **Detroit 2 Bolivar** : Précoce. **Chioggia** : Chair bicolore.\n\n**CONSERVATION**\n\n**Crapaudine** : Racine allongée. **Globe 2 Robuschka** : Très vigoureuse.",
+    "ENVIRONNEMENT DE LA PLANTE": "**Climat** : Doux et humide (16-18 °C). **Sol** : Profond (> 40 cm), sans cailloux, pH neutre.",
+    "PLACE DANS LA ROTATION": "Délai de retour de 3-4 ans. Bons précédents : Brassicacées, tomates et céréales.",
+    "FERTILISATION": "Sensible aux carences en bore. Exportations (20 t/ha) : 48 kg N — 25 kg P₂O₅ — 100 kg K₂O.",
+    "IMPLANTATION ET SEMIS": "Semis à 6-10 °C (sol). Profondeur 1-2 cm. Densité : 5 000 à 7 000 plants/are.",
+    "CONDUITE DE LA CULTURE": "**Irrigation** : Nécessaire au semis et au grossissement. **Désherbage** : Bineuse inter-rang.",
+    "MALADIES ET RAVAGEURS": "Cercosporiose, Pucerons (virus), et Gale (éviter fumier frais).",
+    "RÉCOLTE ET CONSERVATION": "Récolte avant les gelées. Stockage idéal entre 2 et 4 °C."
   },
   "Aubergine": {
-    "BOTANIQUE_ET_HISTOIRE": {
-      "TAXON": "Solanum melongena L.",
-      "ORIGINE": "Originaire d'Asie, probablement de l'Inde. Arrivée dans le bassin méditerranéen via les conquêtes arabes entre le 7e et le 9e siècle.",
-      "HISTOIRE_FRANCE": "Longtemps surnommée « pomme des fous » et associée à la sorcellerie en raison de sa parenté avec la mandragore. Elle n'est devenue potagère en France qu'à la fin du 18e siècle, se diffusant d'abord en Provence.",
-      "MORPHOLOGIE": "Plante au port dressé, mesurant entre 60 cm et 1m20 en général. En culture greffée sous abri, elle peut atteindre 1m50.",
-      "VARIABILITE": "Très grande diversité phénotypique : fruits longs, ronds ou ovoïdes. Couleurs allant du violet-noir au blanc, en passant par le mauve, le zébré ou le vert.",
-      "CYCLE_VIE": "Plante annuelle en pays tempérés mais pérenne sous climat tropical sans gel."
-    },
-    "EXIGENCES_CLIMATIQUES": {
-      "TEMPERATURE_INSTALLATION": "Nécessite environ 25°C le jour et 18°C la nuit.",
-      "SEUILS_CRITIQUES": "La croissance s'arrête aux alentours de 10°C. En dessous de 15°C, la croissance végétative est fortement pénalisée.",
-      "COMPARISON": "Plus exigeante que la tomate, mais moins que le poivron.",
-      "HUMIDITE_RELATIVE": "Idéale entre 50% et 65% sur l'ensemble du cycle. Au-delà, risque de maladies cryptogamiques et de problèmes de formation des fruits.",
-      "FACTEURS_LUM_VENT": "Culture exigeante en éclairement et très sensible au vent."
-    },
-    "PEDOLOGIE_ET_ROTATION": {
-      "SOLS_FAVORABLES": "Préfère les sols profonds, filtrants, légers, riches en limons et se réchauffant rapidement.",
-      "SOLS_A_EVITER": "Craint les sols trop humides se ressuyant mal. Éviter les terrains argileux, lourds ou trop acides.",
-      "PH_OPTIMAL": "Se situe entre 6,5 et 8. En sol trop acide, la vigueur diminue.",
-      "INTERVALLE_ROTATION": "Minimum 3 ans entre Solanacées pour limiter doryphores, nématodes, verticilliose et alternariose. Optimum de 5 ans car c'est une culture épuisante.",
-      "PRECEDENTS": "Favorables : Légumineuses (apport d'azote), prairie retournée ou céréales amendées. Possibilité de laitues ou radis en rotations courtes. À éviter : Autres Solanacées, Cucurbitacées ou toute culture épuisante."
-    },
-    "FERTILISATION_POUR_RENDEMENT": {
-      "OBJECTIFS_RENDEMENT": {
-        "PLEIN_CHAMP": "20 t/ha avec des besoins de 150 N, 50 P2O5, 180 K2O, 30 MgO (en kg/ha)",
-        "SOUS_SERRE": "40 t/ha avec des besoins de 200 N, 70 P2O5, 260 K2O, 45 MgO (en kg/ha)"
-      },
-      "AMENDEMENTS_ORGANIQUES": "Apport de 15 à 20 t/ha de compost (type fumier de bovin). Possibilité d'ajouter 1 t/ha d'engrais organique 6-3-13 (moitié minéralisation rapide type guano/volaille, moitié lente type corne/tourteau de ricin).",
-      "SPECIFICITES": "Exigeante en soufre et réagit bien à la magnésie. En cas de carence d'azote, apport de 20 à 30 unités via guano ou vinasse de betterave (toujours arroser après la vinasse)."
-    },
-    "TECHNIQUE_DE_PRODUCTION_PLANTS": {
-      "SEMIS": "En terrine sur couches ou plaques chauffantes (20°C min, 25-30°C optimal). 1g de semences pour une terrine de 30x40 cm.",
-      "GERMINATION": "3 jours à 30°C, 4 jours à 24°C, 8 jours à 20°C.",
-      "REPIQUAGE_ELEVAGE": "Au stade « cotylédon étalé » (8-10 jours après levée). Température nocturne maintenue au-dessus de 16°C jusqu'à la plantation.",
-      "DURCISSEMENT": "Une semaine avant plantation, réduire la température nocturne (8-12°C) pour les plants de plein champ.",
-      "GREFFAGE": "Utilisation de porte-greffes tomate ou Solanum torvum pour augmenter la précocité, le rendement et la résistance aux maladies virales."
-    },
-    "IMPLANTATION_ET_CONDUITE": {
-      "PLANTATION": "Stade 3 à 5 feuilles en plein champ, 6 feuilles en serre. Ne pas enterrer le collet de la motte pour éviter le Sclerotinia. Arrosage modéré au pied immédiatement après.",
-      "DENSITE": "1,2 à 1,8 plants/m². Écartement de 1m à 1,20m entre rangs et 0,5m à 0,75m sur le rang.",
-      "ENTRETIEN": "Besoins en eau importants, irrigation indispensable. Utilisation possible de paillage plastique ou biodégradable (faux-semis non nécessaire dans ce cas).",
-      "MAIN_D_OEUVRE": "Plantation/tuteurage (23h/are), Entretien/palissage (30h/are), Récolte (80h/are)."
-    },
-    "SELECTION_VARIETALE_AB": {
-      "TYPES_COMMERCIAUX": "Grossistes/Industrie préfèrent les fruits longs (30cm), diamètre 5-8cm, violet sombre. En circuit court, la saveur prime (variétés anciennes).",
-      "EXEMPLES_VARIETES": [
-        {"NOM": "Barbentane", "TYPE": "Variété-population, fruit allongé 20-30cm, précoce, très productive"},
-        {"NOM": "Black Pearl", "TYPE": "Hybride F1, noir brillant 20-25cm, très bonne productivité"},
-        {"NOM": "Falcon", "TYPE": "Hybride F1, violet-noir 18-22cm, très bonne conservation"},
-        {"NOM": "Ronde Blanche", "TYPE": "Petit fruit blanc, mi-précoce, très productive"}
-      ],
-      "REGLEMENTATION": "Dérogations très restreintes pour le type « demi-long » en bio. Consulter www.semences-biologiques.org."
-    },
-    "PROTECTION_ET_SANTE": {
-      "RAVAGEURS": "Doryphores, nématodes. Sensibilité plus élevée que la tomate.",
-      "MALADIES": "Verticilliose, alternariose. Oïdium rare (uniquement serres chauffées). Risque accru de Sclerotinia si collet enterré.",
-      "PARTHENOCARPIE": "Capacité de certaines variétés hybrides à produire des fruits sans fécondation (fruits sans graines)."
-    }
+    "BOTANIQUE_ET_HISTOIRE": "- **Taxon** : Solanum melongena L.\n- **Origine** : Asie (Inde). Arrivée en Méditerranée entre le 7e et 9e siècle.\n- **Histoire** : Surnommée « pomme des fous ». Potagère en France depuis la fin du 18e siècle.\n- **Morphologie** : Port dressé (60 cm à 1m20). Jusqu'à 1m50 si greffée.\n- **Variabilité** : Grande diversité de formes (longue, ronde) et couleurs (violet, blanc, zébré).\n- **Cycle** : Annuelle en zone tempérée, pérenne en zone tropicale.",
+    "EXIGENCES_CLIMATIQUES": "- **Températures** : 25°C jour / 18°C nuit.\n- **Seuils** : Arrêt à 10°C. Croissance pénalisée sous 15°C.\n- **Comparaison** : Plus exigeante que la tomate.\n- **Humidité** : Idéale entre 50% et 65%. Risque cryptogamique au-delà.\n- **Lumière/Vent** : Exigeante en lumière et très sensible au vent.",
+    "PEDOLOGIE_ET_ROTATION": "- **Sols** : Profonds, filtrants, légers et riches en limons.\n- **À éviter** : Sols humides, argileux ou trop acides.\n- **pH** : Entre 6,5 et 8.\n- **Rotation** : Minimum 3 ans (5 ans idéal) entre Solanacées.\n- **Précédents** : Favorables (Légumineuses, céréales), Défavorables (Solanacées, Cucurbitacées).",
+    "FERTILISATION_POUR_RENDEMENT": "- **Plein champ** : Objectif 20 t/ha (Besoins : 150N, 50P, 180K).\n- **Sous serre** : Objectif 40 t/ha (Besoins : 200N, 70P, 260K).\n- **Amendements** : 15-20 t/ha de compost bovin + complément organique 6-3-13.\n- **Spécificités** : Exigeante en soufre et magnésie. Apport de guano/vinasse si carence N.",
+    "TECHNIQUE_DE_PRODUCTION_PLANTS": "- **Semis** : Terrine sur couche chaude (25-30°C optimal).\n- **Germination** : 3 jours à 30°C, 8 jours à 20°C.\n- **Élevage** : Repiquage au stade cotylédon. Nuits > 16°C.\n- **Durcissement** : Réduction nocturne (8-12°C) une semaine avant plantation.\n- **Greffage** : Sur tomate ou S. torvum pour vigueur et résistance virale.",
+    "IMPLANTATION_ET_CONDUITE": "- **Plantation** : Stade 3-5 feuilles (plein champ) ou 6 feuilles (serre).\n- **Précaution** : Ne pas enterrer le collet (Sclerotinia).\n- **Densité** : 1,2 à 1,8 plants/m².\n- **Entretien** : Irrigation indispensable. Paillage possible.\n- **Main d'œuvre** : Récolte (80h/are), Entretien (30h/are), Plantation (23h/are).",
+    "SELECTION_VARIETALE_AB": "- **Marché** : Fruits longs violets (30cm) pour gros/industrie. Anciennes pour circuit court.\n- **Variétés** : Barbentane (longue), Black Pearl (F1), Falcon (F1), Ronde Blanche.\n- **Réglementation** : Dérogations restreintes. Voir www.semences-biologiques.org.",
+    "PROTECTION_ET_SANTE": "- **Ravageurs** : Doryphores, nématodes (plus sensible que la tomate).\n- **Maladies** : Verticilliose, alternariose. Risque Sclerotinia au collet.\n- **Parthénocarpie** : Capacité de certains hybrides à produire sans fécondation."
   }
 }
