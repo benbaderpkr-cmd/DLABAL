@@ -130,11 +130,29 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- CAS 1 : PAGE RÉGLAGES JP1 ---
+# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
+    
+    # --- TABLEAU 1 : RÉGLAGES PAR CULTURES ---
+    st.subheader("📋 Réglages par cultures")
+    if REGLAGES_LISTE:
+        df_jp1 = pd.DataFrame(REGLAGES_LISTE)
+        
+        # Correction : On ne force plus les 7 colonnes si elles n'existent pas
+        # On renomme proprement les colonnes existantes
+        mapping_noms = {
+            "CULTURE": "Légume / Culture",
+            "ROULEAUX": "Rouleau(x) préconisé(s)"
+        }
+        df_jp1 = df_jp1.rename(columns=mapping_noms)
+        
+        st.dataframe(df_jp1, use_container_width=True, hide_index=True)
+    
+    st.write("")
+    st.divider()
     
     # TABLEAU 1 : RÉGLAGES PAR CULTURES
     st.subheader("📋 Réglages par cultures")
@@ -256,4 +274,5 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
