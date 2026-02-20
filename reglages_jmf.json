@@ -1,0 +1,17 @@
+{
+  "source": "JMF (Les Jardins de la Grelinette)",
+  "reglages": [
+    {"CULTURE": "Bette à carde", "ROULEAU": "XY-24", "AV": "11", "AR": "11", "OBS": "4 rangs"},
+    {"CULTURE": "Betterave", "ROULEAU": "XY-24", "AV": "11", "AR": "11", "OBS": "4 rangs"},
+    {"CULTURE": "Carotte", "ROULEAU": "XY-24", "AV": "13", "AR": "10", "OBS": "4 ou 5 rangs"},
+    {"CULTURE": "Épinard", "ROULEAU": "XY-24", "AV": "14", "AR": "9", "OBS": "5 rangs"},
+    {"CULTURE": "Mâche", "ROULEAU": "X-24", "AV": "13", "AR": "11", "OBS": "5 rangs"},
+    {"CULTURE": "Navet", "ROULEAU": "YYJ-24", "AV": "11", "AR": "11", "OBS": "Printemps (5 rangs)"},
+    {"CULTURE": "Oignon (graine)", "ROULEAU": "X-24", "AV": "11", "AR": "11", "OBS": "4 rangs"},
+    {"CULTURE": "Persil", "ROULEAU": "XY-24", "AV": "13", "AR": "10", "OBS": "4 rangs"},
+    {"CULTURE": "Poireau", "ROULEAU": "XY-24", "AV": "11", "AR": "11", "OBS": "4 rangs"},
+    {"CULTURE": "Radis", "ROULEAU": "X-24", "AV": "14", "AR": "9", "OBS": "5 rangs"},
+    {"CULTURE": "Roquette", "ROULEAU": "YYJ-24", "AV": "11", "AR": "11", "OBS": "5 rangs"},
+    {"CULTURE": "Verdurettes", "ROULEAU": "YYJ-24", "AV": "11", "AR": "11", "OBS": "Mizuna, Moutarde (5 rangs)"}
+  ]
+}
