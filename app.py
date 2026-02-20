@@ -71,7 +71,7 @@ GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 ITAB_DATA = load_json("itab.json")
-FERTI_DATA = load_json("calcul_ferti.json") # ← NOUVEAU
+FERTI_DATA = load_json("calcul_ferti.json")
 RAW_JP1 = load_json("reglages_jp1.json")
 REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
@@ -125,7 +125,7 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
 
-    if st.button("🧪 CALCUL FERTI", use_container_width=True): # ← NOUVEAU BOUTON
+    if st.button("🧪 CALCUL FERTI", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_FERTI"
         st.rerun()
 
@@ -136,15 +136,15 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- NOUVEAU : PAGE CALCUL FERTI ---
+# --- CAS : PAGE CALCUL FERTI ---
 if st.session_state["view_mode"] == "PAGE_FERTI":
-    st.title("🧪 CALCUL FERTI")
+    st.title("🧪 CALCULATEUR DE FERTILISATION")
     if FERTI_DATA:
-        st.json(FERTI_DATA) # Affiche le contenu brut pour le moment
+        st.json(FERTI_DATA)
     else:
         st.info("Le fichier calcul_ferti.json est vide ou introuvable.")
 
-# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
+# --- CAS : RÉGLAGES JP1 ---
 elif st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
@@ -154,25 +154,33 @@ elif st.session_state["view_mode"] == "PAGE_JP1":
     DATA_JMF = load_json("reglages_jmf.json")
     if DATA_JMF:
         df_jmf = pd.DataFrame(DATA_JMF["reglages"])
-        st.dataframe(
-            df_jmf.rename(columns={"AV": "Pignon AV", "AR": "Pignon AR", "OBS": "Observations"}), 
-            use_container_width=True, hide_index=True
-        )
-    st.caption("Source : Jean-Martin Fortier (JMF) - Guide technique")
+        st.dataframe(df_jmf.rename(columns={"AV": "Pignon AV", "AR": "Pignon AR", "OBS": "Observations"}), use_container_width=True, hide_index=True)
 
     st.write("")
     st.divider()
 
     st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
-    DATA_TERRA = load_json("reglages_jp1.json") 
-    if DATA_TERRA and "reglages" in DATA_TERRA:
-        df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
+    if "reglages" in RAW_JP1:
+        df_terra = pd.DataFrame(RAW_JP1["reglages"])[["CULTURE", "ROULEAUX"]]
         st.dataframe(df_terra.sort_values("CULTURE"), use_container_width=True, hide_index=True)
-    st.caption("Source : Catalogue Terradonis & Observations Terrain")
-    
-# --- CAS 2 : AFFICHAGE LÉGUME ---
+
+# --- CAS : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
-    st.title(f"📊 {sel.upper()}")
+    
+    # --- EXTRACTION BESOIN NUTRITIONNEL JMF ---
+    jmf_legume = JMF_DATA.get(sel, {})
+    besoin_ferti = ""
+    for k, v in jmf_legume.items():
+        if "fertilisation" in k.lower() or "nutritionnel" in k.lower():
+            besoin_ferti = v
+            break
+
+    # Titre dynamique avec le besoin nutritionnel
+    if besoin_ferti:
+        st.title(f"📊 {sel.upper()} — {besoin_ferti}")
+    else:
+        st.title(f"📊 {sel.upper()}")
+
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
     with tab1:
@@ -189,7 +197,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 with c2: popover_feedback("GAB", k, sel)
 
     with tab2:
-        for t, c in JMF_DATA.get(sel, {}).items():
+        for t, c in jmf_legume.items():
             with st.expander(f"📌 {t}", expanded=True):
                 st.markdown(c); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JMF", t, sel)
@@ -232,25 +240,12 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-# --- CAS 3 : PAGE D'ACCUEIL ---
+# --- CAS : ACCUEIL ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
-    st.markdown("""
-    ### DLABAL - BDD ITK Maraîchage
-    
-    Cet outil centralise les connaissances techniques du **GAB**, de **JMF**, de **JDV** et de l'**ITAB**.
-    
-    **Comment utiliser l'application :**
-    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
-    2. **Consultez les fiches** via les onglets thématiques.
-    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
-    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
-    
-    ---
-    *Toutes les modifications de données textuelles sont soumises à validation.*
-    """)
-    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
+    st.markdown("### DLABAL - BDD ITK Maraîchage")
+    st.info("👈 Sélectionnez un légume ou utilisez le calculateur de fertilisation dans la barre latérale.")
 
 st.sidebar.markdown("---")
 with st.sidebar:
