@@ -42,89 +42,14 @@
   },
   "Épinard": {
     "L'ESSENTIEL": "Plante annuelle ou bisannuelle, dioïque, à croissance rapide. Fleurit de juin à septembre, favorisée par les jours longs et les nuits fraîches. Fécondation croisée par insectes et vent. Principales maladies : fonte des semis, anthracnose, mildiou, mosaïque du concombre. Rendement potentiel : 100 kg/100 m² par coupe (15-20 kg/h). Faculté germinative : 4-5 ans. Levée : 6-10 jours. 100-200 graines/g. Peuplement : 60-100 plants/m².",
-
-    "ENVIRONNEMENT DE LA PLANTE": {
-      "Climat": "Adapté aux climats doux et humides. Température minimale : 5°C, optimum 15-20°C. Supporte le froid jusqu'à -5/-7°C (feuillage endommagé). Redoute sécheresse et chaleur (montée à graine). Très sensible à la photopériode — plante de jours longs. Très exigeante en eau.",
-      "Sol": "Préfère les sols argilo-siliceux, bien drainés, profonds, frais, riches en matières organiques, pH proche de 6,5. Craint l'asphyxie racinaire et le tassement. Les sols calcaires peuvent générer des carences en manganèse. Les sols légers conviennent pour cultures tardives ou début de printemps."
-    },
-
-    "PLACE DANS LA ROTATION": {
-      "Intervalle de rotation": "Minimum 4 ans entre deux cultures de Chénopodiacées.",
-      "Précédent cultural favorable": "Engrais vert, céréale, colza ou trèfle. Éviter toute autre culture gourmande en précédent.",
-      "Précédent à éviter": "Toute autre Chénopodiacée (betterave, bette...)."
-    },
-
-    "IMPLANTATION DE LA CULTURE": {
-      "Éléments à prendre en compte": "Culture étroitement dépendante de la durée du jour et de l'humidité du sol. Ne pas semer trop tard au printemps (risque de montaison). Variétés jours courts pour récoltes automne-hiver-début printemps ; variétés jours longs pour printemps-été. En système maraîcher : 2 coupes successives (jusqu'à 4 en série d'automne).",
-      "Choix des variétés": {
-        "Critères agronomiques": "Mode de culture (saison, abri/plein champ), type de récolte (1 ou plusieurs passages), conditions pédo-climatiques, tolérance aux bio-agresseurs, aptitude à la conservation, productivité.",
-        "Critères commerciaux": "Forme des feuilles (arrondie/lancéolée), couleur, densité, port (érigé/plat), vitesse de pousse, qualité gustative.",
-        "Variétés précoces": {
-          "Corvette F1": "Semis juillet-septembre. Port érigé, productif. Feuilles lancéolées vert foncé. Résistante au mildiou.",
-          "Butterflay": "Cultivable toute l'année. Croissance rapide, montaison tardive. Petites feuilles charnues à pétiole court.",
-          "Dolphin": "Semis 1er fév-25 mars / 15-25 août / 20 sept-15 oct. Référence toutes saisons. Haute résistance au CMV."
-        },
-        "Variétés semi-précoces": {
-          "Géant d'hiver race Verdil": "Semis automne ou printemps. Feuille large, vert foncé. Vigoureuse, résistante au froid.",
-          "Whale F1": "Semis mars-mai et août-septembre. Résistances au mildiou. Limbe épais, vert foncé.",
-          "Renegade F1": "Semis mars-avril pour récolte avril-juin. Lente à la montaison, résistances au mildiou."
-        },
-        "Variétés semi-tardives": {
-          "Viking (Matador)": "Semis avril-mai pour récolte d'été. Très lent à monter à graine.",
-          "Palco F1": "Semis mi-mars à mi-mai puis août à mi-octobre. Résistant au mildiou, croissance rapide, bonne tenue à la montée à graines."
-        },
-        "Variétés tardives": {
-          "Géant d'hiver": "Semis août-septembre pour récolte oct-nov et mars-avril. Très productif, résistant au froid.",
-          "Firebird F1": "Semis mi-avril à mi-juillet pour récolte mi-juin à mi-septembre. Résistant au mildiou. Feuille ovale, plate et épaisse, vert foncé."
-        }
-      }
-    },
-
-    "PRÉPARATION DU SOL ET FERTILISATION": {
-      "Exportations et besoins en éléments minéraux": "Culture fixant beaucoup d'azote. Exportations dépendent du nombre de coupes. Pour 20 t/ha : mobilisation 115 N / 35 P₂O₅ / 255 K₂O kg/ha, exportation 75 N / 20 P₂O₅ / 130 K₂O. Pour 35 t/ha : mobilisation et exportation 100 N / 70 P₂O₅ / 200-300 K₂O.",
-      "Fumure": "20-25 t/ha de compost très mûr apporté sur la culture précédente. Éviter fumier frais (lessivage azote). Pour semis de printemps : engrais organique à minéralisation rapide + engrais potassique. Possible complément foliaire entre les coupes.",
-      "Carences": "Coloration jaunâtre = souvent asphyxie racinaire ou carence en fer. Carences en bore : croissance réduite, port ramassé. Carences en magnésium : chloroses des feuilles adultes. Carences en manganèse : décoloration des jeunes feuilles (après surchaulage). Remèdes : fer chelaté, oligo-éléments, soufre fleur (300 g/10 m²) ou fertilisant foliaire anti-chlorose (sols alcalins uniquement)."
-    },
-
-    "SEMIS ET PLANTATION": {
-      "Semis direct ou élevage de plants": "Semis directs réservés au plein champ (début printemps, début octobre pour cultures d'hiver). Récoltes hiver et début printemps souvent sous abri. Élevage de plants possible en mini-mottes ou mottes 4x4 (2-4 graines/motte). Plantation sur paillage noir : 15-20 touffes/m², écartement 25x25 cm.",
-      "Repères pour le peuplement": "Objectif : 60-100 plants/m². Écartements : 15x15 ou 20x20 cm. Arroser rapidement après semis si terre sèche.",
-      "Préparation du sol": "Aérer le sol (cultivateur profond ou outils à dents). Hersage en surface pour le semis. Faux semis possible pour semis de fin d'été."
-    },
-
-    "CONDUITE DE LA CULTURE": {
-      "Irrigation": "Croissance rapide, sensible à la sécheresse : alimentation hydrique suffisante mais sans excès. En extérieur souvent inutile. Sous abri : maintenir le sol frais et aérer.",
-      "Désherbage": "Binage mécanique et manuel après chaque récolte si sans paillage. Sur paillage : désherbage manuel dans les trous. Faux semis ou désherbages thermiques recommandés, surtout en automne."
-    },
-
-    "MALADIES ET RAVAGEURS": {
-      "Maladies principales": {
-        "Fonte des semis": "Excès d'humidité à la levée. Particulièrement importante en semis directs. Prévention : éviter arrosage excessif.",
-        "Anthracnose (Colletotrichum dematium)": "Taches translucides puis nécrotiques avec ponctuations brunâtres par temps humide. Prévention uniquement : rotation, sol sain sans mouillère, pas d'excès d'irrigation, réduction fumures azotées.",
-        "Mildiou de l'épinard (Peronospora farinosa)": "Fréquent en automne, temps doux et humide (8-18°C). Taches vert pâle puis jaunes sur les deux faces, feutrage gris violacé en dessous. Prévention : ne pas semer trop dense, respecter rotations, choisir des variétés résistantes.",
-        "Mosaïque du concombre (CMV)": "Transmise par pucerons Myzus persicae et Aphis fabae. Feuilles déformées puis plante dessèche. Pas de traitement. Certaines variétés résistantes."
-      },
-      "Maladies secondaires": {
-        "Maladie de l'épinard (Heterosporium variabile)": "Attaque les variétés à feuillage foncé. Réduire arrosages, pulvériser éliciteur.",
-        "Pythium": "Gaufrage et brunissement jeunes feuilles puis pourrissement général. Prévention uniquement (rotation, sol sain).",
-        "Cladosporiose / Nuile grise": "Petites ponctuations brunes en taches arrondies avec fructifications sombres au centre."
-      },
-      "Ravageurs": {
-        "Noctuelles défoliatrices (Autographa gamma)": "Chenilles dévorent les feuilles. Éliminer adventices, pulvériser Bacillus thuringiensis.",
-        "Mouche de la betterave (Chaectocnema tibialis)": "Perfore cotylédons et feuillage. Arroser régulièrement, filet anti-insectes.",
-        "Pucerons": "Transmission de viroses. Lutte intégrée, auxiliaires (coccinelles). Présence en fin d'hiver sous abri.",
-        "Limaces": "Dégâts surtout sous abri.",
-        "Noctuelles terricoles": "Mangent les mottes à la reprise (sept-oct). Problématiques sur sols riches en MO.",
-        "Acariens (Tyrophagus sp.)": "Croissants en abri jan-fév, terres sableuses. L'aspersion gêne leur développement."
-      }
-    },
-
-    "RÉCOLTE ET CONSERVATION": {
-      "Stade de la récolte": "Plantes à 6-7 feuilles. Plante légèrement humide mais éviter excès (pourritures, feuilles cassantes). Ne pas récolter après pluie ou rosée. Feuilles entières, sans trou ni tache.",
-      "Chantier de récolte": "Récolte manuelle, feuille à feuille ou à la faucille/couteau. 1 à 2 passages (jusqu'à 3 en début d'automne).",
-      "Rendements": "100 kg/100 m² par coupe, jusqu'au double sous abri. Vitesse : 15-20 kg/h.",
-      "Conditionnement": "Plateaux de 5 kg (60x40 cm) avec feuille plastique transparente.",
-      "Stockage": "Mauvaise conservation au-delà de 3-4 jours après lavage. En chambre froide (+4/+5°C) à hygrométrie élevée. Vendre impérativement avant le 6ème jour. Cueillir les feuilles sèches."
-    }
+    "ENVIRONNEMENT DE LA PLANTE": "Climat : Adapté aux climats doux et humides. Température minimale : 5°C, optimum 15-20°C. Supporte le froid jusqu'à -5/-7°C (feuillage endommagé). Redoute sécheresse et chaleur (montée à graine). Très sensible à la photopériode — plante de jours longs. Très exigeante en eau. Sol : Préfère les sols argilo-siliceux, bien drainés, profonds, frais, riches en matières organiques, pH proche de 6,5. Craint l'asphyxie racinaire et le tassement. Les sols calcaires peuvent générer des carences en manganèse. Les sols légers conviennent pour cultures tardives ou début de printemps.",
+    "PLACE DANS LA ROTATION": "Intervalle de rotation : minimum 4 ans entre deux cultures de Chénopodiacées. Précédent favorable : engrais vert, céréale, colza ou trèfle ; éviter toute autre culture gourmande. Précédent à éviter : toute autre Chénopodiacée (betterave, bette...).",
+    "IMPLANTATION DE LA CULTURE": "Culture étroitement dépendante de la durée du jour et de l'humidité du sol. Ne pas semer trop tard au printemps (risque de montaison). Variétés jours courts pour récoltes automne-hiver-début printemps ; variétés jours longs pour printemps-été. En système maraîcher : 2 coupes successives (jusqu'à 4 en série d'automne). Critères agronomiques du choix variétal : mode de culture (saison, abri/plein champ), type de récolte, conditions pédo-climatiques, tolérance aux bio-agresseurs, productivité. Critères commerciaux : forme des feuilles (arrondie/lancéolée), couleur, densité, port (érigé/plat), vitesse de pousse, qualité gustative.",
+    "CULTIVARS": "Variétés précoces — Corvette F1 : semis juillet-septembre, port érigé, feuilles lancéolées vert foncé, résistante au mildiou. Butterflay : cultivable toute l'année, croissance rapide, montaison tardive, petites feuilles charnues à pétiole court. Dolphin : semis 1er fév-25 mars / 15-25 août / 20 sept-15 oct, référence toutes saisons, haute résistance au CMV. Variétés semi-précoces — Géant d'hiver race Verdil : semis automne ou printemps, feuille large vert foncé, vigoureuse, résistante au froid. Whale F1 : semis mars-mai et août-septembre, résistances au mildiou, limbe épais vert foncé. Renegade F1 : semis mars-avril pour récolte avril-juin, lente à la montaison, résistances au mildiou. Variétés semi-tardives — Viking (Matador) : semis avril-mai pour récolte d'été, très lent à monter à graine. Palco F1 : semis mi-mars à mi-mai puis août à mi-octobre, résistant au mildiou, bonne tenue à la montée à graines. Variétés tardives — Géant d'hiver : semis août-septembre pour récolte oct-nov et mars-avril, très productif, résistant au froid. Firebird F1 : semis mi-avril à mi-juillet pour récolte mi-juin à mi-septembre, résistant au mildiou, feuille ovale plate et épaisse vert foncé.",
+    "PRÉPARATION DU SOL ET FERTILISATION": "Exportations importantes selon le nombre de coupes. Pour 20 t/ha : mobilisation 115 N / 35 P₂O₅ / 255 K₂O kg/ha, exportation 75 N / 20 P₂O₅ / 130 K₂O. Pour 35 t/ha : mobilisation et exportation 100 N / 70 P₂O₅ / 200-300 K₂O. Apporter 20-25 t/ha de compost très mûr sur la culture précédente. Éviter fumier frais (lessivage azote). Pour semis de printemps : engrais organique à minéralisation rapide + engrais potassique. Carences : coloration jaunâtre = asphyxie racinaire ou carence en fer ; bore : croissance réduite, port ramassé ; magnésium : chloroses feuilles adultes ; manganèse : décoloration jeunes feuilles après surchaulage. Remèdes : fer chelaté, oligo-éléments, soufre fleur (300 g/10 m²) ou fertilisant foliaire anti-chlorose (sols alcalins).",
+    "SEMIS ET PLANTATION": "Semis directs réservés au plein champ (début printemps ou début octobre pour l'hiver). Élevage de plants possible en mini-mottes ou mottes 4x4 (2-4 graines/motte). Plantation sur paillage noir : 15-20 touffes/m², écartement 25x25 cm. Objectif peuplement : 60-100 plants/m² (écartements 15x15 ou 20x20 cm). Aérer le sol au cultivateur profond, herser en surface avant semis. Faux semis possible pour semis de fin d'été.",
+    "CONDUITE DE LA CULTURE": "Irrigation : croissance rapide, sensible à la sécheresse — alimentation hydrique suffisante mais sans excès. En extérieur souvent inutile ; sous abri maintenir le sol frais et aérer. Désherbage : binage mécanique et manuel après chaque récolte (sans paillage) ou manuel dans les trous (sur paillage). Faux semis ou désherbages thermiques recommandés, surtout en automne.",
+    "MALADIES ET RAVAGEURS": "Fonte des semis : excès d'humidité à la levée, particulièrement importante en semis directs ; éviter arrosage excessif. Anthracnose (Colletotrichum dematium) : taches translucides puis nécrotiques par temps humide ; prévention uniquement (rotation, sol sain, pas d'excès d'irrigation, réduction fumures azotées). Mildiou (Peronospora farinosa) : fréquent en automne (8-18°C), taches vert pâle puis jaunes, feutrage gris violacé en dessous ; prévention : densité raisonnée, rotation, variétés résistantes. Mosaïque du concombre (CMV) : transmise par pucerons Myzus persicae et Aphis fabae ; pas de traitement, certaines variétés résistantes. Maladie de l'épinard (Heterosporium variabile) : attaque les variétés à feuillage foncé ; réduire arrosages, pulvériser éliciteur. Pythium : gaufrage et brunissement puis pourrissement général ; prévention uniquement. Cladosporiose / Nuile grise : ponctuations brunes en taches arrondies. Noctuelles défoliatrices : chenilles dévorent les feuilles ; Bacillus thuringiensis. Mouche de la betterave : perfore cotylédons et feuillage ; arrosage régulier, filet anti-insectes. Pucerons : transmission de viroses ; lutte intégrée, auxiliaires. Limaces : dégâts surtout sous abri. Noctuelles terricoles : mangent les mottes à la reprise (sept-oct). Acariens (Tyrophagus sp.) : sous abri en jan-fév ; l'aspersion gêne leur développement.",
+    "RÉCOLTE ET CONSERVATION": "Récolter à 6-7 feuilles. Plante légèrement humide mais éviter excès (pourritures, feuilles cassantes) ; ne pas récolter après pluie ou rosée. Récolte manuelle, feuille à feuille ou à la faucille/couteau, en 1 à 2 passages (jusqu'à 3 en début d'automne). Rendement : 100 kg/100 m² par coupe, jusqu'au double sous abri ; vitesse 15-20 kg/h. Conditionnement : plateaux de 5 kg (60x40 cm) avec feuille plastique transparente. Stockage : mauvaise conservation au-delà de 3-4 jours après lavage ; en chambre froide (+4/+5°C) à hygrométrie élevée, vendre avant le 6ème jour."
   }
 }
