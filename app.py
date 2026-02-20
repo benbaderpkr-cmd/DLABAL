@@ -130,18 +130,47 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- CAS 1 : TABLEAU DES RÉGLAGES JP1 ---
+# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
+    
+    # --- TABLEAU 1 : RÉGLAGES PAR LÉGUMES ---
+    st.subheader("📋 Réglages par cultures")
     if REGLAGES_LISTE:
         df_jp1 = pd.DataFrame(REGLAGES_LISTE)
         df_jp1.columns = ["Légume", "Rouleau", "Pignon AV", "Pignon AR", "Distance (cm)", "Brosse", "Observations"]
         st.dataframe(df_jp1, use_container_width=True, hide_index=True)
-        st.info("💡 Vous pouvez cliquer sur les entêtes de colonnes pour trier.")
+    
+    st.write("")
+    st.divider()
+    st.write("")
+
+    # --- TABLEAU 2 : CATALOGUE TECHNIQUE DES ROULEAUX ---
+    st.subheader("🛠️ Guide Technique des Rouleaux")
+    # Chargement du nouveau fichier
+    CATALOGUE_DATA = load_json("catalogue_rouleaux_jp1.json")
+    
+    if CATALOGUE_DATA and "rouleaux_detail_complet" in CATALOGUE_DATA:
+        df_cat = pd.DataFrame(CATALOGUE_DATA["rouleaux_detail_complet"])
+        
+        # Renommage pour l'interface
+        df_cat.columns = ["Code Rouleau", "Caractéristiques Techniques", "Légumes associés (Idéal)"]
+        
+        st.dataframe(
+            df_cat, 
+            use_container_width=True, 
+            hide_index=True,
+            # Configuration pour que la liste des légumes soit bien lisible
+            column_config={
+                "Légumes associés (Idéal)": st.column_config.ListColumn("Légumes associés (Idéal)")
+            }
+        )
+        st.caption("ℹ️ Les données ci-dessus proviennent du catalogue constructeur Terradonis.")
     else:
-        st.warning("Fichier vide.")
+        st.warning("Le fichier catalogue_rouleaux_jp1.json n'a pas pu être chargé.")
+        
 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -219,3 +248,4 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
