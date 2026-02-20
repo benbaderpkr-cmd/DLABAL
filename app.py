@@ -35,18 +35,11 @@ def check_password():
                 st.error("Incorrect")
     return False
 
-# --- FONCTION ITAB ---
-def load_itab_data():
-    if os.path.exists("itab.json"):
-        with open("itab.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-    return None
-
 if not check_password():
     st.stop()
 
 # ==========================================
-# 2. CONNEXION GSHEETS
+# 2. CONNEXION GSHEETS (LIGNES STRICTEMENT ORIGINALES)
 # ==========================================
 conn = st.connection("gsheets", type=GSheetsConnection)
 URL_SHEET = st.secrets["gsheets"]["spreadsheet"]
@@ -68,7 +61,7 @@ with st.sidebar:
 if sel:
     st.title(f"🥕 Fiche Technique : {sel}")
     
-    # ONGLETS AVEC ITAB AJOUTÉ
+    # AJOUT DE L'ONGLET ITAB DANS LA LISTE
     tabs = st.tabs(["GAB", "JMF", "JDV", "ITAB", "THO"])
 
     # --- CAS 1 : GAB ---
@@ -83,16 +76,20 @@ if sel:
     with tabs[2]:
         st.info("Données Jardin du Vernois...")
 
-    # --- NOUVEAU : ITAB ---
+    # --- NOUVEAU : ONGLET ITAB (APPELLE ITAB.JSON) ---
     with tabs[3]:
         st.subheader(f"📚 Expertise ITAB : {sel}")
-        itab_data = load_itab_data()
-        if itab_data and sel.upper() in itab_data:
-            st.json(itab_data[sel.upper()])
+        if os.path.exists("itab.json"):
+            with open("itab.json", "r", encoding="utf-8") as f:
+                itab_data = json.load(f)
+            if sel.upper() in itab_data:
+                st.json(itab_data[sel.upper()])
+            else:
+                st.warning(f"Pas de données ITAB pour {sel}")
         else:
-            st.warning(f"Aucune donnée ITAB trouvée pour {sel}")
+            st.error("Fichier itab.json introuvable.")
 
-    # --- CAS 4 : THO ---
+    # --- CAS 4 : THO (VOTRE CODE ORIGINAL) ---
     with tabs[4]:
         st.header("📝 Saisie Terrain (THO)")
         row = df_gs[df_gs['LEGUME'] == sel].iloc[0]
@@ -111,7 +108,7 @@ if sel:
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-# --- CAS 3 : PAGE D'ACCUEIL ---
+# --- CAS 3 : PAGE D'ACCUEIL (VOTRE CODE ORIGINAL) ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
