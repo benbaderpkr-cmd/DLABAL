@@ -68,10 +68,14 @@ URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwMW0m4CJPvv5rJ0tFjmo
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+# Chargement des fichiers JSON
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
-REGLAGES_DATA = load_json("reglages_jp1.json")
+RAW_JP1 = load_json("reglages_jp1.json")
+
+# Extraction propre de la liste des réglages pour le tableau
+REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
                    if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
@@ -115,7 +119,6 @@ with st.sidebar:
     
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
     
-    # Si l'utilisateur choisit un légume, on bascule sur la vue LEGUME
     if sel != "---":
         st.session_state["view_mode"] = "LEGUME"
     
@@ -135,27 +138,36 @@ with st.sidebar:
 # 5. LOGIQUE D'AFFICHAGE (PAGE CENTRALE)
 # ==========================================
 
-# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 ---
+# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAU) ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
+    st.caption(f"Source : {RAW_JP1.get('source', 'Inconnue')}")
     st.markdown("---")
-    if REGLAGES_DATA:
-        # Affichage de tous les réglages du JSON sous forme de fiches
-        for leg, info in REGLAGES_DATA.items():
-            with st.container(border=True):
-                col_nom, col_stats = st.columns([1, 4])
-                col_nom.subheader(leg.upper())
-                if isinstance(info, dict):
-                    m1, m2, m3 = col_stats.columns(3)
-                    m1.metric("Pignon Menant", info.get('pignon_menant', '?'))
-                    m2.metric("Pignon Mené", info.get('pignon_mene', '?'))
-                    m3.metric("Rouleau", info.get('rouleau', '?'))
-                    if "observations" in info:
-                        st.info(f"**Observations :** {info['observations']}")
-                else:
-                    col_stats.write(str(info))
+    
+    if REGLAGES_LISTE:
+        # Conversion de la liste JSON en DataFrame Pandas pour l'affichage en tableau
+        df_jp1 = pd.DataFrame(REGLAGES_LISTE)
+        
+        # Renommage des colonnes pour un affichage plus propre dans l'interface
+        df_jp1.columns = [
+            "Légume", "Rouleau", "Pignon AV", "Pignon AR", 
+            "Distance (cm)", "Brosse", "Observations"
+        ]
+        
+        # Affichage du tableau interactif
+        st.dataframe(
+            df_jp1, 
+            use_container_width=True, 
+            hide_index=True,
+            column_config={
+                "Légume": st.column_config.TextColumn(help="Nom de la culture"),
+                "Distance (cm)": st.column_config.NumberColumn(format="%.1f cm"),
+            }
+        )
+        
+        st.info("💡 Vous pouvez cliquer sur les entêtes de colonnes pour trier ou utiliser l'icône loupe pour chercher un légume.")
     else:
-        st.warning("Aucun réglage trouvé dans le fichier.")
+        st.warning("Aucun réglage trouvé dans le fichier reglages_jp1.json.")
 
 # --- CAS B : AFFICHAGE D'UN LÉGUME SÉLECTIONNÉ ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -217,11 +229,8 @@ else:
     ### DLABAL - BDD ITK Maraîchage
     Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
     1. **Sélectionnez un légume** à gauche pour consulter sa fiche.
-    2. **Consultez les fiches** techniques détaillées.
-    3. **Contribuez** via l'icône 📝 pour suggérer des corrections.
-    4. **Saisie Terrain** : Enregistrez vos notes dans l'onglet **THO**.
-    
-    *Toutes les modifications de données textuelles sont soumises à validation.*
+    2. **Contribuez** via l'icône 📝 pour suggérer des corrections.
+    3. **Saisie Terrain** : Enregistrez vos notes dans l'onglet **THO**.
     """)
     st.info("👈 Choisissez un légume ou accédez aux réglages JP1 dans la barre latérale.")
 
