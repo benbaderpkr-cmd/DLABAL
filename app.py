@@ -39,7 +39,7 @@ if not check_password():
     st.stop()
 
 # ==========================================
-# 2. CONNEXION GSHEETS (LIGNES STRICTEMENT ORIGINALES)
+# 2. CONNEXION GSHEETS (Lignes Originales)
 # ==========================================
 conn = st.connection("gsheets", type=GSheetsConnection)
 URL_SHEET = st.secrets["gsheets"]["spreadsheet"]
@@ -76,7 +76,7 @@ if sel:
     with tabs[2]:
         st.info("Données Jardin du Vernois...")
 
-    # --- NOUVEAU : ONGLET ITAB (APPELLE ITAB.JSON) ---
+    # --- NOUVEAU : ONGLET ITAB ---
     with tabs[3]:
         st.subheader(f"📚 Expertise ITAB : {sel}")
         if os.path.exists("itab.json"):
@@ -85,7 +85,7 @@ if sel:
             if sel.upper() in itab_data:
                 st.json(itab_data[sel.upper()])
             else:
-                st.warning(f"Pas de données ITAB pour {sel}")
+                st.warning(f"Données non disponibles pour {sel}")
         else:
             st.error("Fichier itab.json introuvable.")
 
@@ -108,7 +108,7 @@ if sel:
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-# --- CAS 3 : PAGE D'ACCUEIL (VOTRE CODE ORIGINAL) ---
+# --- CAS 3 : PAGE D'ACCUEIL ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
