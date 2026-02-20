@@ -70,6 +70,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
+ITAB_DATA = load_json("itab.json")
 RAW_JP1 = load_json("reglages_jp1.json")
 REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
@@ -245,6 +246,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
