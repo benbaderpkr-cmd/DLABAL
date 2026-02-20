@@ -1,0 +1,56 @@
+import streamlit as st
+import json
+import re
+
+# Chargement de ta base de données
+def load_data():
+    with open('jmf.json', 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+data = load_data()
+
+st.title("Calculateur de Fertilisation Maraîchère")
+
+# 1. ENTRÉES UTILISATEUR
+legume = st.selectbox("Choisissez votre légume", list(data.keys()))
+longueur = st.number_input("Longueur de la planche (m)", min_value=0.0, value=10.0)
+largeur = st.number_input("Largeur de la planche (m)", min_value=0.0, value=0.75)
+surface = longueur * largeur
+
+st.subheader("Votre produit fertilisant")
+col1, col2, col3 = st.columns(3)
+fert_n = col1.number_input("N (%)", value=6.0)
+fert_p = col2.number_input("P (%)", value=3.0)
+fert_k = col3.number_input("K (%)", value=10.0)
+
+# 2. RÉCUPÉRATION DES BESOINS (LOGIQUE JMF)
+txt_ferti = data[legume].get("FERTILISATION", "")
+
+# Fonction pour extraire les nombres du texte (ex: "70 kg N")
+def extraire_besoin(symbole, texte):
+    pattern = rf"(\d+)\s*kg\s*{symbole}"
+    match = re.search(pattern, texte)
+    return int(match.group(1)) if match else None
+
+besoin_n = extraire_besoin("N", txt_ferti)
+besoin_p = extraire_besoin("P", txt_ferti)
+besoin_k = extraire_besoin("K", txt_ferti)
+
+# 3. AFFICHAGE ET CALCUL
+st.divider()
+st.write(f"### Analyse pour : {legume}")
+
+if besoin_n:
+    # On affiche le besoin nutritionnel trouvé en face
+    st.info(f"**Besoin nutritionnel JMF (N) :** {besoin_n} kg/ha")
+    
+    # Calcul : (Besoin / 10000 m2) * Surface réelle
+    besoin_planche = (besoin_n / 10000) * surface
+    # Apport : (Besoin planche / % engrais) * 100
+    apport_final = (besoin_planche / fert_n) * 100
+    
+    st.success(f"👉 Apportez **{apport_final:.2f} kg** de votre fertilisant sur cette planche.")
+else:
+    st.warning("⚠️ Aucune donnée chiffrée (kg/ha) trouvée dans JMF pour ce légume.")
+    st.write("**Recommandation JMF :**")
+    st.write(txt_ferti)
