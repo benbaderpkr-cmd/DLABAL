@@ -130,13 +130,13 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
+# --- CAS 1 : PAGE RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
     
-    # --- TABLEAU 1 : RÉGLAGES PAR LÉGUMES ---
+    # TABLEAU 1 : RÉGLAGES PAR CULTURES
     st.subheader("📋 Réglages par cultures")
     if REGLAGES_LISTE:
         df_jp1 = pd.DataFrame(REGLAGES_LISTE)
@@ -145,32 +145,35 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     
     st.write("")
     st.divider()
-    st.write("")
 
-    # --- TABLEAU 2 : CATALOGUE TECHNIQUE DES ROULEAUX ---
+    # TABLEAU 2 : CATALOGUE TECHNIQUE DES ROULEAUX
     st.subheader("🛠️ Guide Technique des Rouleaux")
-    # Chargement du nouveau fichier
-    CATALOGUE_DATA = load_json("catalogue_rouleaux_jp1.json")
+    CAT_RAW = load_json("catalogue_rouleaux_jp1.json")
     
-    if CATALOGUE_DATA and "rouleaux_detail_complet" in CATALOGUE_DATA:
-        df_cat = pd.DataFrame(CATALOGUE_DATA["rouleaux_detail_complet"])
-        
-        # Renommage pour l'interface
-        df_cat.columns = ["Code Rouleau", "Caractéristiques Techniques", "Légumes associés (Idéal)"]
-        
-        st.dataframe(
-            df_cat, 
-            use_container_width=True, 
-            hide_index=True,
-            # Configuration pour que la liste des légumes soit bien lisible
-            column_config={
-                "Légumes associés (Idéal)": st.column_config.ListColumn("Légumes associés (Idéal)")
+    if CAT_RAW and "catalogue_rouleaux_terradonis" in CAT_RAW:
+        data_list = CAT_RAW["catalogue_rouleaux_terradonis"].get("rouleaux_petites_graines", [])
+        if data_list:
+            df_cat = pd.DataFrame(data_list)
+            
+            # Renommage des colonnes pour plus de clarté
+            mapping_cols = {
+                "code": "Code Rouleau",
+                "trous": "Nombre de trous",
+                "diametre": "Diamètre (mm)",
+                "largeur": "Largeur (mm)",
+                "profondeur": "Profondeur (mm)",
+                "description": "Description"
             }
-        )
-        st.caption("ℹ️ Les données ci-dessus proviennent du catalogue constructeur Terradonis.")
+            # On ne garde que les colonnes présentes dans le JSON
+            cols_a_afficher = [c for c in mapping_cols.keys() if c in df_cat.columns]
+            df_cat = df_cat[cols_a_afficher].rename(columns=mapping_cols)
+            
+            st.dataframe(df_cat, use_container_width=True, hide_index=True)
+            st.caption(f"Unité de mesure : {CAT_RAW['catalogue_rouleaux_terradonis'].get('unite_mesure', 'mm')}")
+        else:
+            st.warning("Liste de rouleaux vide dans le fichier.")
     else:
-        st.warning("Le fichier catalogue_rouleaux_jp1.json n'a pas pu être chargé.")
-        
+        st.error("Structure du fichier catalogue_rouleaux_jp1.json incorrecte ou fichier introuvable.")
 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -224,7 +227,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-# --- CAS 3 : PAGE D'ACCUEIL (TEXTE ORIGINAL RÉTABLI) ---
+# --- CAS 3 : PAGE D'ACCUEIL ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
@@ -248,4 +251,3 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
