@@ -41,6 +41,10 @@ if not check_password():
 if "user_name" not in st.session_state:
     st.session_state["user_name"] = ""
 
+# Initialisation du mode de vue par défaut
+if "view_mode" not in st.session_state:
+    st.session_state["view_mode"] = "ACCUEIL"
+
 # ==========================================
 # 2. FONCTIONS UTILES
 # ==========================================
@@ -103,114 +107,44 @@ def popover_feedback(onglet, bloc, legume_sel):
 # ==========================================
 with st.sidebar:
     if st.button("**DLABAL**", use_container_width=True):
-        st.session_state["view_mode"] = "DOSSIER"; st.rerun()
+        st.session_state["view_mode"] = "ACCUEIL"
+        st.rerun()
     
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     st.write("") 
     
+    # Si on change de légume, on repasse en mode "LEGUME"
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    if sel != "---":
+        st.session_state["view_mode"] = "LEGUME"
     
     st.divider()
 
-# --- BLOC REGLAGES JP1 (Sécurisé) ---
-    with st.expander("⚙️ RÉGLAGES JP1 TERRADONIS", expanded=False):
-        if REGLAGES_DATA:
-            # On parcourt les éléments du JSON
-            for legume_key, infos in REGLAGES_DATA.items():
-                st.markdown(f"**{legume_key.upper()}**")
-                
-                # On vérifie que 'infos' est bien un dictionnaire avant d'utiliser .get()
-                if isinstance(infos, dict):
-                    p_menant = infos.get('pignon_menant', '?')
-                    p_mene = infos.get('pignon_mene', '?')
-                    rouleau = infos.get('rouleau', '?')
-                    st.write(f"Pignons: {p_menant}/{p_mene} | Rouleau: {rouleau}")
-                    
-                    if "observations" in infos:
-                        st.caption(f"Note: {infos['observations']}")
-                else:
-                    # Si la donnée n'est pas un dictionnaire, on affiche la valeur brute
-                    st.write(str(infos))
-                
-                st.divider()
-        else:
-            st.info("Aucun réglage disponible.")
+    # BOUTON PAGE RÉGLAGES (Indépendant)
+    if st.button("⚙️ RÉGLAGES JP1 TERRADONIS", use_container_width=True):
+        st.session_state["view_mode"] = "PAGE_JP1"
+        st.rerun()
+
+    if st.button("🚪 Déconnexion", use_container_width=True):
+        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
 # ==========================================
-# 5. AFFICHAGE
+# 5. LOGIQUE D'AFFICHAGE PRINCIPAL
 # ==========================================
-if sel != "---":
-    st.title(f"📊 {sel.upper()}")
-    tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
 
-    with tab1:
-        g = GAB_DATA.get(sel, {})
-        if "BLOCS_IDENTITE" in g:
-            cols = st.columns(len(g["BLOCS_IDENTITE"]))
-            for i, b in enumerate(g["BLOCS_IDENTITE"]):
-                with cols[i]:
-                    st.success(f"**{b['titre']}**\n\n{b['contenu']}")
-                    popover_feedback("GAB", b['titre'], sel)
-        for k, v in g.get("TECHNIQUE", {}).items():
-            with st.expander(f"📌 {k}", expanded=True):
-                st.markdown(v); c1, c2 = st.columns([0.96, 0.04])
-                with c2: popover_feedback("GAB", k, sel)
-
-    with tab2:
-        for t, c in JMF_DATA.get(sel, {}).items():
-            with st.expander(f"📌 {t}", expanded=True):
-                st.markdown(c); c1, c2 = st.columns([0.96, 0.04])
-                with c2: popover_feedback("JMF", t, sel)
-
-    with tab3:
-        for t, c in JDV_DATA.get(sel, {}).items():
-            with st.expander(f"🌿 {t}", expanded=True):
-                st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
-                with c2: popover_feedback("JDV", t, sel)
-
-    with tab4:
-        st.subheader("📝 Saisie Terrain")
-        try:
-            df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
-            notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
-        except:
-            df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
-            notes = {}
-        with st.form(key=f"f_tho_{sel}"):
-            c1, c2 = st.columns(2)
-            v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
-            v_e = c1.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")))
-            v_s = c1.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")))
-            v_r = c2.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")))
-            v_v = c2.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")))
-            v_i = c2.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")))
-            if st.form_submit_button("💾 ENREGISTRER"):
-                new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
-                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
-                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
-                st.success("Données THO enregistrées !")
-
-else:
-    st.title("🌱 Bienvenue sur DLABAL")
+# --- CAS 1 : PAGE DES RÉGLAGES JP1 ---
+if st.session_state["view_mode"] == "PAGE_JP1":
+    st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.markdown("---")
-    st.markdown("""
-    ### DLABAL - BDD ITK Maraîchage
-    
-    Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
-    
-    **Comment utiliser l'application :**
-    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
-    2. **Consultez les fiches** via les onglets thématiques.
-    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
-    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
-    
-    ---
-    *Toutes les modifications de données textuelles sont soumises à validation.*
-    """)
-    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
-
-st.sidebar.markdown("---")
-with st.sidebar:
-    st.markdown("### 🌦️ Météo locale")
-    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
+    if REGLAGES_DATA:
+        # On affiche chaque légume du JSON sous forme de carte
+        for legume_key, infos in REGLAGES_DATA.items():
+            with st.container(border=True):
+                c1, c2 = st.columns([1, 4])
+                c1.subheader(legume_key.upper())
+                if isinstance(infos, dict):
+                    res = col1, col2, col3 = c2.columns(3)
+                    col1.metric("Pignon Menant", infos.get('pignon_menant', '?'))
+                    col2.metric("Pignon Mené", infos.get('pignon_mene', '?'))
+                    col3.metric("Rouleau", infos.get('rouleau', '?'))
+                    if "observations
