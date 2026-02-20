@@ -146,7 +146,7 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     st.write("")
     st.divider()
 
-    # TABLEAU 2 : CATALOGUE TECHNIQUE DES ROULEAUX
+# TABLEAU 2 : CATALOGUE TECHNIQUE DES ROULEAUX
     st.subheader("🛠️ Guide Technique des Rouleaux")
     CAT_RAW = load_json("catalogue_rouleaux_jp1.json")
     
@@ -155,26 +155,31 @@ if st.session_state["view_mode"] == "PAGE_JP1":
         if data_list:
             df_cat = pd.DataFrame(data_list)
             
-            # Renommage des colonnes pour plus de clarté
+            # On retire la largeur si elle traîne encore dans le DataFrame
+            if "largeur" in df_cat.columns:
+                df_cat = df_cat.drop(columns=["largeur"])
+                
             mapping_cols = {
                 "code": "Code Rouleau",
-                "trous": "Nombre de trous",
+                "trous": "Nb Trous",
                 "diametre": "Diamètre (mm)",
-                "largeur": "Largeur (mm)",
-                "profondeur": "Profondeur (mm)",
-                "description": "Description"
+                "profondeur": "Prof. (mm)",
+                "description": "Légumes Compatibles (Source Terradonis)"
             }
-            # On ne garde que les colonnes présentes dans le JSON
-            cols_a_afficher = [c for c in mapping_cols.keys() if c in df_cat.columns]
-            df_cat = df_cat[cols_a_afficher].rename(columns=mapping_cols)
             
-            st.dataframe(df_cat, use_container_width=True, hide_index=True)
+            cols_existantes = [c for c in mapping_cols.keys() if c in df_cat.columns]
+            df_cat = df_cat[cols_existantes].rename(columns=mapping_cols)
+            
+            st.dataframe(
+                df_cat, 
+                use_container_width=True, 
+                hide_index=True,
+                column_config={
+                    "Légumes Compatibles (Source Terradonis)": st.column_config.TextColumn(width="large")
+                }
+            )
             st.caption(f"Unité de mesure : {CAT_RAW['catalogue_rouleaux_terradonis'].get('unite_mesure', 'mm')}")
-        else:
-            st.warning("Liste de rouleaux vide dans le fichier.")
-    else:
-        st.error("Structure du fichier catalogue_rouleaux_jp1.json incorrecte ou fichier introuvable.")
-
+            
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
@@ -251,3 +256,4 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
