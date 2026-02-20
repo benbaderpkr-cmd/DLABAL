@@ -158,7 +158,7 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     # === TABLEAU 2 : SOURCE TERRADONIS / TERRAIN ===
     st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
     # Ici on utilise ton fichier d'origine sans le modifier
-    DATA_TERRA = load_json("reglages_jp1 (3).json") 
+    DATA_TERRA = load_json("reglages_jp1.json") 
     if DATA_TERRA and "reglages" in DATA_TERRA:
         # On affiche uniquement Culture et Rouleau pour ce tableau
         df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
@@ -245,6 +245,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
