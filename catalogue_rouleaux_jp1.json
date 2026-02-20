@@ -4,7 +4,7 @@
     "rouleaux_petites_graines": [
       {"code": "A-6", "trous": 6, "diametre": 13, "profondeur": 6, "description": "Haricot coco, Soja, Arachide"},
       {"code": "AA-6", "trous": 6, "diametre": 12, "profondeur": 6, "description": "Maïs doux, Soja, Haricot vert"},
-      {"code": "C-6", "trous": 6, "diametre": 11, "profondeur": 5, "description": "Maïs, Haricot (petits calibres)"},
+      {"code": "C-6", "trous": 6, "diametre": 11, "profondeur": 5, "description": "Betterave fourragère, Tournesol"},
       {"code": "FJ-12", "trous": 12, "diametre": 5, "profondeur": 3, "description": "Radis noir, Épinard, Fenouil"},
       {"code": "FJ-24", "trous": 24, "diametre": 5, "profondeur": 3, "description": "Radis noir, Épinard, Fenouil"},
       {"code": "FJ-30", "trous": 30, "diametre": 5, "profondeur": 3, "description": "Radis noir, Épinard, Fenouil"},
@@ -12,12 +12,12 @@
       {"code": "J1-6", "trous": 6, "diametre": 10, "profondeur": 20, "description": "Fève, Haricot de Soissons"},
       {"code": "J3-6", "trous": 6, "diametre": 12, "profondeur": 21, "description": "Fève, Haricot de Soissons"},
       {"code": "J5-6", "trous": 6, "diametre": 14, "profondeur": 22, "description": "Fève, Haricot de Soissons"},
-      {"code": "L-12", "trous": 12, "diametre": 7, "profondeur": 2, "description": "Panais, Blettes, Betterave fourragère"},
-      {"code": "L-24", "trous": 24, "diametre": 7, "profondeur": 2, "description": "Panais, Blettes, Betterave fourragère"},
-      {"code": "LJ-12", "trous": 12, "diametre": 7, "profondeur": 3, "description": "Panais (gros calibre), Blettes"},
-      {"code": "M-2", "trous": 2, "diametre": 5, "profondeur": 2, "description": "Pois, Petit pois, Lentilles, Betterave"},
-      {"code": "MJ-12", "trous": 12, "diametre": 6, "profondeur": 3, "description": "Pois, Petit pois, Lentilles, Betterave"},
-      {"code": "MJ-6", "trous": 6, "diametre": 6, "profondeur": 3, "description": "Pois, Petit pois, Lentilles, Betterave"},
+      {"code": "L-12", "trous": 12, "diametre": 7, "profondeur": 2, "description": "Panais, Blettes, Betterave"},
+      {"code": "L-24", "trous": 24, "diametre": 7, "profondeur": 2, "description": "Panais, Blettes, Betterave"},
+      {"code": "LJ-12", "trous": 12, "diametre": 7, "profondeur": 3, "description": "Panais (gros), Blettes"},
+      {"code": "M-2", "trous": 2, "diametre": 5, "profondeur": 2, "description": "Pois, Petit pois, Lentilles"},
+      {"code": "MJ-12", "trous": 12, "diametre": 6, "profondeur": 3, "description": "Pois, Petit pois, Lentilles"},
+      {"code": "MJ-6", "trous": 6, "diametre": 6, "profondeur": 3, "description": "Pois, Petit pois, Lentilles"},
       {"code": "N-6", "trous": 6, "diametre": 6, "profondeur": 3, "description": "Pois, Gombo, Haricot beurre"},
       {"code": "X-12", "trous": 12, "diametre": 4, "profondeur": 2, "description": "Radis, Chou, Brocoli, Moutarde, Oignon (nu)"},
       {"code": "X-2", "trous": 2, "diametre": 4, "profondeur": 2, "description": "Radis, Chou, Brocoli, Moutarde, Oignon (nu)"},
@@ -26,7 +26,7 @@
       {"code": "XY-12", "trous": 12, "diametre": 5, "profondeur": 1, "description": "Carotte, Persil, Laitue (nue), Poireau"},
       {"code": "XY-24", "trous": 24, "diametre": 5, "profondeur": 1, "description": "Carotte, Persil, Laitue (nue), Poireau"},
       {"code": "XY-30", "trous": 30, "diametre": 5, "profondeur": 1, "description": "Carotte, Persil, Laitue (nue), Poireau"},
-      {"code": "XYY-6", "trous": 6, "diametre": 4, "profondeur": 1, "description": "Petites fleurs, Herbes aromatiques fines"},
+      {"code": "XYY-6", "trous": 6, "diametre": 4, "profondeur": 1, "description": "Petites fleurs, Herbes aromatiques"},
       {"code": "Y-12", "trous": 12, "diametre": 3, "profondeur": 1, "description": "Carotte, Salade, Oseille"},
       {"code": "Y-2", "trous": 2, "diametre": 3, "profondeur": 1, "description": "Carotte, Salade, Oseille"},
       {"code": "Y-24", "trous": 24, "diametre": 3, "profondeur": 1, "description": "Carotte, Salade, Oseille"},
@@ -37,7 +37,7 @@
       {"code": "YYJ-6", "trous": 6, "diametre": 3, "profondeur": 1, "description": "Micro-graines : Pavot, Thym"},
       {"code": "YYX-12", "trous": 12, "diametre": 2, "profondeur": 1, "description": "Micro-graines : fleurs très fines"},
       {"code": "YYX-24", "trous": 24, "diametre": 2, "profondeur": 1, "description": "Micro-graines : fleurs très fines"},
-      {"code": "Z", "trous": 0, "diametre": 0, "profondeur": 0, "description": "Rouleau vierge à percer sur mesure"}
+      {"code": "Z", "trous": 0, "diametre": 0, "profondeur": 0, "description": "Rouleau vierge à percer"}
     ]
   }
 }
