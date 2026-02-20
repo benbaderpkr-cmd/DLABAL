@@ -1,0 +1,125 @@
+{
+  "FICHIER": "itab.json",
+
+  "AIL": {
+    "SOURCE": "CamScanner 20-02-2026 18.14.pdf",
+    "BOTANIQUE": {
+      "TAXON": "Allium sativum L.",
+      "ETYMOLOGIE": "Celtique 'All' (brûlant), principe actif: Allicine",
+      "TYPES": {
+        "COL_EPAIS": "Var. ophioscorodon, hampe florale, très rustique",
+        "COL_MINCE": "Var. sativum, pas de fleur, idéal tressage"
+      },
+      "REPRODUCTION": "Clonale/Végétative par caïeux (bourgeons tubérisés)"
+    },
+    "PHYSIOLOGIE": {
+      "ZERO_VEGETATION": "0°C",
+      "VERNALISATION": "Induction par froid (0-10°C) + Photopériode (jours longs)",
+      "SOL": "Argilo-calcaire ferme, pH 6.5-7.5, drainage parfait obligatoire",
+      "DORMANCE": "Rose (longue) vs Blanc (courte)"
+    },
+    "TECHNIQUE_CULTURALE": {
+      "PLANTATION": "Automne (Violet/Blanc) ou Printemps (Rose)",
+      "SEMENCE": "Caïeux extérieurs (3-5g), pointe vers le haut, 3cm de recouvrement",
+      "DENSITE": "10-12 caïeux/m2, 8-12 quintaux/ha",
+      "FERTILISATION": "N: 80-100u (Arrêt Mai), P: 60-80u, K: 100-150u, Soufre indispensable"
+    },
+    "PATHOLOGIE": {
+      "INSECTES": ["Mouche de l'ail", "Teigne", "Nématode Ditylenchus"],
+      "MALADIES": ["Rouille (Puccinia)", "Mildiou", "Pourriture blanche (Sclerotium - 15 ans survie)", "Graisse"]
+    },
+    "LOGISTIQUE": {
+      "RECOLTE": "70% fanes sèches, col souple, perte 20-30% poids au séchage",
+      "CALIBRES": {"Extra": "> 45mm", "Cat_I_II": "> 30mm"},
+      "STOCKAGE": "Chaud (18-21°C) ou Froid (0°C). Zone interdite (germination): 4-10°C. HR: 50-60%"
+    }
+  },
+
+  "AUBERGINE": {
+    "SOURCE": "CamScanner 20-02-2026 19.12.pdf",
+    "BOTANIQUE": {
+      "TAXON": "Solanum melongena L.",
+      "ORIGINE": "Asie (Inde), 'Pomme des fous'",
+      "MORPHOLOGIE": "Port dressé (0.6m à 1.5m), gélive à 0°C"
+    },
+    "THERMODYNAMIQUE": {
+      "GERMINATION": "Optimum 22-25°C (Min 12°C)",
+      "CROISSANCE_JOUR": "22-27°C (Ecart J/N de 6°C conseillé)",
+      "CROISSANCE_NUIT": "18-20°C",
+      "COULURE_FLEURS": "Si < 15°C ou > 35°C"
+    },
+    "CULTURE": {
+      "SOL": "Profond, humifère, pH 5.5-7",
+      "NUTRITION_HA": "N: 150-200u, P: 80-100u, K: 250-300u, MO: 30-50 t/ha",
+      "PLANTATION": "3-5 feuilles (champ) / 6 feuilles (serre), collet non enterré",
+      "DENSITE": "1.2 à 1.8 plants/m2",
+      "CONDUITE": "Taille 2-4 bras, ébourgeonnage, greffage (Solanum torvum)"
+    },
+    "PHYTOSANITAIRE": {
+      "RAVAGEURS": ["Doryphores (majeur)", "Pucerons", "Acariens", "Aleurodes"],
+      "MALADIES": ["Verticilliose (flétrissement)", "Mildiou", "Oïdium", "Botrytis"]
+    },
+    "LOGISTIQUE": {
+      "RECOLTE": "Fruit brillant et ferme, avant maturité des graines",
+      "CONSERVATION": "10-12°C (Taches brunes si < 10°C), HR 90%, 7-14 jours"
+    }
+  },
+
+  "BETTE_BLETTE": {
+    "SOURCE": "CamScanner 20-02-2026 19.20.pdf",
+    "BOTANIQUE": {
+      "TAXON": "Beta vulgaris var. cicla",
+      "HISTOIRE": "Issue de la bette de mer sauvage, sélection sur limbe et pétiole",
+      "TYPES": ["Cardes blanches", "Cardes colorées", "Bette à couper"]
+    },
+    "PHYSIOLOGIE": {
+      "GERMINATION": "Optimum 18-22°C (Min 8°C)",
+      "RESISTANCE": "Rustique, supporte -5°C à -7°C",
+      "VERNALISATION": "Sensible < 5°C au stade jeune (montée à graines)",
+      "SOL": "Profond, frais, pH 6.5-7.5, tolère la salinité"
+    },
+    "CULTURE": {
+      "NUTRITION_HA": "N: 120-150u, P: 80-100u, K: 200-250u, MO: 40-50 t/ha",
+      "SEMIS": "2-3cm profondeur, glomérules multigermes",
+      "DENSITE": "5 à 7 plants/m2 (Espacement 45x35cm)",
+      "REPIQUAGE": "Stade 4-5 feuilles (5-6 semaines)"
+    },
+    "SANTE": {
+      "RAVAGEURS": ["Pucerons noirs", "Pégomyie (mines)", "Limaces", "Altises"],
+      "MALADIES": ["Cercosporiose (taches pourpres)", "Mildiou", "Rouille", "Mosaïque"]
+    },
+    "LOGISTIQUE": {
+      "RECOLTE": "Manuelle par feuille ou rosette complète",
+      "CONSERVATION": "0-1°C, HR 95-98% (froid humide), 8-10 jours"
+    }
+  },
+
+  "EPINARD": {
+    "SOURCE": "CamScanner 20-02-2026 19.29.pdf",
+    "BOTANIQUE": {
+      "TAXON": "Spinacia oleracea",
+      "BIOLOGIE": "Plante annuelle dioïque, pollinisation vent",
+      "HISTOIRE": "Persia (10e s), sélection 'Hollande' (graines rondes vs piquantes)",
+      "COMPOSITION": "Riche en Fer, Vitamine C, Oxalates, Accumulateur Nitrates"
+    },
+    "PHYSIOLOGIE": {
+      "GERMINATION": "Optimum 15-18°C. Thermodormance > 25°C",
+      "PHOTOPERIODE": "Jours longs (> 14h) induit montaison",
+      "RESISTANCE": "-6°C à -10°C (type hiver)",
+      "PH_CRITIQUE": "6.5-7.5 (Jaunissement mortel si < 6.0)"
+    },
+    "CULTURE": {
+      "NUTRITION_HA": "N: 100-120u (fractionné), P: 60-80u, K: 150-200u",
+      "DENSITE_SEMIS": "Frais: 1M graines/ha, Baby leaf: 3-5M graines/ha",
+      "TECHNIQUE": "Désherbage thermique pré-levée, faux-semis indispensable"
+    },
+    "PATHOLOGIE": {
+      "MALADIES": ["Mildiou (Races 1-15+)", "Fonte des semis (Pythium)", "Viroses"],
+      "RAVAGEURS": ["Limaces (majeur)", "Mouche Pégomyie", "Noctuelles"]
+    },
+    "LOGISTIQUE": {
+      "RECOLTE": "1.5 à 2.5 kg/m2, matinée obligatoire pour turgescence",
+      "CONSERVATION": "0-2°C, HR 95-98%, 10 jours max. Ne pas laver avant stockage"
+    }
+  }
+}
