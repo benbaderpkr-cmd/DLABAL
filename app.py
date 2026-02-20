@@ -113,38 +113,119 @@ with st.sidebar:
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     st.write("") 
     
-    # Si on change de légume, on repasse en mode "LEGUME"
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    
+    # Si l'utilisateur choisit un légume, on bascule sur la vue LEGUME
     if sel != "---":
         st.session_state["view_mode"] = "LEGUME"
     
     st.divider()
 
-    # BOUTON PAGE RÉGLAGES (Indépendant)
+    # --- BOUTON POUR LA PAGE RÉGLAGES JP1 ---
     if st.button("⚙️ RÉGLAGES JP1 TERRADONIS", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
+
+    st.write("") 
 
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
 # ==========================================
-# 5. LOGIQUE D'AFFICHAGE PRINCIPAL
+# 5. LOGIQUE D'AFFICHAGE (PAGE CENTRALE)
 # ==========================================
 
-# --- CAS 1 : PAGE DES RÉGLAGES JP1 ---
+# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.markdown("---")
     if REGLAGES_DATA:
-        # On affiche chaque légume du JSON sous forme de carte
-        for legume_key, infos in REGLAGES_DATA.items():
+        # Affichage de tous les réglages du JSON sous forme de fiches
+        for leg, info in REGLAGES_DATA.items():
             with st.container(border=True):
-                c1, c2 = st.columns([1, 4])
-                c1.subheader(legume_key.upper())
-                if isinstance(infos, dict):
-                    res = col1, col2, col3 = c2.columns(3)
-                    col1.metric("Pignon Menant", infos.get('pignon_menant', '?'))
-                    col2.metric("Pignon Mené", infos.get('pignon_mene', '?'))
-                    col3.metric("Rouleau", infos.get('rouleau', '?'))
-                    if "observations
+                col_nom, col_stats = st.columns([1, 4])
+                col_nom.subheader(leg.upper())
+                if isinstance(info, dict):
+                    m1, m2, m3 = col_stats.columns(3)
+                    m1.metric("Pignon Menant", info.get('pignon_menant', '?'))
+                    m2.metric("Pignon Mené", info.get('pignon_mene', '?'))
+                    m3.metric("Rouleau", info.get('rouleau', '?'))
+                    if "observations" in info:
+                        st.info(f"**Observations :** {info['observations']}")
+                else:
+                    col_stats.write(str(info))
+    else:
+        st.warning("Aucun réglage trouvé dans le fichier.")
+
+# --- CAS B : AFFICHAGE D'UN LÉGUME SÉLECTIONNÉ ---
+elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
+    st.title(f"📊 {sel.upper()}")
+    tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
+
+    with tab1:
+        g = GAB_DATA.get(sel, {})
+        if "BLOCS_IDENTITE" in g:
+            cols = st.columns(len(g["BLOCS_IDENTITE"]))
+            for i, b in enumerate(g["BLOCS_IDENTITE"]):
+                with cols[i]:
+                    st.success(f"**{b['titre']}**\n\n{b['contenu']}")
+                    popover_feedback("GAB", b['titre'], sel)
+        for k, v in g.get("TECHNIQUE", {}).items():
+            with st.expander(f"📌 {k}", expanded=True):
+                st.markdown(v); c1, c2 = st.columns([0.96, 0.04])
+                with c2: popover_feedback("GAB", k, sel)
+
+    with tab2:
+        for t, c in JMF_DATA.get(sel, {}).items():
+            with st.expander(f"📌 {t}", expanded=True):
+                st.markdown(c); c1, c2 = st.columns([0.96, 0.04])
+                with c2: popover_feedback("JMF", t, sel)
+
+    with tab3:
+        for t, c in JDV_DATA.get(sel, {}).items():
+            with st.expander(f"🌿 {t}", expanded=True):
+                st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
+                with c2: popover_feedback("JDV", t, sel)
+
+    with tab4:
+        st.subheader("📝 Saisie Terrain")
+        try:
+            df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
+            notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
+        except:
+            df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
+            notes = {}
+        with st.form(key=f"f_tho_{sel}"):
+            c1, c2 = st.columns(2)
+            v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
+            v_e = c1.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")))
+            v_s = c1.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")))
+            v_r = c2.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")))
+            v_v = c2.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")))
+            v_i = c2.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")))
+            if st.form_submit_button("💾 ENREGISTRER"):
+                new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
+                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                st.success("Données THO enregistrées !")
+
+# --- CAS C : PAGE D'ACCUEIL ---
+else:
+    st.title("🌱 Bienvenue sur DLABAL")
+    st.markdown("---")
+    st.markdown("""
+    ### DLABAL - BDD ITK Maraîchage
+    Cet outil centralise les connaissances techniques du **GAB**, de **JMF** et de **JDV**.
+    1. **Sélectionnez un légume** à gauche pour consulter sa fiche.
+    2. **Consultez les fiches** techniques détaillées.
+    3. **Contribuez** via l'icône 📝 pour suggérer des corrections.
+    4. **Saisie Terrain** : Enregistrez vos notes dans l'onglet **THO**.
+    
+    *Toutes les modifications de données textuelles sont soumises à validation.*
+    """)
+    st.info("👈 Choisissez un légume ou accédez aux réglages JP1 dans la barre latérale.")
+
+st.sidebar.markdown("---")
+with st.sidebar:
+    st.markdown("### 🌦️ Météo locale")
+    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
