@@ -35,44 +35,30 @@ def check_password():
                 st.error("Incorrect")
     return False
 
-# Fonction pour charger les données ITAB (Extraites des PDF)
+# --- AJOUT FONCTION LECTURE JSON ---
 def load_itab_data():
     if os.path.exists("itab.json"):
-        try:
-            with open("itab.json", "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            st.error(f"Erreur de lecture du fichier itab.json : {e}")
+        with open("itab.json", "r", encoding="utf-8") as f:
+            return json.load(f)
     return None
 
 if not check_password():
     st.stop()
 
 # ==========================================
-# 2. CONNEXION GSHEETS (Correction)
+# 2. CONNEXION GSHEETS (Lignes Originales)
 # ==========================================
-# On rétablit la connexion telle qu'elle était dans ton app (14).py
 conn = st.connection("gsheets", type=GSheetsConnection)
-
-# Si tu as besoin de l'URL pour une lecture spécifique, on l'appelle via la clé "spreadsheet" 
-# mais avec une sécurité (get) pour ne pas faire planter l'app si elle manque
-URL_SHEET = st.secrets.get("gsheets", {}).get("spreadsheet", "")
+URL_SHEET = st.secrets["gsheets"]["spreadsheet"]
 
 # ==========================================
 # 3. BARRE LATERALE ET SELECTION
 # ==========================================
 with st.sidebar:
-    st.image("https://www.itab.asso.fr/images/logo-itab.png", width=100)
     st.title("Menu DLABAL")
     
-    # Lecture GSheets pour la liste des légumes
-    try:
-        # On utilise la configuration par défaut de st.connection
-        df_gs = conn.read(worksheet="THO")
-        liste_legumes = sorted(df_gs['LEGUME'].dropna().unique().tolist())
-    except Exception as e:
-        st.error(f"Erreur de lecture GSheets : {e}")
-        liste_legumes = []
+    df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO")
+    liste_legumes = sorted(df_gs['LEGUME'].dropna().unique().tolist())
     
     sel = st.selectbox("Choisir un légume :", [""] + liste_legumes)
 
@@ -82,60 +68,66 @@ with st.sidebar:
 if sel:
     st.title(f"🥕 Fiche Technique : {sel}")
     
-    # ITAB est inséré ici en 4ème position (index 3)
+    # AJOUT "ITAB" DANS LA LISTE
     tabs = st.tabs(["GAB", "JMF", "JDV", "ITAB", "THO"])
 
-    with tabs[0]: st.info("Données GAB...")
-    with tabs[1]: st.info("Référentiel JMF...")
-    with tabs[2]: st.info("Données JDV...")
+    # --- CAS 1 : GAB ---
+    with tabs[0]:
+        st.info("Données en cours de synchronisation avec le GAB...")
 
-    # --- NOUVEL ONGLET ITAB ---
+    # --- CAS 2 : JMF ---
+    with tabs[1]:
+        st.info("Référentiel Jean-Martin Fortier...")
+
+    # --- CAS 3 : JDV ---
+    with tabs[2]:
+        st.info("Données Jardin du Vernois...")
+
+    # --- NOUVEL ONGLET : ITAB ---
     with tabs[3]:
-        st.header(f"📚 Expertise ITAB : {sel}")
+        st.subheader(f"📚 Expertise ITAB : {sel}")
         itab_data = load_itab_data()
-        cle_legume = sel.upper()
-        
-        if itab_data and cle_legume in itab_data:
-            data = itab_data[cle_legume]
-            c1, c2 = st.columns(2)
-            with c1:
-                st.markdown("### 🔬 Botanique & Physiologie")
-                st.json(data.get("BOTANIQUE", {}))
-                st.markdown("### 🌡️ Exigences Thermiques")
-                st.json(data.get("PHYSIOLOGIE", {}))
-            with c2:
-                st.markdown("### 🚜 Itinéraire Technique")
-                st.json(data.get("TECHNIQUE_CULTURALE", {}))
-                st.markdown("### 🧺 Logistique & Qualité")
-                st.json(data.get("LOGISTIQUE", {}))
-            st.markdown("---")
-            st.markdown("### 🦟 Protection des Plantes")
-            st.json(data.get("PATHOLOGIE", {}))
+        if itab_data and sel.upper() in itab_data:
+            data = itab_data[sel.upper()]
+            st.json(data)
         else:
-            st.warning(f"Aucune donnée ITAB disponible dans 'itab.json' pour '{sel}'.")
+            st.warning("Aucune donnée ITAB disponible dans itab.json")
 
-    # --- ONGLET THO ---
+    # --- CAS 4 : THO (Ton code original) ---
     with tabs[4]:
         st.header("📝 Saisie Terrain (THO)")
-        row_data = df_gs[df_gs['LEGUME'] == sel]
-        if not row_data.empty:
-            row = row_data.iloc[0]
-            with st.form("tho_form"):
-                v_p = st.text_area("Plantation :", value=str(row.get('PLANTATION', "")))
-                v_e = st.text_area("Entretien :", value=str(row.get('ENTRETIEN', "")))
-                v_s = st.text_area("Santé :", value=str(row.get('SANTE', "")))
-                v_r = st.text_area("Rendement :", value=str(row.get('RENDEMENT', "")))
-                v_v = st.text_area("Variétés :", value=str(row.get('VARIETE', "")))
-                v_i = st.text_area("Infos Supp :", value=str(row.get('INFO_SUPP', "")))
-                
-                if st.form_submit_button("💾 Enregistrer"):
-                    new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
-                    df_updated = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
-                    conn.update(worksheet="THO", data=df_updated)
-                    st.success("Modifications enregistrées dans GSheets !")
-        else:
-            st.error("Légume non trouvé dans la feuille THO.")
+        row = df_gs[df_gs['LEGUME'] == sel].iloc[0]
+        
+        with st.form("tho_form"):
+            v_p = st.text_area("Plantation :", value=row.get('PLANTATION', ""))
+            v_e = st.text_area("Entretien :", value=row.get('ENTRETIEN', ""))
+            v_s = st.text_area("Santé :", value=row.get('SANTE', ""))
+            v_r = st.text_area("Rendement :", value=row.get('RENDEMENT', ""))
+            v_v = st.text_area("Variétés :", value=row.get('VARIETE', ""))
+            v_i = st.text_area("Infos Supp :", value=row.get('INFO_SUPP', ""))
+            
+            if st.form_submit_button("💾 Enregistrer les modifications"):
+                new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
+                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                st.success("Données THO enregistrées !")
 
+# --- CAS 3 : PAGE D'ACCUEIL ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
-    st.info("👈 Choisissez un légume dans la barre latérale.")
+    st.markdown("---")
+    st.markdown("""
+    ### DLABAL - BDD ITK Maraîchage
+    
+    Cet outil centralise les connaissances techniques du **GAB**, de **JMF**, de **JDV** et de l'**ITAB**.
+    
+    **Comment utiliser l'application :**
+    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
+    2. **Consultez les fiches** via les onglets thématiques.
+    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
+    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
+    
+    ---
+    *Toutes les modifications de données textuelles sont soumises à validation.*
+    """)
+    st.info("👈 Commencez par choisir un légume dans le menu à gauche pour afficher ses données.")
