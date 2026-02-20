@@ -35,7 +35,7 @@ def check_password():
                 st.error("Incorrect")
     return False
 
-# --- SEUL AJOUT : FONCTION POUR ITAB ---
+# --- FONCTION ITAB ---
 def load_itab_data():
     if os.path.exists("itab.json"):
         with open("itab.json", "r", encoding="utf-8") as f:
@@ -68,7 +68,7 @@ with st.sidebar:
 if sel:
     st.title(f"🥕 Fiche Technique : {sel}")
     
-    # AJOUT DE "ITAB" ENTRE "JDV" ET "THO"
+    # ONGLETS AVEC ITAB AJOUTÉ
     tabs = st.tabs(["GAB", "JMF", "JDV", "ITAB", "THO"])
 
     # --- CAS 1 : GAB ---
@@ -83,14 +83,14 @@ if sel:
     with tabs[2]:
         st.info("Données Jardin du Vernois...")
 
-    # --- SEUL AJOUT : ONGLET ITAB ---
+    # --- NOUVEAU : ITAB ---
     with tabs[3]:
         st.subheader(f"📚 Expertise ITAB : {sel}")
         itab_data = load_itab_data()
         if itab_data and sel.upper() in itab_data:
             st.json(itab_data[sel.upper()])
         else:
-            st.warning(f"Données ITAB non trouvées pour {sel} dans itab.json")
+            st.warning(f"Aucune donnée ITAB trouvée pour {sel}")
 
     # --- CAS 4 : THO ---
     with tabs[4]:
