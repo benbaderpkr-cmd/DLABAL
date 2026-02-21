@@ -124,6 +124,10 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
 
+    if st.button("🌿 CALCUL FERTI", use_container_width=True):
+        st.session_state["view_mode"] = "PAGE_FERTI"
+        st.rerun()
+
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
@@ -168,6 +172,35 @@ if st.session_state["view_mode"] == "PAGE_JP1":
         )
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
+# --- CAS B : PAGE CALCUL FERTI ---
+elif st.session_state["view_mode"] == "PAGE_FERTI":
+    FERTI_DATA = load_json("calcul_ferti.json")
+    st.title("🌿 CALCUL FERTI")
+    st.markdown("---")
+
+    legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
+    surface = st.number_input("Surface (m²) :", min_value=1, value=100, step=1)
+
+    if legume_ferti != "---":
+        donnees = FERTI_DATA[legume_ferti]
+        st.markdown(f"### Besoins estimés pour **{legume_ferti}** sur **{surface} m²**")
+
+        rows = []
+        for source, vals in donnees.items():
+            if vals:
+                facteur = surface / 10000
+                rows.append({
+                    "Source": source,
+                    "N (kg/ha)": vals["N"],
+                    "P (kg/ha)": vals["P"],
+                    "K (kg/ha)": vals["K"],
+                    f"N pour {surface} m²": round(vals["N"] * facteur, 2),
+                    f"P pour {surface} m²": round(vals["P"] * facteur, 2),
+                    f"K pour {surface} m²": round(vals["K"] * facteur, 2),
+                })
+        if rows:
+            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
