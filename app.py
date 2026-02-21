@@ -179,11 +179,14 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
     st.markdown("---")
 
     legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
-    surface = st.number_input("Surface (m²) :", min_value=1, value=100, step=1)
+    c1, c2 = st.columns(2)
+    longueur = c1.number_input("Longueur (m) :", min_value=1, value=10, step=1)
+    largeur = c2.number_input("Largeur (m) :", min_value=1, value=10, step=1)
+    surface = longueur * largeur
 
     if legume_ferti != "---":
         donnees = FERTI_DATA[legume_ferti]
-        st.markdown(f"### Besoins estimés pour **{legume_ferti}** sur **{surface} m²**")
+        st.markdown(f"### Besoins estimés pour **{legume_ferti}** sur **{longueur} m × {largeur} m = {surface} m²**")
 
         rows = []
         for source, vals in donnees.items():
