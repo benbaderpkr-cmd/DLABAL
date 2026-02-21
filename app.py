@@ -179,30 +179,44 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
     st.markdown("---")
 
     legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
+
     c1, c2 = st.columns(2)
     longueur = c1.number_input("Longueur (m) :", min_value=1, value=10, step=1)
     largeur = c2.number_input("Largeur (m) :", min_value=1, value=10, step=1)
     surface = longueur * largeur
 
+    st.markdown("#### Teneur de votre amendement (%)")
+    ca, cb, cc = st.columns(3)
+    teneur_N = ca.number_input("% N (Azote) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
+    teneur_P = cb.number_input("% P (Phosphore) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
+    teneur_K = cc.number_input("% K (Potassium) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
+
     if legume_ferti != "---":
         donnees = FERTI_DATA[legume_ferti]
-        st.markdown(f"### Besoins estimés pour **{legume_ferti}** sur **{longueur} m × {largeur} m = {surface} m²**")
+        st.markdown(f"### Résultats pour **{legume_ferti}** — {longueur} m × {largeur} m = **{surface} m²**")
 
         rows = []
         for source, vals in donnees.items():
             if vals:
                 facteur = surface / 10000
+                besoin_N = round(vals["N"] * facteur, 2)
+                besoin_P = round(vals["P"] * facteur, 2)
+                besoin_K = round(vals["K"] * facteur, 2)
+                dose_N = round(besoin_N / (teneur_N / 100), 1) if teneur_N > 0 else "—"
+                dose_P = round(besoin_P / (teneur_P / 100), 1) if teneur_P > 0 else "—"
+                dose_K = round(besoin_K / (teneur_K / 100), 1) if teneur_K > 0 else "—"
                 rows.append({
                     "Source": source,
-                    "N (kg/ha)": vals["N"],
-                    "P (kg/ha)": vals["P"],
-                    "K (kg/ha)": vals["K"],
-                    f"N pour {surface} m²": round(vals["N"] * facteur, 2),
-                    f"P pour {surface} m²": round(vals["P"] * facteur, 2),
-                    f"K pour {surface} m²": round(vals["K"] * facteur, 2),
+                    f"Besoin N (kg)": besoin_N,
+                    f"Besoin P (kg)": besoin_P,
+                    f"Besoin K (kg)": besoin_K,
+                    f"Dose pour N (kg amend.)": dose_N,
+                    f"Dose pour P (kg amend.)": dose_P,
+                    f"Dose pour K (kg amend.)": dose_K,
                 })
         if rows:
             st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.caption("Les besoins sont calculés sur votre surface. Les doses indiquent la quantité d'amendement à apporter pour couvrir chaque besoin selon sa teneur.")
 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
