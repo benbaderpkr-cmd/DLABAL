@@ -45,10 +45,23 @@ URL_SHEET = "https://docs.google.com/spreadsheets/d/1vCshN5YhA1i_k-D_3m_i76mD-x6
 
 @st.cache_data
 def load_data():
-    with open('jmf (4).json', 'r', encoding='utf-8') as f:
+    # Gestion robuste des noms de fichiers pour éviter le FileNotFoundError
+    jmf_path = 'jmf (4).json' if os.path.exists('jmf (4).json') else 'jmf.json'
+    ferti_path = 'calcul_ferti.json'
+    
+    if not os.path.exists(jmf_path):
+        st.error(f"Fichier de données introuvable : {jmf_path}")
+        st.stop()
+        
+    with open(jmf_path, 'r', encoding='utf-8') as f:
         jmf = json.load(f)
-    with open('calcul_ferti.json', 'r', encoding='utf-8') as f:
-        ferti = json.load(f)
+        
+    if os.path.exists(ferti_path):
+        with open(ferti_path, 'r', encoding='utf-8') as f:
+            ferti = json.load(f)
+    else:
+        ferti = {} # Evite le plantage si calcul_ferti.json n'est pas encore sur le serveur
+        
     return jmf, ferti
 
 data, ferti_db = load_data()
@@ -110,41 +123,38 @@ elif menu == "📝 Formulaire THO":
 # --- CAS : CALCULATEUR FERTI ---
 elif menu == "📟 CALCULATEUR FERTI":
     st.title("📟 Calculateur de Besoins N-P-K")
-    st.write("Calculez les unités nécessaires selon le référentiel `calcul_ferti.json`.")
-
-    with st.container(border=True):
-        c1, c2 = st.columns(2)
-        with c1:
-            longueur = st.number_input("Longueur de la planche (m)", min_value=0.0, value=20.0, step=0.5)
-        with c2:
-            largeur = st.number_input("Largeur de la planche (m)", min_value=0.0, value=0.75, step=0.05)
-        
-        surface = longueur * largeur
-        st.write(f"📏 **Surface calculée : {surface:.2f} m²**")
-        
-        # On récupère la liste des légumes depuis le fichier chargé ferti_db
-        legume_list = sorted(list(ferti_db.keys()))
-        legume = st.selectbox("Choisir le légume :", options=legume_list)
-        
-        if legume:
-            # On cherche les données JDV dans le dictionnaire imbriqué
-            vals = ferti_db[legume].get("JDV")
+    if not ferti_db:
+        st.error("Le fichier `calcul_ferti.json` est manquant sur le serveur.")
+    else:
+        with st.container(border=True):
+            c1, c2 = st.columns(2)
+            with c1:
+                longueur = st.number_input("Longueur de la planche (m)", min_value=0.0, value=20.0, step=0.5)
+            with c2:
+                largeur = st.number_input("Largeur de la planche (m)", min_value=0.0, value=0.75, step=0.05)
             
-            if vals:
-                # Calcul au prorata (Besoins/ha / 10000 * surface)
-                n_final = (vals['N'] / 10000) * surface
-                p_final = (vals['P'] / 10000) * surface
-                k_final = (vals['K'] / 10000) * surface
-                
-                st.divider()
-                res1, res2, res3 = st.columns(3)
-                res1.metric("Azote (N)", f"{n_final:.3f} u")
-                res2.metric("Phosphore (P)", f"{p_final:.3f} u")
-                res3.metric("Potassium (K)", f"{k_final:.3f} u")
-                
-                st.caption(f"Source : JDV.json | Référentiel : {vals['N']}N - {vals['P']}P - {vals['K']}K (unités/ha)")
-            else:
-                st.warning("Aucune donnée JDV trouvée pour ce légume dans calcul_ferti.json")
+            surface = longueur * largeur
+            st.write(f"📏 **Surface calculée : {surface:.2f} m²**")
+            
+            legume_list = sorted(list(ferti_db.keys()))
+            legume = st.selectbox("Choisir le légume :", options=legume_list)
+            
+            if legume:
+                # Extraction des données JDV depuis le JSON
+                source_data = ferti_db[legume].get("JDV")
+                if source_data:
+                    n_f = (source_data['N'] / 10000) * surface
+                    p_f = (source_data['P'] / 10000) * surface
+                    k_f = (source_data['K'] / 10000) * surface
+                    
+                    st.divider()
+                    res1, res2, res3 = st.columns(3)
+                    res1.metric("Azote (N)", f"{n_f:.3f} u")
+                    res2.metric("Phosphore (P)", f"{p_f:.3f} u")
+                    res3.metric("Potassium (K)", f"{k_f:.3f} u")
+                    st.caption(f"Référentiel : {source_data['N']}N / {source_data['P']}P / {source_data['K']}K par ha")
+                else:
+                    st.warning("Données JDV absentes pour ce légume.")
 
 # --- CAS : ACCUEIL ---
 else:
