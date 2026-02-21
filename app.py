@@ -45,12 +45,15 @@ URL_SHEET = "https://docs.google.com/spreadsheets/d/1vCshN5YhA1i_k-D_3m_i76mD-x6
 
 @st.cache_data
 def load_data():
-    # On garde le nom de fichier exact de ton erreur pour jmf
-    with open('jmf (4).json', 'r', encoding='utf-8') as f:
+    # Correction dynamique du nom de fichier pour éviter le FileNotFoundError
+    jmf_file = 'jmf (4).json' if os.path.exists('jmf (4).json') else 'jmf.json'
+    
+    with open(jmf_file, 'r', encoding='utf-8') as f:
         jmf_data = json.load(f)
-    # Chargement du fichier ferti externe
+    
     with open('calcul_ferti.json', 'r', encoding='utf-8') as f:
         ferti_data = json.load(f)
+        
     return jmf_data, ferti_data
 
 data, ferti_db = load_data()
@@ -59,7 +62,6 @@ data, ferti_db = load_data()
 # 3. NAVIGATION SIDEBAR
 # ==========================================
 st.sidebar.image("https://via.placeholder.com/150?text=DLABAL+LOGO", use_column_width=True)
-# AJOUT UNIQUEMENT DE L'OPTION DANS LE RADIO
 menu = st.sidebar.radio("Navigation", ["🏠 Accueil", "📖 ITK Légumes", "📝 Formulaire THO", "📟 CALCULATEUR FERTI"])
 
 # ==========================================
@@ -120,20 +122,23 @@ elif menu == "📟 CALCULATEUR FERTI":
     surface = longueur * largeur
     st.write(f"Surface calculée : {surface} m²")
     
-    legume_sel = st.selectbox("Légume :", options=list(ferti_db.keys()))
+    legume_sel = st.selectbox("Légume :", options=sorted(list(ferti_db.keys())))
     
     if legume_sel:
-        # On utilise strictement la source JDV présente dans ton calcul_ferti.json
+        # On appelle le dictionnaire chargé depuis calcul_ferti.json
         res = ferti_db[legume_sel].get("JDV")
         if res:
             n = (res['N'] / 10000) * surface
             p = (res['P'] / 10000) * surface
             k = (res['K'] / 10000) * surface
             
-            st.write(f"**Besoins pour votre surface :**")
-            st.write(f"N : {n:.3f} | P : {p:.3f} | K : {k:.3f}")
+            st.markdown("---")
+            st.write(f"**Besoins pour {surface} m² :**")
+            st.write(f"**Azote (N) :** {n:.3f} unités")
+            st.write(f"**Phosphore (P) :** {p:.3f} unités")
+            st.write(f"**Potassium (K) :** {k:.3f} unités")
         else:
-            st.error("Données JDV manquantes dans le JSON")
+            st.warning("Données JDV manquantes pour ce légume dans le fichier JSON.")
 
 # --- CAS : ACCUEIL ---
 else:
