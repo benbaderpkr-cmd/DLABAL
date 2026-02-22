@@ -119,10 +119,28 @@ with st.sidebar:
     
     st.divider()
     
-    if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
-        st.session_state["view_mode"] = "PAGE_JP1"
-        if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
-        st.rerun()
+    elif st.session_state["view_mode"] == "PAGE_JP1":
+    st.title("⚙️ RÉGLAGES JP1")
+    
+    # On vérifie si le JSON contient des données
+    if not RAW_JP1:
+        st.error("⚠️ Le fichier 'reglages_jp1.json' est vide ou introuvable.")
+    else:
+        # Tri des légumes pour la sélection
+        liste_jp1 = sorted(RAW_JP1.keys(), key=sans_accent)
+        l_jp1 = st.selectbox("Choisir un légume :", ["---"] + liste_jp1)
+        
+        if l_jp1 != "---":
+            data = RAW_JP1.get(l_jp1)
+            
+            if data:
+                c1, c2, c3 = st.columns(3)
+                # Utilisation de .get() pour éviter les erreurs si une clé manque dans le légume
+                c1.metric("Pignon int", data.get("pignon_int", "N/A"))
+                c2.metric("Pignon ext", data.get("pignon_ext", "N/A"))
+                c3.metric("Disque", data.get("disque", "N/A"))
+            else:
+                st.warning(f"Aucun réglage trouvé pour le légume : {l_jp1}")
         
     if st.button("🧪 CALCUL FERTI", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_FERTI"
@@ -283,4 +301,5 @@ else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("### DLABAL - BDD ITK Maraîchage\n1. Sélectionnez un légume à gauche.\n2. Consultez les fiches.\n3. Contribuez via 📝.")
+
 
