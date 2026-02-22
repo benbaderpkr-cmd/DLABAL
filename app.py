@@ -110,12 +110,13 @@ def popover_feedback(onglet, bloc, legume_sel):
 with st.sidebar:
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "ACCUEIL"
-        if "leg_sel" in st.session_state: st.session_state["leg_sel"] = "---"
+        # Pour reset sans erreur, on vide simplement la clé de l'état sans affectation directe interdite
+        if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
         st.rerun()
     
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     
-    # Sélecteur avec clé pour reset manuel
+    # Utilisation d'un index dynamique pour le reset
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes, key="leg_sel")
     
     if sel != "---":
@@ -123,14 +124,14 @@ with st.sidebar:
     
     st.divider()
     
-    if st.button("⚙️ RÉGLAGES JP1 TERRADONIS", use_container_width=True):
+    if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
-        st.session_state["leg_sel"] = "---" # Reset le légume pour libérer l'écran
+        if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
         st.rerun()
         
     if st.button("🧪 CALCUL FERTI", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_FERTI"
-        st.session_state["leg_sel"] = "---" # Reset le légume pour libérer l'écran
+        if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
         st.rerun()
         
     if st.button("🚪 Déconnexion", use_container_width=True):
@@ -144,68 +145,59 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- CAS 1 : CALCUL FERTI (PRIORITAIRE) ---
+# --- CAS 1 : CALCUL FERTI ---
 if st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
     st.markdown("---")
-    legume_ferti = st.selectbox("Choisir un légume (base de données) :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
-    with st.expander("Ou inscrire directement ses besoins de fertilisation (unités/ha)"):
-        c_n_h, c_p_h, c_k_h = st.columns(3)
-        manuel_n = c_n_h.number_input("Besoin N (u/ha) :", min_value=0, value=0)
-        manuel_p = c_p_h.number_input("Besoin P (u/ha) :", min_value=0, value=0)
-        manuel_k = c_k_h.number_input("Besoin K (u/ha) :", min_value=0, value=0)
-    c1, c2 = st.columns(2)
-    longueur = c1.number_input("Longueur planche (m) :", min_value=1, value=10)
-    largeur = c2.number_input("Largeur planche (m) :", min_value=0.1, value=1.0)
+    legume_ferti = st.selectbox("Choisir un légume (base) :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
+    with st.expander("Saisie manuelle (u/ha)"):
+        cn, cp, ck = st.columns(3)
+        manuel_n = cn.number_input("N", min_value=0, value=0)
+        manuel_p = cp.number_input("P", min_value=0, value=0)
+        manuel_k = ck.number_input("K", min_value=0, value=0)
+    
+    col1, col2 = st.columns(2)
+    longueur = col1.number_input("Longueur (m)", min_value=1, value=10)
+    largeur = col2.number_input("Largeur (m)", min_value=0.1, value=1.0)
     surface = longueur * largeur
-    st.markdown("#### Caractéristiques de vos amendements")
-    col_t1, col_t2, col_t3 = st.columns(3)
-    teneur_N = col_t1.number_input("% N (Engrais principal) :", min_value=0.1, value=6.0)
-    teneur_P = col_t2.number_input("% P (Engrais principal) :", min_value=0.0, value=4.0)
-    teneur_K = col_t3.number_input("% K (Engrais principal) :", min_value=0.0, value=10.0)
-    teneur_patentkali = st.number_input("Patentkali % K (Potasse) :", min_value=1.0, value=30.0)
+
+    st.markdown("#### Caractéristiques de l'engrais")
+    t1, t2, t3 = st.columns(3)
+    ten_N = t1.number_input("% N", value=6.0)
+    ten_P = t2.number_input("% P", value=4.0)
+    ten_K = t3.number_input("% K", value=10.0)
+    ten_pat = st.number_input("Patentkali % K", value=30.0)
+
     rows = []
     facteur = surface / 10000
-    def calculer_complet(n_ha, p_ha, k_ha, source_label):
-        b_n = round(n_ha * facteur, 2)
-        b_p = round(p_ha * facteur, 2)
-        b_k = round(k_ha * facteur, 2)
-        dose_kg = round(b_n / (teneur_N / 100), 1) if teneur_N > 0 else 0
-        u_n_apporte = n_ha
-        u_p_apporte = round((dose_kg / facteur) * (teneur_P / 100), 0) if facteur > 0 else 0
-        u_k_apporte = round((dose_kg / facteur) * (teneur_K / 100), 0) if facteur > 0 else 0
-        manque_k_kg = max(0, round(b_k - (dose_kg * teneur_K / 100), 2))
-        dose_pat_kg = round(manque_k_kg / (teneur_patentkali / 100), 2)
-        return {
-            "Source": source_label,
-            "Besoin Culture (U/ha)": f"N:{n_ha} | P:{p_ha} | K:{k_ha}",
-            "Apport Engrais (U/ha)": f"N:{u_n_apporte} | P:{u_p_apporte} | K:{u_k_apporte}",
-            "⚖️ Dose Principal (kg)": dose_kg,
-            "💎 Patentkali (kg)": dose_pat_kg if dose_pat_kg > 0 else "0"
-        }
-    if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
-        st.markdown(f"### Résultats personnalisés — **{surface} m²**")
-        rows.append(calculer_complet(manuel_n, manuel_p, manuel_k, "Saisie Manuelle"))
+
+    def calc(n_ha, p_ha, k_ha, label):
+        b_n, b_k = n_ha * facteur, k_ha * facteur
+        dose_kg = round(b_n / (ten_N / 100), 1) if ten_N > 0 else 0
+        k_app = round(dose_kg * (ten_K / 100), 2)
+        manque_k = max(0, round(b_k - k_app, 2))
+        dose_pat = round(manque_k / (ten_pat / 100), 2)
+        return {"Source": label, "Besoin (U/ha)": f"N:{n_ha}|K:{k_ha}", "Dose Principal (kg)": dose_kg, "💎 Patentkali (kg)": dose_pat}
+
+    if manuel_n > 0 or manuel_k > 0:
+        rows.append(calc(manuel_n, manuel_p, manuel_k, "Manuel"))
     elif legume_ferti != "---":
-        donnees = FERTI_DATA[legume_ferti]
-        st.markdown(f"### Résultats pour **{legume_ferti}** — **{surface} m²**")
-        for source, vals in donnees.items():
-            if vals: rows.append(calculer_complet(vals["N"], vals["P"], vals["K"], source))
-    if rows:
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-        st.warning("⚠️ Si l'apport en K de l'engrais est égal au besoin, le Patentkali affiche 0.")
+        d = FERTI_DATA[legume_ferti]
+        for s, v in d.items():
+            if v: rows.append(calc(v["N"], v["P"], v["K"], s))
+    
+    if rows: st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 
 # --- CAS 2 : RÉGLAGES JP1 ---
 elif st.session_state["view_mode"] == "PAGE_JP1":
-    st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
+    st.title("⚙️ RÉGLAGES JP1")
     l_jp1 = st.selectbox("Légume :", ["---"] + sorted(RAW_JP1.keys(), key=sans_accent))
     if l_jp1 != "---":
         data = RAW_JP1[l_jp1]
         c1, c2, c3 = st.columns(3)
-        c1.metric("Pignon intérieur", data["pignon_int"])
-        c2.metric("Pignon extérieur", data["pignon_ext"])
+        c1.metric("Pignon int", data["pignon_int"])
+        c2.metric("Pignon ext", data["pignon_ext"])
         c3.metric("Disque", data["disque"])
-        st.info(f"Note : {data.get('note', 'Aucune note')}")
 
 # --- CAS 3 : PAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -217,11 +209,8 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
         if arg_l:
             for t, c in arg_l.items():
                 with st.expander(f"📘 {t}", expanded=True):
-                    if isinstance(c, list):
-                        try: st.table(pd.DataFrame(c))
-                        except: st.write(str(c))
-                    else:
-                        st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                    if isinstance(c, list): st.table(pd.DataFrame(c))
+                    else: st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
                     popover_feedback("ARG", t, sel)
         else: st.info("Aucune donnée ARG.")
 
@@ -273,17 +262,15 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
                 st.success("Données THO enregistrées !")
 
-# --- CAS FINAL : ACCUEIL ---
+# --- ACCUEIL ---
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("""
     ### DLABAL - BDD ITK Maraîchage
-    Cet outil centralise les connaissances techniques du **GAB**, de **JMF**, de **JDV** et de l'**ITAB**.
     1. **Sélectionnez un légume** à gauche.
     2. **Consultez les fiches** via les onglets.
     3. **Contribuez** via l'icône 📝.
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
-    st.info("👈 Commencez par choisir un légume dans la barre latérale.")
