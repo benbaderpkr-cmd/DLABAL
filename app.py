@@ -119,36 +119,18 @@ with st.sidebar:
     
     st.divider()
     
-    elif st.session_state["view_mode"] == "PAGE_JP1":
-    st.title("⚙️ RÉGLAGES JP1")
-    
-    # On vérifie si le JSON contient des données
-    if not RAW_JP1:
-        st.error("⚠️ Le fichier 'reglages_jp1.json' est vide ou introuvable.")
-    else:
-        # Tri des légumes pour la sélection
-        liste_jp1 = sorted(RAW_JP1.keys(), key=sans_accent)
-        l_jp1 = st.selectbox("Choisir un légume :", ["---"] + liste_jp1)
-        
-        if l_jp1 != "---":
-            data = RAW_JP1.get(l_jp1)
-            
-            if data:
-                c1, c2, c3 = st.columns(3)
-                # Utilisation de .get() pour éviter les erreurs si une clé manque dans le légume
-                c1.metric("Pignon int", data.get("pignon_int", "N/A"))
-                c2.metric("Pignon ext", data.get("pignon_ext", "N/A"))
-                c3.metric("Disque", data.get("disque", "N/A"))
-            else:
-                st.warning(f"Aucun réglage trouvé pour le légume : {l_jp1}")
+    if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
+        st.session_state["view_mode"] = "PAGE_JP1"
+        if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
+        st.rerun()
         
     if st.button("🧪 CALCUL FERTI", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_FERTI"
         if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
         st.rerun()
-    # Bouton PDF
-    st.link_button("📂 PDF Fiches légumes JA", "https://drive.google.com/file/d/10EdjCNE79i_bWx-sTpBxb47ngeMcGIiD/view?usp=sharing", use_container_width=True)
-    
+
+    st.link_button("📂 ACCÉDER AUX PDF", "https://drive.google.com/drive/u/0/folders/1nj4ZGdFExm-_xs8xRYBBxmSkqmVEvdmM", use_container_width=True)
+        
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
@@ -160,9 +142,10 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
+# --- PAGE FERTILISATION ---
 if st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
-    # ... (Code Ferti conservé)
+    st.markdown("---")
     legume_ferti = st.selectbox("Choisir un légume (base) :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
     with st.expander("Saisie manuelle (u/ha)"):
         cn, cp, ck = st.columns(3)
@@ -183,124 +166,4 @@ if st.session_state["view_mode"] == "PAGE_FERTI":
     facteur = surface / 10000
     def calc(n_ha, p_ha, k_ha, label):
         b_n, b_k = n_ha * facteur, k_ha * facteur
-        dose_kg = round(b_n / (ten_N / 100), 1) if ten_N > 0 else 0
-        k_app = round(dose_kg * (ten_K / 100), 2)
-        manque_k = max(0, round(b_k - k_app, 2))
-        dose_pat = round(manque_k / (ten_pat / 100), 2)
-        return {"Source": label, "Besoin (U/ha)": f"N:{n_ha}|K:{k_ha}", "Dose Principal (kg)": dose_kg, "💎 Patentkali (kg)": dose_pat}
-    if manuel_n > 0 or manuel_k > 0:
-        rows.append(calc(manuel_n, manuel_p, manuel_k, "Manuel"))
-    elif legume_ferti != "---":
-        d = FERTI_DATA[legume_ferti]
-        for s, v in d.items():
-            if v: rows.append(calc(v["N"], v["P"], v["K"], s))
-    if rows: st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-
-elif st.session_state["view_mode"] == "PAGE_JP1":
-    st.title("⚙️ RÉGLAGES JP1")
-    l_jp1 = st.selectbox("Légume :", ["---"] + sorted(RAW_JP1.keys(), key=sans_accent))
-    if l_jp1 != "---":
-        data = RAW_JP1[l_jp1]
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Pignon int", data["pignon_int"])
-        c2.metric("Pignon ext", data["pignon_ext"])
-        c3.metric("Disque", data["disque"])
-
-elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
-    st.title(f"📊 {sel.upper()}")
-    tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
-
-    with tabs[0]: # Onglet ARG
-        arg_l = ARG_DATA.get(sel, {})
-        if arg_l:
-            for titre, contenu in arg_l.items():
-                with st.expander(f"📘 {titre}", expanded=True):
-                    if isinstance(contenu, dict) and "lignes" in contenu:
-                        df_temp = pd.DataFrame(contenu["lignes"])
-                        mapping_col = {"Janv.":"J", "Fév.":"F", "Mars":"M", "Avril":"A", "Mai":"M ", "Juin":"J ", "Juill.":"J  ", "Août":"A ", "Sept.":"S", "Oct.":"O", "Nov.":"N", "Déc.":"D", "col_0":"Activité"}
-                        df_temp = df_temp.rename(columns=mapping_col)
-                        def clean_val(v):
-                            if not isinstance(v, str): return v
-                            m = {"Plein champ":"PC", "Culture sous abri":"Abri", "Temps de travaux (indicatif)":"Tps W", "Temps de travaux":"Tps W"}
-                            for l, c in m.items(): v = v.replace(l, c)
-                            return v
-                        df_temp = df_temp.apply(lambda x: x.map(clean_val))
-                        st.dataframe(df_temp, use_container_width=True)
-                    elif isinstance(contenu, list):
-                        try: st.dataframe(pd.DataFrame(contenu), use_container_width=True)
-                        except: st.write(str(contenu))
-                    else:
-                        t = str(contenu).strip()
-                        while t.startswith((".", ":", " ")): t = t[1:].strip()
-                        t = t.replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
-                        st.markdown(t)
-                    popover_feedback("ARG", titre, sel)
-        else: st.info("Aucune donnée ARG disponible.")
-
-    with tabs[1]: # GAB
-        g = GAB_DATA.get(sel, {})
-        if g:
-            if "BLOCS_IDENTITE" in g:
-                cols = st.columns(len(g["BLOCS_IDENTITE"]))
-                for i, b in enumerate(g["BLOCS_IDENTITE"]):
-                    with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n').replace('\\n', '\n')}")
-            if "TECHNIQUE" in g:
-                for k, v in g.get("TECHNIQUE", {}).items():
-                    with st.expander(f"📌 {k}", expanded=True):
-                        st.markdown(str(v).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                        popover_feedback("GAB", k, sel)
-        else: st.info("Aucune donnée GAB disponible.")
-
-    with tabs[2]: # JMF
-        j = JMF_DATA.get(sel, {})
-        if j:
-            for t, c in j.items():
-                with st.expander(f"🚜 {t}", expanded=True):
-                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                    popover_feedback("JMF", t, sel)
-        else: st.info("Aucune donnée JMF disponible.")
-
-    with tabs[3]: # JDV
-        v = JDV_DATA.get(sel, {})
-        if v:
-            for t, c in v.items():
-                with st.expander(f"🌿 {t}", expanded=True):
-                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                    popover_feedback("JDV", t, sel)
-        else: st.info("Aucune donnée JDV disponible.")
-
-    with tabs[4]: # ITAB
-        i = ITAB_DATA.get(sel, {})
-        if i:
-            for t, c in i.items():
-                with st.expander(f"📗 {t}", expanded=True):
-                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                    popover_feedback("ITAB", t, sel)
-        else: st.info("Aucune donnée ITAB disponible.")
-
-    with tabs[5]: # THO
-        st.subheader("📝 Saisie Terrain (THO)")
-        df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
-        exist = df_gs[df_gs['LEGUME'] == sel]
-        with st.form("form_tho"):
-            c1, c2, c3 = st.columns(3)
-            v_p = c1.text_area("Implantation :", value=exist['IMPLANTATION'].values[0] if not exist.empty else "")
-            v_e = c2.text_area("Entretien :", value=exist['ENTRETIEN'].values[0] if not exist.empty else "")
-            v_s = c3.text_area("Santé :", value=exist['SANTE'].values[0] if not exist.empty else "")
-            c4, c5, c6 = st.columns(3)
-            v_r = c4.text_area("Rendement :", value=exist['RENDEMENT'].values[0] if not exist.empty else "")
-            v_v = c5.text_area("Variété :", value=exist['VARIETE'].values[0] if not exist.empty else "")
-            v_i = c6.text_area("Info Supp :", value=exist['INFO_SUPP'].values[0] if not exist.empty else "")
-            if st.form_submit_button("Enregistrer THO"):
-                new_row = {"LEGUME": sel, "IMPLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
-                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
-                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
-                st.success("Données THO enregistrées !")
-
-else:
-    st.title("🌱 Bienvenue sur DLABAL")
-    st.markdown("---")
-    st.markdown("### DLABAL - BDD ITK Maraîchage\n1. Sélectionnez un légume à gauche.\n2. Consultez les fiches.\n3. Contribuez via 📝.")
-
-
-
+        dose_kg = round(b_n
