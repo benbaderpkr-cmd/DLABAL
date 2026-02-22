@@ -185,6 +185,13 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
 
     legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
 
+    # Ajout du champ pour saisie directe
+    with st.expander("Ou inscrire directement ses besoins de fertilisation (unités/ha)"):
+        c_n, c_p, c_k = st.columns(3)
+        manuel_n = c_n.number_input("N (u/ha) :", min_value=0, value=0)
+        manuel_p = c_p.number_input("P (u/ha) :", min_value=0, value=0)
+        manuel_k = c_k.number_input("K (u/ha) :", min_value=0, value=0)
+
     c1, c2 = st.columns(2)
     longueur = c1.number_input("Longueur (m) :", min_value=1, value=10, step=1)
     largeur = c2.number_input("Largeur (m) :", min_value=1, value=10, step=1)
@@ -193,14 +200,32 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
     st.markdown("#### Teneur en azote de votre amendement")
     teneur_N = st.number_input("% N (Azote) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
 
-    if legume_ferti != "---":
+    # Logique de calcul
+    rows = []
+    facteur = surface / 10000
+
+    # Priorité 1 : Saisie manuelle (si au moins N est renseigné)
+    if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
+        besoin_N = round(manuel_n * facteur, 2)
+        besoin_P = round(manuel_p * facteur, 2)
+        besoin_K = round(manuel_k * facteur, 2)
+        dose = round(besoin_N / (teneur_N / 100), 1) if teneur_N > 0 else "—"
+        
+        st.markdown(f"### Résultats personnalisés — {longueur} m × {largeur} m = **{surface} m²**")
+        rows.append({
+            "Source": "Saisie Manuelle",
+            "Besoin N (kg)": besoin_N,
+            "Besoin P (kg)": besoin_P,
+            "Besoin K (kg)": besoin_K,
+            "⚖️ Dose à épandre (kg)": dose,
+        })
+
+    # Priorité 2 : Sélection par légume
+    elif legume_ferti != "---":
         donnees = FERTI_DATA[legume_ferti]
         st.markdown(f"### Résultats pour **{legume_ferti}** — {longueur} m × {largeur} m = **{surface} m²**")
-
-        rows = []
         for source, vals in donnees.items():
             if vals:
-                facteur = surface / 10000
                 besoin_N = round(vals["N"] * facteur, 2)
                 besoin_P = round(vals["P"] * facteur, 2)
                 besoin_K = round(vals["K"] * facteur, 2)
@@ -212,8 +237,9 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
                     "Besoin K (kg)": besoin_K,
                     "⚖️ Dose à épandre (kg)": dose,
                 })
-        if rows:
-            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+
+    if rows:
+        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
         st.caption("La dose à épandre est calculée sur la base de l'azote (N) : besoin N de la culture ÷ teneur N de l'amendement.")
 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
@@ -302,3 +328,4 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
