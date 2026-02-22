@@ -59,61 +59,7 @@
     "Maladies et ravageurs": "- accidents physiologiques.\nNom Symptôme Prévention\n- Sclérotinia - (cf. l’échalote - Stockage dans un lieu sec et bien aéré\n- Botrytis et l’oignon) - Séparer les caïeux juste avant la plantation.\n- Rouille - (cf. le poireau) Stockage dans un lieu sec et bien aéré.\n- Pénicillium - Feutrage verdâtre sur le plateau - Bouillie bordelaise\nracinaire (avant plantation)",
     "Récolte et stockage": ".\nStade optimal de récolte: feuilles jaunes. L’ail peut aussi être vendu en vert.\nDéroulement: passer la lame souleveuse à quelques cm sous les têtes. Arracher, secouer les racines. Laisser\nsécher sur place 8 à 15 jours (têtes protégées du soleil par les feuilles).\nStockage: en bottes suspendues ou cageots dans un endroit sec et bien aéré, ou encore en silo ventilé.",
     "Conditionnement et vente": ".\nCalibrage :\n– catégorie extra, diamètre minimum : 45 mm\n– catégorie I et II, diamètre minimum : 30 mm.\nRendement par m²: 0, 3 à 1kg. Retenu : 0,7kg.",
-    "Aspects économiques": ".\nAPPROCHE DE MARGE BRUTE par are\nEmballage : cageot de 5 kg ou Gros Demi - gros Détail\nsac\nPrix de vente 2.7 3.8 5.5\nProduit 189 266 385\nEngrais - amendement 7 7 7\nSemence - plant 45 45 45\nProduit de traitement\nPaillage - agrotextile 4 4 4\nEmballage (cageot 5kg) 8 8 0\nAutres\nTotal ch. Opérationnelles. 64 64 56\nMARGE BRUTE 125 - -\nLe poste achat de plants représente les 2/3 des charges opérationnelles.\nMarge brute / heure de travail (approche) : 10€.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Maritime\nIdéal : 20-22°",
-          "Défavorable": "Excès d’humidité",
-          "Remarques": "Rustique Résiste\nà -15°"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Fertile, léger, bien drainé ;\npH > 6",
-          "Défavorable": "Craint les terres humides",
-          "Remarques": "."
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais organique et\nminéral naturel",
-          "Défavorable": "Fumure organique fraîche",
-          "Remarques": "Attention aux excès\nd’azote."
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "> 5 ans",
-          "Défavorable": "Autres Liliacées",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Céleri, carotte, fraisier,\nlaitue, vesce",
-          "Défavorable": "Haricot, pois",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention"
-      ],
-      "lignes": [
-        {
-          "Nom": "- Sclérotinia\n- Botrytis\n- Rouille\n- Pénicillium",
-          "Symptôme": "- (cf. l’échalote\net l’oignon)\n- (cf. le poireau)\n- Feutrage verdâtre sur le plateau\nracinaire (avant plantation)",
-          "Prévention": "- Stockage dans un lieu sec et bien aéré\n- Séparer les caïeux juste avant la plantation.\nStockage dans un lieu sec et bien aéré.\n- Bouillie bordelaise"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m²: 0, 3 à 1kg. Retenu : 0,7kg.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -181,6 +127,60 @@
           "Gros": "125",
           "Demi - gros": "-",
           "Détail": "-"
+        }
+      ]
+    },
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Maritime\nIdéal : 20-22°",
+          "Défavorable": "Excès d’humidité",
+          "Remarques": "Rustique Résiste\nà -15°"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Fertile, léger, bien drainé ;\npH > 6",
+          "Défavorable": "Craint les terres humides",
+          "Remarques": "."
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais organique et\nminéral naturel",
+          "Défavorable": "Fumure organique fraîche",
+          "Remarques": "Attention aux excès\nd’azote."
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "> 5 ans",
+          "Défavorable": "Autres Liliacées",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Céleri, carotte, fraisier,\nlaitue, vesce",
+          "Défavorable": "Haricot, pois",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention"
+      ],
+      "lignes": [
+        {
+          "Nom": "- Sclérotinia\n- Botrytis\n- Rouille\n- Pénicillium",
+          "Symptôme": "- (cf. l’échalote\net l’oignon)\n- (cf. le poireau)\n- Feutrage verdâtre sur le plateau\nracinaire (avant plantation)",
+          "Prévention": "- Stockage dans un lieu sec et bien aéré\n- Séparer les caïeux juste avant la plantation.\nStockage dans un lieu sec et bien aéré.\n- Bouillie bordelaise"
         }
       ]
     }
@@ -275,63 +275,7 @@
     "Récolte et stockage": ":.\nStade optimal: selon le calibre recherché, tête serrée, non ouverte.\nDéroulement: récolte 1 à 3 fois par semaine selon la saison. Couper le\npédoncule à 8 - 10 cm de la tête.",
     "Conditionnement et vente": ":.\nCalibrage: 4 calibres : > 13 cm ; 11-13 cm ; 9-11 cm, < 9 cm.\nEmballage: cageot de 60x40, papier au-dessus des têtes.",
     "Repères qualité": ": têtes serrées, non tâchées, sans pourriture, de couleur normale.",
-    "Aspects économiques": ":.\nRendement par m2 : Année 1 : 0,6 kg/m2 ; année 2 et + : 0,8 kg\nAPPROCHE DE MARGE BRUTE par are.\nAnnée 1.\nType de vente Gros Demi - gros Détail\nPrix de vente 1 1.5 2\nProduit 60 90 120\nEngrais - amendement 10 10 10\nSemence - plant * * *\nProduit de traitement 1.5 1.5 1.5\nPaillage - agrotextile\nEmballage 8 8 0\nAutres\nTotal ch. Opérationnelles. 19.5 19.5 11.5\nMARGE BRUTE 40.5 70.5 108.5\n- Habituellement le plant est gratuit à condition de « dédrageonner » chez le donneur ou d’avoir des plants en\n2è ou 3è année.\nMarge brute / heure de travail : 8 € environ\nConsoude sauvage",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Gel -1 à -4° ;",
-          "Remarques": "Destruction totale de la souche à -8°"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Profond, frais, riche\nen humus.\npH élevé",
-          "Défavorable": "Sol léger, séchant",
-          "Remarques": "Attention à la maîtrise des adventices,\nsi la culture dure plusieurs années."
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost + engrais\norganique",
-          "Défavorable": "Excès d’azote",
-          "Remarques": "Culture vorace. Fumure de fond en\nannée I."
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "10 ans (6ans sans\nartichaut)",
-          "Défavorable": "",
-          "Remarques": "L’artichaut reste jusqu’à 4 ans en place"
-        },
-        {
-          "": "Association",
-          "Favorable": "laitue",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "- Puceron noir\nPuceron vert\n(plus coriace)\n- Limaces\n- Graisse\n(bactérie)\n- mildiou",
-          "Symptôme": "Déformation des feuilles\net salissures sur les\ncapitules.\nDégâts sur le sommet des\ncapitules.\nTâches graisseuses sur les\ncapitules.\nMarbrures rougeâtres sous\nles feuilles et feutrage\ngris.",
-          "Prévention": "Favoriser les\nauxiliaires\nTravail du sol régulier\n+ favoriser les\nprédateurs\nChoix de variétés\nrésistantes",
-          "Traitement": "Roténone – pyrèthre seulement\nsur les foyers\nEn dernier recours.\nSulfate de cuivre (peu efficace)"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2 : Année 1 : 0,6 kg/m2 ; année 2 et + : 0,8 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -401,6 +345,62 @@
           "Détail": "108.5"
         }
       ]
+    },
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Gel -1 à -4° ;",
+          "Remarques": "Destruction totale de la souche à -8°"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Profond, frais, riche\nen humus.\npH élevé",
+          "Défavorable": "Sol léger, séchant",
+          "Remarques": "Attention à la maîtrise des adventices,\nsi la culture dure plusieurs années."
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost + engrais\norganique",
+          "Défavorable": "Excès d’azote",
+          "Remarques": "Culture vorace. Fumure de fond en\nannée I."
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "10 ans (6ans sans\nartichaut)",
+          "Défavorable": "",
+          "Remarques": "L’artichaut reste jusqu’à 4 ans en place"
+        },
+        {
+          "": "Association",
+          "Favorable": "laitue",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "- Puceron noir\nPuceron vert\n(plus coriace)\n- Limaces\n- Graisse\n(bactérie)\n- mildiou",
+          "Symptôme": "Déformation des feuilles\net salissures sur les\ncapitules.\nDégâts sur le sommet des\ncapitules.\nTâches graisseuses sur les\ncapitules.\nMarbrures rougeâtres sous\nles feuilles et feutrage\ngris.",
+          "Prévention": "Favoriser les\nauxiliaires\nTravail du sol régulier\n+ favoriser les\nprédateurs\nChoix de variétés\nrésistantes",
+          "Traitement": "Roténone – pyrèthre seulement\nsur les foyers\nEn dernier recours.\nSulfate de cuivre (peu efficace)"
+        }
+      ]
     }
   },
   "Aubergine": {
@@ -463,58 +463,7 @@
     "Récolte et stockage": ":\nStade optimal : selon le calibre recherché.\nDéroulement: 2 à 3 fois par semaine. On coupe le pédoncule au couteau pour l’aubergine et on le\ncasse pour le poivron. Il est souvent nécessaire d’essuyer les fruits avant le\nconditionnement.\nStockage : 2-3 jours en chambre froide.",
     "Conditionnement et vente": ":\nCalibrage: variable selon les formes\nEmballage: cageot de 5 à 8 kg.",
     "Repères qualité": ": propreté, forme régulière, fraîcheur, fermeté, couleur brillante,\nabsence de tâche, blessure, maladie.",
-    "Commentaires débouchés": ": légumes à ratatouille dont le marché est assez étroit.",
-    "Aspects économiques": ":.\nRendement par m2 (sous abri): 2 à 6 kg retenu : 4 kg.\nAPPROCHE DE MARGE BRUTE par are\nType de vente Gros Demi - gros Détail\nPrix de vente 0.80€ 1.00€ 1.80€\nProduit 320 400 720\nEngrais-amendement 15 15 15\nSemence-plant 30 30 30\nProduit de traitement 2 2 2\nPaillage-agrotextile 13 (bâche biodégradable) 13(bâche biodégradable) 13(bâche biodégradable)\nEmballage 44 44 0\nAutres : terreau 19 19 19\nTotal ch. Opérationnelles. 123 123 79\nMARGE BRUTE 197 277 641\nMarge brute / heure de travail (approche): 10 €.\nCulture d'aubergine sur paille\nFleur d'aubergine",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Chaleur",
-          "Défavorable": "Gel vent",
-          "Remarques": "Supportent 40° et + .\nCulture sous abri au nord de la France"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Sol de limon, profond et\nriche en humus. PH>6,5",
-          "Défavorable": "Sol argileux",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost",
-          "Défavorable": "",
-          "Remarques": "Voraces"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Après engrais vert ou\nlaitue, radis…",
-          "Défavorable": "Autre solanacée",
-          "Remarques": "Difficulté de rotation longue sous abr"
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Aleurode\nPuceron\nDoryphore\nBotrytis\nMildiou",
-          "Symptôme": "Petites mouches blanches\nDégâts sur feuillage et\nfruits",
-          "Prévention": "auxiliaires\nauxiliaires\néviter les arrosages\nexcessifs\nvariétés résistantes",
-          "Traitement": "Bacillus thurengiensis\nSulfate de cuivr"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2 (sous abri): 2 à 6 kg retenu : 4 kg.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -582,6 +531,57 @@
           "Gros": "197",
           "Demi - gros": "277",
           "Détail": "641"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": légumes à ratatouille dont le marché est assez étroit.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Chaleur",
+          "Défavorable": "Gel vent",
+          "Remarques": "Supportent 40° et + .\nCulture sous abri au nord de la France"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Sol de limon, profond et\nriche en humus. PH>6,5",
+          "Défavorable": "Sol argileux",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost",
+          "Défavorable": "",
+          "Remarques": "Voraces"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Après engrais vert ou\nlaitue, radis…",
+          "Défavorable": "Autre solanacée",
+          "Remarques": "Difficulté de rotation longue sous abr"
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Aleurode\nPuceron\nDoryphore\nBotrytis\nMildiou",
+          "Symptôme": "Petites mouches blanches\nDégâts sur feuillage et\nfruits",
+          "Prévention": "auxiliaires\nauxiliaires\néviter les arrosages\nexcessifs\nvariétés résistantes",
+          "Traitement": "Bacillus thurengiensis\nSulfate de cuivr"
         }
       ]
     }
@@ -646,58 +646,7 @@
     "Récolte et stockage": ":\nStade optimal : selon le calibre recherché.\nDéroulement: 2 à 3 fois par semaine. On coupe le pédoncule au couteau pour l’aubergine et on le\ncasse pour le poivron. Il est souvent nécessaire d’essuyer les fruits avant le\nconditionnement.\nStockage : 2-3 jours en chambre froide.",
     "Conditionnement et vente": ":\nCalibrage: variable selon les formes\nEmballage: cageot de 5 à 8 kg.",
     "Repères qualité": ": propreté, forme régulière, fraîcheur, fermeté, couleur brillante,\nabsence de tâche, blessure, maladie.",
-    "Commentaires débouchés": ": légumes à ratatouille dont le marché est assez étroit.",
-    "Aspects économiques": ":.\nRendement par m2 (sous abri): 2 à 6 kg retenu : 4 kg.\nAPPROCHE DE MARGE BRUTE par are\nType de vente Gros Demi - gros Détail\nPrix de vente 0.80€ 1.00€ 1.80€\nProduit 320 400 720\nEngrais-amendement 15 15 15\nSemence-plant 30 30 30\nProduit de traitement 2 2 2\nPaillage-agrotextile 13 (bâche biodégradable) 13(bâche biodégradable) 13(bâche biodégradable)\nEmballage 44 44 0\nAutres : terreau 19 19 19\nTotal ch. Opérationnelles. 123 123 79\nMARGE BRUTE 197 277 641\nMarge brute / heure de travail (approche): 10 €.\nCulture d'aubergine sur paille\nFleur d'aubergine",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Chaleur",
-          "Défavorable": "Gel vent",
-          "Remarques": "Supportent 40° et + .\nCulture sous abri au nord de la France"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Sol de limon, profond et\nriche en humus. PH>6,5",
-          "Défavorable": "Sol argileux",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost",
-          "Défavorable": "",
-          "Remarques": "Voraces"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Après engrais vert ou\nlaitue, radis…",
-          "Défavorable": "Autre solanacée",
-          "Remarques": "Difficulté de rotation longue sous abr"
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Aleurode\nPuceron\nDoryphore\nBotrytis\nMildiou",
-          "Symptôme": "Petites mouches blanches\nDégâts sur feuillage et\nfruits",
-          "Prévention": "auxiliaires\nauxiliaires\néviter les arrosages\nexcessifs\nvariétés résistantes",
-          "Traitement": "Bacillus thurengiensis\nSulfate de cuivr"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2 (sous abri): 2 à 6 kg retenu : 4 kg.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -765,6 +714,57 @@
           "Gros": "197",
           "Demi - gros": "277",
           "Détail": "641"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": légumes à ratatouille dont le marché est assez étroit.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Chaleur",
+          "Défavorable": "Gel vent",
+          "Remarques": "Supportent 40° et + .\nCulture sous abri au nord de la France"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Sol de limon, profond et\nriche en humus. PH>6,5",
+          "Défavorable": "Sol argileux",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost",
+          "Défavorable": "",
+          "Remarques": "Voraces"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Après engrais vert ou\nlaitue, radis…",
+          "Défavorable": "Autre solanacée",
+          "Remarques": "Difficulté de rotation longue sous abr"
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Aleurode\nPuceron\nDoryphore\nBotrytis\nMildiou",
+          "Symptôme": "Petites mouches blanches\nDégâts sur feuillage et\nfruits",
+          "Prévention": "auxiliaires\nauxiliaires\néviter les arrosages\nexcessifs\nvariétés résistantes",
+          "Traitement": "Bacillus thurengiensis\nSulfate de cuivr"
         }
       ]
     }
@@ -844,76 +844,7 @@
     "Récolte et stockage": ":\nStade optimal: maturité ou selon le calibre pour les primeurs.\nDéroulement: arrachage si possible à la machine (lame souleveuse ou arracheuse à pomme de terre),\nenlèvement des feuilles à la main ou au couteau en préservant le collet\nStockage: en silo recouvert de paille sous abri ou même à l’extérieur ce qui évite la\ndéshydratation, ou en chambre froide pour une conservation jusqu’en juin. Attention:\nles rongeurs sont friands de betterave en hiver.",
     "Conditionnement et vente": ":\nCalibrage: catégorie I: 5 à 8 cm; II : < 14 cm ; III : > 14 cm ou défaut ou bottes 350g\nminimum.\nEmballage: cageot de 5 kg ou filet de 20 kg.",
     "Repères qualité": ": forme régulière, entière, couleur, tendre.",
-    "Commentaires débouchés": ":\nLa betterave se fait aussi bien cuite que crue. C’est un légume aux débouchés réguliers mais limités.",
-    "Aspects économiques": ":\nRendement par m2: écarts 2 à 4 kg / m2. Retenu: 2,5 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.70€ 1.00€ 1.50€\nProduit 175 250 375\nEngrais-amendement 8 8 8\nSemence-plant 25 25 25\nProduit de traitement 0 0 0\nPaillage-agrotextile 0 0 0\nEmballage 28 28 0\nAutres\nTotal ch. Opérationnelles 61 61 33\nMARGE BRUTE 114 189 342\nMarge brute / heure de travail:\nObservations:\nL’hybridation est assez facile avec la betterave fourragère : attention aux surprises.\nLe rendement est nettement plus faible en culture précoce.\nC’est une culture assez facile à réussir hormis le semis et le désherbage et dégageant une bonne marge.\nLa betterave fourragère supporte le désherbage thermique au stade 4 à 6 feuilles. En est-il\nde même pour la betterave potagère ?",
-    "Autres tableaux": [
-      {
-        "entetes": [
-          "",
-          "O Eu dé po P Pl gr fa d’"
-        ],
-        "lignes": [
-          {
-            "col_0": "di",
-            "O Eu dé po P Pl gr fa d’": ""
-          }
-        ]
-      }
-    ],
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Sécheresse\nTempérature >28°",
-          "Remarques": "La betterave répond bien à une\nirrigation estivale"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Frais et profond\nTempérature du sol > 10°",
-          "Défavorable": "Excès d’humidité",
-          "Remarques": "Assez rustique : pousse bien en\ntous types de sols"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost mûr",
-          "Défavorable": "Fumier pailleux et\nfrais",
-          "Remarques": "Plante gourmande\nAttention aux carences en bore"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "4 – 5 ans ; légumineuse,\ncéréale",
-          "Défavorable": "Autres légumes\nracines",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Carotte, céleri, chou,\npoireau, laitue",
-          "Défavorable": "Haricot, pois",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention"
-      ],
-      "lignes": [
-        {
-          "Nom": "Cercosporiose\nFonte des semis\nCarence en bore\nMosaïque (virus)\nRhizoctone violet\nRouille\nOïdium\nAltise",
-          "Symptôme": "Tâches brunes\nMort des plantules\nMaladie du cœur brun\nTâches jaunissantes\nPourriture des racines\nPetites tâches sphériques\nFeutrage blanc sous les feuilles.\nPuce de terre perforant les cotylédons",
-          "Prévention": "Rotation longue\nRotation longue\nApport de bore\nChoix des semences Rotation"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts 2 à 4 kg / m2. Retenu: 2,5 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -983,6 +914,75 @@
           "Détail": "342"
         }
       ]
+    },
+    "Commentaires débouchés": ":\nLa betterave se fait aussi bien cuite que crue. C’est un légume aux débouchés réguliers mais limités.",
+    "Autres tableaux": [
+      {
+        "entetes": [
+          "",
+          "O Eu dé po P Pl gr fa d’"
+        ],
+        "lignes": [
+          {
+            "col_0": "di",
+            "O Eu dé po P Pl gr fa d’": ""
+          }
+        ]
+      }
+    ],
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Sécheresse\nTempérature >28°",
+          "Remarques": "La betterave répond bien à une\nirrigation estivale"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Frais et profond\nTempérature du sol > 10°",
+          "Défavorable": "Excès d’humidité",
+          "Remarques": "Assez rustique : pousse bien en\ntous types de sols"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost mûr",
+          "Défavorable": "Fumier pailleux et\nfrais",
+          "Remarques": "Plante gourmande\nAttention aux carences en bore"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "4 – 5 ans ; légumineuse,\ncéréale",
+          "Défavorable": "Autres légumes\nracines",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Carotte, céleri, chou,\npoireau, laitue",
+          "Défavorable": "Haricot, pois",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention"
+      ],
+      "lignes": [
+        {
+          "Nom": "Cercosporiose\nFonte des semis\nCarence en bore\nMosaïque (virus)\nRhizoctone violet\nRouille\nOïdium\nAltise",
+          "Symptôme": "Tâches brunes\nMort des plantules\nMaladie du cœur brun\nTâches jaunissantes\nPourriture des racines\nPetites tâches sphériques\nFeutrage blanc sous les feuilles.\nPuce de terre perforant les cotylédons",
+          "Prévention": "Rotation longue\nRotation longue\nApport de bore\nChoix des semences Rotation"
+        }
+      ]
     }
   },
   "Carotte": {
@@ -1045,66 +1045,7 @@
     "Semis et plantation": ":\n% plants / graines semées: maximum 80 % souvent autour de 65%\nDensité par m2: 100 plantes, variable selon le calibre recherché.\nEcartements: 40 x 2 cm pour un objectif de récolte de 40 x 3 cm ;\nJusqu’à 70 x 1 cm (rang éclaté si possible).\nProfondeur: 0,7 à 1 cm. Un peu plus profond si la surface du sol est sèche.\nQuantité de semence ou plant / are: 10000 à 15000 graines soit 10 à 15 grammes.\nIl faut approfondir le raisonnement sur la densité: les petites\ncarottes ne sont pas commercialisables (<25 mm), les trop grosses\nnon plus.\nSemoir de précision « EBRA » : le jeu de pignon\ninterchangeable permet une grande précision de semis",
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nMouche de la Larves creusant des Protection mécanique Piège Traitements peu ou pas\ncarotte galeries dans la racine jaune Eviter les sols efficace en curatif\nBague Tâche sombre localisée limoneux mal drainés Pas de «\ns’étendant transversalement M O fraîche, rotation longue\nPourriture noire Tâche bien noire légèrement «\ncirculaire\n«",
     "Récolte et stockage": ":\nStade optimal: maturité, richesse en sucre.\nDéroulement: généralement manuel et conditionnement direct au champ, à condition que le sol ne soit\npas trop humide ; ou lavage selon la demande. Une carotte lavée se conserve moins\nlongtemps.\nStockage: en zone côtière, il n’est pas indispensable de stocker les carottes. On peut les laisser\nsur place après un buttage. En zone gélive, il faut les rentrer : stockage en chambre\nfroide ou en silo recouvert d’un filet et de paille. On peut aussi les conserver à\nl’extérieur sous une bâche et de la paille. Dans ce cas on aménage une entrée d’air de\nchaque bout et 1 cheminée d’aération. Les pertes sont plus faibles en silo bien conçu\npar rapport au buttage sur place. Les bonnes carottes d’hiver sont une aubaine pour\nles rongeurs, petits et grands.",
-    "Conditionnement et vente": ":\nCalibrage: mini 20 mm, maxi selon la catégorie. Longueur minimale selon la taille.\nEmballage: cageot 30 x 50 x 20 cm, d’un poids net de 10 à 14 kg. Bottes de 500 g. minimum",
-    "Repères qualité": ": entière, lisse, fraîche, ferme, de forme régulière, saine, non montée ni « boisée », sans\ncollet vert.",
-    "Commentaires débouchés": ":\nC’est le légume le plus consommé en hiver. La vente en botte se développe. La demande concerne surtout la\ncarotte de gros calibre, 30 à 40 mm. Le producteur qui réussit bien la carotte ne rencontre généralement\naucun problème de commercialisation",
-    "Aspects économiques": ":\nRendement par m2: écarts: 2 à 6 kg et plus/ m2 retenu: 2.5 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.60€ 0.90€ 1.50€\nProduit 150 225 375\nEngrais - amendement 10 10 10\nSemence 9 9 9\nProduit de traitement 0 0 0\nAgrotextile ou pièges 8 8 8\nEmballage 12 12 0\nAutres\nTotal ch. Opérationnelles. 39 39 27\nMARGE BRUTE 111 186 348\nMarge brute / heure de travail (approche): 11€\nObservations:\nLa culture de la carotte est délicate. Toutes les terres ne lui conviennent pas.\nLa maîtrise des adventices, l’irrigation et la protection contre la mouche sont les facteurs déterminants\nde réussite de la culture.\nSur le plan commercial, la demande est importante.\nUne teneur en nitrate faible est et sera un critère majeur de la filière biologique\nCulture de carotte sous tunnel destinée à la vente en botte au\nprintemps",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Pluviométrie régulière\nTempérature idéale :20°",
-          "Défavorable": "Gelée (-5 à -8°) Vent fort",
-          "Remarques": "Eviter le stress hydrique\nArrosage régulier"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Teneur en argile < 18%.\nPH : 5,5-8",
-          "Défavorable": "Sol tassé, battant,\ncaillouteux",
-          "Remarques": "Idéal : sol sableux+\nirrigation soignée."
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais ou compost mûr\n4-5 mois avant semis",
-          "Défavorable": "Fumier frais\nAmendement calcaire\njuste avant semis",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "5 ans minimum poireau,\npomme de terre, engrais\nvert",
-          "Défavorable": "Autre apiacée,\nbrassicacée, céréale",
-          "Remarques": "Culture nettoyante en\nprécédent"
-        },
-        {
-          "": "Association",
-          "Favorable": "Oignon, poireau, navet,\nradis",
-          "Défavorable": "Autre légume racine",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Mouche de la\ncarotte\nBague\nPourriture noire",
-          "Symptôme": "Larves creusant des\ngaleries dans la racine\nTâche sombre localisée\ns’étendant transversalement\nTâche bien noire légèrement\ncirculaire",
-          "Prévention": "Protection mécanique Piège\njaune Eviter les sols\nlimoneux mal drainés Pas de\nM O fraîche, rotation longue",
-          "Traitement": "Traitements peu ou pas\nefficace en curatif\n«\n«\n«"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 2 à 6 kg et plus/ m2 retenu: 2.5 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -1174,6 +1115,65 @@
           "Détail": "348"
         }
       ]
+    },
+    "Conditionnement et vente": ":\nCalibrage: mini 20 mm, maxi selon la catégorie. Longueur minimale selon la taille.\nEmballage: cageot 30 x 50 x 20 cm, d’un poids net de 10 à 14 kg. Bottes de 500 g. minimum",
+    "Repères qualité": ": entière, lisse, fraîche, ferme, de forme régulière, saine, non montée ni « boisée », sans\ncollet vert.",
+    "Commentaires débouchés": ":\nC’est le légume le plus consommé en hiver. La vente en botte se développe. La demande concerne surtout la\ncarotte de gros calibre, 30 à 40 mm. Le producteur qui réussit bien la carotte ne rencontre généralement\naucun problème de commercialisation",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Pluviométrie régulière\nTempérature idéale :20°",
+          "Défavorable": "Gelée (-5 à -8°) Vent fort",
+          "Remarques": "Eviter le stress hydrique\nArrosage régulier"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Teneur en argile < 18%.\nPH : 5,5-8",
+          "Défavorable": "Sol tassé, battant,\ncaillouteux",
+          "Remarques": "Idéal : sol sableux+\nirrigation soignée."
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais ou compost mûr\n4-5 mois avant semis",
+          "Défavorable": "Fumier frais\nAmendement calcaire\njuste avant semis",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "5 ans minimum poireau,\npomme de terre, engrais\nvert",
+          "Défavorable": "Autre apiacée,\nbrassicacée, céréale",
+          "Remarques": "Culture nettoyante en\nprécédent"
+        },
+        {
+          "": "Association",
+          "Favorable": "Oignon, poireau, navet,\nradis",
+          "Défavorable": "Autre légume racine",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Mouche de la\ncarotte\nBague\nPourriture noire",
+          "Symptôme": "Larves creusant des\ngaleries dans la racine\nTâche sombre localisée\ns’étendant transversalement\nTâche bien noire légèrement\ncirculaire",
+          "Prévention": "Protection mécanique Piège\njaune Eviter les sols\nlimoneux mal drainés Pas de\nM O fraîche, rotation longue",
+          "Traitement": "Traitements peu ou pas\nefficace en curatif\n«\n«\n«"
+        }
+      ]
     }
   },
   "Celeri-branche": {
@@ -1236,63 +1236,7 @@
     "Récolte et stockage": ":\nStade optimal: poids suffisant.\nDéroulement: passage de la lame souleveuse, nettoyage et enlèvement des racines au champ (sauf si\non met les céleris en jauge).\nStockage: chambre froide à 2 - 3° dans des caisses ou en jauge à l’abri des gelées durant 1 à 2\nmois",
     "Conditionnement et vente": ":\nCalibrage: 3 catégories : >800g ; 500 à 800g ; 150 à 500g. Ou en botte.\nEmballage: 40 x 60 cm.",
     "Repères qualité": ": entier, frais, sain, non creux, propre.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 3 à 8 kg retenu : 4 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente\nProduit\nEngrais-amendement\nSemence - plant\nProduit de traitement\nPaillage - agrotextile\nEmballage\nAutres\nTotal ch.\nOpérationnelles.\nMARGE BRUTE\nMarge brute / heure de travail :",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux, humide",
-          "Défavorable": "Sécheresse gelée",
-          "Remarques": "Exigeant en eau Arrosage\nabondant"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Profond, bien drainé\nArgilo-sableux.",
-          "Défavorable": "Sol peu profond",
-          "Remarques": "Tendance à l’épuisement\ndu sol"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost bien mûr Engrais\nvert.",
-          "Défavorable": "Fumier frais",
-          "Remarques": "Culture très gourmande"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "5 ans minimum",
-          "Défavorable": "",
-          "Remarques": "Plante nettoyante"
-        },
-        {
-          "": "Association",
-          "Favorable": "Oignon, chou",
-          "Défavorable": "poirée",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Fonte des semis\nSeptoriose\nMouche du céleri\nMosaïque",
-          "Symptôme": "Mort des plantules\nTâches brunes puis\nnécrose\nLarves creusant dans les\nfeuilles",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 3 à 8 kg retenu : 4 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -1362,6 +1306,62 @@
           "Détail": ""
         }
       ]
+    },
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux, humide",
+          "Défavorable": "Sécheresse gelée",
+          "Remarques": "Exigeant en eau Arrosage\nabondant"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Profond, bien drainé\nArgilo-sableux.",
+          "Défavorable": "Sol peu profond",
+          "Remarques": "Tendance à l’épuisement\ndu sol"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost bien mûr Engrais\nvert.",
+          "Défavorable": "Fumier frais",
+          "Remarques": "Culture très gourmande"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "5 ans minimum",
+          "Défavorable": "",
+          "Remarques": "Plante nettoyante"
+        },
+        {
+          "": "Association",
+          "Favorable": "Oignon, chou",
+          "Défavorable": "poirée",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Fonte des semis\nSeptoriose\nMouche du céleri\nMosaïque",
+          "Symptôme": "Mort des plantules\nTâches brunes puis\nnécrose\nLarves creusant dans les\nfeuilles",
+          "Prévention": "",
+          "Traitement": ""
+        }
+      ]
     }
   },
   "Celeri-rave": {
@@ -1409,65 +1409,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nCf. céleri à côte (P.30)\n+ Sclérotinia en stockage\nrongeurs",
     "Récolte et stockage": ":\nStade optimal: selon le calibre recherché; vente possible en ver d’août à octobre.\nDéroulement: lame souleveuse ou arracheuse aligneuse à pomme de terre ou arrachage à la main.\nCoupe des feuilles 2-3 cm au dessus du collet et parage sommaire des racines.\nMécanisation possible pour des surfaces importantes.\nStockage: en silo protégé du gel ou chambre froide. Attention aux rongeurs.",
     "Conditionnement et vente": ":\nCalibrage: selon la demande : rave de 0,3 à 1,5 kg.\nEmballage: cageot 30x50, 5 à 8 kg.",
-    "Repères qualité": ": propre, sain, bien paré.",
-    "Commentaires débouchés": ": besoins limités sur le marché de gros.",
-    "Aspects économiques": ":\nRendement par m2: écarts: 1 à 5 kg retenu: 2,5 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.60€ 1.00€ 1.50€\nProduit 150 250 375\nEngrais-amendement 8 8 8\nSemence-plant 3 3 3\nProduit de traitement\nPaillage-agrotextile\nEmballage 28 28\nAutres : terreau 5 5 5\nTotal ch. Opérationelles. 44 44 16\nMARGE BRUTE 106 206 359\nMarge brute / heure de travail (approche) : 11€.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Sec en été\ngelée",
-          "Remarques": "Forte exigence en eau à la\nplantation et au\ngrossissement de la racine"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Frais, riche en matière\norganique",
-          "Défavorable": "Sableux (eau)",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost mûr",
-          "Défavorable": "Fumure organique fraîche",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation: durée,\nPrécédents",
-          "Favorable": "5 ans Poireau, salade",
-          "Défavorable": "Astéracée Chou",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Chou fleur, haricot, p de t,\npoireau",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Cf. céleri à côte (P.30)\n+ Sclérotinia en stockage\nrongeurs",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 1 à 5 kg retenu: 2,5 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -1535,6 +1477,64 @@
           "Gros": "106",
           "Demi - gros": "206",
           "Détail": "359"
+        }
+      ]
+    },
+    "Repères qualité": ": propre, sain, bien paré.",
+    "Commentaires débouchés": ": besoins limités sur le marché de gros.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Sec en été\ngelée",
+          "Remarques": "Forte exigence en eau à la\nplantation et au\ngrossissement de la racine"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Frais, riche en matière\norganique",
+          "Défavorable": "Sableux (eau)",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost mûr",
+          "Défavorable": "Fumure organique fraîche",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation: durée,\nPrécédents",
+          "Favorable": "5 ans Poireau, salade",
+          "Défavorable": "Astéracée Chou",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Chou fleur, haricot, p de t,\npoireau",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Cf. céleri à côte (P.30)\n+ Sclérotinia en stockage\nrongeurs",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -1614,47 +1614,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nCf. la fiche endive P.61",
     "Récolte et stockage": ":\nStade optimal: selon le poids recherché et le blanchiment.\nDéroulement: conditionnement directement au champ afin de limiter les manipulations.\nStockage: conservation correcte pendant 2 semaines en chambre froide à 0 - 1° et 90 - 95 %\nd’hygrométrie.",
     "Conditionnement et vente": ":\nCf. la fiche laitue P.79\nMercuriale\nChardon",
-    "Aspects économiques": ":\nRendement par m2: écarts : 3 à 8 têtes retenu : 4 têtes\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente\nProduit\nEngrais-amendement\nSemence - plant\nProduit de traitement\nPaillage - agrotextile\nEmballage\nAutres\nTotal ch. Opérationnelles.\nMARGE BRUTE\nMarge brute / heure de travail:",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Froid\nExcès de chaleur",
-          "Remarques": ""
-        },
-        {
-          "": "Sol",
-          "Favorable": "Terre franche riche en M\nO",
-          "Défavorable": "Terre brûlante (montée à\ngraine)",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "M.O. bien décomposée",
-          "Défavorable": "Fumier frais\nExcès d’azote",
-          "Remarques": "Plante peu épuisante"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "La chicorée est souvent 1\nculture dérobée",
-          "Défavorable": "",
-          "Remarques": "Durée d’occupation du sol :\n3-4 mois."
-        },
-        {
-          "": "Association",
-          "Favorable": "Fraisier",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 3 à 8 têtes retenu : 4 têtes",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -1722,6 +1682,46 @@
           "Gros": "",
           "Demi - gros": "",
           "Détail": ""
+        }
+      ]
+    },
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Froid\nExcès de chaleur",
+          "Remarques": ""
+        },
+        {
+          "": "Sol",
+          "Favorable": "Terre franche riche en M\nO",
+          "Défavorable": "Terre brûlante (montée à\ngraine)",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "M.O. bien décomposée",
+          "Défavorable": "Fumier frais\nExcès d’azote",
+          "Remarques": "Plante peu épuisante"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "La chicorée est souvent 1\nculture dérobée",
+          "Défavorable": "",
+          "Remarques": "Durée d’occupation du sol :\n3-4 mois."
+        },
+        {
+          "": "Association",
+          "Favorable": "Fraisier",
+          "Défavorable": "",
+          "Remarques": ""
         }
       ]
     }
@@ -1801,8 +1801,7 @@
     "Récolte et stockage": ":\nStade optimal: très précis: lorsque l'inflorescence a atteint son développement maximum mais reste\nencore bien ferme ( avant l’ouverture des boutons floraux). La culture doit être suivie\navec beaucoup d’attention.. Le poids idéal se situe autour de 500 g. On coupe la tête\navec une tige d'environ 15cm.\nDéroulement : Récolter tôt le matin. Effeuiller la tige directement au champ. La récolte dure de 15\njours à 1 mois pour 5 à 8 passages.\nStockage : chambre froide avec une hygrométrie élevée. (le moins longtemps possible). Le brocoli\nse conserve très peu de temps à température ambiante.",
     "Conditionnement et vente": ":\nCalibrage: -\nEmballage: cageot de 5 kg",
     "Repères qualité": ": pomme ferme, non ouverte ni fleurie",
-    "Commentaires débouchés": ": assez importants mais il faut veiller à faire coïncider le planning de\nculture avec les périodes de vente les plus favorables. De plus le climat\ninfluence grandement la fréquence de récolte et les quantités. Il peut\ny avoir des invendus par moments.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 0,4 à 1 kg retenu : 0,6 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 1.00€ 1.50€ 2.3€\nProduit 60 90 188\nEngrais - amendement 8 8 8\nSemence - plant 6 6 6\nProduit de traitement 1. 1. 1.\nPaillage - agrotextile\nEmballage 8 8 0\nAutres\nTotal ch. Opérationnelles. 23 23 15\nMARGE BRUTE 37 67 173\nMarge brute / heure de travail : 7€ environ.",
+    "Rendement": "Rendement par m2: écarts : 0,4 à 1 kg retenu : 0,6 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -1873,6 +1872,7 @@
         }
       ]
     },
+    "Commentaires débouchés": ": assez importants mais il faut veiller à faire coïncider le planning de\nculture avec les périodes de vente les plus favorables. De plus le climat\ninfluence grandement la fréquence de récolte et les quantités. Il peut\ny avoir des invendus par moments.",
     "Tableau environnement": {
       "entetes": [
         "",
@@ -1989,49 +1989,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nAltise, piéride, pucerons, mouche du chou, sont les principaux ravageurs rencontrés. Roténone ou Pyrèthre\npeuvent être utilisés. Une protection par un \"fil bio\" ou un \"P17\" permet de se protéger efficacement contre\nl'altise et la mouche sans traiter.",
     "Récolte et stockage": ":\nStade optimal: pomme bien ferme non ouverte à la base.\nDéroulement: 1 à 3 fois par semaine selon la saison, tôt le matin. Il est préférable de\nconditionner au champ, sauf si les déchets servent à l’alimentation du\nbétail (fourrage vert très intéressant en période hivernale).\nStockage: quelques jours en frigo à + 1°.",
     "Conditionnement et vente": ":\nCalibrage : gros: < 13 cm ; moyen 11 à 13 cm ; petit > 11 cm\nEmballage: cageot 40 x 60 cm, contenant 6 gros ou 8 moyens ou 11 petits. Les\nchoux-fleurs doivent être bien serrés (ne pas bouger) dans les cageots",
-    "Repères qualité": ": blancheur, fermeté, absence de points noirs, feuilles saines.",
-    "Commentaires débouchés": ": par temps doux, la production du chou-fleur bio a quelques difficultés à\ntrouver preneur: les prix chutent sur le marché de gros et il peut y\navoir des invendus. La concurrence devient plus forte avec les pays du\nsud.\nPlanteuse tractée polyvalente",
-    "Aspects économiques": ":\nRendement par m2: écarts : 0,6 à 1,2 têtes retenu : 0,8 têtes\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.70€ 0.90€ 1.50€\nProduit 56 72 120\nEngrais - amendement 10 10 10\nSemence - plant (pépinière sur place.) 4 4 4\nProduit de traitement 1.5 1.5 1.5\nPaillage-agrotextile\nEmballage 7 7 0\nAutres\nTotal ch. Opératio. 22.5 22.5 15.5\nMARGE BRUTE 33.5 49.5 104.5\nMarge brute / heure de travail (approche): 8 \n– 9 €",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Sécheresse. Fortes\nchaleurs.",
-          "Remarques": "La production hivernale\nest à réserver aux zones\ncôtières"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Argilo- sableux PH 6 à 6,5",
-          "Défavorable": "Sols asphyxiants en\npériode humide ; Sols\nséchants (été)",
-          "Remarques": "Tasser les passages de\nroues du tracteur avant\nl’hiver"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost bien mûr",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "3 ans Légume racine",
-          "Défavorable": "Autre brassicacée",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Céleri rave",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 0,6 à 1,2 têtes retenu : 0,8 têtes",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -2099,6 +2057,48 @@
           "Gros": "33.5",
           "Demi - gros": "49.5",
           "Détail": "104.5"
+        }
+      ]
+    },
+    "Repères qualité": ": blancheur, fermeté, absence de points noirs, feuilles saines.",
+    "Commentaires débouchés": ": par temps doux, la production du chou-fleur bio a quelques difficultés à\ntrouver preneur: les prix chutent sur le marché de gros et il peut y\navoir des invendus. La concurrence devient plus forte avec les pays du\nsud.\nPlanteuse tractée polyvalente",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Sécheresse. Fortes\nchaleurs.",
+          "Remarques": "La production hivernale\nest à réserver aux zones\ncôtières"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Argilo- sableux PH 6 à 6,5",
+          "Défavorable": "Sols asphyxiants en\npériode humide ; Sols\nséchants (été)",
+          "Remarques": "Tasser les passages de\nroues du tracteur avant\nl’hiver"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost bien mûr",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "3 ans Légume racine",
+          "Défavorable": "Autre brassicacée",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Céleri rave",
+          "Défavorable": "",
+          "Remarques": ""
         }
       ]
     }
@@ -2193,65 +2193,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nAltise Plantule criblée de trous. Protection par filet ou Roténone, Pyrèthre\nMouche du chou Beaucoup de plantules arrosage abondant\nPiéride meurent Protection par filet Roténone, Pyrèthre\nVer détruisant les Bacillus Thuringiensis\nPuceron racines Chenille jaune sur\nMildiou feuilles et pommes Eviter les excès d’azote Savon noir,\nFeuilles recroquevillées Eviter les excès d’azote Roténone,\nAlternaria Rhizoctone Tâches brunes sur Pyrèthre.\nfeuilles Rotation assez longues Bouillie bordelaise\nTâches rondes brunâtres Rotation assez longues Bouillie bordelaise\nRacines noires",
     "Récolte et stockage": ":\nStade optimal: selon la grosseur désirée ; pomme bien formée et ferme.\nDéroulement : conditionnement direct au champ (sauf si les feuilles servent à\nl’alimentation du bétail).\nStockage: quelques jours en frigo. Les choux rouges se conservent plus longtemps\ndans un local humide (1 mois et +). Les choux cabus peuvent se\nconserver en jauge.",
     "Conditionnement et vente": ":\nCalibrage : poids minimum : - 350 g pour les choux de printemps\n- 500 g pour les autres.\nEmballage : cageot 60 x 40 cm par 6, 8, 11 ou 12 têtes pour les choux frisés,\ncageot 50 x 30 cm par 6, 8, 11 ou 12 têtes pour les choux cabus\ncageot 50 x 30 cm de 5 kg pour les choux de Bruxelles.",
-    "Repères qualité": ": chou frais, entier, non éclaté ni monté, sain, propre.",
-    "Commentaires débouchés": ": marché assez étroit en vente en gros. Prix peu attractifs",
-    "Aspects économiques": ":\nRendement par m2: écarts : 1 à 2,5 têtes retenu : 1.5 têtes\nAPPROCHE DE MARGE BRUTE par are. (chou pommé)\nType de vente Gros Demi \n– gros Détail\nPrix de vente 0.50€ 0.90€ 1.50€\nProduit 75 135 225\nEngrais \n– amendement 7.5 7.5 7.5\nSemence \n– plant 6 6 6\nProduit de traitement 1.5 1.5 1.5\nPaillage \n– agrotextile 0.8 0.8 0.8\nEmballage 13 13 0\nAutres\nTotal ch. Opérationnelles. 28.8 28.8 15.8\nMARGE BRUTE 46.2 106.2 209.2\nMarge brute / heure de travail (approche): 11€/ h.\nChou de Bruxelles 1 kg / m2 ; prix de gros 1.50€ F / kg\nOBSERVATIONS.\nLe chou chinois ou PETSAÏ, cultivé en Bretagne depuis quelques années a un cycle de production différent.\nIl est très sensible au gel et ne peut être récolté après le mois de novembre en dehors des bords de mer (ou\nsous abri). En plein champ il se sème directement en place ou en motte. La plantation racine nue est aléatoire\nen raison de son système racinaire peu développé.\nIl se sème en juin - juillet pour une récolte d’août à octobre. Il craint la sécheresse. Il est donc prudent de\nprévoir des arrosages.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Sécheresse Température <\nà -5°",
-          "Remarques": "Hygrométrie élevée"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Terre profonde. Sableuse\npour les primeurs. PH 7",
-          "Défavorable": "PH > 6 ;5. Le chou n’aime\npas l’acidité",
-          "Remarques": "Le chou réussit dans\npresque tous les sols"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost",
-          "Défavorable": "Carence en soufre et bore",
-          "Remarques": "Bonne réponse au compost"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Peu exigeant : 2-3 ans",
-          "Défavorable": "Autres brassicacées",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Laitue, œillet d’Inde,\népinard, céleri",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Altise\nMouche du chou\nPiéride\nPuceron\nMildiou\nAlternaria Rhizoctone",
-          "Symptôme": "Plantule criblée de trous.\nBeaucoup de plantules\nmeurent\nVer détruisant les\nracines Chenille jaune sur\nfeuilles et pommes\nFeuilles recroquevillées\nTâches brunes sur\nfeuilles\nTâches rondes brunâtres\nRacines noires",
-          "Prévention": "Protection par filet ou\narrosage abondant\nProtection par filet\nBacillus Thuringiensis\nEviter les excès d’azote\nEviter les excès d’azote\nRotation assez longues\nRotation assez longues",
-          "Traitement": "Roténone, Pyrèthre\nRoténone, Pyrèthre\nSavon noir,\nRoténone,\nPyrèthre.\nBouillie bordelaise\nBouillie bordelaise"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 1 à 2,5 têtes retenu : 1.5 têtes",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -2321,6 +2263,64 @@
           "Détail": "209.2"
         }
       ]
+    },
+    "Repères qualité": ": chou frais, entier, non éclaté ni monté, sain, propre.",
+    "Commentaires débouchés": ": marché assez étroit en vente en gros. Prix peu attractifs",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Sécheresse Température <\nà -5°",
+          "Remarques": "Hygrométrie élevée"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Terre profonde. Sableuse\npour les primeurs. PH 7",
+          "Défavorable": "PH > 6 ;5. Le chou n’aime\npas l’acidité",
+          "Remarques": "Le chou réussit dans\npresque tous les sols"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost",
+          "Défavorable": "Carence en soufre et bore",
+          "Remarques": "Bonne réponse au compost"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Peu exigeant : 2-3 ans",
+          "Défavorable": "Autres brassicacées",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Laitue, œillet d’Inde,\népinard, céleri",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Altise\nMouche du chou\nPiéride\nPuceron\nMildiou\nAlternaria Rhizoctone",
+          "Symptôme": "Plantule criblée de trous.\nBeaucoup de plantules\nmeurent\nVer détruisant les\nracines Chenille jaune sur\nfeuilles et pommes\nFeuilles recroquevillées\nTâches brunes sur\nfeuilles\nTâches rondes brunâtres\nRacines noires",
+          "Prévention": "Protection par filet ou\narrosage abondant\nProtection par filet\nBacillus Thuringiensis\nEviter les excès d’azote\nEviter les excès d’azote\nRotation assez longues\nRotation assez longues",
+          "Traitement": "Roténone, Pyrèthre\nRoténone, Pyrèthre\nSavon noir,\nRoténone,\nPyrèthre.\nBouillie bordelaise\nBouillie bordelaise"
+        }
+      ]
     }
   },
   "Concombre_Cornichon": {
@@ -2383,65 +2383,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nOïdium\nCladosporiose\nPuceron",
     "Récolte et stockage": ":\nStade optimal : poids 350 à 450 g ; diamètre 4 à 7 cm.\nDéroulement : couper le pédoncule, récolter le matin, enlever le reste de la fleur.\nStockage : chambre froide 1 à 3 jours (vente de détail seulement).",
     "Conditionnement et vente": ":\nCalibrage : par 100 g au dessus de 250 et jusqu’à 750 g.\nEmballage : cageot 50 x 30 cm, 12 pièces / cageot.",
-    "Repères qualité": ": propre, non déformé, rectiligne, ferme.",
-    "Commentaires débouchés": ": débouchés importants sur le marché de gros. Prix assez bas et\nidentique quelque soit le calibre. Les plus recherchés sont les fruits de\n350 à 550 g.",
-    "Aspects économiques": ":\nRendement par m2(sous abri): écarts : 8 à 20 kg / m2 retenu : 12 kg / m2. Soit 30 fruits.\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente (pièce) 0.40€ 0.60€ 0.90€\nProduit 1200 1800 2700\nEngrais - amendement 18 18 18\nSemence - plant 60 60 60\nProduit de traitement 3 3 3\nPaillage - agrotextile 5 5 5\nEmballage 165 165 0\nAutres terreau 15 15 15\nTotal ch. Opérationnelles. 266 266 101\nMARGE BRUTE 934 1534 2599\nMarge brute / heure de travail (approche) : 15€.\nObservations:\nLa culture du cornichon se conduit comme le concombre de plein champ. La récolte se fait tous les\njours par temps chaud, lorsque les fruits ont la taille du petit doigt. Les débouchés sont limités.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Très chaud et humide",
-          "Défavorable": "Temps froid Gèle à 0°",
-          "Remarques": "Culture sous abri En\ngénéral"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Limoneux profond, riche\nen M O. PH > 5,6",
-          "Défavorable": "Argileux Sol tassé",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Fumier composté en\ngrande quantité",
-          "Défavorable": "",
-          "Remarques": "Culture vorace"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Solanacée, engrais vert",
-          "Défavorable": "Cucurbitacée",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Chou, laitue, oignon,\nharicot",
-          "Défavorable": "Melon, tomate",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Oïdium\nCladosporiose\nPuceron",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2(sous abri): écarts : 8 à 20 kg / m2 retenu : 12 kg / m2. Soit 30 fruits.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -2511,6 +2453,64 @@
           "Détail": "2599"
         }
       ]
+    },
+    "Repères qualité": ": propre, non déformé, rectiligne, ferme.",
+    "Commentaires débouchés": ": débouchés importants sur le marché de gros. Prix assez bas et\nidentique quelque soit le calibre. Les plus recherchés sont les fruits de\n350 à 550 g.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Très chaud et humide",
+          "Défavorable": "Temps froid Gèle à 0°",
+          "Remarques": "Culture sous abri En\ngénéral"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Limoneux profond, riche\nen M O. PH > 5,6",
+          "Défavorable": "Argileux Sol tassé",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Fumier composté en\ngrande quantité",
+          "Défavorable": "",
+          "Remarques": "Culture vorace"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Solanacée, engrais vert",
+          "Défavorable": "Cucurbitacée",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Chou, laitue, oignon,\nharicot",
+          "Défavorable": "Melon, tomate",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Oïdium\nCladosporiose\nPuceron",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
+        }
+      ]
     }
   },
   "Courgette": {
@@ -2573,64 +2573,7 @@
     "Récolte et stockage": ":\nStade optimal : selon le type de vente: marché de gros, 14 à 21 cm de long\nDéroulement : le matin tous les 2 jours\nStockage : quelques jours en frigo.",
     "Conditionnement et vente": ":\nCalibrage: 14 à 21 cm (le plus demandé) ; 21 à 30 cm..\nEmballage: cageot de 5 à 7 kg.",
     "Repères qualité": ": fruit propre, non déformé, ferme, sans blessure.",
-    "Commentaires débouchés": ": limités pour la vente en gros ; prix très bas en particulier pour le\ncalibre 21 à 30 cm qui, de plus, se vend très mal.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 3 à 8 kg retenu : 5kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.60€\nProduit 300\nEngrais - amendement 12\nSemence - plant 9\nProduit de traitement 0\nPaillage biodégradable - agrotextile 13\nEmballage 55\nAutres: terreau (motte de 7cm) 15\nTotal ch. Opérationnelles. 104\nMARGE BRUTE 296\nMarge brute / heure de travail:",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Chaud, humide",
-          "Défavorable": "Froid et gelée",
-          "Remarques": ""
-        },
-        {
-          "": "Sol",
-          "Favorable": "Meuble, profond Riche en\nhumus",
-          "Défavorable": "Peu profond, tassé",
-          "Remarques": "Plante peu exigeante quant\nà la nature du sol"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost et engrais vert",
-          "Défavorable": "Fumure insuffisante ou\ntrop fraîche",
-          "Remarques": "Répond bien aux fortes\nfumures organiques"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Engrais vert",
-          "Défavorable": "Autre cucurbitacée",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Capucine, laitue",
-          "Défavorable": "Pomme de terre",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Oïdium\nBotrytis\nCoulure du fruit",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 3 à 8 kg retenu : 5kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -2700,6 +2643,63 @@
           "Détail": ""
         }
       ]
+    },
+    "Commentaires débouchés": ": limités pour la vente en gros ; prix très bas en particulier pour le\ncalibre 21 à 30 cm qui, de plus, se vend très mal.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Chaud, humide",
+          "Défavorable": "Froid et gelée",
+          "Remarques": ""
+        },
+        {
+          "": "Sol",
+          "Favorable": "Meuble, profond Riche en\nhumus",
+          "Défavorable": "Peu profond, tassé",
+          "Remarques": "Plante peu exigeante quant\nà la nature du sol"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost et engrais vert",
+          "Défavorable": "Fumure insuffisante ou\ntrop fraîche",
+          "Remarques": "Répond bien aux fortes\nfumures organiques"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Engrais vert",
+          "Défavorable": "Autre cucurbitacée",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Capucine, laitue",
+          "Défavorable": "Pomme de terre",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Oïdium\nBotrytis\nCoulure du fruit",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
+        }
+      ]
     }
   },
   "Echalote": {
@@ -2762,65 +2762,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nMildiou\nBotrytis\nSclérotinia\nBotrytis sur échalote en conservation",
     "Récolte et stockage": ":\nStade optimal: feuilles sèches aux 2/3\nDéroulement: arrachage puis séchage durant 1 à 2 semaines au champ.\nRamassage l’après midi par temps ensoleillé.\nStockage:\n– en cageot sur une faible épaisseur dans un endroit bien aéré ; un hangar ouvert à tout vent convient\nassez bien;\n– en silo chauffé puis ventilé si la surface est importante.",
     "Conditionnement et vente": ":\nCalibrage : 20 à 40 mm et 40 à 55 mm pour la vente en gros.\nEmballage : cageot de 5 kg ; filet de 250, 500 g ; grappe tressée de 500 g ou 1 kg.\nPossibilité de vente en botte au printemps et au début de l’été.",
-    "Repères qualité": ": absence de maladie et de germe, épluchée et équeutée.",
-    "Commentaires débouchés": ": marché assez étroit du fait de la faiblesse de la consommation par\nhabitant.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 1 à 3 kg retenu : 1,2 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 1.30€ 1.80e 2.30e\nProduit 156 216 276\nEngrais - amendement 6 6 6\nSemence - plant 45 45 45\nProduit de traitement 1.5 1.5 1.5\nPaillage - agrotextile 5 5 5\nEmballage 14 14 0\nAutres\nTotal ch. Opérationnelles. 71.5 71.5 57.5\nMARGE BRUTE 84.5 144.5 218.5\nMarge brute / heure de travail (approche): 8.5€.\nCette marge est faible en raison du temps d’équeutage manuel qui se justifie pour des surfaces limitées,\nl’achat d’une « équeuteuse » nécessitant une production importante.\nObservations:\nPour le stockage en silo cf. la Chambre d’Agriculture de St Pol de Léon (Finistère).",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "maritime",
-          "Défavorable": "Pluie d’orage",
-          "Remarques": "Craint l’excès d’eau"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Léger, assez riche\nSableux argileux\npH > 6.5",
-          "Défavorable": "Sol asphyxiant\nTerre jeune cultivée\ndepuis peu\nSol acide",
-          "Remarques": "Intérêt de la culture sur\nbutte"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais organique et\nminéral",
-          "Défavorable": "Fumure organique",
-          "Remarques": "Très sensible à la matière\norganique peu décomposée"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "> 5 ans\nprairie, pomme de\nterre",
-          "Défavorable": "",
-          "Remarques": "Précédent prairie, à\ncondition de la défaire au\nplus tard à l’automne"
-        },
-        {
-          "": "Association",
-          "Favorable": "Haricot pois",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Mildiou\nBotrytis\nSclérotinia",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 1 à 3 kg retenu : 1,2 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -2890,6 +2832,64 @@
           "Détail": "218.5"
         }
       ]
+    },
+    "Repères qualité": ": absence de maladie et de germe, épluchée et équeutée.",
+    "Commentaires débouchés": ": marché assez étroit du fait de la faiblesse de la consommation par\nhabitant.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "maritime",
+          "Défavorable": "Pluie d’orage",
+          "Remarques": "Craint l’excès d’eau"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Léger, assez riche\nSableux argileux\npH > 6.5",
+          "Défavorable": "Sol asphyxiant\nTerre jeune cultivée\ndepuis peu\nSol acide",
+          "Remarques": "Intérêt de la culture sur\nbutte"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais organique et\nminéral",
+          "Défavorable": "Fumure organique",
+          "Remarques": "Très sensible à la matière\norganique peu décomposée"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "> 5 ans\nprairie, pomme de\nterre",
+          "Défavorable": "",
+          "Remarques": "Précédent prairie, à\ncondition de la défaire au\nplus tard à l’automne"
+        },
+        {
+          "": "Association",
+          "Favorable": "Haricot pois",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Mildiou\nBotrytis\nSclérotinia",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
+        }
+      ]
     }
   },
   "Endive": {
@@ -2952,65 +2952,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nSclérotinia\nFonte des semis\nRhizoctone brun Rouille\nPhoma\nMildiou sur racine Endive\nouverte Mouche de\nl’endive.",
     "Récolte et stockage": ":\nStade optimal: racine cf. plus bas; chicon avant écartement des feuilles.\nDéroulement : manuelle avec lame souleveuse ou mécanisée (idem betterave).\nStockage : - en silo aéré jusqu’à 1,5 mois ;\n- en chambre froide plusieurs mois ( 0 à 1°).",
     "Conditionnement et vente": ":\nCalibrage : selon la longueur et le diamètre. 3 catégories, extra , I et II (endivette).\nEmballage : cageot de 5 ou 6 kg, chicons entièrement entourés de papier opaque",
-    "Repères qualité": ": forme régulière, ferme, serrée, intacte, sans coloration verdâtre.",
-    "Commentaires débouchés": ": créneau intéressant en agriculture biologique loin d’être saturé.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 2 à 4 kg de racines pour 0,7 à 1,5 kg de chicon. Retenu : 1 kg / m2.\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 1.40€ 1.80€ 2.40€\nProduit 140 180 240\nEngrais - amendement 6 6 6\nSemence - plant 8 8 8\nProduit de traitement 1.5 1.5 1.5\nPaillage - agrotextile\nEmballage 12 12 0\nAutres : terreau 6 6 6\nTotal ch. Opérationnelles. 33.5 33.5 21.5\nMARGE BRUTE 106.5 146.5 218.5\nMarge brute / heure de travail (approche): 8 €\nObservations:\nLes racines sont utilisables pour l’alimentation des animaux après forçage : bovins, ovins, porcins. Il faut de\n5 à 7 kg de racines pour 1 UF.\nConservation des racines.\nAprès un habillage sommaire des racines, celles ci sont stockées à l’abri à partir du mois de novembre soit :\n• en silo recouvert de paille ;\n• en chambre froide à 0 - 2°, ventilée. Dans ce cas les racines sont entreposées en caisse ou cageot.\nForçage.\nPlusieurs solutions sont possibles :\n– Chambre noire chauffée et ventilée ; 7 à 10 rotations par saison pour une durée de forçage compris\nentre 3 et 4 semaines. Les racines sont placées verticalement dans des bacs dont le fond est garni de\nterreau imbibé d’eau. On maintient une hygrométrie proche de 100% en maintenant une réserve d’eau\ndans le fond des bacs. Pour 10 ares d’endives il faut 10 à 15 m2 de bacs répartis sur 3 ou 4 étages.\n– Tranchée de 45 cm de profondeur que l’on garnit de 20 cm de terre meuble. On y plante les racines ,\npuis celles ci sont recouvertes de 3 - 4 cm de terreau et de 25 cm de terre souple après un arrosage\nabondant (50 mm). On recouvre le tout d’une couche chaude de 40 cm de fumier de cheval tassé. Ce\nprocédé est peu utilisé en raison de la difficulté de bien maîtriser la température . Les chicons sont\nsouvent ouverts car la chaleur vient du haut. Ce procédé de chauffage a été remplacé par des tuyaux\nd’eau chaude ou des résistances électriques placés verticalement sur les côtés.\n(Pour plus de précision cf. l’ouvrage du CTIFL sur l’endive et les chambres d’agriculture des régions\nproductrices).",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Doux et humide",
-          "Défavorable": "Excès d’eau et\nsécheresse",
-          "Remarques": "Apport d’eau régulier\nSensible à la vernalisation"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Argilo - sableux\nTempérature> à 10°",
-          "Défavorable": "Argileux ou sableux Sol\nbattant (levée)",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais organique et\nminéral",
-          "Défavorable": "Compost récent Excès\nd’azote, carence en bore",
-          "Remarques": "Pas de compost depuis 1\nan"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "4 à 5 ans céréales",
-          "Défavorable": "Légume racine Laitue,\nlégumineuse",
-          "Remarques": "Sensibilité aux maladies\ncryptoga-miques“\ntelluriques ”"
-        },
-        {
-          "": "Association",
-          "Favorable": "",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Sclérotinia\nFonte des semis\nRhizoctone brun Rouille\nPhoma\nMildiou sur racine Endive\nouverte Mouche de\nl’endive.",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 2 à 4 kg de racines pour 0,7 à 1,5 kg de chicon. Retenu : 1 kg / m2.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -3078,6 +3020,64 @@
           "Gros": "106.5",
           "Demi - gros": "146.5",
           "Détail": "218.5"
+        }
+      ]
+    },
+    "Repères qualité": ": forme régulière, ferme, serrée, intacte, sans coloration verdâtre.",
+    "Commentaires débouchés": ": créneau intéressant en agriculture biologique loin d’être saturé.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Doux et humide",
+          "Défavorable": "Excès d’eau et\nsécheresse",
+          "Remarques": "Apport d’eau régulier\nSensible à la vernalisation"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Argilo - sableux\nTempérature> à 10°",
+          "Défavorable": "Argileux ou sableux Sol\nbattant (levée)",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais organique et\nminéral",
+          "Défavorable": "Compost récent Excès\nd’azote, carence en bore",
+          "Remarques": "Pas de compost depuis 1\nan"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "4 à 5 ans céréales",
+          "Défavorable": "Légume racine Laitue,\nlégumineuse",
+          "Remarques": "Sensibilité aux maladies\ncryptoga-miques“\ntelluriques ”"
+        },
+        {
+          "": "Association",
+          "Favorable": "",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Sclérotinia\nFonte des semis\nRhizoctone brun Rouille\nPhoma\nMildiou sur racine Endive\nouverte Mouche de\nl’endive.",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -3157,65 +3157,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nMildiou Variétés résistantes Bouillie bordelaise\nFonte des semis Puceron Rotations roténone\nCarence en Mn",
     "Récolte et stockage": ":\nStade optimal: 6 - 7 feuilles. Eviter de récolter après la pluie ou la rosée (feuilles cassantes et\nfermentation).\nDéroulement: manuelle, feuille par feuille (plus long) ou en coupant toutes la feuilles (rendement plus\nfaible) en se servant d’une petite faucille munie d’un panier, ou mécanisée pour\nl’industrie.\nStockage: très court",
     "Conditionnement et vente": ":\nEmballage: cageot à laitue 60 x 40 cm et complexe à salade. Poids: 5 kg.",
-    "Repères qualité": ": catégorie 1: feuilles entières, sans trou ni tâche. Le lavage entraîne une mauvaise\nconservation au-delà de 3 - 4 jours sauf si on stocke les cageots en frigo à + 4 à 5°.",
-    "Commentaires débouchés": ":\n– marché du frais non saturé\n– besoins pour l’industrie en augmentation.",
-    "Aspects économiques": ":\nRendement par m2: écarts: 2 à 5 kg selon le nombre de coupes Retenu : 2 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 1.35€ 1.8€ 2.7€\nProduit 270 360 540\nEngrais - amendement 8 8 8\nSemence - plant 5 5 5\nProduit de traitement\nPaillage - agrotextile\nEmballage 28 28\nAutres\nTotal ch. Opérationnelles. 41 41 13\nMARGE BRUTE 229 319 527\nMarge brute / heure de travail : 16€.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "frais",
-          "Défavorable": "Sécheresse et chaleur",
-          "Remarques": "Très exigeant en eau ;\nMontaison rapide en fin de\nprintemps"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Profond, bien drainé Riche\nen humus",
-          "Défavorable": "Sol soufflé, asphyxiant,\ncompact",
-          "Remarques": "Très sensible au\ntassement"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "engrais",
-          "Défavorable": "Fumure fraîche",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Après colza, céréale,\ntrèfle",
-          "Défavorable": "Autre chénopodiacée",
-          "Remarques": "Cultivée en dérobée"
-        },
-        {
-          "": "Association",
-          "Favorable": "Brassicacée, fraisier",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Mildiou\nFonte des semis Puceron\nCarence en Mn",
-          "Symptôme": "",
-          "Prévention": "Variétés résistantes\nRotations",
-          "Traitement": "Bouillie bordelaise\nroténone"
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 2 à 5 kg selon le nombre de coupes Retenu : 2 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -3285,6 +3227,64 @@
           "Détail": "527"
         }
       ]
+    },
+    "Repères qualité": ": catégorie 1: feuilles entières, sans trou ni tâche. Le lavage entraîne une mauvaise\nconservation au-delà de 3 - 4 jours sauf si on stocke les cageots en frigo à + 4 à 5°.",
+    "Commentaires débouchés": ":\n– marché du frais non saturé\n– besoins pour l’industrie en augmentation.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "frais",
+          "Défavorable": "Sécheresse et chaleur",
+          "Remarques": "Très exigeant en eau ;\nMontaison rapide en fin de\nprintemps"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Profond, bien drainé Riche\nen humus",
+          "Défavorable": "Sol soufflé, asphyxiant,\ncompact",
+          "Remarques": "Très sensible au\ntassement"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "engrais",
+          "Défavorable": "Fumure fraîche",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Après colza, céréale,\ntrèfle",
+          "Défavorable": "Autre chénopodiacée",
+          "Remarques": "Cultivée en dérobée"
+        },
+        {
+          "": "Association",
+          "Favorable": "Brassicacée, fraisier",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Mildiou\nFonte des semis Puceron\nCarence en Mn",
+          "Symptôme": "",
+          "Prévention": "Variétés résistantes\nRotations",
+          "Traitement": "Bouillie bordelaise\nroténone"
+        }
+      ]
     }
   },
   "Feve": {
@@ -3332,65 +3332,7 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nPuceron noir Autres\nparasites et maladies cf.\nle pois",
     "Récolte et stockage": ":\nStade optimal: en vert lorsque la gousse atteint les ¾\nde sa longueur définitive ; en sec, lorsque les\ngousses sont noires.\nDéroulement: en vert 1 à 2 fois par semaine ;\nen sec on récolte les gousses en arrachant les plants.\nStockage: dans un endroit sec.",
     "Conditionnement et vente": ":\nCalibrage:\nEmballage:",
-    "Repères qualité": ":",
-    "Commentaires débouchés": ": bonne demande surtout en hiver et au printemps",
-    "Aspects économiques": ":\nRendement par m2: écarts retenu :\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente\nProduit\nEngrais-amendement\nSemence-plant\nProduit de traitement\nPaillage-agrotextile\nEmballage\nAutres\nTotal ch. Opératio.\nMARGE BRUTE\nMarge brute / heure de travail :",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Peu exigeante",
-          "Défavorable": "Excès de chaleur et\nsécheresse",
-          "Remarques": ""
-        },
-        {
-          "": "Sol",
-          "Favorable": "Souple, riche en humus",
-          "Défavorable": "Sol trop léger, séchant.",
-          "Remarques": "Pas d’exigence\nparticulière"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais potassique\nCompost bien mûr",
-          "Défavorable": "",
-          "Remarques": "Azote seulement pour le\ndémarrage"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "4 à 5 ans",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Aneth, maïs, pomme de\nterre, laitue",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Puceron noir Autres\nparasites et maladies cf.\nle pois",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts retenu :",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -3458,6 +3400,64 @@
           "Gros": "",
           "Demi - gros": "",
           "Détail": ""
+        }
+      ]
+    },
+    "Repères qualité": ":",
+    "Commentaires débouchés": ": bonne demande surtout en hiver et au printemps",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Peu exigeante",
+          "Défavorable": "Excès de chaleur et\nsécheresse",
+          "Remarques": ""
+        },
+        {
+          "": "Sol",
+          "Favorable": "Souple, riche en humus",
+          "Défavorable": "Sol trop léger, séchant.",
+          "Remarques": "Pas d’exigence\nparticulière"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais potassique\nCompost bien mûr",
+          "Défavorable": "",
+          "Remarques": "Azote seulement pour le\ndémarrage"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "4 à 5 ans",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Aneth, maïs, pomme de\nterre, laitue",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Puceron noir Autres\nparasites et maladies cf.\nle pois",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -3537,63 +3537,7 @@
     "Récolte et stockage": ":\nStade optimal : Le fruit doit avoir une grosseur suffisante.\nLe stade optimal dépend du type de vente: maturité pour la vente de détail (circuit\ncourt), rose pour la vente en gros (circuit long).\nDéroulement: pincer délicatement le pédoncule. Il ne faut pas saisir le fruit à la main, ni le laver.\nStockage: conservation très limitée.",
     "Conditionnement et vente": ":\nCalibrage: selon les variétés : gros fruits, extra + de 30 mm, cat.I 25 à 30 mm\npetits fruits extra + de 20 mm, cat.I 15 à 20 mm.\nemballage: barquette de 125, 250, 500g ou 1 kg.",
     "Repères qualité": ": fruit entier, sans blessure, sain, propre, ferme.",
-    "Aspects économiques": ":\nRendement par m2: écarts: 1 à 2 kg / m2. retenu: 1.2kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente\nProduit\nEngrais-amendement\nSemence - plant\nProduit de traitement\nPaillage - agrotextile\nEmballage\nAutres\nTotal ch. Opérationnelles.\nMARGE BRUTE\nMarge brute / heure de travail :",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Tempéré Supporte la\nchaleur",
-          "Défavorable": "Excès d’eau, sécheresse,\ngelée printanière",
-          "Remarques": "Irrigation utile Supporte -\n15° en hiver"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Argilo - limoneux, riche en\nhumus",
-          "Défavorable": "Terre asphyxiante Sol\nsoufflé",
-          "Remarques": "Choix des variétés selon le\ntype de sol"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost en année 1 Puis\nengrais",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation :\nPrécédents",
-          "Favorable": "Légumineuse, engrais vert,\ncéréale",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Oignon, laitue, épinard,\nmenthe, ail",
-          "Défavorable": "Chou",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Oïdium Dépérissement\nBotrytis\nTâche pourpre Puceron\nVers blanc\nTaupin\nMaladie du bord jaune\nEnroulement ou frisolée",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 1 à 2 kg / m2. retenu: 1.2kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -3661,6 +3605,62 @@
           "Gros": "",
           "Demi - gros": "",
           "Détail": ""
+        }
+      ]
+    },
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Tempéré Supporte la\nchaleur",
+          "Défavorable": "Excès d’eau, sécheresse,\ngelée printanière",
+          "Remarques": "Irrigation utile Supporte -\n15° en hiver"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Argilo - limoneux, riche en\nhumus",
+          "Défavorable": "Terre asphyxiante Sol\nsoufflé",
+          "Remarques": "Choix des variétés selon le\ntype de sol"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost en année 1 Puis\nengrais",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation :\nPrécédents",
+          "Favorable": "Légumineuse, engrais vert,\ncéréale",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Oignon, laitue, épinard,\nmenthe, ail",
+          "Défavorable": "Chou",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Oïdium Dépérissement\nBotrytis\nTâche pourpre Puceron\nVers blanc\nTaupin\nMaladie du bord jaune\nEnroulement ou frisolée",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -3755,64 +3755,7 @@
     "Récolte et stockage": ":\nStade optimal : selon le type de consommation et la clientèle.\nDéroulement : haricot vert, tous les 2 à 3 jours ; grain frais, 1 fois par semaine.\nStockage : grains, en gousse ou plante entière suspendue dans un endroit bien\naéré.",
     "Conditionnement et vente": ":\nCalibrage: filet très fin <6 mm ; fin < 9 mm\nEmballage : cageot 40 x 60 cm, par 5 ou 10 kg, (complexe à laitue).",
     "Repères qualité": ": sans fil, entier, sain, non déformé.",
-    "Commentaires débouchés": ": demande importante",
-    "Aspects économiques": ":\nRendement par m2: écarts : 0,5 à 1,5 kg retenu : 1 kg / m2\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 2.70€ 3.30€ 4.50€ et +\nProduit 270 330 450\nEngrais - amendement 3 3 3\nSemence -plant 16 16 16\nProduit de traitement\nPaillage - agrotextile\nEmballage 26 26 0\nAutres\nTotal ch. Opérationnelles. 45 45 19\nMARGE BRUTE 225 285 431\nMarge brute / heure de travail (approche): 15€",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Température douce, air\nplutôt sec",
-          "Défavorable": "Gelée, forte chaleur",
-          "Remarques": "Germination à + 11° Ne pas\nsemer trop en plein champ"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Léger, riche. PH idéal 5,5 à\n6",
-          "Défavorable": "Excès d’humidité",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais minéral et\norganique si besoin",
-          "Défavorable": "MO fraîche",
-          "Remarques": "Enrichit le sol en azote"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "+ de 2 ans",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Betterave, concombre\nMaïs, carotte, p. de t.",
-          "Défavorable": "",
-          "Remarques": "Le maïs peut servir de\ntuteur au haricot à rame"
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Botrytis\nAnthracnose\nFusariose\nRhizoctone\nPuceron\nInsecte en particulier\ncharançon (stockage)",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 0,5 à 1,5 kg retenu : 1 kg / m2",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -3880,6 +3823,63 @@
           "Gros": "225",
           "Demi - gros": "285",
           "Détail": "431"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": demande importante",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Température douce, air\nplutôt sec",
+          "Défavorable": "Gelée, forte chaleur",
+          "Remarques": "Germination à + 11° Ne pas\nsemer trop en plein champ"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Léger, riche. PH idéal 5,5 à\n6",
+          "Défavorable": "Excès d’humidité",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais minéral et\norganique si besoin",
+          "Défavorable": "MO fraîche",
+          "Remarques": "Enrichit le sol en azote"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "+ de 2 ans",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Betterave, concombre\nMaïs, carotte, p. de t.",
+          "Défavorable": "",
+          "Remarques": "Le maïs peut servir de\ntuteur au haricot à rame"
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Botrytis\nAnthracnose\nFusariose\nRhizoctone\nPuceron\nInsecte en particulier\ncharançon (stockage)",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -3974,63 +3974,7 @@
     "Récolte et stockage": ":\nStade optimal: lorsque la pomme est bien formée et ferme.\nDéroulement: récolte manuelle après bassinage, lavage selon le salissement,\nStockage: très limité.",
     "Conditionnement et vente": ":\nCalibrage : selon le poids le minimum étant de 150g en plein champ et 80 g sous\nabri (hiver).\nEmballage : cageot de 60 x 40 cm, habituellement 12 laitues en 2 épaisseurs “ cœur\nà cœur ”. Le cageot doit être bien plein.",
     "Repères qualité": ": propreté, absence de maladie, insectes en nombre limité, pomme bien\nformée et serrée.",
-    "Aspects économiques": ":\nRendement par m2: écarts: 6 à 12 têtes. retenu : 7 têtes\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.40€ 0.60€ 0.80€\nProduit 280 420 560\nEngrais-amendement 5 5 5\nSemence - plant 15 15 15\nProduit de traitement 2 2 2\nPaillage - agrotextile 6 6 6\nEmballage 50 50 0\nAutres: terreau 12 12 12\nTotal ch. Opérationnelles. 90 90 40\nMARGE BRUTE 190 330 520\nMarge brute / heure de travail (approche): 19€.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Tempéré",
-          "Défavorable": "Excès d’eau, de chaleur,\nsécheresse",
-          "Remarques": "Les variétés sont\ndifférentes selon le climat"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Argilo - sableux riche en\nMO",
-          "Défavorable": "Acidité PH optimal 6,5 à 7",
-          "Remarques": "Peu exigeante sur le type\nde sol"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais organique et\nminéral",
-          "Défavorable": "",
-          "Remarques": "Attention aux excès\nd’azote"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Cucurbitacée, brassicacée,\nfabacée, oignon, betterave",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Mulot\nlimace Puceron Mildiou\n(brémia) Botrytis\nSclérotinia rhizoctone",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 6 à 12 têtes. retenu : 7 têtes",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -4098,6 +4042,62 @@
           "Gros": "190",
           "Demi - gros": "330",
           "Détail": "520"
+        }
+      ]
+    },
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Tempéré",
+          "Défavorable": "Excès d’eau, de chaleur,\nsécheresse",
+          "Remarques": "Les variétés sont\ndifférentes selon le climat"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Argilo - sableux riche en\nMO",
+          "Défavorable": "Acidité PH optimal 6,5 à 7",
+          "Remarques": "Peu exigeante sur le type\nde sol"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais organique et\nminéral",
+          "Défavorable": "",
+          "Remarques": "Attention aux excès\nd’azote"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Cucurbitacée, brassicacée,\nfabacée, oignon, betterave",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Mulot\nlimace Puceron Mildiou\n(brémia) Botrytis\nSclérotinia rhizoctone",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -4177,64 +4177,7 @@
     "Récolte et stockage": ":\nStade optimal: feuilles longues de 7 cm.\nDéroulement: récolte manuelle après bassinage et conditionnement immédiat.",
     "Conditionnement et vente": ":\nEmballage: cageot 30 x 50 cm, 1 kg ou barquette de 150 g.",
     "Repères qualité": ": absence de terre et d’adventices, plante non montée.",
-    "Commentaires débouchés": ": ils sont importants. Il y a un risque de saturation durant les fêtes\nde fin d’année et en fin de saison.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 0,6 à 1,2 kg retenu: 0,8 kg (les allées sont comptées dans la surface).\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 3.00€ 4.50€ 7.00€\nProduit 240 360 560\nEngrais - amendement 2 2 2\nSemence - plant 8 8 8\nProduit de traitement\nPaillage - agrotextile 6 6 6\nEmballage 45 45\nAutres : terreau 54 54 54\nTotal ch. Opérationnelles. 115 115\nMARGE BRUTE 125 245 506\nMarge brute / heure de travail (approche): 10€.\nObservations :\nMontaison rapide au printemps; Culture plus adaptée que la laitue en hiver mais plus exigeante en temps.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Température fraîche\nBonne aération",
-          "Défavorable": "Chaleur (montaison) excès\nd’eau",
-          "Remarques": "Culture d’hiver, ne pas\nsemer trop tôt"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Léger",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Restes cult.précédente\nEngrais organique",
-          "Défavorable": "",
-          "Remarques": "Culture peu gourmande"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "2 - 3 ans",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Blé noir, oignon blanc\npoireau",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Oïdium\nAsphyxie\nbotrytis",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 0,6 à 1,2 kg retenu: 0,8 kg (les allées sont comptées dans la surface).",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -4302,6 +4245,63 @@
           "Gros": "125",
           "Demi - gros": "245",
           "Détail": "506"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": ils sont importants. Il y a un risque de saturation durant les fêtes\nde fin d’année et en fin de saison.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Température fraîche\nBonne aération",
+          "Défavorable": "Chaleur (montaison) excès\nd’eau",
+          "Remarques": "Culture d’hiver, ne pas\nsemer trop tôt"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Léger",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Restes cult.précédente\nEngrais organique",
+          "Défavorable": "",
+          "Remarques": "Culture peu gourmande"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "2 - 3 ans",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Blé noir, oignon blanc\npoireau",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Oïdium\nAsphyxie\nbotrytis",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -4396,64 +4396,7 @@
     "Récolte et stockage": ":\nStade optimal: maturité en hiver ; grosseur suffisante pour le navet primeur.\nDéroulement:\nNavet - vrac: effeuillage (collet) au champ et parage de la racine;\nNavet - botte: bottelage directement au champ\nStockage: à partir de fin novembre.\nDurée: 3 à 4 mois en silo ou cave, 4 à 5 mois en chambre froide à 6° ;\nou récolte au champ au fur et à mesure des besoins (risque de destruction par le gel ;\nprévoir une protection par un « P17 »).",
     "Conditionnement et vente": ":\nCalibrage: non pratiqué. La botte contient 4 à 7 navets pour un poids minimum de 350g.\nEmballage: - cageot de 5 kg ou filet de 20 kg pour le vrac;\n- cageot de 10 à 15 bottes.",
     "Repères qualité": ": absence de ver, propreté, peau intacte (attention au lavage du navet en sol sableux\nabrasif).",
-    "Commentaires débouchés": ": Créneau intéressant pour la vente en botte en fin de printemps et début\nd’été. Demande en augmentation pour la transformation.",
-    "Aspects économiques": ":\nRendement par m2: écarts : retenu : 2 kg / m2\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.65€ 0.90€ 1.20€\nProduit 130 180 240\nEngrais-amendement 2 2 2\nSemence-plant 3 3 3\nProduit de traitement 0 0 0\nAgrotextile 5 5 5\nEmballage 22 22 0\nAutres\nTotal ch. Opératio. 32 32 10\nMARGE BRUTE 98 148 230\nMarge brute / heure de travail (approche): 15€",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Tempéré, même un peu\nfroid",
-          "Défavorable": "Chaleur, sécheresse",
-          "Remarques": "Sensible au gel (-3, -4°),\nvariable selon les variétés"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Sol gardant la fraîcheur ;\nPH 6,5 à 7",
-          "Défavorable": "Sable grossier",
-          "Remarques": "Peu exigeant"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Reliquat de la culture\nprécédente ou engrais\norganique",
-          "Défavorable": "Fumure organique fraîche",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "3 à 4 ans Blé, trèfle, vesce",
-          "Défavorable": "Autre brassicacée",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Carotte, pois, haricot,\nlaitue, tomate",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Altise Mouche du chou\n(autres maladies et\nparasites\ncf. chou).",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : retenu : 2 kg / m2",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -4521,6 +4464,63 @@
           "Gros": "98",
           "Demi - gros": "148",
           "Détail": "230"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": Créneau intéressant pour la vente en botte en fin de printemps et début\nd’été. Demande en augmentation pour la transformation.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Tempéré, même un peu\nfroid",
+          "Défavorable": "Chaleur, sécheresse",
+          "Remarques": "Sensible au gel (-3, -4°),\nvariable selon les variétés"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Sol gardant la fraîcheur ;\nPH 6,5 à 7",
+          "Défavorable": "Sable grossier",
+          "Remarques": "Peu exigeant"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Reliquat de la culture\nprécédente ou engrais\norganique",
+          "Défavorable": "Fumure organique fraîche",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "3 à 4 ans Blé, trèfle, vesce",
+          "Défavorable": "Autre brassicacée",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Carotte, pois, haricot,\nlaitue, tomate",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Altise Mouche du chou\n(autres maladies et\nparasites\ncf. chou).",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -4600,9 +4600,79 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nNom Symptôme Prévention Traitement\nMildiou\nBotrytis Sclérotinia\nRouille\nOignon blanc atteint de sclérotinia",
     "Récolte et stockage": ":\nStade optimal: queue bien sèche.\nDéroulement: lame souleveuse ou arracheuse à pomme de terre; Séchage sur place quelques\njours et ramassage 1 après midi ensoleillé.\nStockage: cageot ou au sol dans 1 lieu sec et aéré ou bien silo ventilé.",
     "Conditionnement et vente": ":\nCalibrage:\n- botte > 350g, 4 à 6 oignons.\n- Vrac : 20-40mm ; 40 60mm ; 60 80mm ; + de 80mm\nEmballage: cageot de 5 ou 10 kg ; cageot de 12 bottes ; filet de 1 kg.",
+    "Rendement": "Rendement par m2: écarts : 2 à 4 kg retenu : 2,0 kg",
+    "Tableau marge brute": {
+      "entetes": [
+        "Poste",
+        "Gros",
+        "Demi - gros",
+        "Détail"
+      ],
+      "lignes": [
+        {
+          "Poste": "Prix de vente",
+          "Gros": "0.70€",
+          "Demi - gros": "1.00€",
+          "Détail": "1.20e"
+        },
+        {
+          "Poste": "Produit",
+          "Gros": "140",
+          "Demi - gros": "200",
+          "Détail": "240"
+        },
+        {
+          "Poste": "Engrais - amendement",
+          "Gros": "5",
+          "Demi - gros": "5",
+          "Détail": "5"
+        },
+        {
+          "Poste": "Semence -plant 12kg x 3€",
+          "Gros": "36",
+          "Demi - gros": "36",
+          "Détail": "36"
+        },
+        {
+          "Poste": "Produit de traitement",
+          "Gros": "10",
+          "Demi - gros": "10",
+          "Détail": "10"
+        },
+        {
+          "Poste": "Paillage - agrotextile",
+          "Gros": "5",
+          "Demi - gros": "5",
+          "Détail": "5"
+        },
+        {
+          "Poste": "Emballage",
+          "Gros": "12",
+          "Demi - gros": "12",
+          "Détail": ""
+        },
+        {
+          "Poste": "Autres",
+          "Gros": "",
+          "Demi - gros": "",
+          "Détail": ""
+        },
+        {
+          "Poste": "Total ch. Opérationnelles.",
+          "Gros": "68",
+          "Demi - gros": "68",
+          "Détail": "56"
+        },
+        {
+          "Poste": "MARGE BRUTE",
+          "Gros": "72",
+          "Demi - gros": "132",
+          "Détail": "184"
+        }
+      ]
+    },
     "Repères qualité": ": propre, non germé, entier, sans queue ni racine, sain.",
     "Commentaires débouchés": ": débouchés assez importants si les oignons sont assez gros (+ de 40mm)",
-    "Aspects économiques": ":\nRendement par m2: écarts : 2 à 4 kg retenu : 2,0 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.70€ 1.00€ 1.20e\nProduit 140 200 240\nEngrais - amendement 5 5 5\nSemence -plant 12kg x 3€ 36 36 36\nProduit de traitement 10 10 10\nPaillage - agrotextile 5 5 5\nEmballage 12 12\nAutres\nTotal ch. Opérationnelles. 68 68 56\nMARGE BRUTE 72 132 184\nMarge brute / heure de travail: 9€",
     "Autres tableaux": [
       {
         "entetes": [
@@ -4694,76 +4764,6 @@
           "Traitement": ""
         }
       ]
-    },
-    "Tableau marge brute": {
-      "entetes": [
-        "Poste",
-        "Gros",
-        "Demi - gros",
-        "Détail"
-      ],
-      "lignes": [
-        {
-          "Poste": "Prix de vente",
-          "Gros": "0.70€",
-          "Demi - gros": "1.00€",
-          "Détail": "1.20e"
-        },
-        {
-          "Poste": "Produit",
-          "Gros": "140",
-          "Demi - gros": "200",
-          "Détail": "240"
-        },
-        {
-          "Poste": "Engrais - amendement",
-          "Gros": "5",
-          "Demi - gros": "5",
-          "Détail": "5"
-        },
-        {
-          "Poste": "Semence -plant 12kg x 3€",
-          "Gros": "36",
-          "Demi - gros": "36",
-          "Détail": "36"
-        },
-        {
-          "Poste": "Produit de traitement",
-          "Gros": "10",
-          "Demi - gros": "10",
-          "Détail": "10"
-        },
-        {
-          "Poste": "Paillage - agrotextile",
-          "Gros": "5",
-          "Demi - gros": "5",
-          "Détail": "5"
-        },
-        {
-          "Poste": "Emballage",
-          "Gros": "12",
-          "Demi - gros": "12",
-          "Détail": ""
-        },
-        {
-          "Poste": "Autres",
-          "Gros": "",
-          "Demi - gros": "",
-          "Détail": ""
-        },
-        {
-          "Poste": "Total ch. Opérationnelles.",
-          "Gros": "68",
-          "Demi - gros": "68",
-          "Détail": "56"
-        },
-        {
-          "Poste": "MARGE BRUTE",
-          "Gros": "72",
-          "Demi - gros": "132",
-          "Détail": "184"
-        }
-      ]
     }
   },
   "Poireau": {
@@ -4841,64 +4841,7 @@
     "Récolte et stockage": ":\nStade optimal : taille suffisante ( le temps de travail est réduit).\nDéroulement : passage de la lame souleveuse, ramassage, épluchage, taille des racines\net des feuilles.\nStockage : plusieurs semaines en jauge, quelques jours en chambre froide",
     "Conditionnement et vente": ":\nCalibrage : le plus recherché : diamètre 20 à 40 mm.\nEmballage : cageot 40 x 60 cm en 5 ou 10 kg. Botte de 500g.",
     "Repères qualité": ": sain, non monté, entier, propre, un fut d’au moins 25 cm dont 17 cm de\nblanc.",
-    "Commentaires débouchés": ": légume de base en hiver.\nPoireaux un mois après la plantation",
-    "Aspects économiques": ":\nRendement par m2: écarts: 1,5 à 4 kg retenu: 2 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.90€ 1.20€ 1.80€\nProduit 180 240 360\nEngrais \n– amendement 12 12 12\n( y compris pour la pépinière)\nSemence - plant 3 3 3\nProduit de traitement\nPaillage \n– agrotextile (pépinière) 1 1 1\nEmballage 18 18\nAutres\nTotal ch. Opérationnelles. 34 34 16\nMARGE BRUTE 146 206 344\n(Achat de plant: 2.60€ à 3.00€/100 plants selon les quantités)\nMarge brute / heure de travail (approche): 10€.\nUn engrais vert à croissance rapide : la phacélie",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Alimentation en eau\nrégulière",
-          "Défavorable": "Excès d’eau en sol argileux",
-          "Remarques": ""
-        },
-        {
-          "": "Sol",
-          "Favorable": "Terre riche en MO,\nmeuble, bien aplanie",
-          "Défavorable": "Sol argileux",
-          "Remarques": "Analyse de sol"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais vert ayant reçu le\ncompost. Ou compost très\nmûr Enfoui qq mois avant",
-          "Défavorable": "Fumure organique fraîche",
-          "Remarques": "Plante exigeante Qui\nrépond bien à 1 fumure\nabondante."
-        },
-        {
-          "": "Rotation: durée,\nPrécédents",
-          "Favorable": "4 à 5 ans navet, radis, p de\nt, chou fleur",
-          "Défavorable": "Autre liliacée",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "céleri rave, betterave,\ncarotte, laitue, mâche,\noignon, tomate",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Rouille\nmildiou\nBlanchiment hivernal\nMaladie des racines\nroses\nThrips\nTeigne\nMouche de l’oignon",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 1,5 à 4 kg retenu: 2 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -4968,6 +4911,63 @@
           "Détail": "344"
         }
       ]
+    },
+    "Commentaires débouchés": ": légume de base en hiver.\nPoireaux un mois après la plantation",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Alimentation en eau\nrégulière",
+          "Défavorable": "Excès d’eau en sol argileux",
+          "Remarques": ""
+        },
+        {
+          "": "Sol",
+          "Favorable": "Terre riche en MO,\nmeuble, bien aplanie",
+          "Défavorable": "Sol argileux",
+          "Remarques": "Analyse de sol"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais vert ayant reçu le\ncompost. Ou compost très\nmûr Enfoui qq mois avant",
+          "Défavorable": "Fumure organique fraîche",
+          "Remarques": "Plante exigeante Qui\nrépond bien à 1 fumure\nabondante."
+        },
+        {
+          "": "Rotation: durée,\nPrécédents",
+          "Favorable": "4 à 5 ans navet, radis, p de\nt, chou fleur",
+          "Défavorable": "Autre liliacée",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "céleri rave, betterave,\ncarotte, laitue, mâche,\noignon, tomate",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Rouille\nmildiou\nBlanchiment hivernal\nMaladie des racines\nroses\nThrips\nTeigne\nMouche de l’oignon",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
+        }
+      ]
     }
   },
   "Poiree_Bette": {
@@ -5029,7 +5029,6 @@
     "Maladies et ravageurs": "- accidents physiologiques:\nCf. Betterave",
     "Récolte et stockage": ":\nStade optimal : cardes bien développées.\nDéroulement : 2 méthodes : carde par carde ou plante entière coupée sous le collet.\nStockage :",
     "Conditionnement et vente": ":",
-    "Aspects économiques": ":",
     "Tableau environnement": {
       "entetes": [
         "",
@@ -5146,64 +5145,7 @@
     "Récolte et stockage": ":\nStade optimal: avant maturité, le grain devenant dur. On récolte lorsqu’il atteint 50 à 90 % de son\ndéveloppement complet.\nDéroulement: 2 à 3 récoltes par semaine sur 3 à 4 semaines. La durée de la récolte étant limitée, il\nest utile de réaliser plusieurs semis échelonnés dans le temps.\nStockage: 1 semaine en frigo.",
     "Conditionnement et vente": ":\nCalibrage: seulement pour l’industrie:\n- extra fin < 7,4 mm;\n- très fin: de 7,4 à 8 ;\n- fin: 8 à 8,5 ;\n- demi fin : 8,5 à 9 ;\n- moyen : > 9 mm.\nEmballage: cageot 40 x 60 cm par 5 kg",
     "Repères qualité": ": gousse fraîche, saine, entière, avec le pédoncule. Grain non farineux.",
-    "Commentaires débouchés": ":",
-    "Aspects économiques": ":\nRendement par m2: écarts : 0,5 à 0,7 kg retenu : 0,6.\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente\nProduit\nEngrais-amendement\nSemence-plant\nProduit de traitement\nPaillage-agrotextile\nEmballage\nAutres\nTotal ch. Opératio.\nMARGE BRUTE\nMarge brute / heure de travail:\nObservations:\nLe pois apporte une quantité importante d’azote pour les cultures suivantes.\nC’est une culture assez délicate à réussir. Le fait d’adosser les rangs 2 par 2 leur permet de se porter\nmutuellement et réduit les risques de maladie",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Tempéré, beaucoup d’air et de\nlumière",
-          "Défavorable": "Sécheresse, excès de\nchaleur , sécheresse,\ntemps trop humide.",
-          "Remarques": "Les variétés à grains ridés\ncraignent le gel (- 2°)"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Meuble en profondeur Sol\nléger --> précoce Argilo-\nlimoneux",
-          "Défavorable": "Sol trop humide",
-          "Remarques": "Enracinement profond"
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Engrais vet enfoui à l’automne\nEngrais organique",
-          "Défavorable": "",
-          "Remarques": "Importance de P et K"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "5 ans et + céréale, blé noir",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Maïs, carotte, navet, radis,\ncéleri, laitue, concombre.",
-          "Défavorable": "",
-          "Remarques": "Le maïs pouvant servir de\ntuteur"
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Mildiou\nOïdium",
-          "Symptôme": "Tâches jaunâtres sur\nfeuilles et duvet blanc\npuis violacé à la face\ninférieure. Feutrage\nblanc sur feuilles et",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 0,5 à 0,7 kg retenu : 0,6.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -5271,6 +5213,63 @@
           "Gros": "",
           "Demi - gros": "",
           "Détail": ""
+        }
+      ]
+    },
+    "Commentaires débouchés": ":",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Tempéré, beaucoup d’air et de\nlumière",
+          "Défavorable": "Sécheresse, excès de\nchaleur , sécheresse,\ntemps trop humide.",
+          "Remarques": "Les variétés à grains ridés\ncraignent le gel (- 2°)"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Meuble en profondeur Sol\nléger --> précoce Argilo-\nlimoneux",
+          "Défavorable": "Sol trop humide",
+          "Remarques": "Enracinement profond"
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Engrais vet enfoui à l’automne\nEngrais organique",
+          "Défavorable": "",
+          "Remarques": "Importance de P et K"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "5 ans et + céréale, blé noir",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Maïs, carotte, navet, radis,\ncéleri, laitue, concombre.",
+          "Défavorable": "",
+          "Remarques": "Le maïs pouvant servir de\ntuteur"
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Mildiou\nOïdium",
+          "Symptôme": "Tâches jaunâtres sur\nfeuilles et duvet blanc\npuis violacé à la face\ninférieure. Feutrage\nblanc sur feuilles et",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -5365,64 +5364,7 @@
     "Récolte et stockage": ":\nStade optimal : maturité, peau ferme, taux de matière sèche > 20 %.\nDéroulement : arracheuse aligneuse ou arracheuse chargeuse si la terre est\npropre et sans trop de pierres (à partir de 0.5 à 1 ha).\nSinon ramassage manuel (prévoir des coussinets en mousse sur le\npantalon pour protéger les genoux\nStockage: - silo (hauteur < 1 m). Surveiller les pourritures. Couvrir le tas par\nde la fougère ou de la paille.\n- silo ventilé et réfrigéré.",
     "Conditionnement et vente": ":\nCalibrage : - primeur > 28 mm\n- conservation : > 35 mm pour les variétés à forme allongée,\n> 40 mm pour les variétés plus rondes.\nEmballage : cageot de 14 kg ou filet de 1, 2.5, 5 , 25 kg.",
     "Repères qualité": ": tubercules sains, sans blessure ni germe, sans coloration verte. Pas\nplus de 2 % de terre.",
-    "Commentaires débouchés": ": surproduction possible en particulier en primeur.\nRangs de pomme de terre buttés",
-    "Aspects économiques": ":\nRendement par m2: écarts : 0 à 4 kg ; retenu: 1,8 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.50€ 0.75€ 1.00€\nProduit 90 135 180\nEngrai s- amendement 12 12 12\nSemence -plant 20 20 20\nProduit de traitement 2 2 2\nPaillage - agrotextile\nEmballage 8 8\nAutres\nTotal ch. Opérationnelles. 42 42 34\nMARGE BRUTE 58 93 146\nMarge brute / heure de travail (approche): 13€.\nObservations:\nLa culture de la pomme de terre demande assez peu de temps si le désherbage est bien maîtrisé. Mais\nattention aux débouchés sur le marché de gros.\nEn année humide le risque de mildiou est important. Dans ce cas la récolte peut être nulle. Le choix de\nvariétés résistantes est à conseiller fortement. De nouvelles variétés arrivent sur le marché du plant, qui\npermettront sans doute d’éviter tout traitement.\nJusqu'à début mai il y a 1 risque de gelée: la couverture par 1 film “500 trous ” ou “P17” est préconisée.\nPlanteuse polyvalente utilisable pour la plantation de\npomme de terre(Possibilité d’y ajouter des roues à\ngodet permettant un travail plus facile et plus régulier)",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Océanique",
-          "Défavorable": "Gelée Excès de temps\nhumide et doux",
-          "Remarques": "Gèle à -1°"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Meuble sur 20 cm, sans\nmotte. PH< 7 Limono -\nsableux",
-          "Défavorable": "Imperméable, excès d’eau,\nsol tassé.",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost en automne -\nhiver + engrais vert",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "4 ans et + engrais vert ou\nlégumineuse",
-          "Défavorable": "",
-          "Remarques": "Tête de rotation Plante\nnettoyante."
-        },
-        {
-          "": "Association",
-          "Favorable": "Chou, fève, haricot, pois,\nconcombre",
-          "Défavorable": "",
-          "Remarques": "Difficile en raison du\ndéveloppement foliaire et\ndes buttages"
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Mildiou Gale\nargentée Phoma\nRhizoctone\nDoryphore Taupin\nPuceron Mosaïque\nEnroulement\nBigarrure Frisolée\ngale mulot",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 0 à 4 kg ; retenu: 1,8 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -5490,6 +5432,63 @@
           "Gros": "58",
           "Demi - gros": "93",
           "Détail": "146"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": surproduction possible en particulier en primeur.\nRangs de pomme de terre buttés",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Océanique",
+          "Défavorable": "Gelée Excès de temps\nhumide et doux",
+          "Remarques": "Gèle à -1°"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Meuble sur 20 cm, sans\nmotte. PH< 7 Limono -\nsableux",
+          "Défavorable": "Imperméable, excès d’eau,\nsol tassé.",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost en automne -\nhiver + engrais vert",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "4 ans et + engrais vert ou\nlégumineuse",
+          "Défavorable": "",
+          "Remarques": "Tête de rotation Plante\nnettoyante."
+        },
+        {
+          "": "Association",
+          "Favorable": "Chou, fève, haricot, pois,\nconcombre",
+          "Défavorable": "",
+          "Remarques": "Difficile en raison du\ndéveloppement foliaire et\ndes buttages"
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Mildiou Gale\nargentée Phoma\nRhizoctone\nDoryphore Taupin\nPuceron Mosaïque\nEnroulement\nBigarrure Frisolée\ngale mulot",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -5569,64 +5568,7 @@
     "Récolte et stockage": ":\nStade optimal: Maturité complète\nDéroulement: Attention aux blessures au moment de la récolte entraînant le pourrissement du\nfruit.\nStockage: En cageot ou caisse au sec et à l’abri du gel.\nOu dans un local spécial chauffé à15° et ventilé.",
     "Conditionnement et vente": ":\nCalibrage: -\nEmballage: en cageot de 10 kg (30 x 50 cm)",
     "Repères qualité": ": couleur, maturité, propreté, absence de blessure et maladie",
-    "Commentaires débouchés": ": Les gros potirons se vendent mal sur le marché de gros. Le\npotimarron de petit calibre est le plus recherché. Le marché est\nassez encombré jusqu’au mois de janvier, d’où l’intérêt de stocker\ndans de bonnes conditions. Les courges décoratives exercent 1\ncertain attrait sur le marché de détail.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 2 à 4 kg retenu : 2,5 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.70€ 1.00€ 1.50e\nProduit 175 250€ 375\nEngrais - amendement 10 10 10\nSemence - plant 6 6 6\nProduit de traitement\nPaillage - agrotextile 6 6 6\nEmballage 15 15\nAutres: terreau motte 9 9 9\nTotal ch. Opérationnelles. 46 46 31\nMARGE BRUTE 129 204 344\nMarge brute / heure de travail : 25€.\nObservations:\nLes potimarrons oranges se conservent mal à partir de janvier (sauf dans 1 local spécialisé). Les verts\npeuvent alors prendre le relais jusqu’en avril. Les pertes sont très importantes en conditions humides et\nfroides",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Chaleur, humidité",
-          "Défavorable": "Craint le gel et le temps\nfroid",
-          "Remarques": "A récolter avant les 1ères\ngelées"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Riche en humus, meuble",
-          "Défavorable": "Tassement, excès\nd’humidité",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost",
-          "Défavorable": "",
-          "Remarques": "Culture valorisant bien les\napports organiques"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Maïs",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Oïdium\nFusariose\nPetits rongeurs\nLapin",
-          "Symptôme": "Graines détruites\nFruits grignotés",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 2 à 4 kg retenu : 2,5 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -5694,6 +5636,63 @@
           "Gros": "129",
           "Demi - gros": "204",
           "Détail": "344"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": Les gros potirons se vendent mal sur le marché de gros. Le\npotimarron de petit calibre est le plus recherché. Le marché est\nassez encombré jusqu’au mois de janvier, d’où l’intérêt de stocker\ndans de bonnes conditions. Les courges décoratives exercent 1\ncertain attrait sur le marché de détail.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Chaleur, humidité",
+          "Défavorable": "Craint le gel et le temps\nfroid",
+          "Remarques": "A récolter avant les 1ères\ngelées"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Riche en humus, meuble",
+          "Défavorable": "Tassement, excès\nd’humidité",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost",
+          "Défavorable": "",
+          "Remarques": "Culture valorisant bien les\napports organiques"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Maïs",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Oïdium\nFusariose\nPetits rongeurs\nLapin",
+          "Symptôme": "Graines détruites\nFruits grignotés",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
@@ -5788,48 +5787,7 @@
     "Récolte et stockage": ":\nStade optimal : selon la taille recherchée.\nDéroulement : bottes réalisées directement au champ. Si possible récolte en 1\nseul passage.\nStockage : seulement pour le radis d’hiver en silo.",
     "Conditionnement et vente": ":\nCalibrage : botte de 350 g.(30 à 40 radis).\nEmballage : cageot à tomate contenant 15 bottes (racine en l’air).",
     "Repères qualité": ": pas trop piquant, non véreux, propre, feuilles entières.",
-    "Commentaires débouchés": ": débouchés régulier en vente au détail, plus aléatoire en vente\nen gros en dehors de l’hiver.",
-    "Aspects économiques": ":\nRendement par m2: écarts: 3 à 7 bottes retenu : 4 bottes.\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.40€ 0.60€ 0.85€\nProduit 160 240 420\nEngrais - amendement 0 0 0\nSemence - plant 8 8 8\nProduit de traitement\nPaillage - agrotextile 3 3 3\nEmballage 18 18 0\nAutres\nTotal ch. Opérationnelles. 29 29 11\nMARGE BRUTE 131 211 409\nMarge brute / heure de travail : 13€.\nObservations:\nRentabilité aléatoire en vente.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Pluviométrie abondante et\nrégulière",
-          "Défavorable": "Sec et chaud",
-          "Remarques": ""
-        },
-        {
-          "": "Sol",
-          "Favorable": "Riche et léger",
-          "Défavorable": "Terre asphyxiante",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Reliquat des cultures\nprécédentes ou engrais\norganique",
-          "Défavorable": "Fumier frais",
-          "Remarques": "Peu exigeant"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Culture intercalaire",
-          "Défavorable": "Autre brassicacée",
-          "Remarques": ""
-        },
-        {
-          "": "Association",
-          "Favorable": "Carotte, laitue, haricot, pois,\ntomate",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts: 3 à 7 bottes retenu : 4 bottes.",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -5897,6 +5855,47 @@
           "Gros": "131",
           "Demi - gros": "211",
           "Détail": "409"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": débouchés régulier en vente au détail, plus aléatoire en vente\nen gros en dehors de l’hiver.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Pluviométrie abondante et\nrégulière",
+          "Défavorable": "Sec et chaud",
+          "Remarques": ""
+        },
+        {
+          "": "Sol",
+          "Favorable": "Riche et léger",
+          "Défavorable": "Terre asphyxiante",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Reliquat des cultures\nprécédentes ou engrais\norganique",
+          "Défavorable": "Fumier frais",
+          "Remarques": "Peu exigeant"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Culture intercalaire",
+          "Défavorable": "Autre brassicacée",
+          "Remarques": ""
+        },
+        {
+          "": "Association",
+          "Favorable": "Carotte, laitue, haricot, pois,\ntomate",
+          "Défavorable": "",
+          "Remarques": ""
         }
       ]
     }
@@ -5976,64 +5975,7 @@
     "Récolte et stockage": ":\nStade optimal : en circuit court maturité; en circuit long\nDéroulement : 2 à 3 fois / semaine le matin. Récolter avec le pédoncule.\nStockage : quelques jours en chambre froide.",
     "Conditionnement et vente": ":\nCalibrage: 40 à 47 mm; 47 à 57; 57 à 67; 67 à 80 et > 82 mm.\nEmballage: cageot de 5 à 8 kg. Barquette de1 kg et moins pour les tomates\ncerises ou poires.",
     "Repères qualité": ": forme, couleur, fruit sain avec son pédoncule, propre.",
-    "Commentaires débouchés": ": ils sont importants sur les marchés. En vente en gros il y a des\nrisques de saturation sauf pour la tomate grappe. La concurrence\nest assez forte avec les pays du Sud. Jusqu’à mi juillet les prix\nsont bons.",
-    "Aspects économiques": ":\nRendement par m2: écarts : 5 à 12 kg retenu : 7 kg\nAPPROCHE DE MARGE BRUTE par are.\nType de vente Gros Demi - gros Détail\nPrix de vente 0.70€ 0.90€ 1.50€\nProduit 490 720 1050\nEngrais - amendement 20 20 20\nSemence - plant 25 25 25\nProduit de traitement 3 3 3\nPaillage - agrotextile 13 (biodégradable) 13 (biodégradable) 13 (biodégradable)\nEmballage 55 55 0\nAutres : terreau motte 18 18 18\nTotal ch. Opérationnelles. 134 134 79\nMARGE BRUTE 356 586 971\nMarge brute / heure de travail (approche): 10€.\nObservations:\nDans les calculs de surface, attention à prendre en compte le rendement important (sous abri) et le type de\nclientèle estivale (zone touristique) ou au contraire clientèle citadine qui s’absente en été.",
-    "Tableau environnement": {
-      "entetes": [
-        "",
-        "Favorable",
-        "Défavorable",
-        "Remarques"
-      ],
-      "lignes": [
-        {
-          "": "Climat",
-          "Favorable": "Chaleur et humidité\nIdéal > 25°",
-          "Défavorable": "Froid et gelée",
-          "Remarques": "Culture sous abri"
-        },
-        {
-          "": "Sol",
-          "Favorable": "Limoneux profond riche\nen humus",
-          "Défavorable": "",
-          "Remarques": ""
-        },
-        {
-          "": "Fertilisation",
-          "Favorable": "Compost mûr + engrais\nvert",
-          "Défavorable": "",
-          "Remarques": "Culture vorace"
-        },
-        {
-          "": "Rotation : durée,\nPrécédents",
-          "Favorable": "Cucurbitacée + engrais\nvert",
-          "Défavorable": "Autre solanacée",
-          "Remarques": "Difficulté de rotation\nlongue"
-        },
-        {
-          "": "Association",
-          "Favorable": "Basilic, capucine, haricot,\nsouci, carotte, chou-\nfleur, laitue",
-          "Défavorable": "",
-          "Remarques": ""
-        }
-      ]
-    },
-    "Tableau maladies": {
-      "entetes": [
-        "Nom",
-        "Symptôme",
-        "Prévention",
-        "Traitement"
-      ],
-      "lignes": [
-        {
-          "Nom": "Botrytis\nMildiou Cladosporiose\nPied noir Fusariose\nPuceron\naleurode",
-          "Symptôme": "",
-          "Prévention": "",
-          "Traitement": ""
-        }
-      ]
-    },
+    "Rendement": "Rendement par m2: écarts : 5 à 12 kg retenu : 7 kg",
     "Tableau marge brute": {
       "entetes": [
         "Poste",
@@ -6101,6 +6043,63 @@
           "Gros": "356",
           "Demi - gros": "586",
           "Détail": "971"
+        }
+      ]
+    },
+    "Commentaires débouchés": ": ils sont importants sur les marchés. En vente en gros il y a des\nrisques de saturation sauf pour la tomate grappe. La concurrence\nest assez forte avec les pays du Sud. Jusqu’à mi juillet les prix\nsont bons.",
+    "Tableau environnement": {
+      "entetes": [
+        "",
+        "Favorable",
+        "Défavorable",
+        "Remarques"
+      ],
+      "lignes": [
+        {
+          "": "Climat",
+          "Favorable": "Chaleur et humidité\nIdéal > 25°",
+          "Défavorable": "Froid et gelée",
+          "Remarques": "Culture sous abri"
+        },
+        {
+          "": "Sol",
+          "Favorable": "Limoneux profond riche\nen humus",
+          "Défavorable": "",
+          "Remarques": ""
+        },
+        {
+          "": "Fertilisation",
+          "Favorable": "Compost mûr + engrais\nvert",
+          "Défavorable": "",
+          "Remarques": "Culture vorace"
+        },
+        {
+          "": "Rotation : durée,\nPrécédents",
+          "Favorable": "Cucurbitacée + engrais\nvert",
+          "Défavorable": "Autre solanacée",
+          "Remarques": "Difficulté de rotation\nlongue"
+        },
+        {
+          "": "Association",
+          "Favorable": "Basilic, capucine, haricot,\nsouci, carotte, chou-\nfleur, laitue",
+          "Défavorable": "",
+          "Remarques": ""
+        }
+      ]
+    },
+    "Tableau maladies": {
+      "entetes": [
+        "Nom",
+        "Symptôme",
+        "Prévention",
+        "Traitement"
+      ],
+      "lignes": [
+        {
+          "Nom": "Botrytis\nMildiou Cladosporiose\nPied noir Fusariose\nPuceron\naleurode",
+          "Symptôme": "",
+          "Prévention": "",
+          "Traitement": ""
         }
       ]
     }
