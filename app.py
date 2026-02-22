@@ -178,7 +178,6 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
 # --- CAS B : PAGE CALCUL FERTI ---
-# --- CAS B : PAGE CALCUL FERTI ---
 elif st.session_state["view_mode"] == "PAGE_FERTI":
     FERTI_DATA = load_json("calcul_ferti.json")
     st.title("🌿 CALCUL FERTI")
@@ -205,22 +204,14 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
     rows = []
     facteur = surface / 10000
 
-    # Fonction de calcul centralisée
+    # Fonction de calcul
     def calculer_besoins(n_ha, p_ha, k_ha, source_label):
         b_n = round(n_ha * facteur, 2)
-        b_p = round(p_ha * facteur, 2)
         b_k = round(k_ha * facteur, 2)
-        
-        # Dose d'engrais principal basée sur N
         dose_principale = round(b_n / (teneur_N / 100), 1) if teneur_N > 0 else 0
-        
-        # Potasse déjà apportée par l'engrais principal
         k_apporte = round(dose_principale * (teneur_K / 100), 2)
-        
-        # Reste à combler par le Patentkali (K30%)
         manque_k = max(0, b_k - k_apporte)
-        dose_patentkali = round(manque_k / 0.30, 2) # Patentkali = 30% K
-        
+        dose_patentkali = round(manque_k / 0.30, 2)
         return {
             "Source": source_label,
             "Besoin N (kg)": b_n,
@@ -229,7 +220,7 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
             "💎 Ajout Patentkali (kg)": dose_patentkali if dose_patentkali > 0 else "0"
         }
 
-    # Logique d'affichage
+    # LOGIQUE DE DECISION (Évite le double affichage)
     if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
         st.markdown(f"### Résultats personnalisés — **{surface} m²**")
         rows.append(calculer_besoins(manuel_n, manuel_p, manuel_k, "Saisie Manuelle"))
@@ -241,31 +232,10 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
             if vals:
                 rows.append(calculer_besoins(vals["N"], vals["P"], vals["K"], source))
 
+    # AFFICHAGE UNIQUE DU TABLEAU
     if rows:
         st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
         st.info("💡 **Dose Patentkali** : Quantité à ajouter pour combler le manque de potasse après l'apport de l'amendement principal.")
-
-    # Priorité 2 : Sélection par légume
-    elif legume_ferti != "---":
-        donnees = FERTI_DATA[legume_ferti]
-        st.markdown(f"### Résultats pour **{legume_ferti}** — {longueur} m × {largeur} m = **{surface} m²**")
-        for source, vals in donnees.items():
-            if vals:
-                besoin_N = round(vals["N"] * facteur, 2)
-                besoin_P = round(vals["P"] * facteur, 2)
-                besoin_K = round(vals["K"] * facteur, 2)
-                dose = round(besoin_N / (teneur_N / 100), 1) if teneur_N > 0 else "—"
-                rows.append({
-                    "Source": source,
-                    "Besoin N (kg)": besoin_N,
-                    "Besoin P (kg)": besoin_P,
-                    "Besoin K (kg)": besoin_K,
-                    "⚖️ Dose à épandre (kg)": dose,
-                })
-
-    if rows:
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-        st.caption("La dose à épandre est calculée sur la base de l'azote (N) : besoin N de la culture ÷ teneur N de l'amendement.")
 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -353,5 +323,6 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
