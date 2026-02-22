@@ -122,27 +122,44 @@ with st.sidebar:
 
 # --- PAGE RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
-    st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
+    st.title("⚙️ RÉGLAGES JP1 (FUSION SOURCES)")
+    
+    # Extraction des listes de cultures de chaque source
     l_off = [i["CULTURE"] for i in JP1_OFFICIEL.get("reglages", [])]
     l_jmf = [i["CULTURE"] for i in JP1_JMF.get("reglages", [])]
+    
+    # Fusion unique et triée
     fusion_jp1 = sorted(list(set(l_off + l_jmf)), key=sans_accent)
     
-    sel_jp1 = st.selectbox("Sélectionner un légume :", ["---"] + fusion_jp1)
+    sel_jp1 = st.selectbox("Sélectionner un légume pour voir les réglages :", ["---"] + fusion_jp1)
     
     if sel_jp1 != "---":
         tab_res = []
+        
+        # Recherche dans la source OFFICIELLE
         o = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
-        tab_res.append({
-            "Source": "OFFICIEL", "Rouleau": o.get("ROULEAU", o.get("ROULEAUX", "-")) if o else "Non listé",
-            "Pignons": "-", "Observations": "-"
-        })
+        if o:
+            tab_res.append({
+                "Source": "OFFICIEL (Terrateck)",
+                "Rouleau": o.get("ROULEAU", "-"),
+                "Pignons (AV/AR)": "-",
+                "Observations": "-"
+            })
+        
+        # Recherche dans la source JMF
         j = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
         if j:
             tab_res.append({
-                "Source": "JMF", "Rouleau": j.get("ROULEAU", "-"),
-                "Pignons": f"{j.get('AV','-')} / {j.get('AR','-')}", "Observations": j.get("OBS", "-")
+                "Source": "JMF (Grelinette)",
+                "Rouleau": j.get("ROULEAU", "-"),
+                "Pignons (AV/AR)": f"{j.get('AV','-')} / {j.get('AR','-')}",
+                "Observations": j.get("OBS", "-")
             })
-        st.table(pd.DataFrame(tab_res))
+        
+        if tab_res:
+            st.table(pd.DataFrame(tab_res))
+        else:
+            st.warning("Aucune donnée trouvée pour ce légume.")
 
 # --- PAGE FICHE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME":
@@ -196,3 +213,4 @@ else:
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
