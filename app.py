@@ -52,6 +52,7 @@ def load_json(f):
     return {}
 
 def sans_accent(texte):
+    if not texte: return ""
     return ''.join(c for c in unicodedata.normalize('NFD', texte)
                    if unicodedata.category(c) != 'Mn').lower()
 
@@ -70,7 +71,7 @@ JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 ITAB_DATA = load_json("itab.json")
 FERTI_DATA = load_json("calcul_ferti.json")
-JP1_OFFICIEL = load_json("reglages_jp1.json")
+JP1_OFFICIEL = load_json("reglages_jp1 (4).json")
 JP1_JMF = load_json("reglages_jmf.json")
 
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + list(ARG_DATA.keys())) 
@@ -106,7 +107,6 @@ def popover_feedback(onglet, bloc, legume_sel):
 # 4. SIDEBAR ET NAVIGATION
 # ==========================================
 with st.sidebar:
-    # Navigation DLABAL
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "ACCUEIL"
         st.rerun()
@@ -134,10 +134,6 @@ with st.sidebar:
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
-    st.markdown("---")
-    st.markdown("### 🌦️ Météo locale")
-    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
 # ==========================================
 # 5. AFFICHAGE CENTRAL
 # ==========================================
@@ -145,13 +141,11 @@ with st.sidebar:
 # --- PAGE FERTILISATION ---
 if st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
-    leg_f = st.selectbox("Légume pour base de calcul :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent), key="sel_ferti")
+    leg_f = st.selectbox("Légume pour base :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent), key="sel_ferti")
     
     with st.expander("Saisie manuelle (u/ha)"):
         cn, cp, ck = st.columns(3)
-        manuel_n = cn.number_input("N", 0)
-        manuel_p = cp.number_input("P", 0)
-        manuel_k = ck.number_input("K", 0)
+        manuel_n, manuel_p, manuel_k = cn.number_input("N", 0), cp.number_input("P", 0), ck.number_input("K", 0)
     col1, col2 = st.columns(2)
     longueur, largeur = col1.number_input("Longueur (m)", 1, 10), col2.number_input("Largeur (m)", 0.1, 1.0)
     surface = longueur * largeur
@@ -166,7 +160,7 @@ if st.session_state["view_mode"] == "PAGE_FERTI":
         dose_kg = round(b_n / (ten_N / 100), 1) if ten_N > 0 else 0
         k_app = round(dose_kg * (ten_K / 100), 2)
         manque_k = max(0, round(b_k - k_app, 2))
-        dose_pat = round(manque_k / (ten_pat / 100), 2) if ten_pat > 0 else 0
+        dose_pat = round(manque_k / (ten_pat / 100), 2)
         return {"Source": label, "Besoin (U/ha)": f"N:{n_ha}|K:{k_ha}", "Dose Principal (kg)": dose_kg, "💎 Patentkali (kg)": dose_pat}
     
     if (manuel_n > 0 or manuel_k > 0):
@@ -180,21 +174,25 @@ if st.session_state["view_mode"] == "PAGE_FERTI":
 # --- PAGE REGLAGES JP1 ---
 elif st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
-    # Fusion des listes de légumes des deux fichiers reglages
+    # Fusion robuste des listes (gestion des doublons insensible à la casse/accents)
     list_off = [item["CULTURE"] for item in JP1_OFFICIEL.get("reglages", [])]
     list_jmf_jp1 = [item["CULTURE"] for item in JP1_JMF.get("reglages", [])]
+    
+    # On crée un set final pour la sélection
     full_list_jp1 = sorted(list(set(list_off + list_jmf_jp1)), key=sans_accent)
     
     l_jp1 = st.selectbox("Choisir un légume :", ["---"] + full_list_jp1, key="sel_jp1")
     
     if l_jp1 != "---":
         tableau_data = []
+        # Recherche exacte ou normalisée dans l'officiel
         off_item = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == l_jp1), None)
         tableau_data.append({
             "Source": "OFFICIEL (Terrateck)", 
-            "Rouleau(x)": off_item.get("ROULEAUX", "-") if off_item else "Aucune donnée",
+            "Rouleau(x)": off_item.get("ROULEAUX", "-") if off_item else "Non répertorié",
             "Pignons (AV/AR)": "-", "Observations": "-"
         })
+        # Recherche dans JMF
         jmf_item_jp1 = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == l_jp1), None)
         if jmf_item_jp1:
             tableau_data.append({
@@ -211,7 +209,7 @@ elif st.session_state["view_mode"] == "LEGUME":
     if sel_legume != "---":
         st.title(f"📊 {sel_legume.upper()}")
         tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
-        
+
         with tabs[0]: # ARG
             arg_l = ARG_DATA.get(sel_legume, {})
             if arg_l:
@@ -220,9 +218,10 @@ elif st.session_state["view_mode"] == "LEGUME":
                         if isinstance(c, dict) and "lignes" in c:
                             df_t = pd.DataFrame(c["lignes"]).rename(columns={"Janv.":"J","Fév.":"F","Mars":"M","Avril":"A","Mai":"M ","Juin":"J ","Juill.":"J  ","Août":"A ","Sept.":"S","Oct.":"O","Nov.":"N","Déc.":"D","col_0":"Activité"})
                             st.dataframe(df_t, use_container_width=True)
-                        else: st.markdown(str(c).replace('\\\\n', '  \n').replace('\\n', '  \n'))
+                        else:
+                            st.markdown(str(c).replace('\\\\n', '  \n').replace('\\n', '  \n'))
                         popover_feedback("ARG", t, sel_legume)
-            else: st.info(f"Données ARG absentes pour {sel_legume}.")
+            else: st.info(f"Aucune donnée ARG disponible.")
 
         with tabs[1]: # GAB
             g = GAB_DATA.get(sel_legume, {})
@@ -230,20 +229,20 @@ elif st.session_state["view_mode"] == "LEGUME":
                 if "BLOCS_IDENTITE" in g:
                     cols = st.columns(len(g["BLOCS_IDENTITE"]))
                     for i, b in enumerate(g["BLOCS_IDENTITE"]):
-                        with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n')}")
+                        with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '  \n').replace('\\n', '  \n')}")
                 if "TECHNIQUE" in g:
                     for k, v in g.get("TECHNIQUE", {}).items():
                         with st.expander(f"📌 {k}", expanded=True):
-                            st.markdown(str(v).replace('\\\\n', '\\n'))
+                            st.markdown(str(v).replace('\\\\n', '  \n').replace('\\n', '  \n'))
                             popover_feedback("GAB", k, sel_legume)
-            else: st.info("Données GAB absentes.")
+            else: st.info("Aucune donnée GAB disponible.")
 
         with tabs[2]: # JMF
             j_data = JMF_DATA.get(sel_legume, {})
             if j_data:
                 for t, c in j_data.items():
                     with st.expander(f"🚜 {t}", expanded=True):
-                        st.markdown(str(c).replace('\\\\n', '\\n'))
+                        st.markdown(str(c).replace('\\\\n', '  \n').replace('\\n', '  \n'))
                         popover_feedback("JMF", t, sel_legume)
 
         with tabs[3]: # JDV
@@ -251,7 +250,7 @@ elif st.session_state["view_mode"] == "LEGUME":
             if v_data:
                 for t, c in v_data.items():
                     with st.expander(f"🌿 {t}", expanded=True):
-                        st.markdown(str(c).replace('\\\\n', '\\n'))
+                        st.markdown(str(c).replace('\\\\n', '  \n').replace('\\n', '  \n'))
                         popover_feedback("JDV", t, sel_legume)
 
         with tabs[4]: # ITAB
@@ -259,7 +258,7 @@ elif st.session_state["view_mode"] == "LEGUME":
             if i_data:
                 for t, c in i_data.items():
                     with st.expander(f"📗 {t}", expanded=True):
-                        st.markdown(str(c).replace('\\\\n', '\\n'))
+                        st.markdown(str(c).replace('\\\\n', '  \n').replace('\\n', '  \n'))
                         popover_feedback("ITAB", t, sel_legume)
 
         with tabs[5]: # THO
@@ -285,10 +284,5 @@ elif st.session_state["view_mode"] == "LEGUME":
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
-    st.markdown("### DLABAL - BDD ITK Maraîchage\n\n"
-                "Cette application centralise les données techniques pour le maraîchage.\n\n"
-                "1. **Sélectionnez un légume** dans la barre latérale pour consulter les fiches (ARG, GAB, JMF, etc.).\n"
-                "2. **Utilisez les outils** (⚙️ Réglages JP1, 🧪 Calcul Ferti) pour vos besoins spécifiques.\n"
-                "3. **Contribuez** en utilisant l'icône 📝 pour envoyer vos retours ou remplir l'onglet THO.")
+    st.markdown("### DLABAL - BDD ITK Maraîchage\n\n1. Sélectionnez un légume à gauche.\n2. Consultez les fiches.\n3. Contribuez via l'icône 📝.")
     st.info("Utilisez la barre latérale à gauche pour naviguer.")
-
