@@ -204,15 +204,29 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
     tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
-    with tabs[0]: # ARG
+   with tabs[0]: # ARG
         arg_l = ARG_DATA.get(sel, {})
         if arg_l:
             for t, c in arg_l.items():
                 with st.expander(f"📘 {t}", expanded=True):
-                    if isinstance(c, list): st.table(pd.DataFrame(c))
-                    else: st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                    # --- DETECTION FORMAT CLAUDE (Complexes) ---
+                    if isinstance(c, dict) and "lignes" in c:
+                        df_temp = pd.DataFrame(c["lignes"])
+                        # On nettoie les noms de colonnes techniques (col_0 -> Type)
+                        if "col_0" in df_temp.columns:
+                            df_temp = df_temp.rename(columns={"col_0": "Activité"})
+                        st.table(df_temp)
+                    
+                    # --- DETECTION FORMAT LISTE (Mes tableaux) ---
+                    elif isinstance(c, list):
+                        try: st.table(pd.DataFrame(c))
+                        except: st.write(str(c))
+                    
+                    # --- FORMAT TEXTE CLASSIQUE ---
+                    else:
+                        st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                    
                     popover_feedback("ARG", t, sel)
-        else: st.info("Aucune donnée ARG.")
 
     with tabs[1]: # GAB
         g = GAB_DATA.get(sel, {})
@@ -274,3 +288,4 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
