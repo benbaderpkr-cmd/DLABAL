@@ -207,34 +207,45 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
         if arg_l:
             for titre, contenu in arg_l.items():
                 with st.expander(f"📘 {titre}", expanded=True):
-                    # --- CAS 1 : Format Tableau Claude (Entêtes + Lignes) ---
+                    
+                    # --- CAS 1 & 2 : Tableaux (Claude ou Listes) ---
                     if isinstance(contenu, dict) and "lignes" in contenu:
                         df_temp = pd.DataFrame(contenu["lignes"])
-                        if "col_0" in df_temp.columns:
-                            df_temp = df_temp.rename(columns={"col_0": "Activité"})
+                        if "col_0" in df_temp.columns: df_temp = df_temp.rename(columns={"col_0": "Activité"})
                         st.table(df_temp)
-                    
-                    # --- CAS 2 : Format Liste simple ---
                     elif isinstance(contenu, list):
-                        try:
-                            st.table(pd.DataFrame(contenu))
-                        except:
-                            st.write(str(contenu))
+                        try: st.table(pd.DataFrame(contenu))
+                        except: st.write(str(contenu))
                     
-                    # --- CAS 3 : Format Texte classique avec nettoyage ---
+                    # --- CAS 3 : Texte avec Nettoyage Avancé ---
                     else:
                         t = str(contenu).strip()
-                        # Enlever les ":" ou "." orphelins en début de bloc
-                        if t.startswith(":") or t.startswith("."):
+                        
+                        # 1. Suppression des caractères parasites au début
+                        while t.startswith((".", ":", "-", " ")):
                             t = t[1:].strip()
-                        # Gestion des sauts de ligne incohérents
+                        
+                        # 2. Harmonisation des sauts de ligne
                         t = t.replace('\\\\n', '\n').replace('\\n', '\n')
-                        # Forcer les sauts de ligne Markdown (double espace + \n)
-                        st.markdown(t.replace('\n', '  \n'))
+                        
+                        # 3. Réparation des phrases coupées (Sauts de ligne non souhaités)
+                        # On remplace un saut de ligne simple par un espace, 
+                        # SAUF s'il est suivi d'une puce ou d'un autre saut de ligne.
+                        import re
+                        # On protège les doubles sauts de ligne (paragraphes)
+                        t = t.replace('\n\n', '[[PARAGRAPHE]]')
+                        # On remplace les simples sauts de ligne par un espace
+                        t = t.replace('\n', ' ')
+                        # On restaure les paragraphes
+                        t = t.replace('[[PARAGRAPHE]]', '\n\n')
+                        # On s'assure que les listes à puces conservent leur ligne
+                        t = t.replace('- ', '\n- ')
+                        
+                        st.markdown(t)
                     
                     popover_feedback("ARG", titre, sel)
         else:
-            st.info("Aucune donnée ARG disponible pour ce légume.")
+            st.info("Aucune donnée ARG disponible.")
 
     with tabs[1]: # GAB
         g = GAB_DATA.get(sel, {})
@@ -296,3 +307,4 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
