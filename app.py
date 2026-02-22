@@ -202,7 +202,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
     tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
-  with tabs[0]: # Onglet ARG
+    with tabs[0]: # Onglet ARG
         arg_l = ARG_DATA.get(sel, {})
         if arg_l:
             # Injection de CSS pour forcer la lisibilité sur mobile
@@ -332,6 +332,7 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
 
 
 
