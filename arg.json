@@ -1350,7 +1350,7 @@
       ]
     }
   },
-  "Celeri-rave": {
+  "Céleri-rave": {
     "Origine": "Littoral méditerranéen.",
     "Particularités": "Ses caractéristiques botaniques sont identiques au céleri\nbranche. Les feuilles sont plus petites, amères. Sa racine est\nune rave.",
     "Tableau environnement": {
@@ -1523,7 +1523,7 @@
     "Repères qualité": ": propre, sain, bien paré.",
     "Commentaires débouchés": ": besoins limités sur le marché de gros."
   },
-  "Chicoree": {
+  "Chicorée": {
     "Origine": "Europe Occidentale",
     "Particularités": "Plante bisannuelle sensible à la vernalisation. Cette facilité\nà monter à graine, qui est un handicap important,est à\nprendre en compte dans le choix des variétés.\nOn distingue deux groupes :\n- la chicorées scarole,\n- la chicorée frisée moins rustique.\nLes exigences pédo-climatiques des chicorées sont\nproches de celles des laitues.",
     "Tableau environnement": {
@@ -1708,7 +1708,7 @@
       ]
     }
   },
-  "Chou_brocoli": {
+  "Chou-brocoli": {
     "Origine": "Italie.",
     "Particularités": "La partie consommée est une inflorescence. La pomme est verte,\nparfois violette ou jaune. Les jets pèsent généralement de 200 à\n500 g et plus.",
     "Tableau environnement": {
@@ -1895,7 +1895,7 @@
     },
     "Commentaires débouchés": ": assez importants mais il faut veiller à faire coïncider le planning de\nculture avec les périodes de vente les plus favorables. De plus le climat\ninfluence grandement la fréquence de récolte et les quantités. Il peut\ny avoir des invendus par moments."
   },
-  "Chou_fleur": {
+  "Chou-fleur": {
     "Origine": "Le bassin méditerranéen.",
     "Particularités": "Le chou-fleur serait issu du brocoli, lui-même dérivé du chou\nsauvage. La partie comestible est constituée d’inflorescences\ncourtes, charnues, tendres et blanches. En France, la Bretagne en\nest la principale région de production. Le chou-fleur est produit\npratiquement toute l’année dans les régions côtières peu sujettes\naux gelées.",
     "Tableau environnement": {
@@ -2082,7 +2082,7 @@
     "Repères qualité": ": blancheur, fermeté, absence de points noirs, feuilles saines.",
     "Commentaires débouchés": ": par temps doux, la production du chou-fleur bio a quelques difficultés à\ntrouver preneur: les prix chutent sur le marché de gros et il peut y\navoir des invendus. La concurrence devient plus forte avec les pays du\nsud.\nPlanteuse tractée polyvalente"
   },
-  "Chou_pomme": {
+  "Chou-pomme": {
     "Origine": "Le chou sauvage pousse spontanément sous les climats maritimes\neuropéens. Il est cultivé depuis plus de 2300 ans comme plante\nbisannuelle A l’origine c’était une plante vivace.",
     "Particularités": "En raison de son ancienneté et de sa très grande variabilité, le\nchou a donné naissance à un grand nombre de races. On distingue :\n- Les choux pommés lisses ou cabus\n- Les choux cabus frisés ou de Milan\n- Les choux de Bruxelles à pommes latérales.\n- Sans oublier les choux-fleurs, les brocoli et les choux chinois ou\nPé Tsaî.",
     "Tableau environnement": {
@@ -2300,7 +2300,7 @@
     "Repères qualité": ": chou frais, entier, non éclaté ni monté, sain, propre.",
     "Commentaires débouchés": ": marché assez étroit en vente en gros. Prix peu attractifs"
   },
-  "Concombre_Cornichon": {
+  "Concombre": {
     "Origine": "Inde. Le concombre est cultivé depuis très Longtemps dans ce\npays. Il est connu en France depuis le IX ème siècle.",
     "Particularités": "Le concombre a une vitesse de croissance et un développement\nspectaculaires. Il a une faible valeur nutritive puisqu’il contient\n96% d’eau. Il est rafraîchissant et laxatif. On distingue 2\ntypes de culture :\n- sous abri : fruits longs 30 à 40 cm ;\n- de plein champ : fruits plus court ressemblant au cornichon\nmais d’un goût très différent. Il n’y a pas de taille ni de\ntuteurage en plein champ.",
     "Tableau environnement": {
@@ -3051,7 +3051,7 @@
     "Repères qualité": ": forme régulière, ferme, serrée, intacte, sans coloration verdâtre.",
     "Commentaires débouchés": ": créneau intéressant en agriculture biologique loin d’être saturé."
   },
-  "Epinard": {
+  "Épinard": {
     "Origine": "Asie.",
     "Particularités": "Appelé “le balai de l’estomac ” en Afrique du nord, l’épinard\nest connu en France depuis le XVIè siècle. C’est une plante\nannuelle. On réalise généralement 3 à 4 coupes..",
     "Tableau environnement": {
@@ -3254,7 +3254,7 @@
     "Repères qualité": ": catégorie 1: feuilles entières, sans trou ni tâche. Le lavage entraîne une mauvaise\nconservation au-delà de 3 - 4 jours sauf si on stocke les cageots en frigo à + 4 à 5°.",
     "Commentaires débouchés": ":\n– marché du frais non saturé\n– besoins pour l’industrie en augmentation."
   },
-  "Feve": {
+  "Fève": {
     "Origine": "Afrique du Nord et Moyen Orient.",
     "Particularités": "Les graines d’un poids de 2 grammes sont consommées fraîches ou sèches.\nElles sont riches en protéines et nourrissantes. La fève était très cultivée\nen France avant l’arrivée de la pomme de terre.",
     "Tableau environnement": {
@@ -4061,7 +4061,7 @@
       ]
     }
   },
-  "Mache": {
+  "Mâche": {
     "Origine": "La mâche pousse spontanément en France à l’automne.",
     "Particularités": "La mâche est une plante rustique adaptée au froid. Il faut donc\néviter les excès de chaleur pour la culture sous abri. C’est une\nsalade très appréciée en hiver.",
     "Tableau environnement": {
@@ -4921,7 +4921,7 @@
     },
     "Commentaires débouchés": ": légume de base en hiver.\nPoireaux un mois après la plantation"
   },
-  "Poiree_Bette": {
+  "Blette": {
     "Origine": "Europe.",
     "Particularités": "La poirée est connue depuis 500 ans avant J.C. C’est une\nplante voisine de la betterave. Elle a été sélectionnée sur les\ncôtes (ou cardes) et les feuilles contrairement à la\nbetterave.",
     "Tableau environnement": {
@@ -5221,7 +5221,7 @@
     },
     "Commentaires débouchés": ":"
   },
-  "Pomme_de_terre": {
+  "Pomme de terre": {
     "Origine": "Amérique du Sud. La pomme de terre fut introduite en Europe au XVIè\nsiècle.",
     "Particularités": "La pomme de terre est une plante vivace à cycle annuel, qui se multiplie par\ntubercule. Pourtant elle produit des graines mais leur descendance\ndonnerait une production hétérogène et de petit calibre non\ncommercialisable.\nLe tubercule est un organe de réserve qui se développe sur un rhizome.\nComme la tomate ou le chou, la plante a la capacité de faire des racines sur\nles parties de tiges en contact avec le sol. D'ou l’intérêt des buttages. Sous\nl’effet de la lumière le tubercule verdit et synthétise un alcaloïde la\nsolanine qui est toxique. Aussi faut-il le stocker à l’abri de la lumière (à\nl’exception de la phase de germination).\nLe cycle annuel comprend 4 phases:\n- la germination qui a lieu à des températures relativement basses.\nEnviron 1 mois avant la plantation, les tubercules sont mises à germer\ndans des caisses sur 1 ou 2 épaisseurs dans 1 endroit éclairé et à l’abri\ndu gel. La plantation de tubercules germés permet d’accélérer la levée\nde 2 à 3 semaines. (intérêt en agriculture biologique dans la maîtrise\ndes adventices).\n- La croissance.\n- La tubérisation phase où les besoins de la plante sont importants.\n- Le repos végétatif.\nOn distingue 2 types de cultures:\ner\nla culture primeur de pomme de terre nouvelle jusqu’au 1 août;\nla culture de conservation.\nLes variétés ,de différentes couleurs, blanche, jaune, rose ou violette, sont\nclassées selon leur consistance ou tenue à la cuisson :\n- à chair ferme de forme allongée : texture fine et consistante ;\nà chair tendre de forme variable fondant dans la bouche ;\n- à chair farineuse de forme plutôt courte utilisées pour la purée et les\nfrites et par l’industrie.\nLa précocité, qui se mesure en durée de cycle de végétation varie de 85 à\nplus de 130 jours, est un critère de choix déterminant pour la pomme de\nterre nouvelle.",
     "Tableau environnement": {
