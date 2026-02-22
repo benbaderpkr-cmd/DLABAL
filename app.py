@@ -105,31 +105,31 @@ def popover_feedback(onglet, bloc, legume_sel):
             envoyer_feedback(legume_sel, onglet, msg_in, bloc, nom_in)
             st.rerun()
 
-# ==========================================
-# 4. SIDEBAR ET NAVIGATION
-# ==========================================
+# --- SIDEBAR ---
 with st.sidebar:
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "ACCUEIL"
         st.rerun()
-    st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     
-    sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    # On ajoute une clé au selectbox pour pouvoir la manipuler
+    sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes, key="legume_selector")
+    
+    # Si on sélectionne un légume, on change le mode de vue
     if sel != "---":
         st.session_state["view_mode"] = "LEGUME"
     
     st.divider()
+
+    # Quand on clique sur un outil, on remet le sélecteur de légume à "---"
     if st.button("⚙️ RÉGLAGES JP1 TERRADONIS", use_container_width=True):
-        st.session_state["view_mode"] = "PAGE_JP1"; st.rerun()
+        st.session_state["view_mode"] = "PAGE_JP1"
+        st.session_state["legume_selector"] = "---" # Reset le choix
+        st.rerun()
+
     if st.button("🧪 CALCUL FERTI", use_container_width=True):
-        st.session_state["view_mode"] = "PAGE_FERTI"; st.rerun()
-    if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
-
-    st.sidebar.markdown("---")
-    st.markdown("### 🌦️ Météo locale")
-    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
-
+        st.session_state["view_mode"] = "PAGE_FERTI"
+        st.session_state["legume_selector"] = "---" # Reset le choix
+        st.rerun()
 # ==========================================
 # 5. AFFICHAGE CENTRAL
 # ==========================================
@@ -219,3 +219,4 @@ else:
     *Toutes les modifications de données textuelles sont soumises à validation.*
     """)
     st.info("👈 Commencez par choisir un légume dans la barre latérale.")
+
