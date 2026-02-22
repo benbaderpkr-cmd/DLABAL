@@ -56,7 +56,6 @@ def sans_accent(texte):
                    if unicodedata.category(c) != 'Mn').lower()
 
 def format_text(txt):
-    """Force les sauts de ligne pour le Markdown Streamlit"""
     if not txt: return ""
     return str(txt).replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
 
@@ -79,7 +78,7 @@ leg_all = set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys
 tous_les_legumes = sorted([l for l in leg_all if l], key=sans_accent)
 
 # ==========================================
-# 4. SIDEBAR (Navigation & Widgets)
+# 4. SIDEBAR
 # ==========================================
 with st.sidebar:
     if st.button("**🏠 ACCUEIL DLABAL**", use_container_width=True):
@@ -110,48 +109,40 @@ with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
 
+    st.divider()
+    if st.button("🚪 Déconnexion", use_container_width=True):
+        cookies["auth_token"] = ""
+        cookies.save()
+        st.session_state["password_correct"] = False
+        st.rerun()
+
 # ==========================================
-# 5. LOGIQUE D'AFFICHAGE CENTRAL
+# 5. LOGIQUE D'AFFICHAGE
 # ==========================================
 
 # --- PAGE RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
-    
-    # FUSION RÉELLE DES LÉGUMES JP1 (Officiel + JMF)
     l_off = [i["CULTURE"] for i in JP1_OFFICIEL.get("reglages", [])]
     l_jmf = [i["CULTURE"] for i in JP1_JMF.get("reglages", [])]
     fusion_jp1 = sorted(list(set(l_off + l_jmf)), key=sans_accent)
     
-    sel_jp1 = st.selectbox("Sélectionner un légume pour le semis :", ["---"] + fusion_jp1)
+    sel_jp1 = st.selectbox("Sélectionner un légume :", ["---"] + fusion_jp1)
     
     if sel_jp1 != "---":
-        tableau_data = []
-        # Recherche dans l'Officiel
-        off_item = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
-        tableau_data.append({
-            "Source": "OFFICIEL (Terrateck)",
-            "Rouleau(x)": off_item.get("ROULEAUX", off_item.get("ROULEAU", "-")) if off_item else "Non répertorié",
-            "Pignons (AV/AR)": "-", "Observations": "-"
+        tab_res = []
+        o = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
+        tab_res.append({
+            "Source": "OFFICIEL", "Rouleau": o.get("ROULEAU", o.get("ROULEAUX", "-")) if o else "Non listé",
+            "Pignons": "-", "Observations": "-"
         })
-        # Recherche dans JMF
-        jmf_item = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
-        if jmf_item:
-            tableau_data.append({
-                "Source": "JMF (Grelinette)",
-                "Rouleau(x)": jmf_item.get("ROULEAU", "-"),
-                "Pignons (AV/AR)": f"{jmf_item.get('AV','-')} / {jmf_item.get('AR','-')}",
-                "Observations": jmf_item.get("OBS", "-")
+        j = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
+        if j:
+            tab_res.append({
+                "Source": "JMF", "Rouleau": j.get("ROULEAU", "-"),
+                "Pignons": f"{j.get('AV','-')} / {j.get('AR','-')}", "Observations": j.get("OBS", "-")
             })
-        st.table(pd.DataFrame(tableau_data))
-
-# --- PAGE FERTILISATION ---
-elif st.session_state["view_mode"] == "PAGE_FERTI":
-    st.title("🧪 CALCULATEUR DE FERTILISATION")
-    # Logique de calcul simplifiée pour rester stable
-    leg_f = st.selectbox("Légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
-    if leg_f != "---":
-        st.write(FERTI_DATA[leg_f])
+        st.table(pd.DataFrame(tab_res))
 
 # --- PAGE FICHE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME":
