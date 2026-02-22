@@ -178,6 +178,7 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
 # --- CAS B : PAGE CALCUL FERTI ---
+# --- CAS B : PAGE CALCUL FERTI ---
 elif st.session_state["view_mode"] == "PAGE_FERTI":
     FERTI_DATA = load_json("calcul_ferti.json")
     st.title("🌿 CALCUL FERTI")
@@ -185,7 +186,6 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
 
     legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
 
-    # Ajout du champ pour saisie directe
     with st.expander("Ou inscrire directement ses besoins de fertilisation (unités/ha)"):
         c_n, c_p, c_k = st.columns(3)
         manuel_n = c_n.number_input("N (u/ha) :", min_value=0, value=0)
@@ -197,28 +197,53 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
     largeur = c2.number_input("Largeur (m) :", min_value=1, value=10, step=1)
     surface = longueur * largeur
 
-    st.markdown("#### Teneur en azote de votre amendement")
-    teneur_N = st.number_input("% N (Azote) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
+    st.markdown("#### Teneur de votre amendement principal")
+    col_t1, col_t2 = st.columns(2)
+    teneur_N = col_t1.number_input("% N (Azote) :", min_value=0.0, value=6.0, step=0.1, format="%.2f")
+    teneur_K = col_t2.number_input("% K (Potasse) :", min_value=0.0, value=10.0, step=0.1, format="%.2f")
 
-    # Logique de calcul
     rows = []
     facteur = surface / 10000
 
-    # Priorité 1 : Saisie manuelle (si au moins N est renseigné)
-    if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
-        besoin_N = round(manuel_n * facteur, 2)
-        besoin_P = round(manuel_p * facteur, 2)
-        besoin_K = round(manuel_k * facteur, 2)
-        dose = round(besoin_N / (teneur_N / 100), 1) if teneur_N > 0 else "—"
+    # Fonction de calcul centralisée
+    def calculer_besoins(n_ha, p_ha, k_ha, source_label):
+        b_n = round(n_ha * facteur, 2)
+        b_p = round(p_ha * facteur, 2)
+        b_k = round(k_ha * facteur, 2)
         
-        st.markdown(f"### Résultats personnalisés — {longueur} m × {largeur} m = **{surface} m²**")
-        rows.append({
-            "Source": "Saisie Manuelle",
-            "Besoin N (kg)": besoin_N,
-            "Besoin P (kg)": besoin_P,
-            "Besoin K (kg)": besoin_K,
-            "⚖️ Dose à épandre (kg)": dose,
-        })
+        # Dose d'engrais principal basée sur N
+        dose_principale = round(b_n / (teneur_N / 100), 1) if teneur_N > 0 else 0
+        
+        # Potasse déjà apportée par l'engrais principal
+        k_apporte = round(dose_principale * (teneur_K / 100), 2)
+        
+        # Reste à combler par le Patentkali (K30%)
+        manque_k = max(0, b_k - k_apporte)
+        dose_patentkali = round(manque_k / 0.30, 2) # Patentkali = 30% K
+        
+        return {
+            "Source": source_label,
+            "Besoin N (kg)": b_n,
+            "Besoin K (kg)": b_k,
+            "⚖️ Dose principal (kg)": dose_principale if dose_principale > 0 else "—",
+            "💎 Ajout Patentkali (kg)": dose_patentkali if dose_patentkali > 0 else "0"
+        }
+
+    # Logique d'affichage
+    if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
+        st.markdown(f"### Résultats personnalisés — **{surface} m²**")
+        rows.append(calculer_besoins(manuel_n, manuel_p, manuel_k, "Saisie Manuelle"))
+
+    elif legume_ferti != "---":
+        donnees = FERTI_DATA[legume_ferti]
+        st.markdown(f"### Résultats pour **{legume_ferti}** — **{surface} m²**")
+        for source, vals in donnees.items():
+            if vals:
+                rows.append(calculer_besoins(vals["N"], vals["P"], vals["K"], source))
+
+    if rows:
+        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.info("💡 **Dose Patentkali** : Quantité à ajouter pour combler le manque de potasse après l'apport de l'amendement principal.")
 
     # Priorité 2 : Sélection par légume
     elif legume_ferti != "---":
@@ -328,4 +353,5 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
