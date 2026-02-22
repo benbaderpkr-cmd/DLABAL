@@ -157,7 +157,7 @@ if st.session_state["view_mode"] == "PAGE_FERTI":
     if rows: st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 
 # --- PAGE RÉGLAGES JP1 ---
-if st.session_state["view_mode"] == "PAGE_JP1":
+elif st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     
     # Récupération sécurisée des listes (on s'assure que 'reglages' existe)
@@ -248,6 +248,7 @@ else:
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
 
 
 
