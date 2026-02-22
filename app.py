@@ -178,9 +178,10 @@ if st.session_state["view_mode"] == "PAGE_JP1":
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
 # --- CAS B : PAGE CALCUL FERTI ---
+# --- PAGE CALCUL FERTI ---
 elif st.session_state["view_mode"] == "PAGE_FERTI":
     FERTI_DATA = load_json("calcul_ferti.json")
-    st.title("🌿 CALCUL FERTI")
+    st.title("🧪 CALCULATEUR DE FERTILISATION")
     st.markdown("---")
 
     legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
@@ -192,57 +193,57 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
         manuel_k = c_k_h.number_input("Besoin K (u/ha) :", min_value=0, value=0)
 
     c1, c2 = st.columns(2)
-    longueur = c1.number_input("Longueur planche (m) :", min_value=1, value=10, step=1)
-    largeur = c2.number_input("Largeur planche (m) :", min_value=1, value=1, step=1)
+    longueur = c1.number_input("Longueur planche (m) :", min_value=1, value=10)
+    largeur = c2.number_input("Largeur planche (m) :", min_value=0.1, value=1.0)
     surface = longueur * largeur
 
     st.markdown("#### Caractéristiques de vos amendements")
     col_t1, col_t2, col_t3 = st.columns(3)
-    teneur_N = col_t1.number_input("% N (Engrais principal) :", min_value=0.0, value=6.0, step=0.1)
-    teneur_P = col_t2.number_input("% P (Engrais principal) :", min_value=0.0, value=4.0, step=0.1)
-    teneur_K = col_t3.number_input("% K (Engrais principal) :", min_value=0.0, value=10.0, step=0.1)
+    teneur_N = col_t1.number_input("% N (Engrais principal) :", min_value=0.1, value=6.0)
+    teneur_P = col_t2.number_input("% P (Engrais principal) :", min_value=0.0, value=4.0)
+    teneur_K = col_t3.number_input("% K (Engrais principal) :", min_value=0.0, value=10.0)
     
-    # Paramétrage du Patentkali en dessous
-    teneur_patentkali = st.number_input("Patentkali % K (Potasse) :", min_value=1.0, value=30.0, step=1.0)
+    teneur_patentkali = st.number_input("Patentkali % K (Potasse) :", min_value=1.0, value=30.0)
 
     rows = []
     facteur = surface / 10000
 
-    # Fonction de calcul de balance NPK
     def calculer_complet(n_ha, p_ha, k_ha, source_label):
-        # Besoins théoriques pour la surface donnée
+        # Besoins en kg pour la surface
         b_n = round(n_ha * facteur, 2)
         b_p = round(p_ha * facteur, 2)
         b_k = round(k_ha * facteur, 2)
         
-        # 1. Calcul dose engrais principal (basé sur l'Azote N)
-        dose_p = round(b_n / (teneur_N / 100), 1) if teneur_N > 0 else 0
+        # Calcul dose principal (basé sur l'azote N)
+        # Formule T/ha : (Unités / Teneur) * 100 / 1000
+        dose_tha = round((n_ha / teneur_N) * 100 / 1000, 2) if teneur_N > 0 else 0
+        dose_kg = round(b_n / (teneur_N / 100), 1) if teneur_N > 0 else 0
         
-        # 2. Apports générés par cette dose pour P et K
-        p_apporte = round(dose_p * (teneur_P / 100), 2)
-        k_apporte = round(dose_p * (teneur_K / 100), 2)
+        # Apports P et K générés par la dose de l'engrais principal
+        p_apporte = round(dose_kg * (teneur_P / 100), 2)
+        k_apporte = round(dose_kg * (teneur_K / 100), 2)
         
-        # 3. Calcul du manque à gagner
         manque_p = max(0, round(b_p - p_apporte, 2))
         manque_k = max(0, round(b_k - k_apporte, 2))
         
-        # 4. Dose Patentkali pour combler le manque de K
-        dose_pat = round(manque_k / (teneur_patentkali / 100), 2)
-        
+        # Dose Patentkali (kg sur surface et T/ha théorique)
+        dose_pat_kg = round(manque_k / (teneur_patentkali / 100), 2)
+        dose_pat_tha = round((manque_k / facteur / teneur_patentkali) * 100 / 1000, 2) if facteur > 0 else 0
+
         return {
             "Source": source_label,
-            "Besoin NPK (kg)": f"N:{b_n} | P:{b_p} | K:{b_k}",
-            "⚖️ Dose Principal (kg)": dose_p,
-            "Balance P (kg)": f"+{p_apporte} (Manque: {manque_p})",
-            "Balance K (kg)": f"+{k_apporte} (Manque: {manque_k})",
-            "💎 Ajout Patentkali (kg)": dose_pat if dose_pat > 0 else "0"
+            "Besoin NPK Surface (kg)": f"N:{b_n} | P:{b_p} | K:{b_k}",
+            "⚖️ Dose Principal (T/ha)": dose_tha,
+            "⚖️ Dose Principal (kg)": dose_kg,
+            "Balance P Surface": f"+{p_apporte} kg (Manque: {manque_p})",
+            "Balance K Surface": f"+{k_apporte} kg (Manque: {manque_k})",
+            "💎 Patentkali (kg)": dose_pat_kg if dose_pat_kg > 0 else "0",
+            "💎 Patentkali (T/ha)": dose_pat_tha if dose_pat_tha > 0 else "0"
         }
 
-    # Logique d'affichage
     if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
         st.markdown(f"### Résultats personnalisés — **{surface} m²**")
         rows.append(calculer_complet(manuel_n, manuel_p, manuel_k, "Saisie Manuelle"))
-
     elif legume_ferti != "---":
         donnees = FERTI_DATA[legume_ferti]
         st.markdown(f"### Résultats pour **{legume_ferti}** — **{surface} m²**")
@@ -252,8 +253,7 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
 
     if rows:
         st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-        st.success(f"✅ Pour fertiliser vos **{surface} m²**, appliquez la dose d'engrais principal, puis complétez avec le Patentkali si indiqué.")
-        st.info("Note : La dose d'engrais principal est calculée pour couvrir 100% du besoin en Azote (N).")
+        st.info("💡 Les colonnes **T/ha** indiquent la dose théorique à l'hectare. Les colonnes **kg** indiquent la quantité réelle à épandre sur votre planche.")
 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -341,6 +341,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
