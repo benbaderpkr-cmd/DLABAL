@@ -103,7 +103,7 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_FERTI"
         st.rerun()
 
-    st.link_button("📂 Fiches légumes JA", "https://drive.google.com/drive/u/0/folders/1nj4ZGdFExm-_xs8xRYBBxmSkqmVEvdmM", use_container_width=True)
+    st.link_button("📂 Fiches légumes JA", "https://drive.google.com/file/d/10EdjCNE79i_bWx-sTpBxb47ngeMcGIiD/view?usp=sharing", use_container_width=True)
 
     st.divider()
     st.markdown("### 🌦️ Météo locale")
@@ -212,6 +212,7 @@ else:
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
 
 
 
