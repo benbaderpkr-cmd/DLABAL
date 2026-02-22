@@ -204,7 +204,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
     tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
-   with tabs[0]: # ARG
+    with tabs[0]: # ARG
         arg_l = ARG_DATA.get(sel, {})
         if arg_l:
             for t, c in arg_l.items():
@@ -288,4 +288,5 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
 
