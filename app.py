@@ -120,6 +120,42 @@ with st.sidebar:
 # 5. LOGIQUE D'AFFICHAGE
 # ==========================================
 
+if st.session_state["view_mode"] == "PAGE_FERTI":
+    st.title("🧪 CALCULATEUR DE FERTILISATION")
+    # ... (Code Ferti conservé intégralement)
+    legume_ferti = st.selectbox("Choisir un légume (base) :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
+    with st.expander("Saisie manuelle (u/ha)"):
+        cn, cp, ck = st.columns(3)
+        manuel_n = cn.number_input("N", min_value=0, value=0)
+        manuel_p = cp.number_input("P", min_value=0, value=0)
+        manuel_k = ck.number_input("K", min_value=0, value=0)
+    col1, col2 = st.columns(2)
+    longueur = col1.number_input("Longueur (m)", min_value=1, value=10)
+    largeur = col2.number_input("Largeur (m)", min_value=0.1, value=1.0)
+    surface = longueur * largeur
+    st.markdown("#### Caractéristiques de l'engrais")
+    t1, t2, t3 = st.columns(3)
+    ten_N = t1.number_input("% N", value=6.0)
+    ten_P = t2.number_input("% P", value=4.0)
+    ten_K = t3.number_input("% K", value=10.0)
+    ten_pat = st.number_input("Patentkali % K", value=30.0)
+    rows = []
+    facteur = surface / 10000
+    def calc(n_ha, p_ha, k_ha, label):
+        b_n, b_k = n_ha * facteur, k_ha * facteur
+        dose_kg = round(b_n / (ten_N / 100), 1) if ten_N > 0 else 0
+        k_app = round(dose_kg * (ten_K / 100), 2)
+        manque_k = max(0, round(b_k - k_app, 2))
+        dose_pat = round(manque_k / (ten_pat / 100), 2)
+        return {"Source": label, "Besoin (U/ha)": f"N:{n_ha}|K:{k_ha}", "Dose Principal (kg)": dose_kg, "💎 Patentkali (kg)": dose_pat}
+    if manuel_n > 0 or manuel_k > 0:
+        rows.append(calc(manuel_n, manuel_p, manuel_k, "Manuel"))
+    elif legume_ferti != "---":
+        d = FERTI_DATA[legume_ferti]
+        for s, v in d.items():
+            if v: rows.append(calc(v["N"], v["P"], v["K"], s))
+    if rows: st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+
 # --- PAGE RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
@@ -212,6 +248,7 @@ else:
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
 
 
 
