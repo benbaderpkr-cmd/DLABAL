@@ -119,9 +119,6 @@ with st.sidebar:
     
     st.divider()
     
-    # Bouton PDF
-    st.link_button("📂 ACCÉDER AUX PDF", "https://drive.google.com/drive/u/0/folders/1nj4ZGdFExm-_xs8xRYBBxmSkqmVEvdmM", use_container_width=True)
-    
     if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
         if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
@@ -131,7 +128,9 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_FERTI"
         if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
         st.rerun()
-        
+    # Bouton PDF
+    st.link_button("📂 PDF Fiches légumes JA", "https://drive.google.com/file/d/10EdjCNE79i_bWx-sTpBxb47ngeMcGIiD/view?usp=sharing", use_container_width=True)
+    
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
@@ -284,3 +283,4 @@ else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("### DLABAL - BDD ITK Maraîchage\n1. Sélectionnez un légume à gauche.\n2. Consultez les fiches.\n3. Contribuez via 📝.")
+
