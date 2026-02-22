@@ -73,7 +73,10 @@ JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 ITAB_DATA = load_json("itab.json")
 FERTI_DATA = load_json("calcul_ferti.json")
-RAW_JP1 = load_json("reglages_jp1.json")
+
+# Nouveaux fichiers de réglages JP1
+JP1_OFFICIEL = load_json("reglages_jp1.json")
+JP1_JMF = load_json("reglages_jmf.json")
 
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + list(ARG_DATA.keys())) 
                    if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l) or ARG_DATA.get(l)]
@@ -119,7 +122,6 @@ with st.sidebar:
     
     st.divider()
 
-    
     if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
         if "leg_sel" in st.session_state: del st.session_state["leg_sel"]
@@ -185,22 +187,45 @@ if st.session_state["view_mode"] == "PAGE_FERTI":
     else:
         st.info("Aucune donnée de fertilisation disponible pour ce choix.")
 
-# --- PAGE REGLAGES JP1 ---
+# --- PAGE REGLAGES JP1 TERRADONIS ---
 elif st.session_state["view_mode"] == "PAGE_JP1":
-    st.title("⚙️ RÉGLAGES JP1")
-    if not RAW_JP1:
-        st.error("⚠️ Fichier 'reglages_jp1.json' introuvable.")
-    else:
-        l_jp1 = st.selectbox("Légume :", ["---"] + sorted(RAW_JP1.keys(), key=sans_accent))
-        if l_jp1 != "---":
-            data = RAW_JP1.get(l_jp1)
-            if data:
-                c1, c2, c3 = st.columns(3)
-                c1.metric("Pignon int", data.get("pignon_int", "N/A"))
-                c2.metric("Pignon ext", data.get("pignon_ext", "N/A"))
-                c3.metric("Disque", data.get("disque", "N/A"))
-            else:
-                st.warning("Aucun réglage trouvé pour ce légume.")
+    st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
+    
+    # Fusion des listes de légumes des deux sources pour le selectbox
+    list_off = [item["CULTURE"] for item in JP1_OFFICIEL.get("reglages", [])]
+    list_jmf = [item["CULTURE"] for item in JP1_JMF.get("reglages", [])]
+    full_list = sorted(list(set(list_off + list_jmf)), key=sans_accent)
+    
+    l_jp1 = st.selectbox("Choisir un légume :", ["---"] + full_list)
+    
+    if l_jp1 != "---":
+        tableau_data = []
+        
+        # 1. On cherche dans l'Officiel
+        off_data = next((item for item in JP1_OFFICIEL.get("reglages", []) if item["CULTURE"] == l_jp1), None)
+        if off_data:
+            tableau_data.append({
+                "Source": "OFFICIEL (Terrateck/Jang)",
+                "Rouleau(x)": off_data.get("ROULEAUX", "-"),
+                "Pignons (AV/AR)": "Non spécifié",
+                "Observations": "-"
+            })
+        else:
+            tableau_data.append({"Source": "OFFICIEL (Terrateck/Jang)", "Rouleau(x)": "Aucune donnée", "Pignons (AV/AR)": "-", "Observations": "-"})
+
+        # 2. On cherche dans JMF
+        jmf_item = next((item for item in JP1_JMF.get("reglages", []) if item["CULTURE"] == l_jp1), None)
+        if jmf_item:
+            tableau_data.append({
+                "Source": "JMF (Les Jardins de la Grelinette)",
+                "Rouleau(x)": jmf_item.get("ROULEAU", "-"),
+                "Pignons (AV/AR)": f"{jmf_item.get('AV','-')} / {jmf_item.get('AR','-')}",
+                "Observations": jmf_item.get("OBS", "-")
+            })
+        else:
+            tableau_data.append({"Source": "JMF (Les Jardins de la Grelinette)", "Rouleau(x)": "Aucune donnée", "Pignons (AV/AR)": "-", "Observations": "-"})
+
+        st.table(pd.DataFrame(tableau_data))
 
 # --- PAGE LEGUME (ONGLETS) ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -232,7 +257,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                         t = t.replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
                         st.markdown(t)
                     popover_feedback("ARG", titre, sel)
-        else: st.info("Aucune donnée ARG disponible.")
+        else: st.info(f"Aucune donnée ARG {sel} disponible.")
 
     with tabs[1]: # GAB
         g = GAB_DATA.get(sel, {})
@@ -246,7 +271,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                     with st.expander(f"📌 {k}", expanded=True):
                         st.markdown(str(v).replace('\\\\n', '\\n').replace('\\n', '\n'))
                         popover_feedback("GAB", k, sel)
-        else: st.info("Aucune donnée GAB disponible.")
+        else: st.info(f"Aucune donnée GAB {sel} disponible.")
 
     with tabs[2]: # JMF
         j = JMF_DATA.get(sel, {})
@@ -255,7 +280,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 with st.expander(f"🚜 {t}", expanded=True):
                     st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
                     popover_feedback("JMF", t, sel)
-        else: st.info("Aucune donnée JMF disponible.")
+        else: st.info(f"Aucune donnée JMF {sel} disponible.")
 
     with tabs[3]: # JDV
         v = JDV_DATA.get(sel, {})
@@ -264,7 +289,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 with st.expander(f"🌿 {t}", expanded=True):
                     st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
                     popover_feedback("JDV", t, sel)
-        else: st.info("Aucune donnée JDV disponible.")
+        else: st.info(f"Aucune donnée JDV {sel} disponible.")
 
     with tabs[4]: # ITAB
         i = ITAB_DATA.get(sel, {})
@@ -273,7 +298,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 with st.expander(f"📗 {t}", expanded=True):
                     st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
                     popover_feedback("ITAB", t, sel)
-        else: st.info("Aucune donnée ITAB disponible.")
+        else: st.info(f"Aucune donnée ITAB {sel} disponible.")
 
     with tabs[5]: # THO
         st.subheader("📝 Saisie Terrain (THO)")
@@ -299,4 +324,3 @@ else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.markdown("### DLABAL - BDD ITK Maraîchage\n1. Sélectionnez un légume à gauche.\n2. Consultez les fiches.\n3. Contribuez via l'icône 📝.")
-
