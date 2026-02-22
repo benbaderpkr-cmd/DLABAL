@@ -208,7 +208,6 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
             for titre, contenu in arg_l.items():
                 with st.expander(f"📘 {titre}", expanded=True):
                     
-                    # --- CAS 1 & 2 : Tableaux (Claude ou Listes) ---
                     if isinstance(contenu, dict) and "lignes" in contenu:
                         df_temp = pd.DataFrame(contenu["lignes"])
                         if "col_0" in df_temp.columns: df_temp = df_temp.rename(columns={"col_0": "Activité"})
@@ -217,35 +216,31 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                         try: st.table(pd.DataFrame(contenu))
                         except: st.write(str(contenu))
                     
-                    # --- CAS 3 : Texte avec Nettoyage Avancé ---
                     else:
                         t = str(contenu).strip()
                         
-                        # 1. Suppression des caractères parasites au début
-                        while t.startswith((".", ":", "-", " ")):
+                        # 1. Nettoyage des caractères orphelins au début du bloc
+                        while t.startswith((".", ":", " ")):
                             t = t[1:].strip()
                         
-                        # 2. Harmonisation des sauts de ligne
+                        # 2. Harmonisation des sauts de ligne JSON
                         t = t.replace('\\\\n', '\n').replace('\\n', '\n')
                         
-                        # 3. Réparation des phrases coupées (Sauts de ligne non souhaités)
-                        # On remplace un saut de ligne simple par un espace, 
-                        # SAUF s'il est suivi d'une puce ou d'un autre saut de ligne.
+                        # 3. Réparation des phrases coupées tout en protégeant les listes
+                        # On remplace les sauts de ligne par des espaces...
+                        # ...SAUF s'ils sont suivis d'un tiret ou d'un autre saut de ligne.
                         import re
-                        # On protège les doubles sauts de ligne (paragraphes)
-                        t = t.replace('\n\n', '[[PARAGRAPHE]]')
-                        # On remplace les simples sauts de ligne par un espace
-                        t = t.replace('\n', ' ')
-                        # On restaure les paragraphes
-                        t = t.replace('[[PARAGRAPHE]]', '\n\n')
-                        # On s'assure que les listes à puces conservent leur ligne
-                        t = t.replace('- ', '\n- ')
+                        # On remplace les sauts de ligne simples qui ne sont PAS suivis d'un tiret
+                        # par un espace, pour fusionner les phrases coupées.
+                        t = re.sub(r'\n(?![-\s\n])', ' ', t)
+                        
+                        # 4. On s'assure que chaque tiret commence bien sur une nouvelle ligne
+                        # En Markdown, "  \n" (deux espaces + entrée) force le retour à la ligne.
+                        t = t.replace('\n-', '  \n-').replace(' -', '  \n-')
                         
                         st.markdown(t)
                     
                     popover_feedback("ARG", titre, sel)
-        else:
-            st.info("Aucune donnée ARG disponible.")
 
     with tabs[1]: # GAB
         g = GAB_DATA.get(sel, {})
@@ -307,4 +302,5 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
 
