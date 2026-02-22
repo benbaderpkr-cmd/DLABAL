@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import os
-import pandas as pd
+import pandas as pd  # Correction de l'import ici
 import requests
 import unicodedata
 import streamlit.components.v1 as components
@@ -78,18 +78,42 @@ legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) 
                    if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l) or ARG_DATA.get(l)]
 tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
 
+def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur):
+    try:
+        nom_sheet = legume.upper()
+        new_row = pd.DataFrame([{
+            "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
+            "NOM": nom_utilisateur, "LEGUME": nom_sheet, "ONGLET": nom_onglet_app,
+            "BLOC": nom_bloc, "FEEDBACK": message
+        }])
+        df_updated = pd.concat([conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0), new_row], ignore_index=True)
+        conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
+        if "https" in URL_SCRIPT_MAIL:
+            requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
+        st.toast(f"🚀 Merci {nom_utilisateur} ! Enregistré.", icon="✅")
+    except: st.error("Erreur d'enregistrement.")
+
+def popover_feedback(onglet, bloc, legume_sel):
+    pop = st.popover("📝")
+    with pop.form(key=f"form_{onglet}_{bloc}_{legume_sel}"):
+        nom_in = st.text_input("Nom :", value=st.session_state["user_name"])
+        msg_in = st.text_area("Suggestion :")
+        if st.form_submit_button("Envoyer"):
+            st.session_state["user_name"] = nom_in 
+            envoyer_feedback(legume_sel, onglet, msg_in, bloc, nom_in)
+            st.rerun()
+
 # ==========================================
 # 4. SIDEBAR ET NAVIGATION
 # ==========================================
 with st.sidebar:
     if st.button("**DLABAL**", use_container_width=True):
         st.session_state["view_mode"] = "ACCUEIL"
+        st.session_state["nav_sidebar"] = "---"
         st.rerun()
     
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     
-    # NAVIGATION PRINCIPALE PAR LÉGUME
-    # On utilise un callback pour changer le mode uniquement quand on touche à CE selectbox
     def on_change_sidebar():
         if st.session_state["nav_sidebar"] != "---":
             st.session_state["view_mode"] = "LEGUME"
@@ -111,6 +135,10 @@ with st.sidebar:
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
+    st.markdown("---")
+    st.markdown("### 🌦️ Météo locale")
+    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 # ==========================================
 # 5. AFFICHAGE CENTRAL
 # ==========================================
@@ -118,10 +146,8 @@ with st.sidebar:
 # --- PAGE FERTILISATION ---
 if st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
-    # Utilisation d'une clé unique pour ne pas interférer avec la sidebar
     leg_f = st.selectbox("Légume pour base de calcul :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent), key="sel_ferti")
     
-    # ... Logique de calcul identique à avant ...
     with st.expander("Saisie manuelle (u/ha)"):
         cn, cp, ck = st.columns(3)
         manuel_n = cn.number_input("N", min_value=0, value=0)
@@ -160,14 +186,13 @@ elif st.session_state["view_mode"] == "PAGE_JP1":
     list_jmf = [item["CULTURE"] for item in JP1_JMF.get("reglages", [])]
     full_list = sorted(list(set(list_off + list_jmf)), key=sans_accent)
     
-    # Clé unique pour isoler ce selectbox
     l_jp1 = st.selectbox("Choisir un légume :", ["---"] + full_list, key="sel_jp1")
     
     if l_jp1 != "---":
         tableau_data = []
         off_data = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == l_jp1), None)
         tableau_data.append({
-            "Source": "OFFICIEL", "Rouleau(x)": off_data.get("ROULEAUX", "-") if off_data else "Aucune donnée",
+            "Source": "OFFICIEL", "Rouleau(x)": off_data.get("ROULEAU", "-") if off_data else "Aucune donnée",
             "Pignons (AV/AR)": "-", "Observations": "-"
         })
         jmf_item = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == l_jp1), None)
@@ -180,20 +205,85 @@ elif st.session_state["view_mode"] == "PAGE_JP1":
 
 # --- PAGE LEGUME (ONGLETS) ---
 elif st.session_state["view_mode"] == "LEGUME":
-    # On récupère le légume sélectionné dans la sidebar
     sel_legume = st.session_state.get("nav_sidebar", "---")
     if sel_legume != "---":
         st.title(f"📊 {sel_legume.upper()}")
         tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
-        
-        # ... (Le code de tes onglets ici reste le même, utilisant 'sel_legume') ...
-        with tabs[0]:
+
+        with tabs[0]: # ARG
             arg_l = ARG_DATA.get(sel_legume, {})
-            if arg_l: 
-                st.write(f"Données ARG pour {sel_legume}") 
-                # (Ton code complet pour ARG)
-            else: st.info(f"Aucune donnée ARG {sel_legume} disponible.")
-        # ... (Répéter pour les autres onglets) ...
+            if arg_l:
+                for titre, contenu in arg_l.items():
+                    with st.expander(f"📘 {titre}", expanded=True):
+                        if isinstance(contenu, dict) and "lignes" in contenu:
+                            df_temp = pd.DataFrame(contenu["lignes"])
+                            mapping_col = {"Janv.":"J", "Fév.":"F", "Mars":"M", "Avril":"A", "Mai":"M ", "Juin":"J ", "Juill.":"J  ", "Août":"A ", "Sept.":"S", "Oct.":"O", "Nov.":"N", "Déc.":"D", "col_0":"Activité"}
+                            df_temp = df_temp.rename(columns=mapping_col)
+                            st.dataframe(df_temp, use_container_width=True)
+                        else:
+                            st.markdown(str(contenu).replace('\\\\n', '  \n').replace('\\n', '  \n'))
+                        popover_feedback("ARG", titre, sel_legume)
+            else: st.info(f"Aucune donnée ARG disponible pour {sel_legume}.")
+
+        with tabs[1]: # GAB
+            g = GAB_DATA.get(sel_legume, {})
+            if g:
+                if "BLOCS_IDENTITE" in g:
+                    cols = st.columns(len(g["BLOCS_IDENTITE"]))
+                    for i, b in enumerate(g["BLOCS_IDENTITE"]):
+                        with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n')}")
+                if "TECHNIQUE" in g:
+                    for k, v in g.get("TECHNIQUE", {}).items():
+                        with st.expander(f"📌 {k}", expanded=True):
+                            st.markdown(str(v).replace('\\\\n', '\\n'))
+                            popover_feedback("GAB", k, sel_legume)
+            else: st.info("Aucune donnée GAB disponible.")
+
+        with tabs[2]: # JMF
+            j = JMF_DATA.get(sel_legume, {})
+            if j:
+                for t, c in j.items():
+                    with st.expander(f"🚜 {t}", expanded=True):
+                        st.markdown(str(c).replace('\\\\n', '\\n'))
+                        popover_feedback("JMF", t, sel_legume)
+            else: st.info("Aucune donnée JMF disponible.")
+
+        with tabs[3]: # JDV
+            v = JDV_DATA.get(sel_legume, {})
+            if v:
+                for t, c in v.items():
+                    with st.expander(f"🌿 {t}", expanded=True):
+                        st.markdown(str(c).replace('\\\\n', '\\n'))
+                        popover_feedback("JDV", t, sel_legume)
+            else: st.info("Aucune donnée JDV disponible.")
+
+        with tabs[4]: # ITAB
+            itab = ITAB_DATA.get(sel_legume, {})
+            if itab:
+                for t, c in itab.items():
+                    with st.expander(f"📗 {t}", expanded=True):
+                        st.markdown(str(c).replace('\\\\n', '\\n'))
+                        popover_feedback("ITAB", t, sel_legume)
+            else: st.info("Aucune donnée ITAB disponible.")
+
+        with tabs[5]: # THO
+            st.subheader("📝 Saisie Terrain (THO)")
+            df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
+            exist = df_gs[df_gs['LEGUME'] == sel_legume]
+            with st.form("form_tho"):
+                c1, c2, c3 = st.columns(3)
+                v_p = c1.text_area("Implantation :", value=exist['IMPLANTATION'].values[0] if not exist.empty else "")
+                v_e = c2.text_area("Entretien :", value=exist['ENTRETIEN'].values[0] if not exist.empty else "")
+                v_s = c3.text_area("Santé :", value=exist['SANTE'].values[0] if not exist.empty else "")
+                c4, c5, c6 = st.columns(3)
+                v_r = c4.text_area("Rendement :", value=exist['RENDEMENT'].values[0] if not exist.empty else "")
+                v_v = c5.text_area("Variété :", value=exist['VARIETE'].values[0] if not exist.empty else "")
+                v_i = c6.text_area("Info Supp :", value=exist['INFO_SUPP'].values[0] if not exist.empty else "")
+                if st.form_submit_button("Enregistrer THO"):
+                    new_row = {"LEGUME": sel_legume, "IMPLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                    df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel_legume], pd.DataFrame([new_row])], ignore_index=True)
+                    conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                    st.success("Données THO enregistrées !")
 
 else:
     st.title("🌱 Bienvenue sur DLABAL")
