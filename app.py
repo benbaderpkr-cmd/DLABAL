@@ -116,7 +116,11 @@ with st.sidebar:
     st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes, key="leg_sel")
     if sel != "---": st.session_state["view_mode"] = "LEGUME"
+    
     st.divider()
+    
+    # Bouton PDF
+    st.link_button("📂 ACCÉDER AUX PDF", "https://drive.google.com/drive/u/0/folders/1nj4ZGdFExm-_xs8xRYBBxmSkqmVEvdmM", use_container_width=True)
     
     if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
@@ -141,7 +145,7 @@ with st.sidebar:
 
 if st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
-    # ... (Code Ferti conservé intégralement)
+    # ... (Code Ferti conservé)
     legume_ferti = st.selectbox("Choisir un légume (base) :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
     with st.expander("Saisie manuelle (u/ha)"):
         cn, cp, ck = st.columns(3)
@@ -196,12 +200,7 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                 with st.expander(f"📘 {titre}", expanded=True):
                     if isinstance(contenu, dict) and "lignes" in contenu:
                         df_temp = pd.DataFrame(contenu["lignes"])
-                        # Mapping UNIQUE pour éviter l'erreur de colonnes dupliquées (Pandas n'aime pas avoir deux colonnes "J")
-                        # On ajoute des espaces invisibles pour différencier les colonnes
-                        mapping_col = {
-                            "Janv.":"J", "Fév.":"F", "Mars":"M", "Avril":"A", "Mai":"M ", "Juin":"J ", "Juill.":"J  ",
-                            "Août":"A ", "Sept.":"S", "Oct.":"O", "Nov.":"N", "Déc.":"D", "col_0":"Activité"
-                        }
+                        mapping_col = {"Janv.":"J", "Fév.":"F", "Mars":"M", "Avril":"A", "Mai":"M ", "Juin":"J ", "Juill.":"J  ", "Août":"A ", "Sept.":"S", "Oct.":"O", "Nov.":"N", "Déc.":"D", "col_0":"Activité"}
                         df_temp = df_temp.rename(columns=mapping_col)
                         def clean_val(v):
                             if not isinstance(v, str): return v
@@ -223,32 +222,44 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
 
     with tabs[1]: # GAB
         g = GAB_DATA.get(sel, {})
-        if "BLOCS_IDENTITE" in g:
-            cols = st.columns(len(g["BLOCS_IDENTITE"]))
-            for i, b in enumerate(g["BLOCS_IDENTITE"]):
-                with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n').replace('\\n', '\n')}")
-        for k, v in g.get("TECHNIQUE", {}).items():
-            with st.expander(f"📌 {k}", expanded=True):
-                st.markdown(str(v).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                popover_feedback("GAB", k, sel)
+        if g:
+            if "BLOCS_IDENTITE" in g:
+                cols = st.columns(len(g["BLOCS_IDENTITE"]))
+                for i, b in enumerate(g["BLOCS_IDENTITE"]):
+                    with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n').replace('\\n', '\n')}")
+            if "TECHNIQUE" in g:
+                for k, v in g.get("TECHNIQUE", {}).items():
+                    with st.expander(f"📌 {k}", expanded=True):
+                        st.markdown(str(v).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                        popover_feedback("GAB", k, sel)
+        else: st.info("Aucune donnée GAB disponible.")
 
     with tabs[2]: # JMF
-        for t, c in JMF_DATA.get(sel, {}).items():
-            with st.expander(f"🚜 {t}", expanded=True):
-                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                popover_feedback("JMF", t, sel)
+        j = JMF_DATA.get(sel, {})
+        if j:
+            for t, c in j.items():
+                with st.expander(f"🚜 {t}", expanded=True):
+                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                    popover_feedback("JMF", t, sel)
+        else: st.info("Aucune donnée JMF disponible.")
 
     with tabs[3]: # JDV
-        for t, c in JDV_DATA.get(sel, {}).items():
-            with st.expander(f"🌿 {t}", expanded=True):
-                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                popover_feedback("JDV", t, sel)
+        v = JDV_DATA.get(sel, {})
+        if v:
+            for t, c in v.items():
+                with st.expander(f"🌿 {t}", expanded=True):
+                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                    popover_feedback("JDV", t, sel)
+        else: st.info("Aucune donnée JDV disponible.")
 
     with tabs[4]: # ITAB
-        for t, c in ITAB_DATA.get(sel, {}).items():
-            with st.expander(f"📗 {t}", expanded=True):
-                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                popover_feedback("ITAB", t, sel)
+        i = ITAB_DATA.get(sel, {})
+        if i:
+            for t, c in i.items():
+                with st.expander(f"📗 {t}", expanded=True):
+                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                    popover_feedback("ITAB", t, sel)
+        else: st.info("Aucune donnée ITAB disponible.")
 
     with tabs[5]: # THO
         st.subheader("📝 Saisie Terrain (THO)")
