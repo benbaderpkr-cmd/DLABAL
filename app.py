@@ -70,7 +70,7 @@ JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 ITAB_DATA = load_json("itab.json")
 FERTI_DATA = load_json("calcul_ferti.json")
-JP1_OFFICIEL = load_json("reglages_jp1 (4).json")
+JP1_OFFICIEL = load_json("reglages_jp1.json")
 JP1_JMF = load_json("reglages_jmf.json")
 
 legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + list(ARG_DATA.keys())) 
@@ -291,3 +291,4 @@ else:
                 "2. **Utilisez les outils** (⚙️ Réglages JP1, 🧪 Calcul Ferti) pour vos besoins spécifiques.\n"
                 "3. **Contribuez** en utilisant l'icône 📝 pour envoyer vos retours ou remplir l'onglet THO.")
     st.info("Utilisez la barre latérale à gauche pour naviguer.")
+
