@@ -253,7 +253,7 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
 
     if rows:
         st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-        st.info("💡 La colonne **Besoin Culture (U/ha)** rappelle la norme agronomique. Les colonnes *
+        st.info("💡 La colonne **Besoin Culture (U/ha)** rappelle la norme agronomique. Les colonnes **kg** vous donnent la quantité exacte à peser pour votre planche de culture.")
                 
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
@@ -341,6 +341,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
