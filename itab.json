@@ -52,166 +52,167 @@
     "MALADIES ET RAVAGEURS": "Fonte des semis : excès d'humidité à la levée, particulièrement importante en semis directs ; éviter arrosage excessif. Anthracnose (Colletotrichum dematium) : taches translucides puis nécrotiques par temps humide ; prévention uniquement (rotation, sol sain, pas d'excès d'irrigation, réduction fumures azotées). Mildiou (Peronospora farinosa) : fréquent en automne (8-18°C), taches vert pâle puis jaunes, feutrage gris violacé en dessous ; prévention : densité raisonnée, rotation, variétés résistantes. Mosaïque du concombre (CMV) : transmise par pucerons Myzus persicae et Aphis fabae ; pas de traitement, certaines variétés résistantes. Maladie de l'épinard (Heterosporium variabile) : attaque les variétés à feuillage foncé ; réduire arrosages, pulvériser éliciteur. Pythium : gaufrage et brunissement puis pourrissement général ; prévention uniquement. Cladosporiose / Nuile grise : ponctuations brunes en taches arrondies. Noctuelles défoliatrices : chenilles dévorent les feuilles ; Bacillus thuringiensis. Mouche de la betterave : perfore cotylédons et feuillage ; arrosage régulier, filet anti-insectes. Pucerons : transmission de viroses ; lutte intégrée, auxiliaires. Limaces : dégâts surtout sous abri. Noctuelles terricoles : mangent les mottes à la reprise (sept-oct). Acariens (Tyrophagus sp.) : sous abri en jan-fév ; l'aspersion gêne leur développement.",
     "RÉCOLTE ET CONSERVATION": "Récolter à 6-7 feuilles. Plante légèrement humide mais éviter excès (pourritures, feuilles cassantes) ; ne pas récolter après pluie ou rosée. Récolte manuelle, feuille à feuille ou à la faucille/couteau, en 1 à 2 passages (jusqu'à 3 en début d'automne). Rendement : 100 kg/100 m² par coupe, jusqu'au double sous abri ; vitesse 15-20 kg/h. Conditionnement : plateaux de 5 kg (60x40 cm) avec feuille plastique transparente. Stockage : mauvaise conservation au-delà de 3-4 jours après lavage ; en chambre froide (+4/+5°C) à hygrométrie élevée, vendre avant le 6ème jour."
   },
+ {
   "Concombre": {
     "L'ESSENTIEL": {
-      "description": "Plante herbacée annuelle, très polymorphe et à croissance très rapide. Racine superficielle, tiges rampantes et rameuses pouvant atteindre plusieurs mètres. Monoïque à l'origine : fleurs mâles se développent en premier, puis alternent avec les fleurs femelles. Les hybrides F1 n'ont que des fleurs femelles donnant des fruits sans fécondation (parthénocarpie). Très exigeant en chaleur, majoritairement cultivé sous abri. Rythme de récolte soutenu : 2 à 3 fois par semaine en moyenne.",
-      "principales_maladies": ["Maladies telluriques (système racinaire faible)", "Pucerons", "Acariens tétranyques", "Oïdium", "Mildiou", "Cladosporiose"],
-      "reperes_culture": {
-        "faculte_germinative_graines_ans": 10,
-        "levee_jours": "4 à 6",
-        "graines_par_gramme": "35 à 50",
-        "peuplement_plant_m2": "1,2 à 1,6",
-        "ecartement_entre_rangs_cm": "120 à 150",
-        "ecartement_sur_rang_cm": "60 à 70"
+      "Description": "Plante herbacée annuelle, très polymorphe et à croissance très rapide. Racine superficielle, tiges rampantes et rameuses pouvant atteindre plusieurs mètres. Monoïque à l'origine : fleurs mâles se développent en premier, puis alternent avec les fleurs femelles. Les hybrides F1 n'ont que des fleurs femelles donnant des fruits sans fécondation (parthénocarpie). Très exigeant en chaleur, majoritairement cultivé sous abri. Rythme de récolte soutenu : 2 à 3 fois par semaine en moyenne.",
+      "Principales maladies": ["Maladies telluriques (système racinaire faible)", "Pucerons", "Acariens tétranyques", "Oïdium", "Mildiou", "Cladosporiose"],
+      "Repères de culture": {
+        "Faculté germinative des graines (ans)": 10,
+        "Levée (jours)": "4 à 6",
+        "Graines par gramme": "35 à 50",
+        "Peuplement (plants/m²)": "1,2 à 1,6",
+        "Écartement entre rangs (cm)": "120 à 150",
+        "Écartement sur le rang (cm)": "60 à 70"
       },
-      "rendement_potentiel": {
-        "sous_abri_kg_m2": "8 à 12",
-        "rythme_recolte": "2 à 3 fois par semaine"
+      "Rendement potentiel": {
+        "Sous abri (kg/m²)": "8 à 12",
+        "Rythme de récolte": "2 à 3 fois par semaine"
       }
     },
 
     "ENVIRONNEMENT DE LA PLANTE": {
       "Climat": {
-        "adaptation": "Plante exigeante en chaleur et en eau, craignant les climats froids et les gelées",
-        "gel": "Gèle à 0°C",
-        "temperature_moyenne_journaliere_optimale_C": "20 à 21",
-        "temperature_demarrage_culture_C": "16 à 17",
-        "equilibre_temperature_eclairement": "Températures trop importantes par rapport à l'éclairement : élongation des nœuds, plante chétive, risque de nécroses apicales sèches. Éclairement trop important par rapport à la température : port ramassé, brûlures sur fruits.",
-        "hygrometrie": {
-          "niveau_requis": "Élevée",
-          "problemes_hygrometrie_faible": "Déformations du fruit",
-          "problemes_hygrometrie_excessive_matin": "Maladies cryptogamiques, plantes froides, couvertures de condensation",
-          "solution": "Bassinages brefs pour éviter le développement de maladies cryptogamiques ; aération des abris dès que possible"
+        "Adaptation": "Plante exigeante en chaleur et en eau, craignant les climats froids et les gelées",
+        "Gel": "Gèle à 0°C",
+        "Température moyenne journalière optimale (°C)": "20 à 21",
+        "Température de démarrage de culture (°C)": "16 à 17",
+        "Équilibre température / éclairement": "Températures trop importantes par rapport à l'éclairement : élongation des nœuds, plante chétive, risque de nécroses apicales sèches. Éclairement trop important par rapport à la température : port ramassé, brûlures sur fruits.",
+        "Hygrométrie": {
+          "Niveau requis": "Élevée",
+          "Problèmes si hygrométrie faible": "Déformations du fruit",
+          "Problèmes si hygrométrie excessive le matin": "Maladies cryptogamiques, plantes froides, couvertures de condensation",
+          "Solution": "Bassinages brefs pour éviter le développement de maladies cryptogamiques ; aération des abris dès que possible"
         }
       },
       "Sol": {
-        "type_ideal": "Léger, drainant, limoneux, profond, riche en matière organique",
-        "pH_ideal": "5,5 à 7",
-        "sols_a_eviter": ["Argileux", "Tassés", "Asphyxiants"]
+        "Type idéal": "Léger, drainant, limoneux, profond, riche en matière organique",
+        "pH idéal": "5,5 à 7",
+        "Sols à éviter": ["Argileux", "Tassés", "Asphyxiants"]
       }
     },
 
     "PLACE DANS LA ROTATION": {
-      "position": "Culture à placer en tête de rotation",
-      "retour_sur_meme_parcelle_min_ans": 2,
-      "intervalle_ideal_ans": 4,
-      "bons_precedents": ["Alliacées", "Céréales", "Maïs", "Engrais verts"],
-      "mauvais_precedents": ["Autres Cucurbitacées", "Solanacées"],
-      "compagnonnage": {
-        "associations_favorables": ["Haricot nain", "Pois", "Maïs doux", "Chou", "Laitue", "Oignon"],
-        "associations_defavorables": ["Tomate", "Melon"]
+      "Position": "Culture à placer en tête de rotation",
+      "Retour sur même parcelle minimum (ans)": 2,
+      "Intervalle idéal (ans)": 4,
+      "Bons précédents": ["Alliacées", "Céréales", "Maïs", "Engrais verts"],
+      "Mauvais précédents": ["Autres Cucurbitacées", "Solanacées"],
+      "Compagnonnage": {
+        "Associations favorables": ["Haricot nain", "Pois", "Maïs doux", "Chou", "Laitue", "Oignon"],
+        "Associations défavorables": ["Tomate", "Melon"]
       }
     },
 
     "IMPLANTATION DE LA CULTURE": {
-      "strategie": "Tirer profit de la croissance rapide : mettre en place 2, voire 3 cycles de culture afin d'étaler une production de qualité sur la saison",
-      "cycles_sous_abri": {
-        "semis_precoce": "Récolte juin-juillet",
-        "semis_tardif": "Récolte septembre"
+      "Stratégie": "Tirer profit de la croissance rapide : mettre en place 2, voire 3 cycles de culture afin d'étaler une production de qualité sur la saison",
+      "Cycles sous abri": {
+        "Semis précoce": "Récolte juin-juillet",
+        "Semis tardif": "Récolte septembre"
       },
-      "plein_champ": "Exigences en chaleur impliquent une implantation fin mai, récolte en août",
+      "Plein champ": "Exigences en chaleur impliquent une implantation fin mai, récolte en août",
 
       "CULTIVARS": {
-        "groupes": [
-          {"nom": "Concombres épineux", "description": "Plutôt représentatifs des variétés anciennes"},
-          {"nom": "Type hollandais", "description": "Nouvelles variétés : fruit long, épiderme lisse et brillant"},
-          {"nom": "Cornichons", "description": "Fruit récolté bien avant la maturité"}
+        "Groupes de variétés": [
+          {"Nom": "Concombres épineux", "Description": "Plutôt représentatifs des variétés anciennes"},
+          {"Nom": "Type hollandais", "Description": "Nouvelles variétés : fruit long, épiderme lisse et brillant"},
+          {"Nom": "Cornichons", "Description": "Fruit récolté bien avant la maturité"}
         ],
-        "reglementation_AB": "Espèce hors dérogation depuis 2007 : semences nécessairement biologiques",
-        "tendances_selection": [
+        "Réglementation AB": "Espèce hors dérogation depuis 2007 : semences nécessairement biologiques",
+        "Tendances de sélection": [
           "Hybrides F1 parthénocarpiques : fleurs femelles uniquement, fruits sans fécondation, moins de graines, moins de déformations",
           "Adaptation aux basses températures (zéro végétatif relevé à 14°C sur certaines variétés, croissance possible avec moyenne quotidienne à 16°C)",
           "Meilleure digestibilité du fruit"
         ],
-        "criteres_agronomiques_choix": [
+        "Critères agronomiques de choix": [
           "Type de culture (serre ou plein champ) et caractère plus ou moins précoce de la variété",
           "Tolérance aux maladies et bio-agresseurs : cladosporiose, corynespora, oïdium, mildiou, anthracnose, CMV, CVYV",
           "Sensibilité aux accidents culturaux",
           "Rendement potentiel (différent selon plants greffés ou francs)"
         ],
-        "criteres_commerciaux_choix": [
+        "Critères commerciaux de choix": [
           "Longueur du fruit : demi-long pour épineux, long pour hollandais",
           "Couleur et aspect de l'épiderme : brillant, lisse ou épineux",
           "Saveur : douce pour le type hollandais, plus prononcée pour les épineux"
         ],
-        "exemples_varietes": [
-          {"nom": "Akito F1", "type": "Épineux", "mode": "Sous abri", "precocite": "Très précoce (semis jan-mars)", "fruit": "Court 20-22 cm", "particularites": "Tolérance oïdium et CMV, vigueur et rendement satisfaisants"},
-          {"nom": "Blanc long parisien", "type": "Épineux", "mode": "Plein champ", "precocite": "Précoce (semis mars-juin)", "fruit": "Court 18-20 cm", "particularites": "Variété vigoureuse, fruits lisses et blancs"},
-          {"nom": "Le Généreux", "type": "Épineux", "mode": "Plein champ", "precocite": "Semis fév-juin", "fruit": "Court 15-25 cm", "particularites": "Très productif, fruit lisse à légèrement épineux, vert foncé"},
-          {"nom": "Lemon", "type": "Épineux", "mode": "Plein champ", "precocite": "Semis mars-avril", "fruit": "Rond 10-15 cm", "particularites": "Variété ancienne, rustique et productive, fruit jaune"},
-          {"nom": "Marketer", "type": "Épineux", "mode": "Plein champ", "precocite": "Précoce (semis mars-avril)", "fruit": "Demi-long", "particularites": "Fruit vert clair, productif"},
-          {"nom": "Marketmore", "type": "Épineux", "mode": "Plein champ", "precocite": "Précoce (semis mars-mai)", "fruit": "Court 15-25 cm", "particularites": "Fruit légèrement épineux, vert foncé, peu amer"},
-          {"nom": "Tanja", "type": "Épineux", "mode": "Plein champ", "precocite": "Semis mars-mai", "fruit": "Long 30-35 cm", "particularites": "Vert foncé sans amertume, plante rustique et très productive"},
-          {"nom": "Aramon F1", "type": "Hollandais", "mode": "Sous abri", "precocite": "Précoce (semis fév-mai)", "fruit": "Long 30-35 cm", "particularites": "Bonne vigueur, fruit légèrement cannelé vert très foncé, tolérance oïdium"},
-          {"nom": "Aviance F1", "type": "Hollandais", "mode": "Sous abri", "precocite": "Précoce (semis fév-mai)", "fruit": "Long 30-35 cm", "particularites": "Fruit très régulier, bonne tenue après récolte, vigoureux"},
-          {"nom": "Defense F1", "type": "Hollandais", "mode": "Sous abri", "precocite": "Semi-précoce (semis mars-juin)", "fruit": "Long 30-35 cm", "particularites": "Plante très vigoureuse à enracinement fort, tolérance oïdium et CMV"},
-          {"nom": "Flamingo F1", "type": "Hollandais", "mode": "Sous abri", "precocite": "Très précoce (semis jan-mai)", "fruit": "Long 30-35 cm", "particularites": "Rendement élevé, système racinaire fort, tolérance oïdium"},
-          {"nom": "Palladium F1", "type": "Hollandais", "mode": "Sous abri", "precocite": "Précoce (semis fév-mai)", "fruit": "Long 30-35 cm", "particularites": "Rustique, productif, bonne tenue en été, tolérance brûlures, oïdium, cladosporiose, corynespora"},
-          {"nom": "Paska F1", "type": "Hollandais", "mode": "Sous abri ou plein champ", "precocite": "Précoce (semis fév-avril)", "fruit": "Demi-long 25 cm", "particularites": "Fruit vert foncé uniforme, tolérance oïdium et cladosporiose"},
-          {"nom": "Rollison's telegraph", "type": "Hollandais", "mode": "Sous abri et plein champ", "precocite": "Semis mars-avril", "fruit": "Long 30-40 cm", "particularites": "Très productif, chair blanche ferme et très pleine"},
-          {"nom": "Tyria F1", "type": "Hollandais", "mode": "Sous abri", "precocite": "Précoce (semis fév-avril)", "fruit": "Long 30-35 cm", "particularites": "Très productif, plante vigoureuse, fruit peu cannelé, tolérance oïdium"},
-          {"nom": "Vert long maraîcher", "type": "Hollandais", "mode": "Plein champ", "precocite": "Semi-précoce (semis mars-mai)", "fruit": "Demi-long 25-30 cm", "particularites": "Très productif, résistant au froid, chair blanche ferme et croquante, peu de graines, saveur douce"},
-          {"nom": "Cornichon amélioré de Bourbonne", "type": "Cornichon", "mode": "Plein champ", "particularites": "Fruits abondants et longs, chair ferme et savoureuse"},
-          {"nom": "Cornichon vert petit de Paris", "type": "Cornichon", "mode": "Plein champ", "particularites": "Variété classique, très productive, gros fruits courts et trapus"},
-          {"nom": "Cornichon vert fin de Meaux", "type": "Cornichon", "mode": "Plein champ", "particularites": "Ancienne variété très rustique et productive, fruits allongés"},
-          {"nom": "Adam F1", "type": "Cornichon", "mode": "Plein champ", "particularites": "Variété précoce, vigoureuse, rendement élevé"},
-          {"nom": "Stimora F1", "type": "Cornichon", "mode": "Plein champ", "particularites": "Plante très vigoureuse, rendement élevé et régulier jusqu'en fin de récolte"}
+        "Exemples de variétés": [
+          {"Nom": "Akito F1", "Type": "Épineux", "Mode de culture": "Sous abri", "Précocité": "Très précoce (semis jan-mars)", "Fruit": "Court 20-22 cm", "Particularités": "Tolérance oïdium et CMV, vigueur et rendement satisfaisants"},
+          {"Nom": "Blanc long parisien", "Type": "Épineux", "Mode de culture": "Plein champ", "Précocité": "Précoce (semis mars-juin)", "Fruit": "Court 18-20 cm", "Particularités": "Variété vigoureuse, fruits lisses et blancs"},
+          {"Nom": "Le Généreux", "Type": "Épineux", "Mode de culture": "Plein champ", "Précocité": "Semis fév-juin", "Fruit": "Court 15-25 cm", "Particularités": "Très productif, fruit lisse à légèrement épineux, vert foncé"},
+          {"Nom": "Lemon", "Type": "Épineux", "Mode de culture": "Plein champ", "Précocité": "Semis mars-avril", "Fruit": "Rond 10-15 cm", "Particularités": "Variété ancienne, rustique et productive, fruit jaune"},
+          {"Nom": "Marketer", "Type": "Épineux", "Mode de culture": "Plein champ", "Précocité": "Précoce (semis mars-avril)", "Fruit": "Demi-long", "Particularités": "Fruit vert clair, productif"},
+          {"Nom": "Marketmore", "Type": "Épineux", "Mode de culture": "Plein champ", "Précocité": "Précoce (semis mars-mai)", "Fruit": "Court 15-25 cm", "Particularités": "Fruit légèrement épineux, vert foncé, peu amer"},
+          {"Nom": "Tanja", "Type": "Épineux", "Mode de culture": "Plein champ", "Précocité": "Semis mars-mai", "Fruit": "Long 30-35 cm", "Particularités": "Vert foncé sans amertume, plante rustique et très productive"},
+          {"Nom": "Aramon F1", "Type": "Hollandais", "Mode de culture": "Sous abri", "Précocité": "Précoce (semis fév-mai)", "Fruit": "Long 30-35 cm", "Particularités": "Bonne vigueur, fruit légèrement cannelé vert très foncé, tolérance oïdium"},
+          {"Nom": "Aviance F1", "Type": "Hollandais", "Mode de culture": "Sous abri", "Précocité": "Précoce (semis fév-mai)", "Fruit": "Long 30-35 cm", "Particularités": "Fruit très régulier, bonne tenue après récolte, vigoureux"},
+          {"Nom": "Defense F1", "Type": "Hollandais", "Mode de culture": "Sous abri", "Précocité": "Semi-précoce (semis mars-juin)", "Fruit": "Long 30-35 cm", "Particularités": "Plante très vigoureuse à enracinement fort, tolérance oïdium et CMV"},
+          {"Nom": "Flamingo F1", "Type": "Hollandais", "Mode de culture": "Sous abri", "Précocité": "Très précoce (semis jan-mai)", "Fruit": "Long 30-35 cm", "Particularités": "Rendement élevé, système racinaire fort, tolérance oïdium"},
+          {"Nom": "Palladium F1", "Type": "Hollandais", "Mode de culture": "Sous abri", "Précocité": "Précoce (semis fév-mai)", "Fruit": "Long 30-35 cm", "Particularités": "Rustique, productif, bonne tenue en été, tolérance brûlures, oïdium, cladosporiose, corynespora"},
+          {"Nom": "Paska F1", "Type": "Hollandais", "Mode de culture": "Sous abri ou plein champ", "Précocité": "Précoce (semis fév-avril)", "Fruit": "Demi-long 25 cm", "Particularités": "Fruit vert foncé uniforme, tolérance oïdium et cladosporiose"},
+          {"Nom": "Rollison's telegraph", "Type": "Hollandais", "Mode de culture": "Sous abri et plein champ", "Précocité": "Semis mars-avril", "Fruit": "Long 30-40 cm", "Particularités": "Très productif, chair blanche ferme et très pleine"},
+          {"Nom": "Tyria F1", "Type": "Hollandais", "Mode de culture": "Sous abri", "Précocité": "Précoce (semis fév-avril)", "Fruit": "Long 30-35 cm", "Particularités": "Très productif, plante vigoureuse, fruit peu cannelé, tolérance oïdium"},
+          {"Nom": "Vert long maraîcher", "Type": "Hollandais", "Mode de culture": "Plein champ", "Précocité": "Semi-précoce (semis mars-mai)", "Fruit": "Demi-long 25-30 cm", "Particularités": "Très productif, résistant au froid, chair blanche ferme et croquante, peu de graines, saveur douce"},
+          {"Nom": "Cornichon amélioré de Bourbonne", "Type": "Cornichon", "Mode de culture": "Plein champ", "Particularités": "Fruits abondants et longs, chair ferme et savoureuse"},
+          {"Nom": "Cornichon vert petit de Paris", "Type": "Cornichon", "Mode de culture": "Plein champ", "Particularités": "Variété classique, très productive, gros fruits courts et trapus"},
+          {"Nom": "Cornichon vert fin de Meaux", "Type": "Cornichon", "Mode de culture": "Plein champ", "Particularités": "Ancienne variété très rustique et productive, fruits allongés"},
+          {"Nom": "Adam F1", "Type": "Cornichon", "Mode de culture": "Plein champ", "Particularités": "Variété précoce, vigoureuse, rendement élevé"},
+          {"Nom": "Stimora F1", "Type": "Cornichon", "Mode de culture": "Plein champ", "Particularités": "Plante très vigoureuse, rendement élevé et régulier jusqu'en fin de récolte"}
         ],
-        "plants_francs_vs_greffes": {
-          "avantages_greffes": [
+        "Plants francs vs plants greffés": {
+          "Avantages des plants greffés": [
             "Meilleure résistance aux maladies du sol (Phomopsis notamment)",
             "Hausse sensible du rendement commercial : 30-32 fruits/m² contre 20 fruits/m² sur plant franc"
           ],
-          "inconvenients_greffes": "Coût plus élevé",
-          "elevage_a_la_ferme": "Possible, attention aux coups de froid et aux rongeurs"
+          "Inconvénients des plants greffés": "Coût plus élevé",
+          "Élevage à la ferme": "Possible, attention aux coups de froid et aux rongeurs"
         }
       },
 
       "PRÉPARATION DU SOL ET FERTILISATION": {
-        "principe": "La fertilisation doit couvrir les besoins et être modulée en fonction de la richesse initiale du sol. Apporter un amendement organique avant la plantation.",
-        "exportations_minerales": [
-          {"rendement": "120 t/ha (sous abri)", "N_kg_ha": 250, "P2O5_kg_ha": 160, "K2O_kg_ha": 400},
-          {"rendement": "80 t/ha (sous abri)", "N_kg_ha": 150, "P2O5_kg_ha": 80, "K2O_kg_ha": 200},
-          {"rendement": "40 t/ha (plein champ)", "N_kg_ha": 90, "P2O5_kg_ha": 60, "K2O_kg_ha": 140}
+        "Principe": "La fertilisation doit couvrir les besoins et être modulée en fonction de la richesse initiale du sol. Apporter un amendement organique avant la plantation.",
+        "Exportations minérales": [
+          {"Rendement": "120 t/ha (sous abri)", "N (kg/ha)": 250, "P2O5 (kg/ha)": 160, "K2O (kg/ha)": 400},
+          {"Rendement": "80 t/ha (sous abri)", "N (kg/ha)": 150, "P2O5 (kg/ha)": 80, "K2O (kg/ha)": 200},
+          {"Rendement": "40 t/ha (plein champ)", "N (kg/ha)": 90, "P2O5 (kg/ha)": 60, "K2O (kg/ha)": 140}
         ],
-        "amendement_organique": "15 à 20 t/ha de fumier composté avant plantation, complément potasse par vinasse ou patentkali",
-        "carences_a_surveiller": {
-          "elements_mobiles_organes_ages": ["Manganèse", "Magnésium"],
-          "elements_peu_mobiles_organes_jeunes": ["Calcium", "Fer", "Cuivre", "Zinc", "Bore", "Soufre"]
+        "Amendement organique": "15 à 20 t/ha de fumier composté avant plantation, complément potasse par vinasse ou patentkali",
+        "Carences à surveiller": {
+          "Éléments mobiles (symptômes sur organes âgés)": ["Manganèse", "Magnésium"],
+          "Éléments peu mobiles (symptômes sur organes jeunes)": ["Calcium", "Fer", "Cuivre", "Zinc", "Bore", "Soufre"]
         },
-        "preparation_sol": {
-          "objectif": "Sol aéré et bien drainé, structure grossière en profondeur et affinée en surface",
-          "techniques": ["Sous-solage", "Passage d'outil à dents (canadien, cultivateur)", "Roto-bêche", "Herse rotative"],
-          "attention": "Ne pas trop affiner en sols limoneux (risque de battance accru)"
+        "Préparation du sol": {
+          "Objectif": "Sol aéré et bien drainé, structure grossière en profondeur et affinée en surface",
+          "Techniques": ["Sous-solage", "Passage d'outil à dents (canadien, cultivateur)", "Roto-bêche", "Herse rotative"],
+          "Attention": "Ne pas trop affiner en sols limoneux (risque de battance accru)"
         }
       },
 
       "SEMIS ET PLANTATION": {
-        "production_de_plants": {
-          "duree_germinative_ans": "8 à 10",
-          "graines_par_gramme": "35 à 40",
-          "itineraires_techniques": [
+        "Production de plants": {
+          "Durée germinative (ans)": "8 à 10",
+          "Graines par gramme": "35 à 40",
+          "Itinéraires techniques": [
             "Pré-germination sur coton hydrophile → pépinière en terrine (400-500 graines/m², voile P17 pour semis précoces) → repiquage en mottes 7x7, 7,8x8 ou 10x10 au stade cotylédons étalés",
             "Semis en bouchons (plaques alvéolées) → repiquage en mottes au même stade",
             "Semis directement en mottes 7x7",
             "Pour implantations tardives (à partir de mai) : semis direct"
           ],
-          "temperature_semis_C": 25,
-          "temperature_substrat_C": "18 à 20",
-          "levee_jours": "4 à 5",
-          "temperature_eau_arrosage_min_C": 12,
-          "hygrometrie_elevage_pct": "60 à 80",
-          "stade_plantation": "Trois feuilles",
-          "temperature_ambiante_plantation_C": 21,
-          "temperature_sol_plantation_C": "18 à 19"
+          "Température au semis (°C)": 25,
+          "Température du substrat (°C)": "18 à 20",
+          "Levée (jours)": "4 à 5",
+          "Température eau d'arrosage minimum (°C)": 12,
+          "Hygrométrie pendant l'élevage (%)": "60 à 80",
+          "Stade de plantation": "Trois feuilles",
+          "Température ambiante à la plantation (°C)": 21,
+          "Température du sol à la plantation (°C)": "18 à 19"
         },
-        "plantation": {
-          "paillage": "Bâches plastiques ou biodégradables posées avant plantation, avec gaines d'arrosage micro-perforées",
-          "densite_plant_m2": "1,2 à 1,6",
-          "exemple_tunnel_8m": "Deux doubles rangs centraux + deux simples rangs latéraux, écartement 50 cm entre pieds en quinconce",
-          "temperature_sol_souhaitee_C": "16 à 17",
-          "attention_temperature_basse": "Favorise champignons pathogènes comme le Pythium",
-          "modalites": [
+        "Plantation": {
+          "Paillage": "Bâches plastiques ou biodégradables posées avant plantation, avec gaines d'arrosage micro-perforées",
+          "Densité (plants/m²)": "1,2 à 1,6",
+          "Exemple tunnel 8m": "Deux doubles rangs centraux + deux simples rangs latéraux, écartement 50 cm entre pieds en quinconce",
+          "Température du sol souhaitée (°C)": "16 à 17",
+          "Attention si température basse": "Favorise les champignons pathogènes comme le Pythium",
+          "Modalités": [
             "Plein hydrique du sol juste avant plantation",
             "Tremper les mottes dans l'eau avant de planter",
             "Plants manipulés avec précaution, mottes légèrement enterrées à 7 cm (haut de motte au ras du sol)",
@@ -224,16 +225,16 @@
 
     "CONDUITE DE LA CULTURE": {
       "Irrigation": {
-        "besoins_eau_par_20kg_fruits_kg": "500 à 600",
-        "moyenne_litres_jour_plant": 2,
-        "evolution_besoins_selon_stade": {
-          "plantation_a_floraison": "45% de l'ETP",
-          "floraison_a_debut_recolte": "90% de l'ETP",
-          "durant_recolte": "100% de l'ETP"
+        "Besoins en eau pour 20 kg de fruits (kg)": "500 à 600",
+        "Moyenne (litres/jour/plant)": 2,
+        "Évolution des besoins selon le stade": {
+          "De la plantation à la floraison": "45% de l'ETP",
+          "De la floraison au début de récolte": "90% de l'ETP",
+          "Durant toute la récolte": "100% de l'ETP"
         },
-        "manque_eau": "Couleur foncée, tête qui fane",
-        "exces_eau": "Nécroses apicales, plante trop végétative, fruits déformés, maladies fongiques (mildiou, botrytis)",
-        "conseils": [
+        "Symptômes de manque d'eau": "Couleur foncée, tête qui fane",
+        "Symptômes d'excès d'eau": "Nécroses apicales, plante trop végétative, fruits déformés, maladies fongiques (mildiou, botrytis)",
+        "Conseils": [
           "Fractionner les arrosages : 2 à 4 fois par semaine",
           "Arroser tôt le matin, pression racinaire fragilise les tiges",
           "Placer le goutteur près du collet, puis l'éloigner pour forcer le développement racinaire",
@@ -242,59 +243,59 @@
           "Par vent fort : fermer le côté exposé pour limiter les pertes d'humidité et les blessures sur fruits"
         ]
       },
-      "Désherbage": "Non spécifié pour le concombre (gestion par paillage plastique ou biodégradable)",
+      "Désherbage": "Gestion principalement par paillage plastique ou biodégradable",
       "Palissage": {
-        "methode": "Ficelles verticales fixées en bas par clip ou en terre, en haut sur barres horizontales du tunnel",
-        "frequence": "2 fois par semaine (croissance rapide de la plante)",
-        "technique": "Enroulage de la tige autour de la ficelle ; quand la tige atteint les supports : passer par-dessus, redescendre de l'autre côté, laisser 2 départs d'axillaires pour la descente, arrêter la tête 70 cm après le support",
-        "moment_intervention": "Fin d'après-midi, plante légèrement fanée (réduit le risque de casser la tige)"
+        "Méthode": "Ficelles verticales fixées en bas par clip ou en terre, en haut sur barres horizontales du tunnel",
+        "Fréquence": "2 fois par semaine (croissance rapide de la plante)",
+        "Technique": "Enroulage de la tige autour de la ficelle ; quand la tige atteint les supports : passer par-dessus, redescendre de l'autre côté, laisser 2 départs d'axillaires pour la descente, arrêter la tête 70 cm après le support",
+        "Moment d'intervention": "Fin d'après-midi, plante légèrement fanée (réduit le risque de casser la tige)"
       },
       "Taille": {
-        "degagement_bas": "Jusqu'à 60 cm du sol : enlever feuilles, fleurs et ramifications",
-        "fruits_bas": "Supprimer les fruits sur cette portion (reposent sur le sol, se déforment)",
-        "frequence": "2 fois par semaine",
-        "consigne_par_aisselle": "Conserver 1 fruit maximum par aisselle de feuille",
-        "options": [
+        "Dégagement du bas": "Jusqu'à 60 cm du sol : enlever feuilles, fleurs et ramifications",
+        "Fruits du bas": "Supprimer les fruits sur cette portion (reposent sur le sol, se déforment)",
+        "Fréquence": "2 fois par semaine",
+        "Consigne par aisselle": "Conserver 1 fruit maximum par aisselle de feuille",
+        "Options": [
           "Certains maraîchers sautent un bourgeon sur deux pour maintenir la vigueur et régulariser la production",
           "D'autres conservent 2 fruits par aisselle à partir de 1,20 m de hauteur"
         ],
-        "effeuillage": "Après 4 à 6 fruits récoltés par pied, lorsque la tige commence à descendre de l'autre côté des barres de culture",
-        "varietes_non_hybrides": "Les fleurs, mâles ou femelles, doivent être laissées jusqu'à la nouaison"
+        "Effeuillage": "Après 4 à 6 fruits récoltés par pied, lorsque la tige commence à descendre de l'autre côté des barres de culture",
+        "Variétés non hybrides": "Les fleurs, mâles ou femelles, doivent être laissées jusqu'à la nouaison"
       },
       "Pollinisation": {
-        "hybrides_F1_parthenecarpiques": "Pas besoin de pollinisateurs, fruits produits sans fécondation",
-        "varietes_anciennes_non_parthenecarpiques": "Pollinisation croisée par insectes nécessaire (même méthode que pour la courgette)"
+        "Hybrides F1 parthénocarpiques": "Pas besoin de pollinisateurs, fruits produits sans fécondation",
+        "Variétés anciennes non parthénocarpiques": "Pollinisation croisée par insectes nécessaire (même méthode que pour la courgette)"
       },
-      "Conduite_deux_tetes": {
-        "contexte": "En sol fatigué, recours aux plants greffés recommandé",
-        "methode": "Étêter au-dessus de la 3e feuille, garder 2 axillaires (généralement les deux derniers)",
-        "avantage": "Augmentation de la vigueur, densité divisée par deux, réduction du surcoût",
-        "benefice_porte_greffe": "Capacités de prospection racinaire importantes, mobilisation élevée d'éléments nutritifs"
+      "Conduite sur deux têtes": {
+        "Contexte": "En sol fatigué, recours aux plants greffés recommandé",
+        "Méthode": "Étêter au-dessus de la 3e feuille, garder 2 axillaires (généralement les deux derniers)",
+        "Avantage": "Augmentation de la vigueur, densité divisée par deux, réduction du surcoût",
+        "Bénéfice du porte-greffe": "Capacités de prospection racinaire importantes, mobilisation élevée d'éléments nutritifs"
       }
     },
 
     "MALADIES ET RAVAGEURS": {
-      "surveillance": "Surveiller dès la pépinière, notamment au centre des tunnels, près des parois et des portes d'entrée. Observer les têtes et les feuilles. Poser des bandes engluées jaunes et bleues pour repérer certains ravageurs.",
+      "Surveillance": "Surveiller dès la pépinière, notamment au centre des tunnels, près des parois et des portes d'entrée. Observer les têtes et les feuilles. Poser des bandes engluées jaunes et bleues pour repérer certains ravageurs.",
       "Pathogènes du sol (telluriques)": [
         {
-          "nom": "Dépérissement racinaire (Phomopsis)",
-          "symptomes": "Nécroses sur racines, légers points noirs et collet brun, puis liège sur racines âgées",
-          "mesures": ["Utiliser des plants greffés", "Bon calage de la rotation"]
+          "Nom": "Dépérissement racinaire (Phomopsis)",
+          "Symptômes": "Nécroses sur racines, légers points noirs et collet brun, puis liège sur racines âgées",
+          "Mesures préventives et de lutte": ["Utiliser des plants greffés", "Bon calage de la rotation"]
         },
         {
-          "nom": "Fusariose des racines (Fusarium oxysporum f.sp. radicis-cucumerinum)",
-          "symptomes": "Nécrose unilatérale sur collet, vaisseaux bruns, flétrissement brusque de haut en bas. Souvent après météo bouchée et fraîche.",
-          "mesures": ["Arracher rapidement les premiers plants touchés", "Respecter les rotations"]
+          "Nom": "Fusariose des racines (Fusarium oxysporum f.sp. radicis-cucumerinum)",
+          "Symptômes": "Nécrose unilatérale sur collet, vaisseaux bruns, flétrissement brusque de haut en bas. Souvent après météo bouchée et fraîche.",
+          "Mesures préventives et de lutte": ["Arracher rapidement les premiers plants touchés", "Respecter les rotations"]
         },
         {
-          "nom": "Pourriture du collet (Pythium)",
-          "symptomes": "Souvent sur jeunes plantules en pépinière, flétrissement soudain sur plantes adultes",
-          "mesures": ["Analyser la cause : terreau contaminé, température trop fraîche (<15°C) ou trop chaude, surcharge en fruits, tassement du sol avec excès d'eau"]
+          "Nom": "Pourriture du collet (Pythium)",
+          "Symptômes": "Souvent sur jeunes plantules en pépinière, flétrissement soudain sur plantes adultes",
+          "Mesures préventives et de lutte": ["Analyser la cause : terreau contaminé, température trop fraîche (<15°C) ou trop chaude, surcharge en fruits, tassement du sol avec excès d'eau"]
         },
         {
-          "nom": "Nématodes à galles (Meloidogyne)",
-          "symptomes": "Déformations des racines avec formation de galles",
-          "mesures": [
+          "Nom": "Nématodes à galles (Meloidogyne)",
+          "Symptômes": "Déformations des racines avec formation de galles",
+          "Mesures préventives et de lutte": [
             "Champignons nématicides et engrais verts antagonistes",
             "Solarisation en sol très infesté",
             "Désinfection vapeur (coût élevé, mise en œuvre délicate)",
@@ -304,14 +305,14 @@
       ],
       "Maladies cryptogamiques": [
         {
-          "nom": "Anthracnose ou nuile rouge (Colletotrichum lagenarium)",
-          "symptomes": "Chancre, déclaration en périodes froides, souvent après pluies en mai-juin. La culture peut être anéantie.",
-          "mesures": ["Pulvériser préventivement un produit éliciteur ou à base de cuivre", "Brûler les feuilles atteintes"]
+          "Nom": "Anthracnose ou nuile rouge (Colletotrichum lagenarium)",
+          "Symptômes": "Chancre, déclaration en périodes froides, souvent après pluies en mai-juin. La culture peut être anéantie.",
+          "Mesures préventives et de lutte": ["Pulvériser préventivement un produit éliciteur ou à base de cuivre", "Brûler les feuilles atteintes"]
         },
         {
-          "nom": "Oïdium (Erysiphe cochoraceum et Sphaerotheca fuliginea)",
-          "symptomes": "Poudrage blanc caractéristique, baisse de la chlorophylle, dessèchement des feuilles et fruits tordus. Deux champignons : le premier par temps humide en plein air, le second (plus grave) par temps chaud et sec sous abri.",
-          "mesures": [
+          "Nom": "Oïdium (Erysiphe cochoraceum et Sphaerotheca fuliginea)",
+          "Symptômes": "Poudrage blanc caractéristique, baisse de la chlorophylle, dessèchement des feuilles et fruits tordus. Deux champignons : le premier par temps humide en plein air, le second (plus grave) par temps chaud et sec sous abri.",
+          "Mesures préventives et de lutte": [
             "Aérer suffisamment, ne pas planter trop serré",
             "Fumure : compost plutôt que fumier",
             "Dès l'apparition du feutrage blanc : enlever et brûler les parties atteintes",
@@ -320,19 +321,19 @@
           ]
         },
         {
-          "nom": "Cladosporiose ou nuile grise (Cladosporium cucumerinum)",
-          "symptomes": "Apparaît surtout en juin, par temps frais et humide. Fruits dépréciés.",
-          "mesures": ["Choisir une variété résistante", "Pulvériser un éliciteur ou à base de cuivre", "Brûler les feuilles atteintes"]
+          "Nom": "Cladosporiose ou nuile grise (Cladosporium cucumerinum)",
+          "Symptômes": "Apparaît surtout en juin, par temps frais et humide. Fruits dépréciés.",
+          "Mesures préventives et de lutte": ["Choisir une variété résistante", "Pulvériser un éliciteur ou à base de cuivre", "Brûler les feuilles atteintes"]
         },
         {
-          "nom": "Botrytis (Botrytis cinerea)",
-          "symptomes": "Maladie de faiblesse se manifestant sur les blessures de taille, irrégularités de la sève, ou en pointe de fruit.",
-          "mesures": ["Aérer les abris", "Éliminer toutes les parties malades", "Traitement à base de cuivre"]
+          "Nom": "Botrytis (Botrytis cinerea)",
+          "Symptômes": "Maladie de faiblesse se manifestant sur les blessures de taille, irrégularités de la sève, ou en pointe de fruit.",
+          "Mesures préventives et de lutte": ["Aérer les abris", "Éliminer toutes les parties malades", "Traitement à base de cuivre"]
         },
         {
-          "nom": "Mildiou (Pseudoperonospora cubensis)",
-          "symptomes": "Taches foliaires angulaires jaunes en face supérieure, feutré en face inférieure. Se développe très rapidement sous abri (2h d'humectation du feuillage suffisent à la germination des spores).",
-          "mesures": [
+          "Nom": "Mildiou (Pseudoperonospora cubensis)",
+          "Symptômes": "Taches foliaires angulaires jaunes en face supérieure, feutré en face inférieure. Se développe très rapidement sous abri (2h d'humectation du feuillage suffisent à la germination des spores).",
+          "Mesures préventives et de lutte": [
             "Applications d'engrais foliaires riches en cuivre",
             "Soufre mouillable (effet secondaire intéressant)",
             "Supprimer les bassinages dès l'apparition du mildiou",
@@ -340,24 +341,24 @@
           ]
         },
         {
-          "nom": "Pourriture noire (Didymella)",
-          "symptomes": "Taches nécrosées gris clair sur tiges au niveau des nœuds et des plaies de taille, taches huileuses sur feuilles, fruits à bouts rétrécis et pourris.",
-          "mesures": ["Limiter les écarts de température et les excès d'eau"]
+          "Nom": "Pourriture noire (Didymella)",
+          "Symptômes": "Taches nécrosées gris clair sur tiges au niveau des nœuds et des plaies de taille, taches huileuses sur feuilles, fruits à bouts rétrécis et pourris.",
+          "Mesures préventives et de lutte": ["Limiter les écarts de température et les excès d'eau"]
         },
         {
-          "nom": "Sclérotiniose (Sclerotinia)",
-          "symptomes": "Mycélium blanc sur la pointe du fruit. Peu virulent. Présence de sclérotes.",
-          "mesures": ["Bonne aération sous abri"]
+          "Nom": "Sclérotiniose (Sclerotinia)",
+          "Symptômes": "Mycélium blanc sur la pointe du fruit. Peu virulent. Présence de sclérotes.",
+          "Mesures préventives et de lutte": ["Bonne aération sous abri"]
         },
         {
-          "nom": "Bactériose Pseudomonas",
-          "symptomes": "Taches anguleuses sur cotylédons puis sur feuilles, taches noires sur le fruit. Transmise par les graines et les sols infectés.",
-          "mesures": ["Traiter au cuivre"]
+          "Nom": "Bactériose Pseudomonas",
+          "Symptômes": "Taches anguleuses sur cotylédons puis sur feuilles, taches noires sur le fruit. Transmise par les graines et les sols infectés.",
+          "Mesures préventives et de lutte": ["Traiter au cuivre"]
         },
         {
-          "nom": "CMV : virus de la mosaïque du concombre",
-          "symptomes": "Déformations des feuilles et fruits, baisse de la croissance, mosaïque sur la tête, parfois mortalité suite à un flétrissement complet. Véhiculé par les pucerons.",
-          "mesures": [
+          "Nom": "CMV : virus de la mosaïque du concombre",
+          "Symptômes": "Déformations des feuilles et fruits, baisse de la croissance, mosaïque sur la tête, parfois mortalité suite à un flétrissement complet. Véhiculé par les pucerons.",
+          "Mesures préventives et de lutte": [
             "Choisir une variété résistante",
             "Être vigilant sur la qualité des graines",
             "Éliminer les adventices",
@@ -367,19 +368,19 @@
       ],
       "Ravageurs aériens": [
         {
-          "nom": "Pucerons (Aphis gossypii)",
-          "symptomes": "Insecte piqueur-suceur, rabougrissement de l'apex, décoloration nervaire, salissure des feuilles par miellat et fumagine",
-          "mesures": ["Lutte biologique"]
+          "Nom": "Pucerons (Aphis gossypii)",
+          "Symptômes": "Insecte piqueur-suceur, rabougrissement de l'apex, décoloration nervaire, salissure des feuilles par miellat et fumagine",
+          "Mesures préventives et de lutte": ["Lutte biologique"]
         },
         {
-          "nom": "Noctuelles",
-          "symptomes": "Feuilles rongées",
-          "mesures": ["En cas de fortes populations : Bacillus thuringiensis sur stade précoce"]
+          "Nom": "Noctuelles",
+          "Symptômes": "Feuilles rongées",
+          "Mesures préventives et de lutte": ["En cas de fortes populations : Bacillus thuringiensis sur stade précoce"]
         },
         {
-          "nom": "Acariens tétranyques ou araignées rouges (Tetranychus urticae)",
-          "symptomes": "Piqûres sur faces inférieures des feuilles entraînant des décolorations, développement de toiles sous températures élevées (30°C)",
-          "mesures": [
+          "Nom": "Acariens tétranyques ou araignées rouges (Tetranychus urticae)",
+          "Symptômes": "Piqûres sur faces inférieures des feuilles entraînant des décolorations, développement de toiles sous températures élevées (30°C)",
+          "Mesures préventives et de lutte": [
             "Lutte biologique avec acariens prédateurs (Phytoseiulus persimilis, Neoseiulus californicus)",
             "Cécidomyie prédatrice Feltiella acarisuga",
             "Punaise Macrolophus caliginosus",
@@ -388,70 +389,70 @@
           ]
         },
         {
-          "nom": "Mouche blanche ou aleurode",
-          "symptomes": "Souvent sur face inférieure des feuilles de tête, salissure des feuilles par miellat et fumagine",
-          "mesures": ["Favoriser une bonne aération", "Lutte biologique"]
+          "Nom": "Mouche blanche ou aleurode",
+          "Symptômes": "Souvent sur face inférieure des feuilles de tête, salissure des feuilles par miellat et fumagine",
+          "Mesures préventives et de lutte": ["Favoriser une bonne aération", "Lutte biologique"]
         },
         {
-          "nom": "Mouche mineuse",
-          "symptomes": "Dégât de mines sur les feuilles, attaque rarement létale",
-          "mesures": ["Lutte biologique"]
+          "Nom": "Mouche mineuse",
+          "Symptômes": "Dégât de mines sur les feuilles, attaque rarement létale",
+          "Mesures préventives et de lutte": ["Lutte biologique"]
         },
         {
-          "nom": "Thrips (Frankliniella occidentalis)",
-          "symptomes": "Insecte piqueur-suceur, taches argentées sur feuilles, torsion des fruits dès qu'il y a plus de 5 insectes par fleur, pullulation en climat chaud et sec. Rend les fruits non commercialisables.",
-          "mesures": ["Lutte biologique avec l'acarien prédateur Neoseiulus cucumeris"]
+          "Nom": "Thrips (Frankliniella occidentalis)",
+          "Symptômes": "Insecte piqueur-suceur, taches argentées sur feuilles, torsion des fruits dès qu'il y a plus de 5 insectes par fleur, pullulation en climat chaud et sec. Rend les fruits non commercialisables.",
+          "Mesures préventives et de lutte": ["Lutte biologique avec l'acarien prédateur Neoseiulus cucumeris"]
         },
         {
-          "nom": "Bemisia tabaci (mouche blanche)",
-          "description": "Présente dans le sud de la France depuis l'été 2001, potentiellement vecteur de virus très virulents. Populations augmentent en période chaude.",
-          "virus_transmis": [
+          "Nom": "Bemisia tabaci (mouche blanche)",
+          "Description": "Présente dans le sud de la France depuis l'été 2001, potentiellement vecteur de virus très virulents. Populations augmentent en période chaude.",
+          "Virus transmis": [
             "CYSDV : jaunissement important du feuillage commençant par le bas des plantes, baisse du rendement",
             "CVYV : jaunissement des nervures commençant par l'apex, marbrures sur fruits les rendant non commercialisables"
           ],
-          "attention": "Pépinières très sensibles aux viroses ; cultures précoces, d'été et d'automne à risque"
+          "Attention": "Pépinières très sensibles aux viroses ; cultures précoces, d'été et d'automne à risque"
         },
         {
-          "nom": "Punaise Lygus sp.",
-          "symptomes": "Apex se déformant en crosse et se dessèchant sous l'effet des piqûres",
-          "mesures": "Aucune méthode de lutte actuellement opérationnelle : seule la destruction manuelle de cette punaise peu mobile permet de limiter les dégâts"
+          "Nom": "Punaise Lygus sp.",
+          "Symptômes": "Apex se déformant en crosse et se dessèchant sous l'effet des piqûres",
+          "Mesures préventives et de lutte": "Aucune méthode de lutte actuellement opérationnelle : seule la destruction manuelle de cette punaise peu mobile permet de limiter les dégâts"
         }
       ]
     },
 
     "RÉCOLTE ET CONSERVATION": {
       "Stade de la récolte": {
-        "circuit_long_type_hollandais_g": "400 à 500",
-        "circuit_court_et_autres_types_g": "350 à 450",
-        "criteres_recolte": "Longueur, poids et aspect de l'épiderme selon le circuit de commercialisation"
+        "Circuit long type hollandais (g)": "400 à 500",
+        "Circuit court et autres types (g)": "350 à 450",
+        "Critères de récolte": "Longueur, poids et aspect de l'épiderme selon le circuit de commercialisation"
       },
       "Chantier de récolte": {
-        "moment": "Le matin",
-        "frequence": "Quotidienne à certaines périodes ; des récoltes resserrées à 2-3 fois par jour améliorent la qualité et allègent les plantes",
-        "technique": "Couper le pédoncule et enlever le reste de la fleur pour éviter les chocs thermiques sur le fruit"
+        "Moment": "Le matin",
+        "Fréquence": "Quotidienne à certaines périodes ; des récoltes resserrées à 2-3 fois par jour améliorent la qualité et allègent les plantes",
+        "Technique": "Couper le pédoncule et enlever le reste de la fleur pour éviter les chocs thermiques sur le fruit"
       },
       "Rendement": {
-        "espere_kg_m2": "8 à 12 selon les variétés et le mode de culture",
-        "plante_greffee_vs_franche": "30-32 fruits/m² sur plant greffé contre 20 fruits/m² sur plant franc"
+        "Espéré (kg/m²)": "8 à 12 selon les variétés et le mode de culture",
+        "Plant greffé vs plant franc": "30-32 fruits/m² sur plant greffé contre 20 fruits/m² sur plant franc"
       },
       "Conditionnement": {
-        "calibrage": {
-          "type_hollandais_calibres": 4,
-          "poids_min_g": 300,
-          "poids_max_g": 700,
-          "fruits_les_plus_recherches_g": "300 à 500"
+        "Calibrage": {
+          "Nombre de calibres (type hollandais)": 4,
+          "Poids minimum (g)": 300,
+          "Poids maximum (g)": 700,
+          "Fruits les plus recherchés (g)": "300 à 500"
         },
-        "emballage": "12 concombres par caisse de 50x30 cm",
-        "qualite_requise": "Fruit propre, non déformé, rectiligne et ferme"
+        "Emballage": "12 concombres par caisse de 50x30 cm",
+        "Qualité requise": "Fruit propre, non déformé, rectiligne et ferme"
       },
       "Marché de détail": {
-        "concombre_sous_abri": "Bien valorisé sur marché de détail",
-        "plein_champ": "Débouchés limités en raison de sa réputation ; les débouchés pour concombre de plein champ sont limités"
+        "Concombre sous abri": "Bien valorisé sur marché de détail",
+        "Plein champ": "Débouchés limités en raison de sa réputation (marché de gros uniquement)"
       },
       "Stockage": {
-        "temperature_ideale_C": "12 à 15",
-        "conservation_jours": "1 à 3",
-        "circuits_longs": "Doivent être rapidement expédiés"
+        "Température idéale (°C)": "12 à 15",
+        "Conservation (jours)": "1 à 3",
+        "Circuits longs": "Doivent être rapidement expédiés"
       }
     }
   }
