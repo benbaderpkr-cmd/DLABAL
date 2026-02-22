@@ -202,18 +202,54 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
     tabs = st.tabs(["📘 ARG", "📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
-    with tabs[0]: # Onglet ARG
+  with tabs[0]: # Onglet ARG
         arg_l = ARG_DATA.get(sel, {})
         if arg_l:
-            # On trie les clés pour garder un ordre logique si nécessaire
+            # Injection de CSS pour forcer la lisibilité sur mobile
+            st.markdown("""
+                <style>
+                    div[data-testid="stTable"] {
+                        overflow-x: auto;
+                    }
+                    .stMarkdown p {
+                        line-height: 1.5;
+                    }
+                </style>
+            """, unsafe_allow_html=True)
+
             for titre, contenu in arg_l.items():
                 with st.expander(f"📘 {titre}", expanded=True):
-                    # --- CAS 1 : Format Tableau Claude (Entêtes + Lignes) ---
-                    if isinstance(contenu, dict) and "lignes" in contenu:
-                        df_temp = pd.DataFrame(contenu["lignes"])
-                        if "col_0" in df_temp.columns:
-                            df_temp = df_temp.rename(columns={"col_0": "Activité"})
-                        st.table(df_temp)
+                    
+                    # --- NETTOYAGE DU TEXTE ---
+                    if isinstance(contenu, str):
+                        t = contenu.strip()
+                        # Enlever les ":" ou "." qui traînent au tout début du bloc
+                        if t.startswith(":") or t.startswith("."):
+                            t = t[1:].strip()
+                        
+                        # Nettoyage des sauts de ligne incohérents (ex: après une puce)
+                        # On remplace les sauts de ligne après une puce par un espace
+                        t = t.replace("\n- ", "  \n- ").replace("- \n", "- ")
+                        # Harmonisation des doubles sauts de ligne
+                        t = t.replace('\\\\n', '\n').replace('\\n', '\n')
+                        
+                        st.markdown(t)
+
+                    # --- GESTION DES TABLEAUX (CLAUDE OU MES LISTES) ---
+                    elif isinstance(contenu, (dict, list)):
+                        if isinstance(contenu, dict) and "lignes" in contenu:
+                            df_temp = pd.DataFrame(contenu["lignes"])
+                            if "col_0" in df_temp.columns:
+                                df_temp = df_temp.rename(columns={"col_0": "Activité"})
+                        else:
+                            df_temp = pd.DataFrame(contenu)
+                        
+                        # Utilisation de st.dataframe au lieu de st.table pour le scroll mobile
+                        st.dataframe(df_temp, use_container_width=True, hide_index=True)
+                    
+                    popover_feedback("ARG", titre, sel)
+        else:
+            st.info("Aucune donnée ARG disponible.")
                     
                     # --- CAS 2 : Format Liste simple (Mes tableaux) ---
                     elif isinstance(contenu, list):
@@ -296,5 +332,6 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
 
 
