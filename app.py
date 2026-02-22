@@ -153,47 +153,53 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
             for titre, contenu in arg_l.items():
                 with st.expander(f"📘 {titre}", expanded=True):
                     
-                    # --- GESTION TABLEAUX (RESPONSIVE & SECURISEE) ---
+                    # --- CAS 1 : Tableaux (Calendriers, Environnement) ---
                     if isinstance(contenu, dict) and "lignes" in contenu:
-                        df_temp = pd.DataFrame(contenu["lignes"])
-                        
-                        # Raccourcissement colonnes
-                        mapping_col = {"Janv.":"J","Fév.":"F","Mars":"M","Avril":"A","Mai":"M","Juin":"J","Juill.":"J","Août":"A","Sept.":"S","Oct.":"O","Nov.":"N","Déc.":"D","col_0":"Activité"}
-                        df_temp = df_temp.rename(columns=mapping_col)
-                        
-                        # Raccourcissement contenu
-                        def clean_val(v):
-                            if not isinstance(v, str): return v
-                            m = {"Plein champ":"PC", "Culture sous abri":"Abri", "Temps de travaux (indicatif)":"Tps W", "Temps de travaux":"Tps W"}
-                            for l, c in m.items(): v = v.replace(l, c)
-                            return v
-                        
-                        df_temp = df_temp.apply(lambda x: x.map(clean_val))
-                        st.dataframe(df_temp, use_container_width=True, hide_index=True)
+                        try:
+                            df_temp = pd.DataFrame(contenu["lignes"])
+                            
+                            # Raccourcissement des colonnes pour le mobile
+                            mapping_col = {"Janv.":"J","Fév.":"F","Mars":"M","Avril":"A","Mai":"M","Juin":"J","Juill.":"J","Août":"A","Sept.":"S","Oct.":"O","Nov.":"N","Déc.":"D","col_0":"Activité"}
+                            df_temp = df_temp.rename(columns=mapping_col)
+                            
+                            # Raccourcissement du texte dans les cellules
+                            def raccourcir(v):
+                                if not isinstance(v, str): return v
+                                dico = {"Plein champ":"PC", "Culture sous abri":"Abri", "Temps de travaux (indicatif)":"Tps W", "Temps de travaux":"Tps W"}
+                                for long, court in dico.items():
+                                    v = v.replace(long, court)
+                                return v
+                            
+                            df_temp = df_temp.applymap(raccourcir)
+                            # Utilisation de dataframe sans options risquées pour éviter le ValueError
+                            st.dataframe(df_temp, use_container_width=True)
+                        except Exception as e:
+                            st.error(f"Erreur tableau : {e}")
 
+                    # --- CAS 2 : Listes simples ---
                     elif isinstance(contenu, list):
-                        try: st.dataframe(pd.DataFrame(contenu), use_container_width=True, hide_index=True)
-                        except: st.write(str(contenu))
+                        try:
+                            st.dataframe(pd.DataFrame(contenu), use_container_width=True)
+                        except:
+                            st.write(str(contenu))
                     
-                    # --- GESTION TEXTE (NETTOYAGE PDF) ---
+                    # --- CAS 3 : Texte (Respect strict du JSON) ---
                     else:
                         t = str(contenu).strip()
-                        while t.startswith((".", ":", " ")): t = t[1:].strip()
                         
-                        # Harmonisation sauts de ligne
-                        t = t.replace('\\\\n', '\n').replace('\\n', '\n')
+                        # Nettoyage des points/deux-points au début
+                        while t.startswith((".", ":", " ")):
+                            t = t[1:].strip()
                         
-                        # Suppression des sauts de ligne orphelins (ex: Artichaut)
-                        # On ne garde le saut de ligne que s'il y a un tiret ou un double saut
-                        import re
-                        t = re.sub(r'(?<!\n)\n(?![-\s\n])', ' ', t)
-                        
-                        # Forcer le saut de ligne avant les tirets pour les listes
-                        t = t.replace('\n-', '  \n-').replace(' -', '  \n-')
+                        # On remplace les \n par des "double espace + \n" pour forcer Markdown
+                        # sans essayer de fusionner intelligemment (ce qui cassait tout)
+                        t = t.replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
                         
                         st.markdown(t)
                     
                     popover_feedback("ARG", titre, sel)
+        else:
+            st.info("Aucune donnée ARG disponible.")
 
     # ... (Restant des onglets GAB, JMF, JDV, ITAB, THO comme dans app 21)
     # Note : Assurez-vous de bien fermer les parenthèses et les blocs.
@@ -201,3 +207,4 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     # ... (accueil inchangé)
+
