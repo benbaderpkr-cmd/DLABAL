@@ -2,17 +2,14 @@ import streamlit as st
 import json
 import os
 import pandas as pd
-import requests
-import unicodedata
-import streamlit.components.v1 as components
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 from streamlit_cookies_manager import EncryptedCookieManager
 
 # ==========================================
-# 1. CONFIGURATION ET SECURITE
+# 1. CONFIGURATION, COOKIES ET SECURITE
 # ==========================================
-st.set_page_config(page_title="DLABAL - BDD ITK Maraîchage", layout="wide", page_icon="🌱")
+st.set_page_config(page_title="DLABAL - SYSTÈME EXPERT", layout="wide", page_icon="🌱")
 
 cookies = EncryptedCookieManager(password="cle_secrete_dlabal_2026")
 if not cookies.ready():
@@ -22,278 +19,219 @@ def check_password():
     if st.session_state.get("password_correct") or cookies.get("auth_token") == "valide":
         st.session_state["password_correct"] = True
         return True
+    
     st.title("🔐 Accès Restreint")
     with st.form("auth_form", clear_on_submit=False):
-        pwd = st.text_input("Mot de passe DLABAL :", type="password")
-        if st.form_submit_button("Valider"):
+        pwd = st.text_input("Entrez le mot de passe DLABAL :", type="password")
+        submit = st.form_submit_button("Valider")
+        if submit:
             if pwd == st.secrets["password"]:
                 st.session_state["password_correct"] = True
                 cookies["auth_token"] = "valide"
                 cookies.save()
                 st.rerun()
             else:
-                st.error("Incorrect")
+                st.error("Mot de passe incorrect")
     return False
 
 if not check_password():
     st.stop()
 
-if "user_name" not in st.session_state:
-    st.session_state["user_name"] = ""
-
-if "view_mode" not in st.session_state:
-    st.session_state["view_mode"] = "ACCUEIL"
-
 # ==========================================
-# 2. FONCTIONS UTILES
+# 2. CONNEXIONS ET CHARGEMENT (PILIERS 1 & 5)
 # ==========================================
-def load_json(f):
-    if os.path.exists(f):
+URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
+conn = st.connection("gsheets", type=GSheetsConnection)
+
+def load_json(filename):
+    if os.path.exists(filename):
         try:
-            with open(f, "r", encoding="utf-8") as file: return json.load(file)
+            with open(filename, "r", encoding="utf-8") as f:
+                return json.load(f)
         except: return {}
     return {}
 
-def sans_accent(texte):
-    return ''.join(c for c in unicodedata.normalize('NFD', texte)
-                   if unicodedata.category(c) != 'Mn').lower()
-
-# ==========================================
-# 3. CONNEXIONS ET CHARGEMENT DONNÉES
-# ==========================================
-URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
-URL_SHEET2 = "https://docs.google.com/spreadsheets/d/1wUngO5HjSCRYbWzd0hMxKBj4aUD4ThW1ishVvaOwOcc/edit#gid=0"
-URL_SCRIPT_MAIL = "https://script.google.com/macros/s/AKfycbwMW0m4CJPvv5rJ0tFjmoU58F6LTnpNmB1BYsp3bKiKy9vBi3PFUQqmWP9n-axt-iqXZA/exec" 
-
-conn = st.connection("gsheets", type=GSheetsConnection)
-
-GAB_DATA = load_json("gab.json")
-JMF_DATA = load_json("jmf.json")
+DATA = load_json("data.json")
 JDV_DATA = load_json("jdv.json")
-ITAB_DATA = load_json("itab.json")  # ← NOUVEAU
-RAW_JP1 = load_json("reglages_jp1.json")
-REGLAGES_LISTE = RAW_JP1.get("reglages", [])
+SOURCES_JMF = load_json("sources_jmf.json")
+REGLAGES_JP1_OFFICIEL = load_json("reglages_jp1.json")
 
-legumes_uniques = [l for l in set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys())) 
-                   if GAB_DATA.get(l) or JMF_DATA.get(l) or JDV_DATA.get(l)]
-tous_les_legumes = sorted(legumes_uniques, key=sans_accent)
-
-def envoyer_feedback(legume, nom_onglet_app, message, nom_bloc, nom_utilisateur):
-    try:
-        nom_sheet = legume.upper()
-        new_row = pd.DataFrame([{
-            "DATE": datetime.now().strftime("%d/%m/%Y %H:%M"),
-            "NOM": nom_utilisateur, "LEGUME": nom_sheet, "ONGLET": nom_onglet_app,
-            "BLOC": nom_bloc, "FEEDBACK": message
-        }])
-        df_updated = pd.concat([conn.read(spreadsheet=URL_SHEET2, worksheet=nom_sheet, ttl=0), new_row], ignore_index=True)
-        conn.update(spreadsheet=URL_SHEET2, worksheet=nom_sheet, data=df_updated)
-        if "https" in URL_SCRIPT_MAIL:
-            requests.get(f"{URL_SCRIPT_MAIL}?legume={nom_sheet}&nom={nom_utilisateur}", timeout=5)
-        st.toast(f"🚀 Merci {nom_utilisateur} ! Enregistré.", icon="✅")
-    except: st.error("Erreur d'enregistrement.")
-
-def popover_feedback(onglet, bloc, legume_sel):
-    pop = st.popover("📝")
-    with pop.form(key=f"form_{onglet}_{bloc}_{legume_sel}"):
-        nom_in = st.text_input("Nom :", value=st.session_state["user_name"])
-        msg_in = st.text_area("Suggestion :")
-        if st.form_submit_button("Envoyer"):
-            st.session_state["user_name"] = nom_in 
-            envoyer_feedback(legume_sel, onglet, msg_in, bloc, nom_in)
-            st.rerun()
+cles_itk = list(SOURCES_JMF.get("reglages_itk", {}).keys())
+tous_les_legumes = sorted(list(set(list(DATA.keys()) + list(JDV_DATA.keys()) + cles_itk)))
 
 # ==========================================
-# 4. SIDEBAR ET NAVIGATION
+# 3. SIDEBAR (INTERFACE ET NAVIGATION)
 # ==========================================
 with st.sidebar:
-    if st.button("**DLABAL**", use_container_width=True):
-        st.session_state["view_mode"] = "ACCUEIL"
+    # Titre Accueil en Gras (Pilier 4)
+    if st.button("**DLABAL**", key="btn_home", use_container_width=True):
+        st.session_state["view_mode"] = "DOSSIER"
+        st.session_state["last_sel"] = "---"
+        st.session_state["reset_key"] = st.session_state.get("reset_key", 0) + 1
         st.rerun()
     
-    st.markdown("<p style='text-align: center; color: gray; font-size: 0.9em; margin-top: -15px;'>BDD ITK Maraîchage</p>", unsafe_allow_html=True)
-    st.write("") 
+    st.markdown("<p style='font-size: 0.85em; color: gray; margin-top: -15px; margin-bottom: 20px;'>Base de données maraîchère</p>", unsafe_allow_html=True)
     
-    sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
+    # Dropdown de sélection
+    res_key = st.session_state.get("reset_key", 0)
+    sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes, key=f"sel_{res_key}")
+    
     if sel != "---":
-        st.session_state["view_mode"] = "LEGUME"
+        if "last_sel" not in st.session_state or st.session_state["last_sel"] != sel:
+            st.session_state["view_mode"] = "DOSSIER"
+            st.session_state["last_sel"] = sel
+            st.rerun()  # FIX: forcer le re-run ici pour que les boutons ne soient pas court-circuités
+    sel = st.session_state.get("last_sel", "---")  # FIX: lire sel depuis la session
+
+    st.divider()
+    
+    # Boutons d'outils (Compact)
+    if st.button("📊 RÉGLAGES JP1 GLOBAUX", use_container_width=True):
+        st.session_state["view_mode"] = "JP1_GLOBAL"
+        st.rerun()
+
+    st.link_button("📩 Me contacter", "https://forms.google.com/ton-lien-ici", use_container_width=True)
     
     st.divider()
-
-    if st.button("⚙️ RÉGLAGES JP1 TERRADONIS", use_container_width=True):
-        st.session_state["view_mode"] = "PAGE_JP1"
-        st.rerun()
-
-    if st.button("🌿 CALCUL FERTI", use_container_width=True):
-        st.session_state["view_mode"] = "PAGE_FERTI"
-        st.rerun()
-
     if st.button("🚪 Déconnexion", use_container_width=True):
-        cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
+        cookies["auth_token"] = ""
+        cookies.save()
+        st.session_state["password_correct"] = False
+        st.rerun()
 
 # ==========================================
-# 5. AFFICHAGE CENTRAL
+# 4. LOGIQUE D'AFFICHAGE (PILIERS 2, 4 & 5)
 # ==========================================
 
-# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
-if st.session_state["view_mode"] == "PAGE_JP1":
-    st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
-    st.caption(f"Source : {RAW_JP1.get('source', '')}")
-    st.markdown("---")
+# --- MODE RÉGLAGES JP1 GLOBAUX ---
+if st.session_state.get("view_mode") == "JP1_GLOBAL":
+    st.title("🚜 RÉGLAGES OFFICIELS JP1 (CONSTRUCTEUR)")
+    st.warning("**⚠️ AVERTISSEMENT :** Ces réglages sont indicatifs.")
     
-# === TABLEAU 1 : SOURCE JMF (COMPLET) ===
-    st.subheader("📋 Réglages Techniques (Source : JMF)")
-    DATA_JMF = load_json("reglages_jmf.json")
-    if DATA_JMF:
-        df_jmf = pd.DataFrame(DATA_JMF["reglages"])
-        st.dataframe(
-            df_jmf.rename(columns={
-                "AV": "Pignon AV", 
-                "AR": "Pignon AR", 
-                "OBS": "Observations"
-            }), 
-            use_container_width=True, 
-            hide_index=True
-        )
-    st.caption("Source : Jean-Martin Fortier (JMF) - Guide technique")
+    if st.button("⬅️ Retour au dossier"):
+        st.session_state["view_mode"] = "DOSSIER"
+        st.rerun()
 
-    st.write("")
+    # Formulaire de suggestion (Fermé par défaut)
+    with st.expander("💡 Propose ton réglage du JP1.", expanded=False):
+        with st.form("form_sug_jp1", clear_on_submit=True):
+            c1, c2, c3 = st.columns(3)
+            s_leg = c1.text_input("Légume concerné")
+            s_rouleau = c2.text_input("rouleau")
+            s_pav = c3.text_input("pignon AV")
+            c4, c5, c6 = st.columns(3)
+            s_par = c4.text_input("pignon AR")
+            s_brosse = c5.text_input("Brosse")
+            s_info = c6.text_input("info supp.")
+            if st.form_submit_button("Enregistrer mon conseil"):
+                if s_leg and s_rouleau:
+                    try:
+                        df_sug = conn.read(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", ttl=0)
+                    except:
+                        df_sug = pd.DataFrame(columns=["DATE", "LEGUME", "ROULEAU", "PIGNON_AV", "PIGNON_AR", "BROSSE", "INFO_SUPP"])
+                    new_sug = pd.DataFrame([{"DATE": datetime.now().strftime("%d/%m/%Y"), "LEGUME": s_leg, "ROULEAU": s_rouleau, "PIGNON_AV": s_pav, "PIGNON_AR": s_par, "BROSSE": s_brosse, "INFO_SUPP": s_info}])
+                    df_updated = pd.concat([df_sug, new_sug], ignore_index=True)
+                    conn.update(spreadsheet=URL_SHEET, worksheet="SUGGESTIONS", data=df_updated)
+                    st.success(f"Conseil pour le {s_leg} envoyé !")
+                else:
+                    st.error("Merci de renseigner au moins le légume et le type de rouleau.")
+
     st.divider()
+    # Liste constructeur
+    liste = REGLAGES_JP1_OFFICIEL.get("reglages", [])
+    if liste:
+        st.subheader("📋 Préconisations constructeur")
+        df_c = pd.DataFrame(liste)
+        rech = st.text_input("🔍 Filtrer la liste officielle...", key="filter_jp1")
+        if rech: 
+            df_c = df_c[df_c['légume'].str.contains(rech, case=False)]
+        st.dataframe(df_c.rename(columns={"légume":"Légume", "pignon_av":"AV", "pignon_ar":"AR", "distance_cm":"cm"}), use_container_width=True, hide_index=True)
 
-    # === TABLEAU 2 : SOURCE TERRADONIS / TERRAIN ===
-    st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
-    DATA_TERRA = load_json("reglages_jp1.json") 
-    if DATA_TERRA and "reglages" in DATA_TERRA:
-        df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
-        st.dataframe(
-            df_terra.sort_values("CULTURE"), 
-            use_container_width=True, 
-            hide_index=True
-        )
-    st.caption("Source : Catalogue Terradonis & Observations Terrain")
-    
-# --- CAS B : PAGE CALCUL FERTI ---
-elif st.session_state["view_mode"] == "PAGE_FERTI":
-    FERTI_DATA = load_json("calcul_ferti.json")
-    st.title("🌿 CALCUL FERTI")
-    st.markdown("---")
+    st.divider()
+    # Tableau technique
+    st.subheader("⚙️ Tableau des distances de semis (mm)")
+    dist_data = {"Nombre de trous": ["2", "3", "4", "6", "8", "10", "12", "16", "20", "24", "30", "36"], "14/9": [320, 210, 160, 105, 80, 64, 53, 40, 32, 27, 21, 18], "14/10": [360, 230, 180, 115, 90, 72, 58, 45, 36, 29, 24, 20], "13/10": [380, 250, 190, 125, 95, 76, 63, 48, 38, 32, 25, 21], "13/11": [420, 280, 210, 140, 105, 84, 70, 53, 42, 35, 28, 23], "11/10": [460, 300, 230, 150, 115, 92, 75, 58, 46, 38, 31, 26], "11/11": [500, 330, 250, 165, 125, 100, 83, 63, 50, 42, 33, 28], "10/11": [540, 360, 270, 180, 135, 108, 90, 68, 54, 45, 36, 30], "11/13": [580, 390, 290, 195, 145, 116, 98, 73, 58, 49, 39, 32], "10/13": [640, 430, 320, 215, 160, 128, 108, 80, 64, 54, 43, 36], "10/14": [700, 460, 350, 230, 175, 140, 115, 88, 70, 58, 47, 39], "9/14": [760, 510, 380, 255, 190, 152, 128, 95, 76, 64, 51, 42]}
+    st.dataframe(pd.DataFrame(dist_data), use_container_width=True, hide_index=True)
 
-    legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
-
-    c1, c2 = st.columns(2)
-    longueur = c1.number_input("Longueur (m) :", min_value=1, value=10, step=1)
-    largeur = c2.number_input("Largeur (m) :", min_value=1, value=10, step=1)
-    surface = longueur * largeur
-
-    st.markdown("#### Teneur en azote de votre amendement")
-    teneur_N = st.number_input("% N (Azote) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
-
-    if legume_ferti != "---":
-        donnees = FERTI_DATA[legume_ferti]
-        st.markdown(f"### Résultats pour **{legume_ferti}** — {longueur} m × {largeur} m = **{surface} m²**")
-
-        rows = []
-        for source, vals in donnees.items():
-            if vals:
-                facteur = surface / 10000
-                besoin_N = round(vals["N"] * facteur, 2)
-                besoin_P = round(vals["P"] * facteur, 2)
-                besoin_K = round(vals["K"] * facteur, 2)
-                dose = round(besoin_N / (teneur_N / 100), 1) if teneur_N > 0 else "—"
-                rows.append({
-                    "Source": source,
-                    "Besoin N (kg)": besoin_N,
-                    "Besoin P (kg)": besoin_P,
-                    "Besoin K (kg)": besoin_K,
-                    "⚖️ Dose à épandre (kg)": dose,
-                })
-        if rows:
-            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-        st.caption("La dose à épandre est calculée sur la base de l'azote (N) : besoin N de la culture ÷ teneur N de l'amendement.")
-
-# --- CAS 2 : AFFICHAGE LÉGUME ---
-elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
-    st.title(f"📊 {sel.upper()}")
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])  # ← MODIFIÉ
-
-    with tab1:
-        g = GAB_DATA.get(sel, {})
-        if "BLOCS_IDENTITE" in g:
-            cols = st.columns(len(g["BLOCS_IDENTITE"]))
-            for i, b in enumerate(g["BLOCS_IDENTITE"]):
-                with cols[i]:
-                    st.success(f"**{b['titre']}**\n\n{b['contenu']}")
-                    popover_feedback("GAB", b['titre'], sel)
-        for k, v in g.get("TECHNIQUE", {}).items():
-            with st.expander(f"📌 {k}", expanded=True):
-                st.markdown(v); c1, c2 = st.columns([0.96, 0.04])
-                with c2: popover_feedback("GAB", k, sel)
-
-    with tab2:
-        for t, c in JMF_DATA.get(sel, {}).items():
-            with st.expander(f"📌 {t}", expanded=True):
-                st.markdown(c); c1, c2 = st.columns([0.96, 0.04])
-                with c2: popover_feedback("JMF", t, sel)
-
-    with tab3:
-        for t, c in JDV_DATA.get(sel, {}).items():
-            with st.expander(f"🌿 {t}", expanded=True):
-                st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
-                with c2: popover_feedback("JDV", t, sel)
-
-    with tab4:  # ← NOUVEAU BLOC ITAB
-        itab = ITAB_DATA.get(sel, {})
-        if itab:
-            for t, c in itab.items():
-                with st.expander(f"📗 {t}", expanded=True):
-                    st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
-                    with c2: popover_feedback("ITAB", t, sel)
-        else:
-            st.info("Aucune donnée ITAB disponible pour ce légume.")
-
-    with tab5:  # ← était tab4
-        st.subheader("📝 Saisie Terrain")
-        try:
-            df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
-            notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
-        except:
-            df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
-            notes = {}
-        with st.form(key=f"f_tho_{sel}"):
-            c1, c2 = st.columns(2)
-            v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
-            v_e = c1.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")))
-            v_s = c1.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")))
-            v_r = c2.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")))
-            v_v = c2.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")))
-            v_i = c2.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")))
-            if st.form_submit_button("💾 ENREGISTRER"):
-                new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
-                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
-                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
-                st.success("Données THO enregistrées !")
-
-# --- CAS 3 : PAGE D'ACCUEIL ---
+# --- MODE DOSSIER / ACCUEIL ---
 else:
-    st.title("🌱 Bienvenue sur DLABAL")
-    st.markdown("---")
-    st.markdown("""
-    ### DLABAL - BDD ITK Maraîchage
-    
-    Cet outil centralise les connaissances techniques du **GAB**, de **JMF**, de **JDV** et de l'**ITAB**.
-    
-    **Comment utiliser l'application :**
-    1. **Sélectionnez ou taper le nom d'un légume** dans le menu déroulant à gauche.
-    2. **Consultez les fiches** via les onglets thématiques.
-    3. **Contribuez** en cliquant sur l'icône 📝 pour suggérer une correction.
-    4. **Saisie Terrain** : Utilisez l'onglet **THO** pour enregistrer vos observations en direct.
-    
-    ---
-    *Toutes les modifications de données textuelles sont soumises à validation.*
-    """)
-    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
+    if sel == "---":
+        st.title("🌱 Bienvenue sur DLABAL")
+        st.markdown("### Une base de notes partagée, sans chichis.")
+        st.markdown("""
+        J’ai regroupé ici ce que j’ai pu glaner en formation ou sur le terrain. C’est sans prétention : je ne cherche pas à donner de leçon, juste à mettre mes notes au propre pour qu'elles servent à d'autres. L’outil est gratuit et je le bricole sur mon temps libre, donc c’est encore un peu rustique.
+        
+        **Si tu as de l'expérience à partager, n'hésite pas à mettre la main à la pâte :**
+        
+        * **Expériences de terrain :** Ça se passe dans l'onglet **THO**. Tes retours alimentent la base commune visible dans THO_RESULT.
+        * **Réglages du semoir JP1 :** À gauche dans la page **Réglages JP1 globaux**, tu peux laisser tes propres réglages par légume. Ils sont compilés plus bas dans la section "Conseils persos JP1".
+        
+        L'idée, c'est que ça profite à tout le monde. Sers-toi, et complète si le cœur t'en dit.
+        """)
+        st.info("👈 Sélectionnez un légume dans le menu à gauche pour consulter les fiches techniques.")
+    else:
+        st.title(f"📊 {sel.upper()}")
+        tab1, tab2, tab3, tab4 = st.tabs(["📋 GAB / FRAB", "🚜 JMF", "🌿 JDV", "📝 THO"])
 
-st.sidebar.markdown("---")
-with st.sidebar:
-    st.markdown("### 🌦️ Météo locale")
-    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+        with tab1:
+            g = DATA.get(sel, {}).get("GAB_FRAB", {})
+            if g:
+                if "BLOCS_IDENTITE" in g:
+                    cols = st.columns(len(g["BLOCS_IDENTITE"]))
+                    for i, b in enumerate(g["BLOCS_IDENTITE"]):
+                        cols[i].success(f"**{b['titre']}**\n\n{b['contenu']}")
+                for k, v in g.get("TECHNIQUE", {}).items():
+                    with st.expander(f"📌 {k}", expanded=True): st.markdown(v)
+            else:
+                st.info(f"Aucune donnée de GAB / FRAB pour {sel}")
+
+        with tab2:
+            found_jmf = False
+            base = SOURCES_JMF.get("reglages_itk", {})
+            reg = base.get(sel.strip())
+            if reg:
+                found_jmf = True
+                c1, c2 = st.columns(2)
+                c1.info(f"**📍 JMF**\n- Rouleau : `{reg.get('jmf', {}).get('rouleau', '?')}`")
+                c2.warning(f"**🚜 Terrateck**\n- Rouleau : `{reg.get('terrateck', {}).get('rouleau', '?')}`")
+            f = DATA.get(sel, {}).get("JMF_FORTIER", {})
+            if f:
+                found_jmf = True
+                for t, c in f.items():
+                    with st.expander(f"📌 {t}", expanded=True): st.markdown(c)
+            if not found_jmf:
+                st.info(f"Aucune donnée de JMF pour {sel}")
+                        
+        with tab3:
+            j = JDV_DATA.get(sel, {})
+            if j:
+                if "RENDEMENT JDV" in j: st.success(f"**🚜 RENDEMENT JDV :** {j['RENDEMENT JDV']}")
+                for t, c in j.items():
+                    if t != "RENDEMENT JDV":
+                        with st.expander(f"🌿 {t}", expanded=True): st.markdown(str(c))
+            else:
+                st.info(f"Aucune donnée de JDV pour {sel}")
+
+        with tab4:
+            st.subheader(f"📝 Saisie Terrain - {sel}")
+            try:
+                df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
+                notes = df_gs[df_gs['LEGUME'] == sel].iloc[-1].to_dict() if not df_gs[df_gs['LEGUME'] == sel].empty else {}
+            except: 
+                df_gs = pd.DataFrame(columns=["LEGUME", "PLANTATION", "ENTRETIEN", "SANTE", "RENDEMENT", "VARIETE", "INFO_SUPP"])
+                notes = {}
+            
+            with st.form(key=f"f_tho_{sel}"):
+                c1, c2 = st.columns(2)
+                v_p = c1.text_area("🌱 PLANTATION", value=str(notes.get("PLANTATION", "")))
+                v_e = c1.text_area("🛠️ ENTRETIEN", value=str(notes.get("ENTRETIEN", "")))
+                v_s = c1.text_area("🏥 SANTE", value=str(notes.get("SANTE", "")))
+                v_r = c2.text_area("📊 RENDEMENT", value=str(notes.get("RENDEMENT", "")))
+                v_v = c2.text_area("🧬 VARIETE", value=str(notes.get("VARIETE", "")))
+                v_i = c2.text_area("➕ INFO SUPP", value=str(notes.get("INFO_SUPP", "")))
+                if st.form_submit_button("💾 ENREGISTRER"):
+                    new_row = {"LEGUME": sel, "PLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                    df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
+                    conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                    st.success("Enregistré dans GSheet !")
+
