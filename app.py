@@ -177,7 +177,12 @@ if st.session_state["view_mode"] == "PAGE_JP1":
         )
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
-# --- CAS B : PAGE CALCUL FERTI ---
+Pas de souci, j'ai bien compris. On inverse : la colonne qui récapitule les besoins théoriques de la culture passe en T/ha (ou Unités/ha, ce qui revient au même chiffre en agronomie), et on garde les dosages pratiques en kg pour ta surface.
+
+Voici le code corrigé pour ta section PAGE_FERTI :
+
+Python
+
 # --- PAGE CALCUL FERTI ---
 elif st.session_state["view_mode"] == "PAGE_FERTI":
     FERTI_DATA = load_json("calcul_ferti.json")
@@ -214,9 +219,7 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
         b_p = round(p_ha * facteur, 2)
         b_k = round(k_ha * facteur, 2)
         
-        # Calcul dose principal (basé sur l'azote N)
-        # Formule T/ha : (Unités / Teneur) * 100 / 1000
-        dose_tha = round((n_ha / teneur_N) * 100 / 1000, 2) if teneur_N > 0 else 0
+        # Calcul dose principal (basé sur N)
         dose_kg = round(b_n / (teneur_N / 100), 1) if teneur_N > 0 else 0
         
         # Apports P et K générés par la dose de l'engrais principal
@@ -226,19 +229,16 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
         manque_p = max(0, round(b_p - p_apporte, 2))
         manque_k = max(0, round(b_k - k_apporte, 2))
         
-        # Dose Patentkali (kg sur surface et T/ha théorique)
+        # Dose Patentkali (kg sur surface)
         dose_pat_kg = round(manque_k / (teneur_patentkali / 100), 2)
-        dose_pat_tha = round((manque_k / facteur / teneur_patentkali) * 100 / 1000, 2) if facteur > 0 else 0
 
         return {
             "Source": source_label,
-            "Besoin NPK Surface (kg)": f"N:{b_n} | P:{b_p} | K:{b_k}",
-            "⚖️ Dose Principal (T/ha)": dose_tha,
+            "Besoin Culture (U/ha)": f"N:{n_ha} | P:{p_ha} | K:{k_ha}",
             "⚖️ Dose Principal (kg)": dose_kg,
             "Balance P Surface": f"+{p_apporte} kg (Manque: {manque_p})",
             "Balance K Surface": f"+{k_apporte} kg (Manque: {manque_k})",
-            "💎 Patentkali (kg)": dose_pat_kg if dose_pat_kg > 0 else "0",
-            "💎 Patentkali (T/ha)": dose_pat_tha if dose_pat_tha > 0 else "0"
+            "💎 Patentkali (kg)": dose_pat_kg if dose_pat_kg > 0 else "0"
         }
 
     if manuel_n > 0 or manuel_p > 0 or manuel_k > 0:
@@ -253,8 +253,8 @@ elif st.session_state["view_mode"] == "PAGE_FERTI":
 
     if rows:
         st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
-        st.info("💡 Les colonnes **T/ha** indiquent la dose théorique à l'hectare. Les colonnes **kg** indiquent la quantité réelle à épandre sur votre planche.")
-
+        st.info("💡 La colonne **Besoin Culture (U/ha)** rappelle la norme agronomique. Les colonnes *
+                
 # --- CAS 2 : AFFICHAGE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
@@ -341,6 +341,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
