@@ -223,14 +223,14 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
                             st.write(str(contenu))
                     
                     # --- CAS 3 : Format Texte classique ---
-                else:
-                    # On remplace d'abord les doubles antislashes par des simples
-                    # Puis on s'assure que les \n sont bien interprétés par Python
-                    texte_propre = str(contenu).replace('\\\\n', '\n').replace('\\n', '\n')
+                    else:
+                        # On remplace d'abord les doubles antislashes par des simples
+                        # Puis on s'assure que les \n sont bien interprétés par Python
+                        texte_propre = str(contenu).replace('\\\\n', '\n').replace('\\n', '\n')
     
-                    # ASTUCE : Pour forcer le saut de ligne en Markdown, 
-                    # on peut remplacer le simple \n par un double \n
-                    st.markdown(texte_propre.replace('\n', '\n\n'))
+                        # ASTUCE : Pour forcer le saut de ligne en Markdown, 
+                        # on peut remplacer le simple \n par un double \n
+                        st.markdown(texte_propre.replace('\n', '\n\n'))
                     
                     popover_feedback("ARG", titre, sel)
         else:
@@ -296,4 +296,5 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
 
