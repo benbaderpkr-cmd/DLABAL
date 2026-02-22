@@ -176,12 +176,6 @@ if st.session_state["view_mode"] == "PAGE_JP1":
             hide_index=True
         )
     st.caption("Source : Catalogue Terradonis & Observations Terrain")
-    
-Pas de souci, j'ai bien compris. On inverse : la colonne qui récapitule les besoins théoriques de la culture passe en T/ha (ou Unités/ha, ce qui revient au même chiffre en agronomie), et on garde les dosages pratiques en kg pour ta surface.
-
-Voici le code corrigé pour ta section PAGE_FERTI :
-
-Python
 
 # --- PAGE CALCUL FERTI ---
 elif st.session_state["view_mode"] == "PAGE_FERTI":
@@ -341,6 +335,7 @@ st.sidebar.markdown("---")
 with st.sidebar:
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 
 
 
