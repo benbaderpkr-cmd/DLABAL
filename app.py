@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import os
-import pd
+import pandas as pd
 import requests
 import unicodedata
 import streamlit.components.v1 as components
@@ -132,3 +132,4 @@ else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
     st.info("Utilisez la barre latérale pour commencer.")
+
