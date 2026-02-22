@@ -208,37 +208,53 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
             for titre, contenu in arg_l.items():
                 with st.expander(f"📘 {titre}", expanded=True):
                     
-                    # --- TABLEAUX ---
+                    # --- GESTION DES TABLEAUX (RESPONSIVE) ---
                     if isinstance(contenu, dict) and "lignes" in contenu:
                         df_temp = pd.DataFrame(contenu["lignes"])
-                        if "col_0" in df_temp.columns: 
-                            df_temp = df_temp.rename(columns={"col_0": "Activité"})
-                        st.table(df_temp)
+                        
+                        # 1. Raccourcissement des colonnes (Mois)
+                        mapping_colonnes = {
+                            "Janv.": "J", "Fév.": "F", "Mars": "M", "Avril": "A", 
+                            "Mai": "M", "Juin": "J", "Juill.": "J", "Août": "A", 
+                            "Sept.": "S", "Oct.": "O", "Nov.": "N", "Déc.": "D",
+                            "col_0": "Activité"
+                        }
+                        df_temp = df_temp.rename(columns=mapping_colonnes)
+                        
+                        # 2. Raccourcissement du contenu des lignes
+                        def raccourcir_activite(val):
+                            if not isinstance(val, str): return val
+                            mapping_texte = {
+                                "Plein champ": "P.C.",
+                                "Culture sous abri": "Abri",
+                                "Temps de travaux (indicatif)": "Tps W",
+                                "Temps de travaux": "Tps W"
+                            }
+                            for long, court in mapping_texte.items():
+                                val = val.replace(long, court)
+                            return val
+
+                        df_temp = df_temp.applymap(raccourcir_activite)
+
+                        # 3. Affichage via st.dataframe (mieux que st.table pour le mobile)
+                        st.dataframe(df_temp, use_container_width=True, hide_index=True)
+
                     elif isinstance(contenu, list):
-                        try: st.table(pd.DataFrame(contenu))
-                        except: st.write(str(contenu))
+                        try:
+                            st.dataframe(pd.DataFrame(contenu), use_container_width=True, hide_index=True)
+                        except:
+                            st.write(str(contenu))
                     
-                    # --- TEXTE (Correction des sauts de ligne) ---
+                    # --- GESTION DU TEXTE (SAUTS DE LIGNES) ---
                     else:
                         t = str(contenu).strip()
-                        
-                        # 1. Nettoyage des points ou deux-points au tout début du bloc
                         while t.startswith((".", ":", " ")):
                             t = t[1:].strip()
                         
-                        # 2. Conversion des sauts de ligne JSON en sauts de ligne Markdown
-                        # On traite les \\n (brut) et les \n (interprétés)
                         t = t.replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
-                        
-                        # 3. Optionnel : si après ça tu as encore des blocs trop compacts, 
-                        # on peut forcer un double saut de ligne pour aérer
-                        # t = t.replace('  \n', '  \n\n') 
-
                         st.markdown(t)
                     
                     popover_feedback("ARG", titre, sel)
-        else:
-            st.info("Aucune donnée ARG disponible pour ce légume.")
 
     with tabs[1]: # GAB
         g = GAB_DATA.get(sel, {})
@@ -300,6 +316,7 @@ else:
     ---
     *Toutes les modifications sont soumises à validation.*
     """)
+
 
 
 
