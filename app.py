@@ -56,11 +56,9 @@ def sans_accent(texte):
                    if unicodedata.category(c) != 'Mn').lower()
 
 def format_text(txt):
-    """Nettoie les sauts de ligne pour l'affichage Markdown Streamlit"""
+    """Force les sauts de ligne pour le Markdown Streamlit"""
     if not txt: return ""
-    # On remplace les doubles backslash et les simples par le format Markdown (2 espaces + \n)
-    t = str(txt).replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
-    return t
+    return str(txt).replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
 
 # ==========================================
 # 3. CHARGEMENT DONNÉES
@@ -71,19 +69,17 @@ JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 ITAB_DATA = load_json("itab.json")
 FERTI_DATA = load_json("calcul_ferti.json")
-JP1_OFFICIEL = load_json("reglages_jp1.json")
+JP1_OFFICIEL = load_json("reglages_jp1 (4).json")
 JP1_JMF = load_json("reglages_jmf.json")
 
-# Connexion GSheets
 conn = st.connection("gsheets", type=GSheetsConnection)
 URL_SHEET = "https://docs.google.com/spreadsheets/d/1-NhzHwiedbc5asVHQW_WdwB0WWz_JTsELbR0l7vO9-s/edit#gid=0"
 
-# Liste complète pour la sidebar
 leg_all = set(list(GAB_DATA.keys()) + list(JMF_DATA.keys()) + list(JDV_DATA.keys()) + list(ARG_DATA.keys()))
 tous_les_legumes = sorted([l for l in leg_all if l], key=sans_accent)
 
 # ==========================================
-# 4. SIDEBAR
+# 4. SIDEBAR (Navigation & Widgets)
 # ==========================================
 with st.sidebar:
     if st.button("**🏠 ACCUEIL DLABAL**", use_container_width=True):
@@ -99,6 +95,7 @@ with st.sidebar:
     st.selectbox("🌱 Choisir un légume :", ["---"] + tous_les_legumes, key="nav_sidebar", on_change=on_change_sidebar)
     
     st.divider()
+    
     if st.button("⚙️ RÉGLAGES JP1", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
@@ -107,45 +104,54 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_FERTI"
         st.rerun()
 
+    st.link_button("📂 Fiches légumes JA", "https://drive.google.com/drive/u/0/folders/1nj4ZGdFExm-_xs8xRYBBxmSkqmVEvdmM", use_container_width=True)
+
+    st.divider()
+    st.markdown("### 🌦️ Météo locale")
+    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 # ==========================================
-# 5. LOGIQUE D'AFFICHAGE
+# 5. LOGIQUE D'AFFICHAGE CENTRAL
 # ==========================================
 
 # --- PAGE RÉGLAGES JP1 ---
 if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     
-    # FUSION RÉELLE DES LÉGUMES JP1
+    # FUSION RÉELLE DES LÉGUMES JP1 (Officiel + JMF)
     l_off = [i["CULTURE"] for i in JP1_OFFICIEL.get("reglages", [])]
     l_jmf = [i["CULTURE"] for i in JP1_JMF.get("reglages", [])]
     fusion_jp1 = sorted(list(set(l_off + l_jmf)), key=sans_accent)
     
-    sel_jp1 = st.selectbox("Légume pour semis :", ["---"] + fusion_jp1)
+    sel_jp1 = st.selectbox("Sélectionner un légume pour le semis :", ["---"] + fusion_jp1)
     
     if sel_jp1 != "---":
-        res = []
-        # Source Officielle
-        d_off = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
-        res.append({
-            "SOURCE": "OFFICIEL (Terrateck)",
-            "ROULEAU": d_off.get("ROULEAUX", d_off.get("ROULEAU", "-")) if d_off else "Non listé",
-            "PIGNONS": "-", "OBS": "-"
+        tableau_data = []
+        # Recherche dans l'Officiel
+        off_item = next((i for i in JP1_OFFICIEL.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
+        tableau_data.append({
+            "Source": "OFFICIEL (Terrateck)",
+            "Rouleau(x)": off_item.get("ROULEAUX", off_item.get("ROULEAU", "-")) if off_item else "Non répertorié",
+            "Pignons (AV/AR)": "-", "Observations": "-"
         })
-        # Source JMF
-        d_jmf = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
-        if d_jmf:
-            res.append({
-                "SOURCE": "JMF (Grelinette)",
-                "ROULEAU": d_jmf.get("ROULEAU", "-"),
-                "PIGNONS": f"{d_jmf.get('AV','-')} / {d_jmf.get('AR','-')}",
-                "OBS": d_jmf.get("OBS", "-")
+        # Recherche dans JMF
+        jmf_item = next((i for i in JP1_JMF.get("reglages", []) if i["CULTURE"] == sel_jp1), None)
+        if jmf_item:
+            tableau_data.append({
+                "Source": "JMF (Grelinette)",
+                "Rouleau(x)": jmf_item.get("ROULEAU", "-"),
+                "Pignons (AV/AR)": f"{jmf_item.get('AV','-')} / {jmf_item.get('AR','-')}",
+                "Observations": jmf_item.get("OBS", "-")
             })
-        st.table(pd.DataFrame(res))
+        st.table(pd.DataFrame(tableau_data))
 
 # --- PAGE FERTILISATION ---
 elif st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
-    # (Le code de calcul reste identique)
+    # Logique de calcul simplifiée pour rester stable
+    leg_f = st.selectbox("Légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
+    if leg_f != "---":
+        st.write(FERTI_DATA[leg_f])
 
 # --- PAGE FICHE LÉGUME ---
 elif st.session_state["view_mode"] == "LEGUME":
@@ -186,4 +192,16 @@ elif st.session_state["view_mode"] == "LEGUME":
 else:
     st.title("🌱 Bienvenue sur DLABAL")
     st.markdown("---")
-    st.markdown("### Guide d'utilisation\n\n- **Cliquer sur un légume** à gauche pour voir les fiches.\n- **Boutons réglages/ferti** pour les outils de calcul.")
+    st.markdown("""
+    ### DLABAL - BDD ITK Maraîchage
+    
+    Cette application centralise les données techniques pour le maraîchage.
+    
+    1. **Sélectionnez un légume** dans la barre latérale pour consulter les fiches (ARG, GAB, JMF, etc.).
+    2. **Utilisez les outils** (⚙️ Réglages JP1, 🧪 Calcul Ferti) pour vos besoins spécifiques.
+    3. **Consultez la météo** locale directement depuis la barre latérale.
+    4. **Contribuez** en remplissant l'onglet **THO** sur les fiches légumes.
+    
+    *Utilisez la barre latérale à gauche pour naviguer.*
+    """)
+    st.info("Sélectionnez une culture ou un outil pour commencer.")
