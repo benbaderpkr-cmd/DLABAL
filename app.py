@@ -71,7 +71,6 @@ GAB_DATA = load_json("gab.json")
 JMF_DATA = load_json("jmf.json")
 JDV_DATA = load_json("jdv.json")
 ITAB_DATA = load_json("itab.json")
-FERTI_DATA = load_json("calcul_ferti.json")
 RAW_JP1 = load_json("reglages_jp1.json")
 REGLAGES_LISTE = RAW_JP1.get("reglages", [])
 
@@ -116,8 +115,15 @@ with st.sidebar:
     st.write("") 
     
     sel = st.selectbox("Choisir un légume :", ["---"] + tous_les_legumes)
-    if sel != "---":
+    # FIX : on ne change la vue vers LEGUME que si le légume vient de changer.
+    # Sans ce garde-fou, chaque re-run (ex: clic sur JP1/FERTI) forçait view_mode="LEGUME"
+    # tant qu'un légume était sélectionné dans le widget.
+    if sel != "---" and sel != st.session_state.get("_dernier_legume"):
+        st.session_state["_dernier_legume"] = sel
         st.session_state["view_mode"] = "LEGUME"
+        st.rerun()
+    # Lire sel depuis la session pour qu'il reste stable même après navigation JP1/FERTI
+    sel = st.session_state.get("_dernier_legume", "---")
     
     st.divider()
 
@@ -125,7 +131,7 @@ with st.sidebar:
         st.session_state["view_mode"] = "PAGE_JP1"
         st.rerun()
 
-    if st.button("🧪 CALCUL FERTI", use_container_width=True):
+    if st.button("🌿 CALCUL FERTI", use_container_width=True):
         st.session_state["view_mode"] = "PAGE_FERTI"
         st.rerun()
 
@@ -136,23 +142,8 @@ with st.sidebar:
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
-# --- CAS : PAGE CALCUL FERTI ---
-if st.session_state["view_mode"] == "PAGE_FERTI":
-    st.title("🧪 CALCULATEUR DE FERTILISATION")
-    l_m = st.number_input("Longueur planche (m)", value=20.0)
-    w_m = st.number_input("Largeur planche (m)", value=0.75)
-    surf = l_m * w_m
-    st.write(f"Surface : {surf} m²")
-    choix = st.selectbox("Légume :", options=list(FERTI_DATA.keys()) if FERTI_DATA else [])
-    if choix and FERTI_DATA:
-        d = FERTI_DATA[choix].get("JDV")
-        if d:
-            st.write(f"N : {(d['N']/10000)*surf:.3f}")
-            st.write(f"P : {(d['P']/10000)*surf:.3f}")
-            st.write(f"K : {(d['K']/10000)*surf:.3f}")
-
-# --- CAS : RÉGLAGES JP1 ---
-elif st.session_state["view_mode"] == "PAGE_JP1":
+# --- CAS A : PAGE DÉDIÉE RÉGLAGES JP1 (TABLEAUX) ---
+if st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1 TERRADONIS")
     st.caption(f"Source : {RAW_JP1.get('source', '')}")
     st.markdown("---")
@@ -161,29 +152,73 @@ elif st.session_state["view_mode"] == "PAGE_JP1":
     DATA_JMF = load_json("reglages_jmf.json")
     if DATA_JMF:
         df_jmf = pd.DataFrame(DATA_JMF["reglages"])
-        st.dataframe(df_jmf.rename(columns={"AV": "Pignon AV", "AR": "Pignon AR", "OBS": "Observations"}), use_container_width=True, hide_index=True)
+        st.dataframe(
+            df_jmf.rename(columns={
+                "AV": "Pignon AV", 
+                "AR": "Pignon AR", 
+                "OBS": "Observations"
+            }), 
+            use_container_width=True, 
+            hide_index=True
+        )
+    st.caption("Source : Jean-Martin Fortier (JMF) - Guide technique")
 
     st.write("")
     st.divider()
 
     st.subheader("🌱 Guide de semis (Source : Terradonis / Terrain)")
-    if "reglages" in RAW_JP1:
-        df_terra = pd.DataFrame(RAW_JP1["reglages"])[["CULTURE", "ROULEAUX"]]
-        st.dataframe(df_terra.sort_values("CULTURE"), use_container_width=True, hide_index=True)
-
-# --- CAS : AFFICHAGE LÉGUME ---
-elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
+    DATA_TERRA = load_json("reglages_jp1.json") 
+    if DATA_TERRA and "reglages" in DATA_TERRA:
+        df_terra = pd.DataFrame(DATA_TERRA["reglages"])[["CULTURE", "ROULEAUX"]]
+        st.dataframe(
+            df_terra.sort_values("CULTURE"), 
+            use_container_width=True, 
+            hide_index=True
+        )
+    st.caption("Source : Catalogue Terradonis & Observations Terrain")
     
-    jmf_legume = JMF_DATA.get(sel, {})
-    besoin_ferti = ""
-    for k, v in jmf_legume.items():
-        if "fertilisation" in k.lower() or "nutritionnel" in k.lower():
-            besoin_ferti = v
-            break
+# --- CAS B : PAGE CALCUL FERTI ---
+elif st.session_state["view_mode"] == "PAGE_FERTI":
+    FERTI_DATA = load_json("calcul_ferti.json")
+    st.title("🌿 CALCUL FERTI")
+    st.markdown("---")
 
-    if besoin_ferti: st.title(f"📊 {sel.upper()} — {besoin_ferti}")
-    else: st.title(f"📊 {sel.upper()}")
+    legume_ferti = st.selectbox("Choisir un légume :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
 
+    c1, c2 = st.columns(2)
+    longueur = c1.number_input("Longueur (m) :", min_value=1, value=10, step=1)
+    largeur = c2.number_input("Largeur (m) :", min_value=1, value=10, step=1)
+    surface = longueur * largeur
+
+    st.markdown("#### Teneur en azote de votre amendement")
+    teneur_N = st.number_input("% N (Azote) :", min_value=0.0, value=0.0, step=0.1, format="%.2f")
+
+    if legume_ferti != "---":
+        donnees = FERTI_DATA[legume_ferti]
+        st.markdown(f"### Résultats pour **{legume_ferti}** — {longueur} m × {largeur} m = **{surface} m²**")
+
+        rows = []
+        for source, vals in donnees.items():
+            if vals:
+                facteur = surface / 10000
+                besoin_N = round(vals["N"] * facteur, 2)
+                besoin_P = round(vals["P"] * facteur, 2)
+                besoin_K = round(vals["K"] * facteur, 2)
+                dose = round(besoin_N / (teneur_N / 100), 1) if teneur_N > 0 else "—"
+                rows.append({
+                    "Source": source,
+                    "Besoin N (kg)": besoin_N,
+                    "Besoin P (kg)": besoin_P,
+                    "Besoin K (kg)": besoin_K,
+                    "⚖️ Dose à épandre (kg)": dose,
+                })
+        if rows:
+            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.caption("La dose à épandre est calculée sur la base de l'azote (N) : besoin N de la culture ÷ teneur N de l'amendement.")
+
+# --- CAS 2 : AFFICHAGE LÉGUME ---
+elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
+    st.title(f"📊 {sel.upper()}")
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["📋 GAB", "🚜 JMF", "🌿 JDV", "📗 ITAB", "📝 THO"])
 
     with tab1:
@@ -192,23 +227,23 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
             cols = st.columns(len(g["BLOCS_IDENTITE"]))
             for i, b in enumerate(g["BLOCS_IDENTITE"]):
                 with cols[i]:
-                    st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n').replace('\\n', '\n')}")
+                    st.success(f"**{b['titre']}**\n\n{b['contenu']}")
                     popover_feedback("GAB", b['titre'], sel)
         for k, v in g.get("TECHNIQUE", {}).items():
             with st.expander(f"📌 {k}", expanded=True):
-                st.markdown(str(v).replace('\\\\n', '\\n').replace('\\n', '\n')); c1, c2 = st.columns([0.96, 0.04])
+                st.markdown(v); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("GAB", k, sel)
 
     with tab2:
-        for t, c in jmf_legume.items():
+        for t, c in JMF_DATA.get(sel, {}).items():
             with st.expander(f"📌 {t}", expanded=True):
-                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n')); c1, c2 = st.columns([0.96, 0.04])
+                st.markdown(c); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JMF", t, sel)
 
     with tab3:
         for t, c in JDV_DATA.get(sel, {}).items():
             with st.expander(f"🌿 {t}", expanded=True):
-                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n')); c1, c2 = st.columns([0.96, 0.04])
+                st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
                 with c2: popover_feedback("JDV", t, sel)
 
     with tab4:
@@ -216,10 +251,10 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
         if itab:
             for t, c in itab.items():
                 with st.expander(f"📗 {t}", expanded=True):
-                    st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
-                    c1, c2 = st.columns([0.96, 0.04])
+                    st.markdown(str(c)); c1, c2 = st.columns([0.96, 0.04])
                     with c2: popover_feedback("ITAB", t, sel)
-        else: st.info("Aucune donnée ITAB disponible.")
+        else:
+            st.info("Aucune donnée ITAB disponible pour ce légume.")
 
     with tab5:
         st.subheader("📝 Saisie Terrain")
@@ -261,6 +296,7 @@ else:
     ---
     *Toutes les modifications de données textuelles sont soumises à validation.*
     """)
+    st.info("👈 Commencez par choisir un légume dans la barre latérale pour afficher les données.")
 
 st.sidebar.markdown("---")
 with st.sidebar:
