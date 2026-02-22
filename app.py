@@ -207,11 +207,11 @@ else:
     
     1. **Sélectionnez un légume** dans la barre latérale pour consulter les fiches (ARG, GAB, JMF, etc.).
     2. **Utilisez les outils** (⚙️ Réglages JP1, 🧪 Calcul Ferti) pour vos besoins spécifiques.
-    3. **Consultez la météo** locale directement depuis la barre latérale.
-    4. **Contribuez** en remplissant l'onglet **THO** sur les fiches légumes.
+    3. **Contribuez** en remplissant l'onglet **THO** sur les fiches légumes.
     
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
 
 
