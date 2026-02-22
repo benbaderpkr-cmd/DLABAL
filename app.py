@@ -131,17 +131,59 @@ with st.sidebar:
     if st.button("🚪 Déconnexion", use_container_width=True):
         cookies["auth_token"] = ""; cookies.save(); st.session_state["password_correct"] = False; st.rerun()
 
+    st.markdown("---")
+    st.markdown("### 🌦️ Météo locale")
+    components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
+
 # ==========================================
 # 5. AFFICHAGE CENTRAL
 # ==========================================
 
 if st.session_state["view_mode"] == "PAGE_FERTI":
     st.title("🧪 CALCULATEUR DE FERTILISATION")
-    # ... (code ferti inchangé)
+    # ... (Code Ferti conservé intégralement)
+    legume_ferti = st.selectbox("Choisir un légume (base) :", ["---"] + sorted(FERTI_DATA.keys(), key=sans_accent))
+    with st.expander("Saisie manuelle (u/ha)"):
+        cn, cp, ck = st.columns(3)
+        manuel_n = cn.number_input("N", min_value=0, value=0)
+        manuel_p = cp.number_input("P", min_value=0, value=0)
+        manuel_k = ck.number_input("K", min_value=0, value=0)
+    col1, col2 = st.columns(2)
+    longueur = col1.number_input("Longueur (m)", min_value=1, value=10)
+    largeur = col2.number_input("Largeur (m)", min_value=0.1, value=1.0)
+    surface = longueur * largeur
+    st.markdown("#### Caractéristiques de l'engrais")
+    t1, t2, t3 = st.columns(3)
+    ten_N = t1.number_input("% N", value=6.0)
+    ten_P = t2.number_input("% P", value=4.0)
+    ten_K = t3.number_input("% K", value=10.0)
+    ten_pat = st.number_input("Patentkali % K", value=30.0)
+    rows = []
+    facteur = surface / 10000
+    def calc(n_ha, p_ha, k_ha, label):
+        b_n, b_k = n_ha * facteur, k_ha * facteur
+        dose_kg = round(b_n / (ten_N / 100), 1) if ten_N > 0 else 0
+        k_app = round(dose_kg * (ten_K / 100), 2)
+        manque_k = max(0, round(b_k - k_app, 2))
+        dose_pat = round(manque_k / (ten_pat / 100), 2)
+        return {"Source": label, "Besoin (U/ha)": f"N:{n_ha}|K:{k_ha}", "Dose Principal (kg)": dose_kg, "💎 Patentkali (kg)": dose_pat}
+    if manuel_n > 0 or manuel_k > 0:
+        rows.append(calc(manuel_n, manuel_p, manuel_k, "Manuel"))
+    elif legume_ferti != "---":
+        d = FERTI_DATA[legume_ferti]
+        for s, v in d.items():
+            if v: rows.append(calc(v["N"], v["P"], v["K"], s))
+    if rows: st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 
 elif st.session_state["view_mode"] == "PAGE_JP1":
     st.title("⚙️ RÉGLAGES JP1")
-    # ... (code JP1 inchangé)
+    l_jp1 = st.selectbox("Légume :", ["---"] + sorted(RAW_JP1.keys(), key=sans_accent))
+    if l_jp1 != "---":
+        data = RAW_JP1[l_jp1]
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Pignon int", data["pignon_int"])
+        c2.metric("Pignon ext", data["pignon_ext"])
+        c3.metric("Disque", data["disque"])
 
 elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
     st.title(f"📊 {sel.upper()}")
@@ -152,59 +194,82 @@ elif st.session_state["view_mode"] == "LEGUME" and sel != "---":
         if arg_l:
             for titre, contenu in arg_l.items():
                 with st.expander(f"📘 {titre}", expanded=True):
-                    
-                    # --- CAS 1 : Tableaux (Calendriers, Environnement) ---
                     if isinstance(contenu, dict) and "lignes" in contenu:
-                        try:
-                            df_temp = pd.DataFrame(contenu["lignes"])
-                            
-                            # Raccourcissement des colonnes pour le mobile
-                            mapping_col = {"Janv.":"J","Fév.":"F","Mars":"M","Avril":"A","Mai":"M","Juin":"J","Juill.":"J","Août":"A","Sept.":"S","Oct.":"O","Nov.":"N","Déc.":"D","col_0":"Activité"}
-                            df_temp = df_temp.rename(columns=mapping_col)
-                            
-                            # Raccourcissement du texte dans les cellules
-                            def raccourcir(v):
-                                if not isinstance(v, str): return v
-                                dico = {"Plein champ":"PC", "Culture sous abri":"Abri", "Temps de travaux (indicatif)":"Tps W", "Temps de travaux":"Tps W"}
-                                for long, court in dico.items():
-                                    v = v.replace(long, court)
-                                return v
-                            
-                            df_temp = df_temp.applymap(raccourcir)
-                            # Utilisation de dataframe sans options risquées pour éviter le ValueError
-                            st.dataframe(df_temp, use_container_width=True)
-                        except Exception as e:
-                            st.error(f"Erreur tableau : {e}")
-
-                    # --- CAS 2 : Listes simples ---
+                        df_temp = pd.DataFrame(contenu["lignes"])
+                        # Mapping UNIQUE pour éviter l'erreur de colonnes dupliquées (Pandas n'aime pas avoir deux colonnes "J")
+                        # On ajoute des espaces invisibles pour différencier les colonnes
+                        mapping_col = {
+                            "Janv.":"J", "Fév.":"F", "Mars":"M", "Avril":"A", "Mai":"M ", "Juin":"J ", "Juill.":"J  ",
+                            "Août":"A ", "Sept.":"S", "Oct.":"O", "Nov.":"N", "Déc.":"D", "col_0":"Activité"
+                        }
+                        df_temp = df_temp.rename(columns=mapping_col)
+                        def clean_val(v):
+                            if not isinstance(v, str): return v
+                            m = {"Plein champ":"PC", "Culture sous abri":"Abri", "Temps de travaux (indicatif)":"Tps W", "Temps de travaux":"Tps W"}
+                            for l, c in m.items(): v = v.replace(l, c)
+                            return v
+                        df_temp = df_temp.apply(lambda x: x.map(clean_val))
+                        st.dataframe(df_temp, use_container_width=True)
                     elif isinstance(contenu, list):
-                        try:
-                            st.dataframe(pd.DataFrame(contenu), use_container_width=True)
-                        except:
-                            st.write(str(contenu))
-                    
-                    # --- CAS 3 : Texte (Respect strict du JSON) ---
+                        try: st.dataframe(pd.DataFrame(contenu), use_container_width=True)
+                        except: st.write(str(contenu))
                     else:
                         t = str(contenu).strip()
-                        
-                        # Nettoyage des points/deux-points au début
-                        while t.startswith((".", ":", " ")):
-                            t = t[1:].strip()
-                        
-                        # On remplace les \n par des "double espace + \n" pour forcer Markdown
-                        # sans essayer de fusionner intelligemment (ce qui cassait tout)
+                        while t.startswith((".", ":", " ")): t = t[1:].strip()
                         t = t.replace('\\\\n', '  \n').replace('\\n', '  \n').replace('\n', '  \n')
-                        
                         st.markdown(t)
-                    
                     popover_feedback("ARG", titre, sel)
-        else:
-            st.info("Aucune donnée ARG disponible.")
+        else: st.info("Aucune donnée ARG disponible.")
 
-    # ... (Restant des onglets GAB, JMF, JDV, ITAB, THO comme dans app 21)
-    # Note : Assurez-vous de bien fermer les parenthèses et les blocs.
+    with tabs[1]: # GAB
+        g = GAB_DATA.get(sel, {})
+        if "BLOCS_IDENTITE" in g:
+            cols = st.columns(len(g["BLOCS_IDENTITE"]))
+            for i, b in enumerate(g["BLOCS_IDENTITE"]):
+                with cols[i]: st.success(f"**{b['titre']}**\n\n{str(b['contenu']).replace('\\\\n', '\\n').replace('\\n', '\n')}")
+        for k, v in g.get("TECHNIQUE", {}).items():
+            with st.expander(f"📌 {k}", expanded=True):
+                st.markdown(str(v).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                popover_feedback("GAB", k, sel)
+
+    with tabs[2]: # JMF
+        for t, c in JMF_DATA.get(sel, {}).items():
+            with st.expander(f"🚜 {t}", expanded=True):
+                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                popover_feedback("JMF", t, sel)
+
+    with tabs[3]: # JDV
+        for t, c in JDV_DATA.get(sel, {}).items():
+            with st.expander(f"🌿 {t}", expanded=True):
+                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                popover_feedback("JDV", t, sel)
+
+    with tabs[4]: # ITAB
+        for t, c in ITAB_DATA.get(sel, {}).items():
+            with st.expander(f"📗 {t}", expanded=True):
+                st.markdown(str(c).replace('\\\\n', '\\n').replace('\\n', '\n'))
+                popover_feedback("ITAB", t, sel)
+
+    with tabs[5]: # THO
+        st.subheader("📝 Saisie Terrain (THO)")
+        df_gs = conn.read(spreadsheet=URL_SHEET, worksheet="THO", ttl=0)
+        exist = df_gs[df_gs['LEGUME'] == sel]
+        with st.form("form_tho"):
+            c1, c2, c3 = st.columns(3)
+            v_p = c1.text_area("Implantation :", value=exist['IMPLANTATION'].values[0] if not exist.empty else "")
+            v_e = c2.text_area("Entretien :", value=exist['ENTRETIEN'].values[0] if not exist.empty else "")
+            v_s = c3.text_area("Santé :", value=exist['SANTE'].values[0] if not exist.empty else "")
+            c4, c5, c6 = st.columns(3)
+            v_r = c4.text_area("Rendement :", value=exist['RENDEMENT'].values[0] if not exist.empty else "")
+            v_v = c5.text_area("Variété :", value=exist['VARIETE'].values[0] if not exist.empty else "")
+            v_i = c6.text_area("Info Supp :", value=exist['INFO_SUPP'].values[0] if not exist.empty else "")
+            if st.form_submit_button("Enregistrer THO"):
+                new_row = {"LEGUME": sel, "IMPLANTATION": v_p, "ENTRETIEN": v_e, "SANTE": v_s, "RENDEMENT": v_r, "VARIETE": v_v, "INFO_SUPP": v_i}
+                df_final = pd.concat([df_gs[df_gs['LEGUME'] != sel], pd.DataFrame([new_row])], ignore_index=True)
+                conn.update(spreadsheet=URL_SHEET, worksheet="THO", data=df_final)
+                st.success("Données THO enregistrées !")
 
 else:
     st.title("🌱 Bienvenue sur DLABAL")
-    # ... (accueil inchangé)
-
+    st.markdown("---")
+    st.markdown("### DLABAL - BDD ITK Maraîchage\n1. Sélectionnez un légume à gauche.\n2. Consultez les fiches.\n3. Contribuez via 📝.")
