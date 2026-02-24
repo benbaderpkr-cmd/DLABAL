@@ -105,7 +105,7 @@ with st.sidebar:
 
     st.link_button("📂 Fiches légumes JA", "https://drive.google.com/file/d/10EdjCNE79i_bWx-sTpBxb47ngeMcGIiD/view?usp=sharing", use_container_width=True)
 
-    st.link_button("📂 Plan dE culture", "https://1drv.ms/b/c/d6eda4a915ebde37/IQB7yhQmLqFbTpUWZvMvb9YLAelIwYL_T_5waMzG94OpGh4?e=UuHOsA", use_container_width=True)
+    st.link_button("📂 Plan de culture", "https://1drv.ms/b/c/d6eda4a915ebde37/IQB7yhQmLqFbTpUWZvMvb9YLAelIwYL_T_5waMzG94OpGh4?e=UuHOsA", use_container_width=True)
 
     st.link_button("📂 Pépinière", "https://1drv.ms/b/c/d6eda4a915ebde37/IQCDnM3VFDBBTb6JIvK0HVUeAQCIWAFm_5S1Q0NmrSrN6zg?e=3aw6yp", use_container_width=True)
 
@@ -256,6 +256,7 @@ else:
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
 
 
 
