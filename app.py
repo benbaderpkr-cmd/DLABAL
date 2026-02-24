@@ -105,6 +105,12 @@ with st.sidebar:
 
     st.link_button("📂 Fiches légumes JA", "https://drive.google.com/file/d/10EdjCNE79i_bWx-sTpBxb47ngeMcGIiD/view?usp=sharing", use_container_width=True)
 
+    st.link_button("📂 Plan du culture", "https://1drv.ms/b/c/d6eda4a915ebde37/IQB7yhQmLqFbTpUWZvMvb9YLAelIwYL_T_5waMzG94OpGh4?e=UuHOsA", use_container_width=True)
+
+    st.link_button("📂 Pépinière", "https://1drv.ms/b/c/d6eda4a915ebde37/IQCDnM3VFDBBTb6JIvK0HVUeAQCIWAFm_5S1Q0NmrSrN6zg?e=3aw6yp", use_container_width=True)
+
+    st.link_button("📂 Production", "https://1drv.ms/b/c/d6eda4a915ebde37/IQAg2ypMdnxmRqwjSM70f4hTAadM7s9jN0YYf_yamG-JGVU?e=RWIBAd", use_container_width=True)
+
     st.divider()
     st.markdown("### 🌦️ Météo locale")
     components.html('<iframe width="150" height="300" frameborder="0" scrolling="no" src="https://meteofrance.com/widget/prevision/852810##3D6AA2" style="border: none;"></iframe>', height=310)
@@ -248,6 +254,7 @@ else:
     *Utilisez la barre latérale à gauche pour naviguer.*
     """)
     st.info("Sélectionnez une culture ou un outil pour commencer.")
+
 
 
 
